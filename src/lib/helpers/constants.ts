@@ -1,0 +1,1 @@
+export const MVMICON = 'https://mvm.dev/logo.svg'
