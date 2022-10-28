@@ -1,6 +1,5 @@
 <script>
 	import { payAmount } from '$lib/stores/swap';
-	import Swap from '$lib/components/swap.svelte';
 </script>
 
 <svelte:head>

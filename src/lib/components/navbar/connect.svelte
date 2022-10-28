@@ -1,17 +1,20 @@
 <script lang="ts">
+
 </script>
 
-<label for="my-modal" class="connect btn modal-button mx-2">
-  Connect
-</label>
+<button class="connect btn modal-button mx-2"> Connect </button>
 
 <style>
-.connect{
-  border: none;
-  border-radius: 1rem;
-  background-color: red;
-}
-.connect:hover {
-  background-color: #DB4D07 !important;
-} 
+  .connect {
+    border: none;
+    border-radius: 1rem;
+    background-color: red;
+  }
+  .btn {
+    height: 40px;
+    min-height: 40px !important;
+  }
+  .connect:hover {
+    background-color: #db4d07 !important;
+  }
 </style>

@@ -3,7 +3,7 @@
   $: network = 'MVM'
 </script>
 
-<label for="my-modal" class="network btn btn-ghost modal-button mx-2">
+<label for="" class="network btn btn-ghost modal-button mx-2">
   <div class="rounded-full mr-1">
     <img src="{MVMICON}" alt="Network" class="mvm-logo"/>
   </div>
