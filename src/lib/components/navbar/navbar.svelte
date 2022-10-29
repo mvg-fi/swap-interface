@@ -9,7 +9,7 @@
   import Dark from "./dark.svelte";
 
   onMount(() => {
-    if (window.location.pathname != "/swap") goto("/swap");
+    // if (window.location.pathname != "/swap") goto("/swap");
   });
 </script>
 

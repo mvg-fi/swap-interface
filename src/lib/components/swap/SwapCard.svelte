@@ -1,8 +1,12 @@
-<script>
-  import SwapInput from "./SwapInput.svelte";
-  import Connect from "./Connect.svelte";
+<script lang="ts">
   import Top from "./Top.svelte";
-  import Sort from "./Sort.svelte";
+  import ArrowDown from "./ArrowDown.svelte";
+  import SwapButton from "./SwapButton.svelte";
+  import SwapInput from "./SwapInput.svelte";
+  import ConnectWallet from "./ConnectWallet.svelte";
+
+  // Placeholder
+  const connected = false;
 </script>
 
 <div class="card  bg-base-100 shadow-xl p-3">
@@ -11,20 +15,26 @@
   </div>
 
   <div class="w-full my-3">
-    <SwapInput from={true} />
+    <SwapInput from={true} id="swap-from"/>
   </div>
 
   <div class="w-full flex justify-center content-center">
-    <Sort/>
+    <ArrowDown />
   </div>
 
   <div class="w-full my-3">
-    <SwapInput from={false} />
+    <SwapInput from={false} id="swap-to"/>
   </div>
 
-  <div class="w-full pt-3">
-    <Connect />
-  </div>
+  {#if !connected}
+    <div class="w-full pt-3">
+      <ConnectWallet />
+    </div>
+  {:else}
+    <div>
+      <SwapButton />
+    </div>
+  {/if}
 </div>
 
 <style>
