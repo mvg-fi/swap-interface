@@ -10,24 +10,24 @@
     ($toCoin ? $toCoin.symbol : "ETC")
 </script>
 
-<div>
+<div class="flex">
   <label class="input-group">
     {#if from}
       <input
         type="text"
         placeholder="0"
         bind:value={$payAmount}
-        class="input flex-1 enter"
+        class="input enter left input-lg"
       />
     {:else}
       <input
         type="text"
         placeholder="0"
         bind:value={$receiveAmount}
-        class="input flex-1 enter "
+        class="input enter left input-lg"
       />
     {/if}
-    <button class="btn pl-2">
+    <button class="btn pl-2 btn-lg">
       <div class="avatar">
         <div class="rounded-full w-6 mx-2">
           <img src={icon} alt="l" />
@@ -41,5 +41,9 @@
 <style>
   .enter {
     border: 2px solid rgb(239 240 249);
+  }
+  .left {
+    border-top-left-radius: 1rem !important;
+    border-bottom-left-radius: 1rem !important;
   }
 </style>

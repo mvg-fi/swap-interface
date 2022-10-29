@@ -1,7 +1,5 @@
-<label for="connect" class="btn modal-button block flex content-center justify-center">
-  <!-- <span class=""> -->
+<label for="connect" class="btn modal-button block flex content-center justify-center btn-lg rounded-2xl">
     Connect Wallet
-  <!-- </span> -->
 </label>
 
 <input type="checkbox" id="connect" class="modal-toggle" />
@@ -14,7 +12,7 @@
       Wikipedia for free!
     </p>
     <div class="modal-action">
-      <label for="connect" class="btn">Yay!</label>
+      <label for="connect" class="btn">Close</label>
     </div>
   </div>
 </div>
