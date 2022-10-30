@@ -19,7 +19,7 @@
 <div class="modal modal-bottom sm:modal-middle">
   <div class="modal-box relative h-4/5 p-0">
     <div class="flex p-5">
-      <h3 class="font-bold text-lg flex-1">Select Wallet</h3>
+      <h3 class="font-bold text-lg flex-1">Connect a wallet</h3>
       <label for={id} class="flex-0 btn btn-xs btn-circle btn-ghost">
         <img src={Close} alt="x" />
       </label>

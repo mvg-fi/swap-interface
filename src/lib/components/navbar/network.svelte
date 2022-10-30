@@ -5,7 +5,7 @@
 
 <label for="" class="network btn btn-ghost modal-button mx-2">
   <div class="rounded-full mr-1">
-    <img src="{MVMICON}" alt="Network" class="mvm-logo"/>
+    <img src="{MVMICON}" alt="-" class="mvm-logo"/>
   </div>
   <span class="mvm-text">
     {network}

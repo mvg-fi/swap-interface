@@ -1,25 +1,11 @@
 <script lang="ts">
-  import { fromCoin, toCoin, payAmount, receiveAmount } from "$lib/stores/swap";
-
   import SelectAssetDialog from "./SelectAsset/SelectAssetDialog.svelte";
+  import { selectedFromAsset, selectedToAsset, payAmount, receiveAmount } from "$lib/stores/swap";
 
   export let from: boolean;
   export let id: string;
-
-  $: icon = from
-    ? $fromCoin
-      ? $fromCoin.icon_url
-      : "https://mvg.fi/_nuxt/img/bridge.45e32e8.png"
-    : $toCoin
-    ? $toCoin.icon_url
-    : "https://mvg.fi/_nuxt/img/bridge.45e32e8.png";
-  $: symbol = from
-    ? $fromCoin
-      ? $fromCoin.symbol
-      : "ETH"
-    : $toCoin
-    ? $toCoin.symbol
-    : "ETC";
+  $: icon = from ? $selectedFromAsset?.icon_url : $selectedToAsset.icon_url
+  $: symbol = from ? $selectedFromAsset?.symbol : $selectedToAsset.symbol
 </script>
 
 <div class="flex">
@@ -29,18 +15,18 @@
         type="text"
         placeholder="0"
         bind:value={$payAmount}
-        class="input enter left input-lg"
+        class="input swap-input left input-lg same-height rounded-2xl"
       />
     {:else}
       <input
         type="text"
         placeholder="0"
         bind:value={$receiveAmount}
-        class="input enter left input-lg"
+        class="input swap-input left input-lg same-height rounded-2xl"
       />
     {/if}
 
-    <label for={id} class="btn pl-2 btn-lg">
+    <label for={id} class="btn pl-2 btn-lg select-btn same-height">
       <div class="avatar">
         <div class="rounded-full w-6 mx-2">
           <img src={icon} alt="l" />
@@ -51,24 +37,25 @@
   </label>
 
   <input type="checkbox" {id} class="modal-toggle" />
-  <SelectAssetDialog {id} />
+  <SelectAssetDialog {from} {id} />
 </div>
 
 <style>
-  .enter {
+  .swap-input {
     border: 2px solid rgb(239 240 249);
+    outline: none;
   }
-  .btn {
+  .select-btn {
     color: black;
     border: 2px solid rgb(239 240 249);
     border-left: none;
     background-color: #ffffff;
   }
-  .btn:active {
-    border: none;
-  }
   .left {
     border-top-left-radius: 1rem !important;
     border-bottom-left-radius: 1rem !important;
+  }
+  .same-height {
+    height: 64px !important;
   }
 </style>

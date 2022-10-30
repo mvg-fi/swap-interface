@@ -1,17 +1,19 @@
 <script lang="ts">
   import Close from "$lib/images/close.svg";
+  import assets from "$lib/assets/assets.json";
+  import { search } from "$lib/stores/searchAsset";
   import SingleAsset from "$lib/components/swap/SelectAsset/SingleAsset.svelte";
+  import SearchAsset from "$lib/components/swap/SelectAsset/SearchAsset.svelte";
 
-  export let id:string;
-  // placeholder
-  const assets = [
-    {
-      logoURI:
-        "https://mixin-images.zeromesh.net/HvYGJsV5TGeZ-X9Ek3FEQohQZ3fE9LBEBGcOcn4c4BNHovP4fW4YB97Dg5LcXoQ1hUjMEgjbl1DPlKg1TW7kK6XP=s128",
-      symbol: "BTC",
-      name: "Bitcoin",
-    },
-  ];
+  export let from: boolean;
+  export let id: string;
+
+  $: filteredItems = assets.filter((item) => {
+    return (
+      item.symbol.toLowerCase().match($search) ||
+      item.name.toLowerCase().match($search)
+    );
+  });
 </script>
 
 <div class="modal modal-bottom sm:modal-middle">
@@ -22,10 +24,13 @@
         <img src={Close} alt="x" />
       </label>
     </div>
+    <div class="pb-4 px-5">
+      <SearchAsset />
+    </div>
     <ul class="menu bg-base-100 w-full">
-      {#each assets as asset}
+      {#each filteredItems as asset}
         <li>
-          <SingleAsset {asset} />
+          <SingleAsset {asset} {from} {id}/>
         </li>
       {/each}
     </ul>

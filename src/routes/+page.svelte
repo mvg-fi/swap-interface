@@ -1,5 +1,5 @@
 <script>
-	import { payAmount } from '$lib/stores/swap';
+
 </script>
 
 <svelte:head>
@@ -7,9 +7,7 @@
 	<meta name="description" content="" />
 </svelte:head>
 
-<section>
-	
-</section>
+<section />
 
 <style>
 	section {
