@@ -14,3 +14,6 @@ export const setFromAsset = (asset:object) => {
 export const setToAsset = (asset:object) => {
   selectedToAsset.set(asset)
 }
+export const setSlippage = (number:number) => {
+  slippage.set(number)
+}

@@ -14,7 +14,8 @@
   <label
     for={id}
     class="btn-ghost h-14 asset-btn-bg"
-    on:click={setAsset(asset)}
+    on:click={() => setAsset(asset)}
+    on:keydown={() => setAsset(asset)}
   >
     {#if asset.icon_url}
       <div class="avatar pr-1 pl-1">
@@ -23,8 +24,8 @@
         </div>
       </div>
       <div class="text-left pl-0">
-        <div class="font-bold">{asset.symbol}</div>
-        <div class="text-sm opacity-50">{asset.name}</div>
+        <div class="font-bold">{asset.name}</div>
+        <div class="text-sm opacity-50">{asset.symbol}</div>
       </div>
     {/if}
   </label>

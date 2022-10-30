@@ -14,7 +14,7 @@
     <Top />
   </div>
 
-  <div class="w-full my-3">
+  <div class="w-full my-3 mb-2">
     <SwapInput from={true} id="swap-from"/>
   </div>
 
@@ -22,7 +22,7 @@
     <ArrowDown />
   </div>
 
-  <div class="w-full my-3">
+  <div class="w-full my-3 mt-2">
     <SwapInput from={false} id="swap-to"/>
   </div>
 

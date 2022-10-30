@@ -1,19 +1,10 @@
 <script lang="ts">
   import Close from "$lib/images/close.svg";
-  import SingleWallet from "./SingleWallet.svelte";
+  import { WALLETS as wallets } from "$lib/helpers/constants"
+  import SingleWallet from "$lib/components/wallets/SingleWallet.svelte";
 
   export let id: string;
   // placeholder
-  const wallets = [
-    {
-      logo: "https://mixin-images.zeromesh.net/HvYGJsV5TGeZ-X9Ek3FEQohQZ3fE9LBEBGcOcn4c4BNHovP4fW4YB97Dg5LcXoQ1hUjMEgjbl1DPlKg1TW7kK6XP=s128",
-      name: "Metamask",
-    },
-    {
-      logo: "https://mixin-images.zeromesh.net/HvYGJsV5TGeZ-X9Ek3FEQohQZ3fE9LBEBGcOcn4c4BNHovP4fW4YB97Dg5LcXoQ1hUjMEgjbl1DPlKg1TW7kK6XP=s128",
-      name: "WalletConnect",
-    },
-  ];
 </script>
 
 <div class="modal modal-bottom sm:modal-middle">

@@ -13,3 +13,15 @@ export const ETHERSCAN_URL = 'https://etherscan.io/'
 export const MAINNET_RPC_URL = `https://mainnet.infura.io/v3/${INFURA_KEY}`
 export const MVM_RPC_URL = "https://geth.mvm.dev/";
 export const MVMSCAN_URL = "https://scan.mvm.dev/";
+
+// Wallets
+export const WALLETS = [
+  {
+    logo: "https://mixin-images.zeromesh.net/HvYGJsV5TGeZ-X9Ek3FEQohQZ3fE9LBEBGcOcn4c4BNHovP4fW4YB97Dg5LcXoQ1hUjMEgjbl1DPlKg1TW7kK6XP=s128",
+    name: "Metamask",
+  },
+  {
+    logo: "https://mixin-images.zeromesh.net/HvYGJsV5TGeZ-X9Ek3FEQohQZ3fE9LBEBGcOcn4c4BNHovP4fW4YB97Dg5LcXoQ1hUjMEgjbl1DPlKg1TW7kK6XP=s128",
+    name: "WalletConnect",
+  },
+];
