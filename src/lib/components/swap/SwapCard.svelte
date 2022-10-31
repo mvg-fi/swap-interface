@@ -9,7 +9,7 @@
   const connected = false;
 </script>
 
-<div class="card  bg-base-100 shadow-xl p-3">
+<div class="card  bg-base-100 shadow-xl p-2">
   <div class="py-2 px-3 flex">
     <Top />
   </div>
