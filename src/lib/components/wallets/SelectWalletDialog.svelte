@@ -9,10 +9,11 @@
   import type { ProviderKey } from "$lib/types/provider";
   import { createWeb3Client } from "$lib/helpers/clients/index";
   import { account, setProvider } from "$lib/stores/ethers";
-  import { logout, registerAndSave } from "$lib/stores/user";
+  import { registerAndSave } from "$lib/stores/user";
   import { providerKey as cacheProvider } from "$lib/stores/provider";
 
   let loading = false;
+  export let id:string;
 
   const providers: IProvider[] = [
     {
@@ -50,11 +51,11 @@
   };
 </script>
 
-<div class="modal modal-bottom sm:modal-middle">
+<label class="modal modal-bottom sm:modal-middle" for={id}>
   <div class="modal-box relative w-full h-2/5 sm:h-3/5 p-2 flex-col flex">
     {#each providers as { title, desc, icon, key } (key)}
       <div
-        class="px-0 btn btn-ghost flex flex-col rounded-2xl  b-b {`h-1/${providers.length}`}"
+        class="px-0 btn btn-ghost flex flex-col rounded-2xl b-b option {`h-1/${providers.length}`}"
       >
         <button on:click={() => connect(key)}>
           <img loading="lazy" src={icon} alt={title} width="48" height="48" />
@@ -66,11 +67,14 @@
       </div>
     {/each}
   </div>
-</div>
+</label>
 
 <style>
   /* bottom border */
   .b-b {
     border-bottom: 1px solid rgba(195, 195, 195, 0.14);
+  }
+  .option:hover {
+    background-color: rgba(195, 195, 195, 0.14);
   }
 </style>

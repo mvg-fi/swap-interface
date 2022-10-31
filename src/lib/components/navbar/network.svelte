@@ -1,16 +1,16 @@
 <script lang="ts">
   import { MVM_ICON } from "$lib/helpers/constants";
-  $: network = "MVM";
+  const network = "MVM";
 </script>
 
-<label for="" class="network btn btn-ghost modal-button mx-2">
+<div class="network btn btn-ghost modal-button mx-2">
   <div class="rounded-full mr-1">
-    <img src={MVM_ICON} alt="-" class="mvm-logo" />
+    <img src={MVM_ICON} alt="mvm" class="mvm-logo" />
   </div>
   <span class="mvm-text">
     {network}
   </span>
-</label>
+</div>
 
 <style>
   .mvm-logo {
