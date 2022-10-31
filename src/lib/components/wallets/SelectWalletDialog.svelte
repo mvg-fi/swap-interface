@@ -54,12 +54,12 @@
   <div class="modal-box relative w-full h-2/5 sm:h-3/5 p-2 flex-col flex">
     {#each providers as { title, desc, icon, key } (key)}
       <div
-        class="px-0 btn btn-ghost flex flex-col  b-b {`h-1/${providers.length}`}"
+        class="px-0 btn btn-ghost flex flex-col rounded-2xl  b-b {`h-1/${providers.length}`}"
       >
         <button on:click={() => connect(key)}>
           <img loading="lazy" src={icon} alt={title} width="48" height="48" />
         </button>
-        <div class="flex text-center mt-4 text-xl">
+        <div class="flex text-center mt-3 text-xl">
           <div class="font-bold">{title}</div>
         </div>
         <div class="text-sm font-semibold opacity-20 pt-3">{desc}</div>
@@ -71,6 +71,6 @@
 <style>
   /* bottom border */
   .b-b {
-    border-bottom: 3px solid rgba(195, 195, 195, 0.14);
+    border-bottom: 1px solid rgba(195, 195, 195, 0.14);
   }
 </style>

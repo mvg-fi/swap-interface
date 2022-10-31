@@ -15,18 +15,18 @@
         type="text"
         placeholder="0"
         bind:value={$payAmount}
-        class="input swap-input left input-lg same-height rounded-2xl"
+        class="input swap-input left input-sm sm:input-lg same-height rounded-2xl"
       />
     {:else}
       <input
         type="text"
         placeholder="0"
         bind:value={$receiveAmount}
-        class="input swap-input left input-lg same-height rounded-2xl"
+        class="input swap-input left input-sm sm:input-lg same-height rounded-2xl"
       />
     {/if}
 
-    <label for={id} class="btn pl-2 btn-lg select-btn same-height">
+    <label for={id} class="btn pl-2 btn-sm sm:btn-lg select-btn same-height">
       <div class="avatar">
         <div class="rounded-full w-6 mx-2">
           <img src={icon} alt="l" />
