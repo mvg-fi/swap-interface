@@ -40,7 +40,7 @@
       if (!$cacheProvider) throw new Error("No cached provider found");
 
       await registerAndSave($account);
-      await goto("/");
+      await goto("/swap");
     } catch (e: any) {
       if (e.message !== "No Web3 Provider found") return;
       showToast("common", $LL.login.pleaseInstallMetaMaskFirst());
@@ -50,22 +50,27 @@
   };
 </script>
 
-<div class="modal modal-bottom sm:modal-middle h-3/5 p-0  h-full flex-col flex">
-  <div class="modal-box relative w-full">
+<div class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box relative w-full h-2/5 sm:h-3/5 p-2 flex-col flex">
     {#each providers as { title, desc, icon, key } (key)}
-      <button
-        class="flex flex-col content-center justify-center px-0"
-        on:click={() => connect(key)}
+      <div
+        class="px-0 btn btn-ghost flex flex-col  b-b {`h-1/${providers.length}`}"
       >
-        <img loading="lazy" src={icon} alt={title} width="48" height="48" />
-        <div class="flex items-start">
+        <button on:click={() => connect(key)}>
+          <img loading="lazy" src={icon} alt={title} width="48" height="48" />
+        </button>
+        <div class="flex text-center mt-4 text-xl">
           <div class="font-bold">{title}</div>
-          <div class="text-sm font-semibold opacity-20">{desc}</div>
         </div>
-      </button>
+        <div class="text-sm font-semibold opacity-20 pt-3">{desc}</div>
+      </div>
     {/each}
   </div>
 </div>
 
 <style>
+  /* bottom border */
+  .b-b {
+    border-bottom: 3px solid rgba(195, 195, 195, 0.14);
+  }
 </style>
