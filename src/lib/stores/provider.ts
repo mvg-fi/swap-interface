@@ -1,14 +1,14 @@
 import { derived } from '@square/svelte-store';
 import { persistentWritable } from '../helpers/store/persistent';
-import type { ProviderKey } from '../helpers/clients/type';
+import type { ProviderKey } from '$lib/types/provider';
 import metaMask from '$lib/images/logo/metamask.svg';
 import walletConnect from '$lib/images/logo/wallet-connect.svg';
-import { WALLET_CONNECT_KEY } from '$lib/helpers/constants';
+import { PROVIDER_KEY } from '$lib/helpers/constants';
 import { page } from '$app/stores';
-import { dedupe } from '../helpers/store/dedupe';
+import { dedupe } from '$lib/helpers/store/dedupe';
 import { browser } from '$app/environment';
 
-const persistentProviderKey = persistentWritable<ProviderKey | undefined>(WALLET_CONNECT_KEY, undefined);
+const persistentProviderKey = persistentWritable<ProviderKey | undefined>(PROVIDER_KEY, undefined);
 
 export const providerKey = dedupe(
 	derived(

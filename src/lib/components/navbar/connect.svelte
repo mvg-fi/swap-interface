@@ -1,8 +1,8 @@
 <script lang="ts">
-
+  import { LL } from "$i18n/i18n-svelte";
 </script>
 
-<button class="connect btn modal-button mx-2"> Connect </button>
+<button class="connect btn modal-button mx-2"> {$LL.connect.title} </button>
 
 <style>
   .connect {

@@ -5,9 +5,12 @@ import { toHex } from '$lib/helpers/utils';
 export const APP_NAME = 'MVG Swap'
 
 // Icons
-export const MVMICON = 'https://mvm.dev/logo.svg'
+export const MVM_ICON = 'https://mvm.dev/logo.svg'
 
 // Keys
+export const USER_KEY = 'USER';
+export const LANG = 'lang';
+export const PROVIDER_KEY = 'injected'
 export const INFURA_KEY = import.meta.env.INFURA_KEY
 export const WALLET_CONNECT_KEY = import.meta.env.WALLET_CONNECT_KEY
 
@@ -35,19 +38,6 @@ export const MAINNET_CHAIN_ID = 1;
 export const MVM_CHAIN_ID = 73927;
 export const MAINNET_CHAIN_HEX_ID = toHex(MAINNET_CHAIN_ID);
 export const MVM_CHAIN_HEX_ID = toHex(MVM_CHAIN_ID);
-
-
-// Wallets
-export const WALLETS = [
-  {
-    logo: "https://mixin-images.zeromesh.net/HvYGJsV5TGeZ-X9Ek3FEQohQZ3fE9LBEBGcOcn4c4BNHovP4fW4YB97Dg5LcXoQ1hUjMEgjbl1DPlKg1TW7kK6XP=s128",
-    name: "Metamask",
-  },
-  {
-    logo: "https://mixin-images.zeromesh.net/HvYGJsV5TGeZ-X9Ek3FEQohQZ3fE9LBEBGcOcn4c4BNHovP4fW4YB97Dg5LcXoQ1hUjMEgjbl1DPlKg1TW7kK6XP=s128",
-    name: "WalletConnect",
-  },
-];
 
 // Network
 export const networkParams: Record<string, NetworkParam> = {

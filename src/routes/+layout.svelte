@@ -1,7 +1,11 @@
-<script>
+<script lang="ts">
   import Navbar from "$lib/components/navbar/navbar.svelte";
+  import Container from "$lib/components/toast/container.svelte";
+  import { setLocale } from '$i18n/i18n-svelte';
   import "../app.postcss";
   import "./styles.css";
+
+  setLocale("zh")
 </script>
 
 <div class="app">
@@ -17,6 +21,8 @@
     
   </footer>
 </div>
+
+<Container />
 
 <style>
   .app {
