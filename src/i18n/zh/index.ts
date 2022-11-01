@@ -10,6 +10,10 @@ const zh: Translation = {
 	connect: {
 		title: 'Connect',
 	},
+	error: {
+		userClosedModal: 'User closed modal',
+		userRejected: 'User rejceted',
+	}
 }
 
 export default zh

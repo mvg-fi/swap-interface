@@ -38,6 +38,16 @@ type RootTranslation = {
 		 */
 		title: string
 	}
+	error: {
+		/**
+		 * U​s​e​r​ ​c​l​o​s​e​d​ ​m​o​d​a​l
+		 */
+		userClosedModal: string
+		/**
+		 * U​s​e​r​ ​r​e​j​c​e​t​e​d
+		 */
+		userRejected: string
+	}
 }
 
 export type TranslationFunctions = {
@@ -64,6 +74,16 @@ export type TranslationFunctions = {
 		 * Connect
 		 */
 		title: () => LocalizedString
+	}
+	error: {
+		/**
+		 * User closed modal
+		 */
+		userClosedModal: () => LocalizedString
+		/**
+		 * User rejceted
+		 */
+		userRejected: () => LocalizedString
 	}
 }
 

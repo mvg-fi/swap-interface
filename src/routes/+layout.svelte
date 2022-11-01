@@ -5,7 +5,7 @@
   import "../app.postcss";
   import "./styles.css";
 
-  setLocale("zh")
+  setLocale('zh');
 </script>
 
 <div class="app">

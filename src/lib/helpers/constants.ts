@@ -11,8 +11,8 @@ export const MVM_ICON = 'https://mvm.dev/logo.svg'
 export const USER_KEY = 'USER';
 export const LANG = 'lang';
 export const PROVIDER_KEY = 'injected'
-export const INFURA_KEY = import.meta.env.INFURA_KEY
-export const WALLET_CONNECT_KEY = import.meta.env.WALLET_CONNECT_KEY
+export const INFURA_KEY = import.meta.env.VITE_INFURA_KEY
+export const WALLET_CONNECT_KEY = import.meta.env.VITE_WALLET_CONNECT_KEY
 
 // URLs
 export const ETHER_SCAN_URL = 'https://etherscan.io/'

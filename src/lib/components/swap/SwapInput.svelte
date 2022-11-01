@@ -1,11 +1,16 @@
 <script lang="ts">
   import SelectAssetDialog from "./SelectAsset/SelectAssetDialog.svelte";
-  import { selectedFromAsset, selectedToAsset, payAmount, receiveAmount } from "$lib/stores/swap";
+  import {
+    selectedFromAsset,
+    selectedToAsset,
+    payAmount,
+    receiveAmount,
+  } from "$lib/stores/swap";
 
   export let from: boolean;
   export let id: string;
-  $: icon = from ? $selectedFromAsset?.icon_url : $selectedToAsset.icon_url
-  $: symbol = from ? $selectedFromAsset?.symbol : $selectedToAsset.symbol
+  $: icon = from ? $selectedFromAsset?.icon_url : $selectedToAsset.icon_url;
+  $: symbol = from ? $selectedFromAsset?.symbol : $selectedToAsset.symbol;
 </script>
 
 <div class="flex">
@@ -26,7 +31,7 @@
       />
     {/if}
 
-    <label for={id} class="btn pl-2 btn-sm sm:btn-lg select-btn same-height">
+    <label for={id} class="btn btn-sm sm:btn-lg select-btn same-height">
       <div class="avatar">
         <div class="rounded-full w-6 mx-2">
           <img src={icon} alt="l" />

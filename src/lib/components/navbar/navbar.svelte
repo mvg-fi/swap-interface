@@ -27,6 +27,7 @@
   <div>
     <Network />
   </div>
+  <!-- TODO: Replace with account detail -->
   <div>
     <Connect />
   </div>

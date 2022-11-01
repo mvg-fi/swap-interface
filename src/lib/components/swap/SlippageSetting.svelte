@@ -16,7 +16,7 @@
 </label>
 
 <input type="checkbox" id="swap-settings" class="modal-toggle" />
-<div class="modal">
+<div class="modal modal-bottom sm:modal-middle">
   <div class="modal-box">
     <div class="flex mb-4">
       <h3 class="font-bold text-lg text-black flex-1 content-center">

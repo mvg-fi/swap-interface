@@ -6,5 +6,14 @@
 @layer components {
   .btn{
     text-transform: none;
+    transform: none !important;
+    transition-property: none;
+    transition-duration: 0ms;
+    transition-timing-function: unset !important;
+  }
+  .btn:active:hover,
+  .btn:active:focus {
+    animation: none;
+    transform: none !important;
   }
 }

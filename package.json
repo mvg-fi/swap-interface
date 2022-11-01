@@ -15,6 +15,7 @@
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
     "@types/cookie": "^0.5.1",
+    "@types/lodash-es": "^4.17.6",
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
     "postcss-load-config": "^4.0.1",
@@ -35,16 +36,17 @@
     "@rollup/plugin-inject": "^5.0.2",
     "@square/svelte-store": "^1.0.1",
     "@walletconnect/web3-provider": "^1.8.0",
+    "@yeungkc/svelte-portal": "^0.0.3",
     "bignumber.js": "^9.1.0",
     "daisyui": "^2.31.0",
     "ethers": "^5.7.2",
+    "focus-svelte": "^0.3.4",
     "js-cookie": "^3.0.1",
     "lodash-es": "^4.17.21",
     "rollup-plugin-polyfill-node": "^0.11.0",
     "sass": "^1.55.0",
     "typesafe-i18n": "^5.14.0",
     "uuid": "^9.0.0",
-    "walletlink": "^2.5.0",
-    "web3modal": "^1.9.9"
+    "walletlink": "^2.5.0"
   }
 }
