@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { goto } from "$app/navigation";
   import { onMount } from "svelte";
   import Logo from "./logo.svelte";
   import Sections from "./sections.svelte";
@@ -7,6 +6,8 @@
   import Network from "./network.svelte";
   import Connect from "./connect.svelte";
   import Dark from "./dark.svelte";
+  import { connected } from "$lib/stores/connect";
+  import Account from "./account.svelte";
 
   onMount(() => {
     // if (window.location.pathname != "/swap") goto("/swap");
@@ -27,9 +28,12 @@
   <div>
     <Network />
   </div>
-  <!-- TODO: Replace with account detail -->
   <div>
-    <Connect />
+    {#if $connected}
+      <Account />
+    {:else}
+      <Connect />
+    {/if}
   </div>
   <div>
     <Dark />

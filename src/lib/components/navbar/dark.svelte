@@ -9,7 +9,7 @@
 
       <!-- sun icon -->
       <svg
-        class="icon swap-on fill-current w-10 h-10"
+        class="icon swap-on fill-current w-12 h-12 p-1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         ><path
@@ -19,7 +19,7 @@
 
       <!-- moon icon -->
       <svg
-        class="icon swap-off fill-current w-10 h-10"
+        class="icon swap-off fill-current w-12 h-12 p-1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         ><path
@@ -32,7 +32,7 @@
 
 <style>
   .icon {
-    width: 24px;
+    width: 32px;
   }
   .avatar:hover {
     border-radius: 10px;

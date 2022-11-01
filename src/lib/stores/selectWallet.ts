@@ -2,6 +2,6 @@ import { writable } from "svelte/store";
 
 export let selectWalletDialog = writable(false)
 
-export const openDialog = (open:boolean) => {
+export const setWalletDialog = (open:boolean) => {
   selectWalletDialog.set(open)
 }

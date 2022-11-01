@@ -4,8 +4,7 @@
   import SwapButton from "./SwapButton.svelte";
   import SwapInput from "./SwapInput.svelte";
   import ConnectWallet from "./ConnectWallet.svelte";
-  import { provider } from "$lib/stores/ethers";
-
+  import { connected } from "$lib/stores/connect";
 </script>
 
 <div class="card bg-base-100 shadow-xl p-2">
@@ -26,10 +25,10 @@
   </div>
 
   <div class="w-full pt-3">
-    {#if !!$provider}
-      <ConnectWallet />
-    {:else}
+    {#if $connected}
       <SwapButton />
+    {:else}
+      <ConnectWallet />
     {/if}
   </div>
 </div>

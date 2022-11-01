@@ -7,10 +7,13 @@ export const APP_NAME = 'MVG Swap'
 // Icons
 export const MVM_ICON = 'https://mvm.dev/logo.svg'
 
+// Gas
+export const GAS_PRICE = 10000000
+
 // Keys
 export const USER_KEY = 'USER';
 export const LANG = 'lang';
-export const PROVIDER_KEY = 'injected'
+export const PROVIDER_KEY = 'key'
 export const INFURA_KEY = import.meta.env.VITE_INFURA_KEY
 export const WALLET_CONNECT_KEY = import.meta.env.VITE_WALLET_CONNECT_KEY
 

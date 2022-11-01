@@ -3,7 +3,6 @@ import assets from "$lib/assets/assets.json";
 
 export let selectedFromAsset = writable(assets[0])
 export let selectedToAsset = writable(assets[1])
-export let openDialog = writable(true)
 export let payAmount = writable(0)
 export let receiveAmount = writable(0)
 export let slippage = writable(0.1)

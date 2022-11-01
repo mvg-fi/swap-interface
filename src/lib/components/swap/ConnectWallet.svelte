@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { openDialog, selectWalletDialog } from "$lib/stores/selectWallet";
+  import { setWalletDialog, selectWalletDialog } from "$lib/stores/selectWallet";
   import SelectWalletDialog from "../wallets/SelectWalletDialog.svelte";
 
   const id = "connect-wallet";
@@ -7,7 +7,7 @@
 
 <label class="w-full" for={id}>
   <button
-    on:click={() => openDialog(true)}
+    on:click={() => setWalletDialog(true)}
     class="btn w-full btn-lg rounded-2xl bg-black"
   >
     Connect Wallet

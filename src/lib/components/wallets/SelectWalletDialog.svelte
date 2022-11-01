@@ -10,7 +10,8 @@
   import { createWeb3Client } from "$lib/helpers/clients/index";
   import { account, setProvider } from "$lib/stores/ethers";
   import { registerAndSave } from "$lib/stores/user";
-  import { selectWalletDialog } from "$lib/stores/selectWallet";
+  import { setConnected } from "$lib/stores/connect";
+  import { setWalletDialog } from "$lib/stores/selectWallet";
   import { providerKey as cacheProvider } from "$lib/stores/provider";
 
   let loading = false;
@@ -42,8 +43,8 @@
       if (!$cacheProvider) throw new Error("No cached provider found");
 
       await registerAndSave($account);
-      selectWalletDialog.set(false)
-      
+      setWalletDialog(false);
+      setConnected(true);
     } catch (e: any) {
       console.log(e);
       switch (true) {
