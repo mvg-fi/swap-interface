@@ -8,3 +8,14 @@ export const StableSwapContract = new ethers.Contract(
   STABLE_SWAP_ABI,
   mvmProvider
 )
+
+export const CryptoSwapContract = new ethers.Contract(
+  TEST_TRICRYPTO_ADDRESS,
+  CRYPTO_SWAP_ABI,
+  mvmProvider
+)
+
+export const fetchDyFromContract = (from: object, to: object, amount: number) => {
+  if (amount == 0 || amount == null) {return}
+  console.log(from, to, amount)
+}

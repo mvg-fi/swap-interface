@@ -16,8 +16,8 @@
     background-color: red;
   }
   .btn {
-    height: 40px;
-    min-height: 40px !important;
+    height: 48px;
+    min-height: 48px !important;
   }
   .connect:hover {
     background-color: #db4d07 !important;

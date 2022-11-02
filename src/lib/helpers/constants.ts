@@ -7,8 +7,11 @@ export const APP_NAME = 'MVG Swap'
 // Icons
 export const MVM_ICON = 'https://mvm.dev/logo.svg'
 
-// Gas
+// Contract
 export const GAS_PRICE = 10000000
+
+// Swap
+export const DEFAULT_SLIPPAGE = 0.1
 
 // Keys
 export const USER_KEY = 'USER';

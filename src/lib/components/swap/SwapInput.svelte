@@ -6,32 +6,42 @@
     payAmount,
     receiveAmount,
   } from "$lib/stores/swap";
+  import { fetchDyFromContract } from "$lib/helpers/web3/swap";
 
   export let from: boolean;
   export let id: string;
   $: icon = from ? $selectedFromAsset?.icon_url : $selectedToAsset.icon_url;
   $: symbol = from ? $selectedFromAsset?.symbol : $selectedToAsset.symbol;
+
+  let timeout: any = null;
+  function delayInput(text: any) {
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      fetchDyFromContract($selectedFromAsset, $selectedToAsset, $payAmount)
+    }, 1000);
+  }
 </script>
 
 <div class="flex">
   <label class="input-group">
     {#if from}
       <input
-        type="text"
+        type="number"
         placeholder="0"
+        on:keyup={delayInput}
         bind:value={$payAmount}
         class="input swap-input left input-sm sm:input-lg same-height rounded-2xl"
       />
     {:else}
       <input
-        type="text"
+        type="number"
         placeholder="0"
         bind:value={$receiveAmount}
         class="input swap-input left input-sm sm:input-lg same-height rounded-2xl"
       />
     {/if}
 
-    <label for={id} class="btn btn-sm sm:btn-lg select-btn same-height">
+    <label for={id} class="btn btn-sm sm:btn-lg select-btn same-height same-width">
       <div class="avatar">
         <div class="rounded-full w-6 mx-2">
           <img src={icon} alt="l" />
@@ -62,5 +72,8 @@
   }
   .same-height {
     height: 64px !important;
+  }
+  .same-width {
+    width: 130px !important;
   }
 </style>

@@ -4,7 +4,10 @@
   import SwapButton from "./SwapButton.svelte";
   import SwapInput from "./SwapInput.svelte";
   import ConnectWallet from "./ConnectWallet.svelte";
+  import ApproveButton from "./ApproveButton.svelte";
+
   import { connected } from "$lib/stores/connect";
+  import { approved } from "$lib/stores/swap";
 </script>
 
 <div class="card bg-base-100 shadow-xl p-2">
@@ -26,7 +29,11 @@
 
   <div class="w-full pt-3">
     {#if $connected}
-      <SwapButton />
+      {#if $approved}
+        <SwapButton />
+      {:else}
+        <ApproveButton />
+      {/if}
     {:else}
       <ConnectWallet />
     {/if}

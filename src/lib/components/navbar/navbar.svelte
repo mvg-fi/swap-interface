@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import Logo from "./logo.svelte";
   import Sections from "./sections.svelte";
   import Menu from "./menu.svelte";
@@ -9,13 +8,10 @@
   import { connected } from "$lib/stores/connect";
   import Account from "./account.svelte";
 
-  onMount(() => {
-    // if (window.location.pathname != "/swap") goto("/swap");
-  });
 </script>
 
 <div class="navbar bg-base-100">
-  <div>
+  <div class="mb-1">
     <Logo />
   </div>
   <div class="flex-1">
