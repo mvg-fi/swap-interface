@@ -87,12 +87,15 @@
 </label>
 
 <style>
-  /* border */
   .b {
     border-left: 1px solid rgba(195, 195, 195, 0.14);
     border-right: 1px solid rgba(195, 195, 195, 0.14);
   }
   .option:hover {
     background-color: rgba(195, 195, 195, 0.14);
+  }
+  * {
+    overflow: hidden;
+    scrollbar-width: none;
   }
 </style>

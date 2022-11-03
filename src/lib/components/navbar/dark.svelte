@@ -4,7 +4,7 @@
 
 <div class="avatar">
   <div class="rounded-full">
-    <label class="swap swap-rotate mx-2">
+    <label class="swap swap-rotate mx-2" data-toggle-theme="dark" data-act-class="pl-4">
       <input type="checkbox" bind:checked={$dark} />
 
       <!-- sun icon -->

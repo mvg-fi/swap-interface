@@ -36,3 +36,12 @@
     </ul>
   </div>
 </div>
+
+<style>
+  .modal-box {
+    scrollbar-width: none;
+  }
+  .modal-box::-webkit-scrollbar {
+    display: none;
+  }
+</style>
