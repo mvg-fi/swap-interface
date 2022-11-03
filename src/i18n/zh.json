@@ -1,0 +1,23 @@
+{
+	"navbar": {
+		"swap": "Swap",
+		"pool": "流动池"
+	},
+	"swap": {
+		"title": "Swap",
+		"connect_wallet": "连接钱包"
+	},
+	"login": {
+		"title": "登录",
+		"BrowserWalletDescription": "使用浏览器钱包连接",
+		"WalletConnectDescription": "使用 WalletConnect 连接",
+		"pleaseInstallMetaMaskFirst": "请先安装 MetaMask"
+	},
+	"connect": {
+		"title": "连接"
+	},
+	"error": {
+		"userClosedModal": "User closed modal",
+		"userRejected": "User rejceted"
+	}
+}

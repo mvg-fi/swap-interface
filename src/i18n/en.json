@@ -1,0 +1,23 @@
+{
+	"navbar": {
+		"swap": "Swap",
+		"pool": "Pools"
+	},
+	"swap": {
+		"title": "Swap",
+		"connect_wallet": "Connect Wallet"
+	},
+	"login": {
+		"title": "Login",
+		"BrowserWalletDescription": "Connect using browser wallet",
+		"WalletConnectDescription": "Connect using WalletConnect",
+		"pleaseInstallMetaMaskFirst": "Please install MetaMask first"
+	},
+	"connect": {
+		"title": "Connect"
+	},
+	"error": {
+		"userClosedModal": "User closed modal",
+		"userRejected": "User rejceted"
+	}
+}

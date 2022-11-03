@@ -4,7 +4,7 @@
 
   import { showToast } from "$lib/components/toast/container.svelte";
 
-  import LL from "$i18n/i18n-svelte";
+  import { _ } from "svelte-i18n";
   import type { IProvider } from "$lib/types/provider";
   import type { ProviderKey } from "$lib/types/provider";
   import { createWeb3Client } from "$lib/helpers/clients/index";
@@ -21,13 +21,13 @@
     {
       key: "injected",
       title: "Metamask",
-      desc: $LL.login.connectBrowserWalletDescription(),
+      desc: $_('login.BrowserWalletDescription'),
       icon: metamask,
     },
     {
       key: "walletconnect",
       title: "WalletConnect",
-      desc: $LL.login.connectWalletConnectDescription(),
+      desc: $_('login.WalletConnectDescription'),
       icon: walletConnect,
     },
   ];
@@ -49,15 +49,15 @@
       console.log(e);
       switch (true) {
         case String(e.message).includes("No Web3 Provider found"):
-          showToast("common", $LL.login.pleaseInstallMetaMaskFirst());
+          showToast("common", 'No Web3 Provider found');
           console.log("No Web3 Provider found");
           break;
         case String(e.message).includes("User closed modal"):
-          showToast("common", $LL.error.userClosedModal());
+          showToast("common", 'User closed modal');
           console.log("User closed modal");
           break;
         case String(e.message).includes("User Rejected"):
-          showToast("common", $LL.error.userRejected());
+          showToast("common", 'User Rejected');
           console.log("User Rejected");
           break;
       }

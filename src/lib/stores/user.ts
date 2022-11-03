@@ -8,10 +8,6 @@ import { clearLastProvider } from './provider';
 import { LANG, USER_KEY } from '$lib/helpers/constants';
 import { dedupe } from '../helpers/store/dedupe';
 import { invalidateAll } from '$app/navigation';
-import type { Locales } from '$i18n/i18n-types';
-import { locale, setLocale } from '$i18n/i18n-svelte';
-import { loadLocaleAsync } from '$i18n/i18n-util.async';
-import { browser } from '$app/environment';
 
 const persistentUser = persistentWritable<User | undefined>(
 	USER_KEY,
@@ -19,21 +15,21 @@ const persistentUser = persistentWritable<User | undefined>(
 	jsonPersistentEncoder
 );
 
-const persistentLang = persistentWritable<Locales | undefined>(LANG, undefined);
+// const persistentLang = persistentWritable<Locales | undefined>(LANG, undefined);
 
-export const switchLang = async (lang: Locales) => {
-	if (!browser) return;
-	if (get(locale) === lang) return;
+// export const switchLang = async (lang: Locales) => {
+// 	if (!browser) return;
+// 	if (get(locale) === lang) return;
 
-	await loadLocaleAsync(lang);
+// 	await loadLocaleAsync(lang);
 
-	persistentLang.set(lang);
-	setLocale(lang);
+// 	persistentLang.set(lang);
+// 	setLocale(lang);
 
-	document.querySelector('html')?.setAttribute('lang', lang);
-};
+// 	document.querySelector('html')?.setAttribute('lang', lang);
+// };
 
-export const lang = derived(persistentLang, (lang) => lang);
+// export const lang = derived(persistentLang, (lang) => lang);
 
 export const user = dedupe(
 	derived([persistentUser, page], ([$user, $page]) => $user || $page.data.user)

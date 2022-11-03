@@ -1,28 +1,31 @@
 <script lang="ts">
   import Navbar from "$lib/components/navbar/navbar.svelte";
-  import Container from "$lib/components/toast/container.svelte";
-  import { setLocale } from '$i18n/i18n-svelte';
+  import Toast from "$lib/components/toast/container.svelte";
+  import Loading from "./loading.svelte";
+
+  import { initi18n } from "../i18n/i18n";
   import "../app.postcss";
   import "./styles.css";
 
-  setLocale('zh');
+  const setupI18n = initi18n();
 </script>
 
-<div class="app">
-  <header>
-    <Navbar />
-  </header>
+{#await setupI18n}
+  <Loading />
+{:then}
+  <div class="app">
+    <header>
+      <Navbar />
+    </header>
 
-  <main>
-    <slot />
-  </main>
+    <main>
+      <slot />
+    </main>
 
-  <footer>
-    
-  </footer>
-</div>
-
-<Container />
+    <footer />
+  </div>
+  <Toast />
+{/await}
 
 <style>
   .app {

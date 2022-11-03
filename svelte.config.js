@@ -14,7 +14,6 @@ const config = {
   kit: {
     adapter: adapter(),
     alias: {
-      $i18n: 'src/i18n'
     }
   },
 };

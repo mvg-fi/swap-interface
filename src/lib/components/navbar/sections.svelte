@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from "$app/stores";
+  import { _ } from "svelte-i18n";
 </script>
 
 <ul class="menu horizontal">
@@ -9,7 +10,7 @@
       class="btn btn-ghost no-animation sub"
       class:selected={$page.url.pathname === "/swap"}
     >
-      Swap
+      {$_("navbar.swap")}
     </a>
   </li>
   <li>
@@ -18,7 +19,7 @@
       class="btn btn-ghost no-animation sub"
       class:selected={$page.url.pathname === "/pool"}
     >
-      Pool
+      {$_("navbar.pool")}
     </a>
   </li>
 </ul>
