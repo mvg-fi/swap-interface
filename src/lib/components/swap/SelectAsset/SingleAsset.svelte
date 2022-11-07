@@ -1,13 +1,19 @@
 <script lang="ts">
-  import { setFromAsset, setToAsset } from "$lib/stores/swap";
+  import {
+    selectedFromAsset,
+    selectedToAsset,
+    setFromAsset,
+    setToAsset,
+  } from "$lib/stores/swap";
   export let asset: object;
   export let from: boolean;
   export let id: string;
 
   const setAsset = (asset: object) => {
     if (from) setFromAsset(asset);
-    if (!from) setToAsset(asset);
+    else setToAsset(asset);
   };
+  
 </script>
 
 {#if asset}

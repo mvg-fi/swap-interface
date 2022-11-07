@@ -11,7 +11,7 @@ export const MVM_ICON = 'https://mvm.dev/logo.svg'
 export const GAS_PRICE = 10000000
 
 // Swap
-export const DEFAULT_SLIPPAGE = 0.1
+export const DEFAULT_SLIPPAGE = 0.5
 
 // Keys
 export const USER_KEY = 'USER';

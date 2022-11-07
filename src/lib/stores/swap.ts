@@ -1,3 +1,4 @@
+import { get } from 'svelte/store'
 import { writable } from "svelte/store";
 import assets from "$lib/assets/assets.json";
 import { DEFAULT_SLIPPAGE } from "$lib/helpers/constants";
@@ -18,7 +19,12 @@ export const setToAsset = (asset:object) => {
 export const setSlippage = (number:number) => {
   slippage.set(number)
 }
-
 export const setApproved = (yes:boolean) => {
   approved.set(yes)
+}
+
+export const switchAsset = () => {
+  const s = get(selectedFromAsset)
+  selectedFromAsset.set(get(selectedToAsset))
+  selectedToAsset.set(s)
 }

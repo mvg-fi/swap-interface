@@ -47,7 +47,7 @@
           <img src={icon} alt="l" />
         </div>
       </div>
-      {symbol}
+      <span class="bg-transparent px-0 mt-1">{symbol}</span>
     </label>
   </label>
 

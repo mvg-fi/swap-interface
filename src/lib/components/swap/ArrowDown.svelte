@@ -1,8 +1,9 @@
 <script lang="ts">
   import DownIcon from "$lib/images/down.svg";
+  import { switchAsset } from "$lib/stores/swap";
 </script>
 
-<button>
+<button on:click={switchAsset}>
   <img src={DownIcon} alt="s" class="down" />
 </button>
 

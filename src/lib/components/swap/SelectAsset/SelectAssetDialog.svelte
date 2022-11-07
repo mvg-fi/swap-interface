@@ -44,4 +44,10 @@
   .modal-box::-webkit-scrollbar {
     display: none;
   }
+  .modal-bottom {
+    max-width: none;
+  }
+  .modal-middle {
+    max-width: 28rem !important;
+  }
 </style>

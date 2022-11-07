@@ -81,7 +81,7 @@
         class="px-0 rounded-2xl b option flex flex-col items-center justify-center"
         on:click={() => connect(key)}
       >
-        <div>
+        <div class="img-screen">
           <img loading="lazy" src={icon} alt={title} width="48" height="48" />
         </div>
         <div class="mt-3 text-xl">
@@ -105,5 +105,9 @@
   * {
     overflow: hidden;
     scrollbar-width: none;
+  }
+  .img-screen{
+    width: 48px;
+    height: 48px;
   }
 </style>
