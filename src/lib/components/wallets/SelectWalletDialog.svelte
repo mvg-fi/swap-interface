@@ -1,5 +1,6 @@
 <script lang="ts">
   import metamask from "$lib/images/logo/metamask.svg";
+  import mixinMessenger from "$lib/images/logo/mixin.svg";
   import walletConnect from "$lib/images/logo/walletconnect.svg";
 
   import { showToast } from "$lib/components/toast/container.svelte";
@@ -29,6 +30,12 @@
       title: "WalletConnect",
       desc: $_('login.WalletConnectDescription'),
       icon: walletConnect,
+    },
+    {
+      key: "mixinmessenger",
+      title: "Mixin Messenger",
+      desc: $_('login.MixinMessengerDescription'),
+      icon: mixinMessenger,
     },
   ];
 
@@ -68,7 +75,7 @@
 </script>
 
 <label class="modal modal-bottom sm:modal-middle" for={id}>
-  <div class="modal-box relative w-full p-2 grid grid-cols-2 min-h-[25%]">
+  <div class="modal-box relative w-full p-2 grid grid-cols-2 min-h-[25%] h-[40%]">
     {#each providers as { title, desc, icon, key } (key)}
       <button
         class="px-0 rounded-2xl b option flex flex-col items-center justify-center"
@@ -90,6 +97,7 @@
   .b {
     border-left: 1px solid rgba(195, 195, 195, 0.14);
     border-right: 1px solid rgba(195, 195, 195, 0.14);
+    border-bottom: 1px solid rgba(195, 195, 195, 0.14);
   }
   .option:hover {
     background-color: rgba(195, 195, 195, 0.14);

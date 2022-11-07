@@ -2,15 +2,12 @@
   import Navbar from "$lib/components/navbar/navbar.svelte";
   import Toast from "$lib/components/toast/container.svelte";
   import Loading from "./loading.svelte";
-  import { onMount } from "svelte";
-  import { themeChange } from "theme-change";
 
   import { initi18n } from "../i18n/i18n";
   import "../app.postcss";
   import "./styles.css";
 
   const setupI18n = initi18n();
-  onMount(() => { themeChange(false) })
 </script>
 
 {#await setupI18n}

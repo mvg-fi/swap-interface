@@ -11,6 +11,7 @@
 		"title": "Login",
 		"BrowserWalletDescription": "Connect using browser wallet",
 		"WalletConnectDescription": "Connect using WalletConnect",
+		"MixinMessengerDescription": "Connect using Mixin Messenger",
 		"pleaseInstallMetaMaskFirst": "Please install MetaMask first"
 	},
 	"connect": {

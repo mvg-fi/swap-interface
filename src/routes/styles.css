@@ -17,15 +17,11 @@
 	color: var(--color-text);
 }
 
-[data-theme='dark'] {
-  --color-bg-1: #252b30;
-}
-
 body {
 	min-height: 100vh;
 	margin: 0;
 	background-attachment: fixed;
-	background-color: var(--color-bg-1);
+	background-color: var(--color-bg-0);
 	background-size: 100vw 100vh;
 	background-image: radial-gradient(
 			50% 50% at 50% 50%,

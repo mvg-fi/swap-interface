@@ -64,6 +64,8 @@
     color: black;
     border: 2px solid rgb(239 240 249);
     border-left: none;
+    padding-left: 0;
+    padding-right: 0;
     background-color: #ffffff;
   }
   .left {

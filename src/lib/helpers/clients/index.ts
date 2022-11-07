@@ -5,11 +5,15 @@ import { get } from '@square/svelte-store';
 export const createWeb3Client = async (provider: ProviderKey = 'injected') => {
 	let connect: () => Promise<unknown> | unknown;
 	switch (provider) {
+		case 'injected':
+			connect = (await import('./injected')).default;
+			break;
 		case 'walletconnect':
 			connect = (await import('./wallet-connect')).default;
 			break;
-		default:
-			connect = (await import('./injected')).default;
+		case 'mixinmessenger':
+			connect = (await import('./mixin-messenger')).default;
+			break;
 	}
 
 	return {

@@ -2,4 +2,7 @@
   import loading from '$lib/images/loading.svg'
 </script>
 
-<img src={loading} alt="loading"/>
+
+<div class="w-full h-screen flex items-center justify-center">
+  <img src={loading} alt="loading" class="w-20 h-20 loading" />
+</div>
