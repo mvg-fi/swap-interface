@@ -14,7 +14,7 @@
   $: symbol = from ? $selectedFromAsset?.symbol : $selectedToAsset.symbol;
 
   let timeout: any = null;
-  function delayInput(text: any) {
+  function delayInput() {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
       fetchDyFromContract($selectedFromAsset, $selectedToAsset, $payAmount)
@@ -44,7 +44,7 @@
     <label for={id} class="btn btn-sm sm:btn-lg select-btn same-height same-width">
       <div class="avatar">
         <div class="rounded-full w-6 mx-2">
-          <img src={icon} alt="l" />
+          <img src={icon} alt="-" />
         </div>
       </div>
       <span class="bg-transparent px-0 mt-1">{symbol}</span>

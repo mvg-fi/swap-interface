@@ -2,4 +2,6 @@
   import loading from '$lib/images/loading.svg'
 </script>
 
-<img src={loading} alt="loading"/>
+<div class="card h-5">
+  <img src={loading} alt="loading" class="w-5 h-5 loading" color='black'/>
+</div>

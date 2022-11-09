@@ -1,6 +1,6 @@
 import { page } from '$app/stores';
 import { derived, get } from '@square/svelte-store';
-import { register } from '$lib/helpers/api';
+import { register } from '$lib/helpers/mvm-api';
 import { jsonPersistentEncoder, persistentWritable } from '../helpers/store/persistent';
 import type { User } from '../types/user';
 import { account } from './ethers';
