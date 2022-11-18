@@ -8,11 +8,13 @@
   import SwapInput from "./SwapInput.svelte";
   import ConnectWallet from "./ConnectWallet.svelte";
   import ApproveButton from "./ApproveButton.svelte";
-    import ExchangeRate from "./SwapInfo/ExchangeRate.svelte";
-    import Loading from "./SwapInfo/Loading.svelte";
+  import ExchangeRate from "./SwapInfo/ExchangeRate.svelte";
+  import Loading from "./SwapInfo/Loading.svelte";
 
-  $: active = ($payAmount != 0 && $payAmount != undefined) 
-    || ($receiveAmount != 0 && $receiveAmount != undefined)
+  $: active =
+    ($payAmount != 0 && $payAmount != undefined) ||
+    ($receiveAmount != 0 && $receiveAmount != undefined);
+  $: console.log(active);
 </script>
 
 <div class="card bg-base-100 shadow-xl p-2">
