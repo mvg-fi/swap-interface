@@ -32,5 +32,11 @@
 		"setting": "滑点设置",
 		"custom": "自定义",
 		"save": "保存"
+	},
+	"pooltable": {
+		"name": "Name",
+		"apy": "APY",
+		"tvl": "TVL",
+		"volume": "Volume"
 	}
 }

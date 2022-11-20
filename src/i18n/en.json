@@ -32,5 +32,11 @@
 		"setting": "Slippage setting",
 		"custom": "Custom",
 		"save": "Save"
+	},
+	"pooltable": {
+		"name": "Name",
+		"apy": "APY",
+		"tvl": "TVL",
+		"volume": "Volume"
 	}
 }

@@ -1,13 +1,13 @@
 <script lang="ts">
-    import PoolList from "./PoolList.svelte";
+    import PoolTable from "./PoolTable.svelte";
     import SearchPool from "./SearchPool.svelte";
 </script>
 
-<div class="card w-11/12 p-3">
+<div class="card w-full flex flex-col p-4">
   <div>
     <SearchPool />
   </div>
   <div>
-    <PoolList />
+    <PoolTable />
   </div>
 </div>
