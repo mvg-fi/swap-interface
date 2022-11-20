@@ -16,7 +16,7 @@
   class="modal-toggle"
   bind:checked={$selectWalletDialog}
 />
-<SelectWalletDialog {id} />
+<SelectWalletDialog id="connect-wallet" />
 
 <style>
   * {

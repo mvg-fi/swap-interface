@@ -14,11 +14,23 @@
 		"MixinMessengerDescription": "Connect using Mixin Messenger",
 		"pleaseInstallMetaMaskFirst": "Please install MetaMask first"
 	},
+	"select":{
+		"token": "Select a token"
+	},
 	"connect": {
 		"title": "Connect"
 	},
 	"error": {
 		"userClosedModal": "User closed modal",
 		"userRejected": "User rejceted"
+	},
+	"search": {
+		"pool": "Search by pool name, pool address, token name or token address",
+		"asset": "Search by token name or symbol"
+	},
+	"slippage": {
+		"setting": "Slippage setting",
+		"custom": "Custom",
+		"save": "Save"
 	}
 }

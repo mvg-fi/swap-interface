@@ -14,11 +14,23 @@
 		"MixinMessengerDescription": "使用 Mixin Messenger 连接",
 		"pleaseInstallMetaMaskFirst": "请先安装 MetaMask"
 	},
+	"select":{
+		"token": "选择代币"
+	},
 	"connect": {
 		"title": "连接"
 	},
 	"error": {
 		"userClosedModal": "您已取消连接",
 		"userRejected": "您已拒绝交易"
+	},
+	"search": {
+		"pool": "搜索流动池名称，流动池地址，代币名称或代币地址",
+		"asset": "搜索代币名称或代币地址"
+	},
+	"slippage": {
+		"setting": "滑点设置",
+		"custom": "自定义",
+		"save": "保存"
 	}
 }

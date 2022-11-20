@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { _ } from "svelte-i18n";
   import searchIcon from "$lib/images/search.svg";
-  import { search } from "$lib/stores/searchAsset";
+  import { search } from "$lib/stores/searchPool";
+  import { _ } from "svelte-i18n";
 </script>
 
 <div class="form-control">
@@ -14,7 +14,7 @@
     <input
       type="text"
       bind:value={$search}
-      placeholder="{$_('search.asset')}"
+      placeholder="{$_('search.pool')}"
       class="input block input-bordered search-input on-focus"
     />
   </div>

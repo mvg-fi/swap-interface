@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { _ } from "svelte-i18n";
   import { onDestroy } from "svelte";
   import Close from "$lib/images/close.svg";
   import SettingIcon from "$lib/images/setting.svg";
@@ -20,7 +21,7 @@
   <div class="modal-box">
     <div class="flex mb-4">
       <h3 class="font-bold text-lg text-black flex-1 content-center">
-        Slippage Setting
+        {$_('slippage.setting')}
       </h3>
       <label for="swap-settings" class="flex-0 btn btn-xs btn-circle btn-ghost">
         <img src={Close} alt="x" />
@@ -56,7 +57,7 @@
           )
             ? 'black-btn'
             : ''}"
-          on:click={() => setSlippage(0)}>Custom</button
+          on:click={() => setSlippage(0)}>{$_('slippage.custom')}</button
         >
       </div>
 
@@ -76,7 +77,7 @@
     </div>
 
     <div class="w-full flex justify-center content-center pt-5">
-      <label for="swap-settings" class="btn rounded-3xl {valid ?'black-btn':'btn-disabled'}">Save</label>
+      <label for="swap-settings" class="btn rounded-3xl {valid ?'black-btn':'btn-disabled'}">{$_('slippage.save')}</label>
     </div>
   </div>
 </div>

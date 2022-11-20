@@ -1,5 +1,5 @@
 import { ethers, utils, type BigNumberish } from 'ethers';
-import { ERC20_ABI } from '$lib/constants/abis/erc20';
+import ERC20_ABI  from '$lib/constants/abis/erc20.json';
 import {
   ETH_ASSET_ID,
   MAINNET_CHAIN_HEX_ID,
