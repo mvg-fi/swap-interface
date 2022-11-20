@@ -1,16 +1,15 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import SinglePool from "./SinglePool.svelte";
+  
   const pools = {
     stable: {
       name: "stable",
       full_name: "stable",
       symbol: "stable",
       reference_asset: "USD",
-
       swap_address: "0xbebc44782c7db0a1a60cb6fe97d0b483032ff1c7",
       token_address: "0x6c3f90f043a72fa612cbac8115ee7e52bde6e490",
-
       is_plain: true,
       underlying_coins: ["USDT-ERC20", "pUSD", "USDC", "USDT-TRC20"],
       wrapped_coins: ["USDT-ERC20", "pUSD", "USDC", "USDT-TRC20"],
@@ -81,25 +80,25 @@
   };
 </script>
 
-<div class="mt-3">
-  <div class="overflow-x-auto w-full">
-    <table class="table w-full sortable">
-      <thead>
-        <tr class="">
-          <th>{$_("pooltable.name")}</th>
-          <th>{$_("pooltable.apy")}</th>
-          <th>{$_("pooltable.tvl")}</th>
-          <th>{$_("pooltable.volume")}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {#each Object.values(pools) as v}
-          <SinglePool value={v}/>
-        {/each}
-      </tbody>
-    </table>
+  <div class="mt-3">
+    <div class="overflow-x-auto w-full">
+      <table class="table w-full sortable">
+        <thead>
+          <tr>
+            <th>{$_("pooltable.name")}</th>
+            <th>{$_("pooltable.apy")}</th>
+            <th>{$_("pooltable.tvl")}</th>
+            <th>{$_("pooltable.volume")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each Object.values(pools) as v}
+            <SinglePool pool={v} />
+          {/each}
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
 
 <style>
   .table :where(thead, tfoot) :where(th, td) {
