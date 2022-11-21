@@ -14,7 +14,7 @@
     <input
       type="text"
       bind:value={$search}
-      placeholder="{$_('search.pool')}"
+      placeholder={$_("search.pool")}
       class="input block input-bordered search-input on-focus"
     />
   </div>

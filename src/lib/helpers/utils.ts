@@ -1,4 +1,6 @@
-import type { TokenList, TokenLists } from "./mvm-api";
+import type { TokenLists } from "./mvm-api";
+import emptyToken from "$lib/images/empty-token.svg"
+import { getAddress } from "ethers/lib/utils";
 
 export const toHex = (num: string | number) => {
 	const val = Number(num);
@@ -11,12 +13,8 @@ export const shortenAddress = (addr: string) => {
 }
 
 export const findIconFromTokenList = (tokenLists: TokenLists, tokenAddress: string) => {
-	console.log(tokenLists, '\n', tokenAddress)
-
-	for (const [key, value] of Object.entries(tokenLists)) {
-		if (tokenAddress === key) return value.logoURI
-	}
-	return "";
+	tokenAddress = getAddress(tokenAddress)
+	return Object.values(tokenLists)[0][tokenAddress] == undefined ? emptyToken : Object.values(tokenLists)[0][tokenAddress].logoURI
 }
 
 export const findIconsFromTokenList = (tokenList: TokenLists, tokenAddresses: string[]) => {
@@ -26,19 +24,3 @@ export const findIconsFromTokenList = (tokenList: TokenLists, tokenAddresses: st
 	})
 	return list
 }
-
-// export const findIconsByAddresses = async (addresses: string[]):Promise<string[]>  => {
-// 	const tokenList = await fetchMVGTokenList()
-// 	let logos: Array<string> = [];
-
-// 	addresses.forEach(e => {
-// 		try {
-// 			logos.push(findIconFromTokenlist(tokenList,e));
-// 		} catch (error) {
-// 			if (error instanceof TypeError) {
-// 				logos.push('');
-// 			}
-// 		}
-// 	})
-// 	return logos
-// }

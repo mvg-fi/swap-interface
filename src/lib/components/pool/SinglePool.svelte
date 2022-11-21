@@ -1,8 +1,9 @@
 <script lang="ts">
-  import _tokenList from "$lib/constants/tokenlist.json";
+  import { goto } from "$app/navigation";
+  import * as _tokenList from "$lib/constants/tokenlist.json";
   import type { TokenLists } from "$lib/helpers/mvm-api";
   import { findIconsFromTokenList, shortenAddress } from "$lib/helpers/utils";
-  import PoolIcon from "./PoolIcon.svelte";
+  import PoolIcon from "$lib/components/pool/PoolIcon.svelte";
   export let pool: IPoolData;
 
   interface IPoolData {
@@ -36,21 +37,23 @@
     sCurveRewards_abi?: any;
   }
 
-  const tokenlist = _tokenList as TokenLists;
+  const tokenlist: TokenLists = _tokenList;
   const logos = findIconsFromTokenList(
     tokenlist,
     pool.underlying_coin_addresses
   );
+
+  const toPoolDetail = (pool: IPoolData) => {
+    goto(`/pools/${pool.name}`);
+  };
 </script>
 
-<tr class="hover">
+<tr class="hover" on:click={()=>{toPoolDetail(pool)}}>
   <!-- Icon and Name-->
   <td>
     <div class="flex items-center space-x-3">
-      <div class="avatar">
-        <div class="mask mask-squircle w-12 h-12">
-          <PoolIcon {logos} />
-        </div>
+      <div class="avatar-group w-24 -space-x-4">
+        <PoolIcon {logos} />
       </div>
 
       <div>

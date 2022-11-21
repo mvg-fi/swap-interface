@@ -3,7 +3,13 @@
 </script>
 
 {#each logos as uri}
-  <div class="grid grid-cols-4">
+  <div class="avatar rounded-full w-10">
     <img src={uri} alt="Token icon" />
   </div>
 {/each}
+
+<style>
+  .avatar{
+    --tw-border-opacity: 0 !important;
+  }
+</style>

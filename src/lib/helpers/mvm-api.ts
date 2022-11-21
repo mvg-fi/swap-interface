@@ -4,7 +4,7 @@ import type { RegisteredUser } from '$lib/types/user';
 import ExternalClient from '@mixin.dev/mixin-node-sdk/src/client/external';
 
 export interface TokenLists {
-	name: TokenList
+	key: TokenList
 }
 export interface TokenList {
 	chainId:      number;
