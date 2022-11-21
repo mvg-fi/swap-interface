@@ -1,13 +1,12 @@
 <script lang="ts">
-    import Skeleton from "../common/skeleton.svelte";
+    import Image from "$lib/components/common/image.svelte";
 
   export let logos: Array<string>;
 </script>
 
 {#each logos as uri}
   <div class="avatar rounded-full w-10">
-    <img src={uri} alt="Token icon" />
-    <!-- <Skeleton height=30 width=40 /> -->
+    <Image src={uri} alt="img" width="28px" height="28px" />
   </div>
 {/each}
 

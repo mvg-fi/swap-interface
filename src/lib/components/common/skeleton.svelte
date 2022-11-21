@@ -1,7 +1,13 @@
 <script>
   export let secondaryColor = "#F5F5F7";
   export let primaryColor = "#EBECEF";
+  /**
+   * @type {string}
+   */
   export let height;
+  /**
+   * @type {string}
+   */
   export let width;
   export let speed = 2;
   export let animate = true;
