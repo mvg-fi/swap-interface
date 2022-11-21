@@ -36,27 +36,30 @@
     deposit_abi?: any;
     sCurveRewards_abi?: any;
   }
-
+  
   const tokenlist: TokenLists = _tokenList;
-  const logos = findIconsFromTokenList(
-    tokenlist,
-    pool.underlying_coin_addresses
-  );
+  $: logos = findIconsFromTokenList(tokenlist, pool.underlying_coin_addresses);
 
   const toPoolDetail = (pool: IPoolData) => {
     goto(`/pools/${pool.name}`);
   };
 </script>
 
-<tr class="hover" on:click={()=>{toPoolDetail(pool)}}>
-  <!-- Icon and Name-->
-  <td>
-    <div class="flex items-center space-x-3">
-      <div class="avatar-group w-24 -space-x-4">
+<!-- Icon and Name-->
+<tr
+  class="hover"
+  on:click={() => {
+    toPoolDetail(pool);
+  }}
+>
+  <!-- svelte-ignore a11y-invalid-attribute -->
+  <td><a href="">
+    <div class="flex items-center space-x-4">
+      <div class="min-w-[2rem] inline-grid grid-cols-2">
         <PoolIcon {logos} />
       </div>
 
-      <div>
+      <div class="grow-1">
         <div class="font-bold">{pool.name}</div>
         {#each pool.underlying_coins as coin}
           <span class="text-sm opacity-60">
@@ -68,6 +71,7 @@
         </div>
       </div>
     </div>
+  </a>
   </td>
 
   <!-- APY -->
@@ -79,3 +83,9 @@
   <!-- Volume -->
   <td>${"10k"} </td>
 </tr>
+
+<style>
+  a {
+    color: unset;
+  }
+</style>

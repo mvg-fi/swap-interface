@@ -7,6 +7,8 @@
     receiveAmount,
   } from "$lib/stores/swap";
   import { fetchDyFromContract } from "$lib/helpers/web3/swap";
+  import { selectAssetDialog } from "$lib/stores/selectAsset";
+  import Image from "../common/image.svelte";
 
   export let from: boolean;
   export let id: string;
@@ -17,7 +19,7 @@
   function delayInput() {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
-      fetchDyFromContract($selectedFromAsset, $selectedToAsset, $payAmount)
+      fetchDyFromContract($selectedFromAsset, $selectedToAsset, $payAmount);
     }, 1000);
   }
 </script>
@@ -41,17 +43,25 @@
       />
     {/if}
 
-    <label for={id} class="btn btn-sm sm:btn-lg select-btn same-height same-width">
+    <label
+      for={id}
+      class="btn btn-sm sm:btn-lg select-btn same-height same-width"
+    >
       <div class="avatar">
         <div class="rounded-full w-6 mx-2">
-          <img src={icon} alt="-" />
+          <Image src={icon} alt="icon" />
         </div>
       </div>
       <span class="bg-transparent px-0 mt-1">{symbol}</span>
     </label>
   </label>
 
-  <input type="checkbox" {id} class="modal-toggle" />
+  <input
+    {id}
+    type="checkbox"
+    class="modal-toggle"
+    bind:checked={$selectAssetDialog}
+  />
   <SelectAssetDialog {from} {id} />
 </div>
 

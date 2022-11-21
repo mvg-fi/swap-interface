@@ -23,9 +23,9 @@
           <th>{$_("pooltable.volume")}</th>
         </tr>
       </thead>
-      <tbody>
-        {#each Object.values(visiablePools) as v}
-          <SinglePool pool={v} />
+      <tbody class="cursor-pointer">
+        {#each Object.values(visiablePools) as pool}
+          <SinglePool {pool} />
         {/each}
       </tbody>
     </table>

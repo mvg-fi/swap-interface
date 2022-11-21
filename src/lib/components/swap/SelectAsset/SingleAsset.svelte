@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Image from "$lib/components/common/image.svelte";
   import {
     selectedFromAsset,
     selectedToAsset,
@@ -13,7 +14,6 @@
     if (from) setFromAsset(asset);
     else setToAsset(asset);
   };
-  
 </script>
 
 {#if asset}
@@ -26,7 +26,7 @@
     {#if asset.icon_url}
       <div class="avatar pr-1 pl-1">
         <div class="mask mask-squircle w-10 h-10">
-          <img src={asset.icon_url} alt="logo" />
+          <Image src={asset.icon_url} alt="logo" height="40px" width="40px"/>
         </div>
       </div>
       <div class="text-left pl-0">

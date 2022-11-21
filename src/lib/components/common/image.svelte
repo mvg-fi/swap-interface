@@ -12,11 +12,11 @@
   /**
    * @type {string}
    */
-  export let width;
+  export let width='';
   /**
    * @type {string}
    */
-  export let height;
+  export let height='';
 
   let loaded = false;
   let loading = false;
