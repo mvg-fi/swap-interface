@@ -55,7 +55,7 @@
         <div class="tooltip" data-tip={$_('tooltip.copy')}>
           <button
             on:click={() => action(i)}
-            class="w-12 h-12 bg-gray-200 rounded-xl items-center justify-center flex"
+            class="w-12 h-12 bg-gray-200 hover:bg-gray-300 rounded-xl items-center justify-center flex"
           >
             <img src={Copy} alt="" class="w-4" />
           </button>
@@ -65,7 +65,7 @@
       <div class="tooltip" data-tip={$_(tooltip[i])}>
         <button
           on:click={() => action(i)}
-          class="w-12 h-12 bg-gray-200 rounded-xl items-center justify-center flex"
+          class="w-12 h-12 bg-gray-200 hover:bg-gray-300 rounded-xl items-center justify-center flex"
         >
           <img src={icon} alt="" class="w-4" />
         </button>
