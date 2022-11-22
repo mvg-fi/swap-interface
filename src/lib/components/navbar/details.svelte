@@ -5,14 +5,13 @@
 </script>
 
 <div class="card-body flex flex-col p0">
-  <div class="text-black flex flex-row text-start items-center p-4">
+  <div class="text-black flex flex-row text-start items-center p-3 pb-2">
     <Account />
   </div>
-  <div class="divider my-0"/>
   <div>
     <List />
   </div>
-  <div class="grid grid-cols-3 p-4">
+  <div class="grid grid-cols-3 p-2 pt-3">
     <Buttons />
   </div>
 </div>
