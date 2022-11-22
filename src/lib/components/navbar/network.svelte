@@ -4,7 +4,7 @@
 </script>
 
 <div class="network btn btn-ghost modal-button mx-2">
-  <div class="rounded-full mr-1">
+  <div class="rounded-full mr-2 mb-0.5">
     <img src={MVM_ICON} alt="mvm" class="mvm-logo" />
   </div>
   <span class="mvm-text">
@@ -17,6 +17,6 @@
     height: 20px;
   }
   .mvm-text {
-    font-weight: 550;
+    font-weight: 600;
   }
 </style>

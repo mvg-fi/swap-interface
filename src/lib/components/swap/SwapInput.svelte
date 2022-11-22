@@ -5,9 +5,9 @@
     selectedToAsset,
     payAmount,
     receiveAmount,
-  } from "$lib/stores/swap";
+  } from "$lib/stores/swap/swap";
   import { fetchDyFromContract } from "$lib/helpers/web3/swap";
-  import { selectAssetDialog } from "$lib/stores/selectAsset";
+  import { selectAssetDialog } from "$lib/stores/swap/selectAsset";
   import Image from "../common/image.svelte";
 
   export let from: boolean;
@@ -49,7 +49,7 @@
     >
       <div class="avatar">
         <div class="rounded-full w-6 mx-2">
-          <Image src={icon} alt="icon" />
+          <Image src={icon} alt="icon" width="24px" height="24px"/>
         </div>
       </div>
       <span class="bg-transparent px-0 mt-1">{symbol}</span>

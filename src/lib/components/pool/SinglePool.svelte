@@ -67,7 +67,7 @@
           </span>
         {/each}
         <div class="text-sm opacity-60">
-          {shortenAddress(pool.swap_address)}
+          {shortenAddress(pool.swap_address,4,4)}
         </div>
       </div>
     </div>

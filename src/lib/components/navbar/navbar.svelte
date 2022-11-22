@@ -5,12 +5,12 @@
   import Network from "./network.svelte";
   import Connect from "./connect.svelte";
   import Dark from "./dark.svelte";
-  import { connected } from "$lib/stores/connect";
   import Account from "./account.svelte";
-
+  import { connected } from "$lib/stores/connect";
+  
 </script>
 
-<div class="navbar bg-base-100 bg-transparent">
+<div class="navbar bg-transparent">
   <div class="mb-1">
     <Logo />
   </div>

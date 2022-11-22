@@ -38,5 +38,11 @@
 		"apy": "APY",
 		"tvl": "TVL",
 		"volume": "Volume"
+	},
+	"tooltip": {
+		"copy": "Copy",
+		"copied": "Copied!",
+		"explore": "Explore",
+		"disconnect": "Disconnect"
 	}
 }

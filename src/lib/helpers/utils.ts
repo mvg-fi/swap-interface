@@ -7,9 +7,8 @@ export const toHex = (num: string | number) => {
 	return '0x' + val.toString(16);
 };
 
-export const shortenAddress = (addr: string) => {
-	const number = 4;
-	return addr.substring(0,number).toLowerCase() + "..." + addr.substring(addr.length-number).toLowerCase();
+export const shortenAddress = (addr: string, start: number, end: number) => {
+	return addr.substring(0,start).toLowerCase() + "..." + addr.substring(addr.length-end).toLowerCase();
 }
 
 export const findIconFromTokenList = (tokenLists: TokenLists, tokenAddress: string) => {

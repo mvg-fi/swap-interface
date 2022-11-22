@@ -3,7 +3,8 @@
   import { onDestroy } from "svelte";
   import Close from "$lib/images/close.svg";
   import SettingIcon from "$lib/images/setting.svg";
-  import { slippage, setSlippage } from "$lib/stores/swap";
+  import { slippage, setSlippage } from "$lib/stores/swap/swap";
+  import { slippageDialog } from "$lib/stores/swap/slippage"
 
   const ranges = [0.1, 0.5, 1];
   let slipValue: number;
@@ -16,7 +17,7 @@
   <img src={SettingIcon} alt="s" class="setting" />
 </label>
 
-<input type="checkbox" id="swap-settings" class="modal-toggle" />
+<input type="checkbox" id="swap-settings" class="modal-toggle" bind:checked={$slippageDialog}/>
 <div class="modal modal-bottom sm:modal-middle">
   <div class="modal-box">
     <div class="flex mb-4">

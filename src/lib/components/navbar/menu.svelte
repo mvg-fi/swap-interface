@@ -1,14 +1,41 @@
-<button class="btn btn-square btn-ghost mx-2">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    class="inline-block w-5 h-5 stroke-current"
-    ><path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-    /></svg
+<script lang="ts">
+  import menu from "$lib/images/menu.svg";
+
+  let isDropdownOpen = false;
+
+  const handleDropdownClick = () => {
+    isDropdownOpen = !isDropdownOpen;
+  };
+
+  const handleDropdownFocusLost = ({ relatedTarget, currentTarget }:any) => {
+    if (
+      relatedTarget instanceof HTMLElement &&
+      currentTarget.contains(relatedTarget)
+    )
+      return;
+    isDropdownOpen = false;
+  };
+</script>
+
+<div class="dropdown dropdown-end" on:focusout={handleDropdownFocusLost}>
+  <button tabindex="0" class="btn btn-square btn-ghost menu-btn" on:click={handleDropdownClick}>
+    <img src={menu} alt="menu" />
+  </button>
+  <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+  <ul
+    tabindex="0"
+    style:visibility={isDropdownOpen ? 'visible' : 'hidden'}
+    class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 mt-3"
   >
-</button>
+    <!-- svelte-ignore a11y-missing-attribute -->
+    <li><a>Item 1</a></li>
+    <!-- svelte-ignore a11y-missing-attribute -->
+    <li><a>Item 2</a></li>
+  </ul>
+</div>
+
+<style>
+  /* .menu-btn{
+
+  } */
+</style>

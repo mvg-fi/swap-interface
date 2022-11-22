@@ -36,7 +36,7 @@
   }
   .avatar:hover {
     border-radius: 10px;
-    border-color: #d2d4d7;
-    background-color: #d2d4d7;
+    /* border-color: hsl(var(--bc) / var(--tw-bg-opacity));
+    background-color: hsl(var(--bc) / var(--tw-bg-opacity)); */
   }
 </style>

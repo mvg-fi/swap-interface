@@ -11,8 +11,8 @@
 </label>
 
 <input
-  type="checkbox"
   {id}
+  type="checkbox"
   class="modal-toggle"
   bind:checked={$selectWalletDialog}
 />

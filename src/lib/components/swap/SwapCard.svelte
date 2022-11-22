@@ -1,6 +1,6 @@
 <script lang="ts">
   import { connected } from "$lib/stores/connect";
-  import { approved, payAmount, receiveAmount } from "$lib/stores/swap";
+  import { approved, payAmount, receiveAmount } from "$lib/stores/swap/swap";
 
   import Top from "./Top.svelte";
   import ArrowDown from "./ArrowDown.svelte";

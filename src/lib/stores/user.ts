@@ -8,6 +8,7 @@ import { clearLastProvider } from './provider';
 import { LANG, USER_KEY } from '$lib/helpers/constants';
 import { dedupe } from '../helpers/store/dedupe';
 import { invalidateAll } from '$app/navigation';
+import { setConnected } from './connect';
 
 const persistentUser = persistentWritable<User | undefined>(
 	USER_KEY,
@@ -44,6 +45,7 @@ export const registerAndSave = async (address: `0x${string}`) => {
 };
 
 export const logout = async () => {
+	setConnected(false);
 	await invalidateAll();
 	persistentUser.set(undefined);
 	clearLastProvider();
@@ -57,5 +59,5 @@ export const address = derived(user, ($user) => $user?.address);
 
 export const shortAddress = derived(address, ($address) => {
 	if (!$address) return;
-	return $address.slice(2, 6) + '...' + $address.slice(-4);
+	return $address.slice(0, 6) + '...' + $address.slice(-4);
 });

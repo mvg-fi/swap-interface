@@ -1,6 +1,6 @@
 <script lang="ts">
-  import DownIcon from "$lib/images/down.svg";
-  import { switchAsset } from "$lib/stores/swap";
+  import DownIcon from "$lib/images/arrow-down.svg";
+  import { switchAsset } from "$lib/stores/swap/swap";
 </script>
 
 <button on:click={switchAsset}>

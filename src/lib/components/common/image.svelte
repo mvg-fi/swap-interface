@@ -36,5 +36,7 @@
 {#if loaded}
   <img {src} {alt} {height} {width} />
 {:else if loading}
+<div class="avatar mask mask-circle">
   <Skeleton {height} {width} />
+</div>
 {/if}

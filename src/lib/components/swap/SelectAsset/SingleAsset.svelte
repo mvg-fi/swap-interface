@@ -5,7 +5,7 @@
     selectedToAsset,
     setFromAsset,
     setToAsset,
-  } from "$lib/stores/swap";
+  } from "$lib/stores/swap/swap";
   export let asset: object;
   export let from: boolean;
   export let id: string;

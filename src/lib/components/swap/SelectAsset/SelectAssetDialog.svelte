@@ -2,7 +2,7 @@
   import { _ } from "svelte-i18n";
   import Close from "$lib/images/close.svg";
   import assets from "$lib/assets/assets.json";
-  import { search } from "$lib/stores/searchAsset";
+  import { search } from "$lib/stores/swap/searchAsset";
   import SingleAsset from "$lib/components/swap/SelectAsset/SingleAsset.svelte";
   import SearchAsset from "$lib/components/swap/SelectAsset/SearchAsset.svelte";
 

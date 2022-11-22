@@ -1,19 +1,21 @@
 <script lang="ts">
+  import Loading from "./loading.svelte";
   import Navbar from "$lib/components/navbar/navbar.svelte";
   import Toast from "$lib/components/toast/container.svelte";
-  import { setAssetDialog } from "$lib/stores/selectAsset";
+  import { setAssetDialog } from "$lib/stores/swap/selectAsset";
   import { setWalletDialog } from "$lib/stores/selectWallet";
-  import Loading from "./loading.svelte";
+  import { setSlippageDialog } from "$lib/stores/swap/slippage";
 
   import { initi18n } from "../i18n/i18n";
   import "../app.postcss";
   import "./styles.css";
 
   const setupI18n = initi18n();
-  const escQuitDialogs = (e:any) => {
+  const escQuitDialogs = (e: any) => {
     if (e.keyCode === 27) {
       setAssetDialog(false);
       setWalletDialog(false);
+      setSlippageDialog(false);
     }
   };
 </script>
@@ -34,7 +36,7 @@
   </div>
   <Toast />
 {/await}
-<svelte:window on:keyup={escQuitDialogs} />
+<svelte:window on:keydown={escQuitDialogs} />
 
 <style>
   .app {
