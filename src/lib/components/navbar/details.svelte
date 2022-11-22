@@ -1,13 +1,27 @@
 <script lang="ts">
   import Account from "./details/account.svelte";
   import Buttons from "./details/buttons.svelte";
+  import List from "./details/list.svelte";
 </script>
 
-<div class="card-body flex flex-col">
-  <div class="text-black flex flex-row text-start items-center">
+<div class="card-body flex flex-col p0">
+  <div class="text-black flex flex-row text-start items-center p-4">
     <Account />
   </div>
-  <div class="mt-3 grid grid-cols-3" >
+  <div class="divider my-0"/>
+  <div>
+    <List />
+  </div>
+  <div class="grid grid-cols-3 p-4">
     <Buttons />
   </div>
 </div>
+
+<style>
+  .p0 {
+    padding: 0px !important;
+  }
+  .divider::before, .divider::after {
+    height: 0.05rem !important;
+  }
+</style>

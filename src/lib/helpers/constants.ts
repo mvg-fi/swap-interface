@@ -25,6 +25,7 @@ export const ETHER_SCAN_URL = 'https://etherscan.io/'
 export const MAINNET_RPC_URL = `https://mainnet.infura.io/v3/${INFURA_KEY}`
 export const MVM_RPC_URL = "https://geth.mvm.dev/";
 export const MVM_SCAN_URL = "https://scan.mvm.dev/";
+export const BRIDGE_URL = "https://bridge.mvm.app/";
 
 // Addresses
 export const REGISTRY_PID = 'bd67087276ce3263b9333aa337e212a4';

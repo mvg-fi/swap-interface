@@ -9,8 +9,8 @@
   import { _ } from "svelte-i18n";
 
   const icons = [Copy, Explore, Quit];
-  const justify = ["justify-start", "justify-center", "justify-end"];
-  const tooltip = [$_("tooltip.copy"), $_("tooltip.explore"), $_("tooltip.disconnect")]
+  const justify = ["justify-end", "justify-center", "justify-start"];
+  const tooltip = [$_("tooltip.copy"), $_("tooltip.explorer"), $_("tooltip.disconnect")]
   
   let copied = false;
 
@@ -46,7 +46,7 @@
         <div class="tooltip" data-tip={$_('tooltip.copied')}>
           <button
             on:click={() => action(i)}
-            class="w-12 h-12 bg-gray-100 rounded-xl items-center justify-center flex"
+            class="w-12 h-12 bg-gray-200 rounded-xl items-center justify-center flex"
           >
             <img src={Copied} alt="" class="w-4" />
           </button>
@@ -55,7 +55,7 @@
         <div class="tooltip" data-tip={$_('tooltip.copy')}>
           <button
             on:click={() => action(i)}
-            class="w-12 h-12 bg-gray-100 rounded-xl items-center justify-center flex"
+            class="w-12 h-12 bg-gray-200 rounded-xl items-center justify-center flex"
           >
             <img src={Copy} alt="" class="w-4" />
           </button>
@@ -65,7 +65,7 @@
       <div class="tooltip" data-tip={$_(tooltip[i])}>
         <button
           on:click={() => action(i)}
-          class="w-12 h-12 bg-gray-100 rounded-xl items-center justify-center flex"
+          class="w-12 h-12 bg-gray-200 rounded-xl items-center justify-center flex"
         >
           <img src={icon} alt="" class="w-4" />
         </button>

@@ -42,7 +42,13 @@
 	"tooltip": {
 		"copy": "Copy",
 		"copied": "Copied!",
-		"explore": "Explore",
+		"explorer": "Explorer",
 		"disconnect": "Disconnect"
+	},
+	"account": {
+		"detail": {
+			"transactions": "Transactions",
+			"depositmvm": "Deposit to MVM"
+		}
 	}
 }
