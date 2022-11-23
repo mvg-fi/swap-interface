@@ -12,16 +12,15 @@
   </span>
 </div>
 
+<div class="card max-w-sm min-w-[28rem] w-64 h-auto bg-base-100 shadow-xl my-4">
+  <Apy />
+</div>
+
 <div class="card max-w-sm min-w-[28rem] w-64 h-auto bg-base-100 shadow-xl py-4">
-  <!-- Pool balances -->
   <Balances />
 </div>
-<div class="card max-w-sm min-w-[28rem] w-64 h-auto bg-base-100 shadow-xl my-4">
-  <!-- APY -->
-  <div>
-    <Apy />
-  </div>
 
+<div>
   <div>
     <!-- Technical details -->
   </div>

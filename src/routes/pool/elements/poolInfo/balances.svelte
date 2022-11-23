@@ -16,11 +16,11 @@
 </script>
 
 <div class="flex flex-col">
-  <span class="font-bold text-xl mb-1 px-4">
+  <span class="font-bold text-xl mb-1 px-6">
     {$_("add_liquidity.pool_balance")}
   </span>
   {#each coins as coin, i}
-    <div class="flex flex-row my-1 text-sm px-3">
+    <div class="flex flex-row my-1 text-sm px-5">
       <div class="avatar w-6 m-1">
         <div class="rounded-full">
           <Image src={icons[i]} alt={coin} />
@@ -40,7 +40,7 @@
     </div>
   {/each}
 </div>
-<div class="px-4 my-1 flex text-sm">
+<div class="px-6 my-1 flex text-sm">
   <span class="font-semibold flex-1"> {$_('add_liquidity.total')} </span>
   <span class="font-semibold"> ${formatUSMoney(usdTotal)} </span>
 </div>
