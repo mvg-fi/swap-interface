@@ -55,6 +55,7 @@
 		"balance": "Balance",
 		"max": "Max",
 		"deposit": "Deposit",
-		"withdraw": "Withdraw"
+		"withdraw": "Withdraw",
+		"approve": "Approve"
 	}
 }
