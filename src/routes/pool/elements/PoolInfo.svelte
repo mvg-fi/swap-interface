@@ -1,13 +1,28 @@
-<div class="card max-w-sm min-w-[40rem] w-96 bg-base-100 shadow-xl ml-4 h-96">
+<script lang="ts">
+  import Apy from "./poolInfo/apy.svelte";
+  import Balances from "./poolInfo/balances.svelte";
+
+  export let name: string;
+</script>
+
+<!-- Name -->
+<div class="h-14 m-2 justify-center items-center flex shadow-none">
+  <span class="font-bold text-2xl text-slate-600 capitalize">
+    {name}
+  </span>
+</div>
+
+<div class="card max-w-sm min-w-[28rem] w-64 h-auto bg-base-100 shadow-xl py-4">
+  <!-- Pool balances -->
+  <Balances />
+</div>
+<div class="card max-w-sm min-w-[28rem] w-64 h-auto bg-base-100 shadow-xl my-4">
+  <!-- APY -->
   <div>
-    <!-- Title -->
+    <Apy />
   </div>
 
   <div>
-    <!-- Pool Balance -->
-  </div>
-
-  <div>
-    <!-- APY -->
+    <!-- Technical details -->
   </div>
 </div>

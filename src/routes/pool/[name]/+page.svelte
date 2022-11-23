@@ -6,7 +6,11 @@
   console.log($page.params.name);
 </script>
 
-<div>
-  <Deposit />
-  <PoolInfo />
+<div class="mx-0 flex flex-row">
+  <div class="mr-4">
+    <PoolInfo name={$page.params.name}/>
+  </div>
+  <div class="sticky">
+    <Deposit />
+  </div>
 </div>

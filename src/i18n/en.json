@@ -56,6 +56,8 @@
 		"max": "Max",
 		"deposit": "Deposit",
 		"withdraw": "Withdraw",
-		"approve": "Approve"
+		"approve": "Approve",
+		"pool_balance": "Pool Balances",
+		"total": "Total"
 	}
 }

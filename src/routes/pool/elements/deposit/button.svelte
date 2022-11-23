@@ -9,7 +9,7 @@
 {#if approved}
   <div>
     <button
-      class="btn btn-block text-black bg-gray-200 hover:bg-gray-300 border-none rounded-2xl"
+      class="btn btn-lg btn-block text-black bg-gray-200 hover:bg-gray-300 border-none rounded-2xl"
     >
       <span> {$_("add_liquidity.deposit")} </span>
     </button>
@@ -18,7 +18,7 @@
   <div>
     <button
       on:click={approve}
-      class="btn btn-block text-black bg-gray-200 hover:bg-gray-300 border-none rounded-2xl"
+      class="btn btn-lg btn-block text-black bg-gray-200 hover:bg-gray-300 border-none rounded-2xl"
     >
       <span> {$_("add_liquidity.approve")} </span>
     </button>

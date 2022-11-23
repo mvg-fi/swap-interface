@@ -8,7 +8,7 @@ export const toHex = (num: string | number) => {
 };
 
 export const shortenAddress = (addr: string, start: number, end: number) => {
-	return addr.substring(0,start).toLowerCase() + "..." + addr.substring(addr.length-end).toLowerCase();
+	return addr.substring(0, start).toLowerCase() + "..." + addr.substring(addr.length - end).toLowerCase();
 }
 
 export const findIconFromTokenList = (tokenLists: TokenLists, tokenAddress: string) => {
@@ -18,8 +18,18 @@ export const findIconFromTokenList = (tokenLists: TokenLists, tokenAddress: stri
 
 export const findIconsFromTokenList = (tokenList: TokenLists, tokenAddresses: string[]) => {
 	let list: string[] = [];
-	tokenAddresses.forEach((e)=>{
+	tokenAddresses.forEach((e) => {
 		list.push(findIconFromTokenList(tokenList, e))
 	})
 	return list
+}
+
+export const formatUSMoney = (x: string | Number) => {
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+export const getToday = (sub: number = 0) => {
+	const d = new Date()
+	d.setDate(d.getDate()-sub)
+	return d.toJSON().slice(0,10).replace(/-/g,'/');
 }

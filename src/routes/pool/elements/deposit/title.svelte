@@ -7,7 +7,7 @@
   }
 </script>
 
-<div class="flex text-center justify-center">
+<div class="flex text-center justify-center mx-3">
   <span class="font-bold text-base"> {$_("add_liquidity.deposit")} </span>
   <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
   <!-- svelte-ignore a11y-click-events-have-key-events -->
