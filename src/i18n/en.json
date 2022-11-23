@@ -50,5 +50,9 @@
 			"transactions": "Transactions",
 			"depositmvm": "Deposit to MVM"
 		}
+	},
+	"add_liquidity": {
+		"balance": "Balance",
+		"max": "Max"
 	}
 }

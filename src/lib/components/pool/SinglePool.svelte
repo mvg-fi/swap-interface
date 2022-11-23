@@ -41,7 +41,9 @@
   $: logos = findIconsFromTokenList(tokenlist, pool.underlying_coin_addresses);
 
   const toPoolDetail = (pool: IPoolData) => {
-    goto(`/pools/${pool.name}`);
+    const path = `/pool/${pool.name}`
+    console.log(path)
+    goto(path);
   };
 </script>
 
