@@ -16,7 +16,7 @@
     tabindex="0"
     src={Refresh}
     on:click={()=>switchToWithdraw()}
-    class="w-3 ml-2 mb-0.5 cursor-pointer"
+    class="w-2.5 ml-2 mb-0.5 cursor-pointer"
   />
 </div>
 

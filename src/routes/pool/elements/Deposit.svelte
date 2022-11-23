@@ -13,7 +13,7 @@
     <div class="mx-2">
       <Input />
     </div>
-    <div>
+    <div class="mx-4 my-2">
       <Infos />
     </div>
     <div>
