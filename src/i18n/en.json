@@ -53,6 +53,8 @@
 	},
 	"add_liquidity": {
 		"balance": "Balance",
-		"max": "Max"
+		"max": "Max",
+		"deposit": "Deposit",
+		"withdraw": "Withdraw"
 	}
 }
