@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from "$app/stores";
+  import { fade } from "svelte/transition";
   import { depositMode as deposit } from "$lib/stores/pool/mode";
   import Deposit from "../elements/Deposit.svelte";
   import PoolInfo from "../elements/PoolInfo.svelte";
@@ -8,7 +9,7 @@
   console.log($page.params.name);
 </script>
 
-<div class="mx-0 flex flex-row mt-3">
+<div class="mx-0 flex flex-row mt-3" in:fade out:fade>
   <div class="mr-12">
     <PoolInfo name={$page.params.name} />
   </div>

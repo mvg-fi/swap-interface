@@ -3,7 +3,6 @@
   import Apy from "./poolInfo/apy.svelte";
   import Balances from "./poolInfo/balances.svelte";
   import TechDetails from "./TechDetails.svelte";
-  import { fade } from "svelte/transition";
 </script>
 
 <!-- Name -->
@@ -11,20 +10,14 @@
   <Title />
 </div> -->
 
-<div class="card min-w-[32rem] h-auto bg-base-100 shadow-lg mb-2" in:fade out:fade>
+<div class="card min-w-[32rem] h-auto bg-base-100 shadow-lg mb-2">
   <Apy />
 </div>
 
-<div class="card min-w-[32rem] h-auto bg-base-100 shadow-xl py-4 my-2" in:fade out:fade>
+<div class="card min-w-[32rem] h-auto bg-base-100 shadow-xl py-4 my-2">
   <Balances />
 </div>
 
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<div
-  in:fade
-  out:fade
-  tabindex="0"
-  class="card border border-base-300 bg-base-100 rounded-box shadow-md"
->
+<div class="card border border-base-300 bg-base-100 rounded-box shadow-md">
   <TechDetails />
 </div>
