@@ -3,19 +3,15 @@
   import Refresh from "$lib/images/refresh.svg";
   import { setDepositMode } from "$lib/stores/pool/mode";
 
-  const switchToWithdraw = () => {
-    setDepositMode(false);
+  const switchToDeposit = () => {
+    setDepositMode(true);
   };
 </script>
 
 <div class="flex text-center justify-center mx-3">
-  <span class="font-bold text-base"> {$_("add_liquidity.deposit")} </span>
-  <button on:click={() => switchToWithdraw()}>
-    <img
-      alt=""
-      src={Refresh}
-      class="w-2.5 ml-2 mb-0.5 cursor-pointer"
-    />
+  <span class="font-bold text-base"> {$_("add_liquidity.withdrawal")} </span>
+  <button on:click={() => switchToDeposit()}>
+    <img alt="" src={Refresh} class="w-2.5 ml-2 mb-0.5 cursor-pointer" />
   </button>
 </div>
 

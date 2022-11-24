@@ -8,20 +8,8 @@
     {name}
   </span>
   <div class="collapse-content">
-    <!-- <span class="logo font-medium mr-1"> MVG </span>
-    <span> To the moon </span> -->
     <div class="mt-3">
       <span class="rocket select-none"> 🚀 </span>
     </div>
   </div>
 </div>
-
-<style>
-  .logo {
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-      Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-      "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
-  }
-  /* .rocket {
-  } */
-</style>

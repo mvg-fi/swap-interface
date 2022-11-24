@@ -20,7 +20,4 @@
   .p0 {
     padding: 0px !important;
   }
-  .divider::before, .divider::after {
-    height: 0.05rem !important;
-  }
 </style>

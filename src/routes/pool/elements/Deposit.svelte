@@ -1,5 +1,4 @@
 <script>
-  import { fade } from "svelte/transition";
   import Button from "./deposit/button.svelte";
   import Infos from "./deposit/infos.svelte";
   import Input from "./deposit/input.svelte";
@@ -8,8 +7,6 @@
 
 <div
   class="card max-w-sm min-w-[23rem] w-96 bg-base-100 shadow-2xl p-3"
-  in:fade
-  out:fade
 >
   <div class="flex flex-col">
     <div class="my-2 mt-1 select-none">
