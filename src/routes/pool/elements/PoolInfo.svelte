@@ -7,9 +7,9 @@
 </script>
 
 <!-- Name -->
-<div class="w-full flex items-center justify-center py-2">
+<!-- <div class="w-full flex items-center justify-center py-3">
   <Title />
-</div>
+</div> -->
 
 <div class="card min-w-[32rem] h-auto bg-base-100 shadow-lg mb-2" in:fade out:fade>
   <Apy />

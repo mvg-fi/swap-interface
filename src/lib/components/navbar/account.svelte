@@ -48,10 +48,9 @@
   <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
   <div
     tabindex="0"
-    style:visibility={isDropdownOpen ? "visible" : ""} 
+    style:visibility={isDropdownOpen ? "visible" : "hidden"} 
     class="dropdown-content card card-compact w-80 p-2 shadow bg-white text-primary-content mt-3"
   >
-  <!-- hidden -->
     <Details />
   </div>
 </div>

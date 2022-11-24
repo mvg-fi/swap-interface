@@ -3,8 +3,8 @@
 </script>
 
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<div tabindex="0" class="collapse rounded-box text-center w-64">
-  <span class="font-bold text-2xl text-slate-600 capitalize mt-0.5">
+<div tabindex="0" class="collapse rounded-box text-center w-32">
+  <span class="font-bold text-2xl text-white capitalize mt-0.5">
     {name}
   </span>
   <div class="collapse-content">
