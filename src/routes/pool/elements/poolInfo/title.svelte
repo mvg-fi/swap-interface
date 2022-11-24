@@ -8,12 +8,13 @@
     {name}
   </span>
   <div class="collapse-content">
-    <span class="logo font-medium"> MVG </span>
-    <span> to the moon </span>
-    <span class="rocket"> 🚀 </span>
+    <!-- <span class="logo font-medium mr-1"> MVG </span>
+    <span> To the moon </span> -->
+    <div class="mt-3">
+      <span class="rocket select-none"> 🚀 </span>
+    </div>
   </div>
 </div>
-
 
 <style>
   .logo {

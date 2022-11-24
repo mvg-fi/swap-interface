@@ -5,6 +5,7 @@
   import ArrowDown from "$lib/images/chevron-down.svg";
   import ArrowUp from "$lib/images/chevron-up.svg";
   import Details from "./techDetails/details.svelte";
+  import Utilization from "./techDetails/utilization.svelte";
 
   let widget = true;
   const switchWidget = () => {
@@ -28,11 +29,15 @@
     </button>
   </div>
   {#if widget}
-    <div class="px-0 h-96">
+    <div class="px-0 h-auto">
       <div>
         <Contract />
       </div>
-      <div class="px-6">
+      <div class="my-4">
+        <Utilization />
+      </div>
+
+      <div class="my-4 px-4">
         <Details />
       </div>
     </div>

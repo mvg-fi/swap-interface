@@ -66,6 +66,13 @@
 	},
 	"technical": {
 		"pool_address": "Pool Address",
-		"token_address": "Token Address"
+		"token_address": "Token Address",
+		"utilization": "Liquidity utilization",
+		"volume": "24h Volume",
+		"fee": "Fee",
+		"admin_fee":  "Admin Fee",
+		"virtual_price": "Virtual Price",
+		"a":  "A",
+		"price_oracle":"Price Oracle"
 	}
 }
