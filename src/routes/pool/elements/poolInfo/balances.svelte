@@ -33,7 +33,6 @@
         <span class="font-semibold text-base"> {formatUSMoney(poolBalance[i])} </span>
         <span class="font-semibold opacity-80 ml-1 text-xs">
           <!-- Percentage on fiat -->
-          <!-- ({ (poolBalance[i]/sum).toFixed(2) })  -->
           ({"25%"})
         </span>
       </div>

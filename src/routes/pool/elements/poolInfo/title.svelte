@@ -1,0 +1,26 @@
+<script lang="ts">
+  export let name: string = "4pool";
+</script>
+
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<div tabindex="0" class="collapse rounded-box text-center w-64">
+  <span class="font-bold text-2xl text-slate-600 capitalize mt-0.5">
+    {name}
+  </span>
+  <div class="collapse-content">
+    <span class="logo font-medium"> MVG </span>
+    <span> to the moon </span>
+    <span class="rocket"> 🚀 </span>
+  </div>
+</div>
+
+
+<style>
+  .logo {
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+      Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+  }
+  /* .rocket {
+  } */
+</style>

@@ -57,7 +57,15 @@
 		"deposit": "Deposit",
 		"withdraw": "Withdraw",
 		"approve": "Approve",
-		"pool_balance": "Pool Balances",
-		"total": "Total"
+		"pool_balance": "Pool balances",
+		"total": "Total",
+		"daily": "Daily",
+		"weekly": "Weekly",
+		"apy": "APY",
+		"technical": "Technical details"
+	},
+	"technical": {
+		"pool_address": "Pool Address",
+		"token_address": "Token Address"
 	}
 }

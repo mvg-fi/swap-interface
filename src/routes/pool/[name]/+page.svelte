@@ -7,7 +7,7 @@
 </script>
 
 <div class="mx-0 flex flex-row">
-  <div class="mr-4">
+  <div class="mr-12">
     <PoolInfo name={$page.params.name}/>
   </div>
   <div class="sticky">

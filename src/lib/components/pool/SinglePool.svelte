@@ -49,17 +49,18 @@
 
 <!-- Icon and Name-->
 <tr
+  tabindex="0"
   class="hover"
   on:click={() => {
     toPoolDetail(pool);
   }}
 >
   <!-- svelte-ignore a11y-invalid-attribute -->
-  <td><a href="">
+  <td>
     <div class="flex items-center space-x-4">
-      <div class="min-w-[2rem] inline-grid grid-cols-2">
+      <button class="min-w-[2rem] inline-grid grid-cols-2">
         <PoolIcon {logos} />
-      </div>
+      </button>
 
       <div class="grow-1">
         <div class="font-bold">{pool.name}</div>
@@ -73,7 +74,6 @@
         </div>
       </div>
     </div>
-  </a>
   </td>
 
   <!-- APY -->

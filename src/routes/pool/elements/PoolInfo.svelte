@@ -1,27 +1,29 @@
 <script lang="ts">
+  import Title from "./poolInfo/title.svelte";
   import Apy from "./poolInfo/apy.svelte";
   import Balances from "./poolInfo/balances.svelte";
-
-  export let name: string;
+  import TechDetails from "./TechDetails.svelte";
+  import { fade } from "svelte/transition";
 </script>
 
 <!-- Name -->
-<div class="h-14 m-2 justify-center items-center flex shadow-none">
-  <span class="font-bold text-2xl text-slate-600 capitalize">
-    {name}
-  </span>
-</div>
+<!-- <div class="w-full flex items-center justify-center py-2">
+  <Title />
+</div> -->
 
-<div class="card max-w-sm min-w-[28rem] w-64 h-auto bg-base-100 shadow-xl my-4">
+<div class="card min-w-[32rem] h-auto bg-base-100 shadow-lg mb-2" in:fade>
   <Apy />
 </div>
 
-<div class="card max-w-sm min-w-[28rem] w-64 h-auto bg-base-100 shadow-xl py-4">
+<div class="card min-w-[32rem] h-auto bg-base-100 shadow-xl py-4 my-2" in:fade>
   <Balances />
 </div>
 
-<div>
-  <div>
-    <!-- Technical details -->
-  </div>
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<div
+  in:fade
+  tabindex="0"
+  class="card border border-base-300 bg-base-100 rounded-box shadow-md"
+>
+  <TechDetails />
 </div>
