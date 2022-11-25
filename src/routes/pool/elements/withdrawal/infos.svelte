@@ -1,6 +1,7 @@
 <script lang="ts">
   import { NATIVE_TOKEN_SYMBOL } from "$lib/helpers/constants";
   import Setting from "$lib/images/setting.svg";
+  import { _ } from "svelte-i18n"
 
   const min_receive = 0.01;
   const lp_token_name = "SBFSB";
@@ -8,9 +9,9 @@
   const tx_fee = 0.000001;
 
   const items = [
-    { key: "Min receive:", value: `${min_receive} ${lp_token_name}` },
-    { key: "Slippage:", value: `${slippage}%` },
-    { key: "Esitimated tx fee:", value: `${tx_fee} ${NATIVE_TOKEN_SYMBOL}` },
+    { key: $_('technical.min_receive')+":", value: `${min_receive} ${lp_token_name}` },
+    { key: $_('technical.slippage')+":", value: `${slippage}%` },
+    { key: $_('technical.tx_fee')+":", value: `${tx_fee} ${NATIVE_TOKEN_SYMBOL}` },
   ];
 </script>
 
@@ -19,8 +20,8 @@
     <span class="text-sm flex-1"> {item.key} </span>
     <span class="text-sm"> {item.value} </span>
     
-    {#if item.key === "Slippage:"}
-      <img src={Setting} alt="" class="mb-0.5 w-3 opacity-70 ml-1 cursor-pointer setting">
+    {#if i === 1}
+      <img src={Setting} alt="" class="w-3 opacity-70 ml-1 cursor-pointer setting">
     {/if}
   </div>
 {/each}

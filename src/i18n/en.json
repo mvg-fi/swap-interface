@@ -55,7 +55,7 @@
 		"balance": "Balance",
 		"max": "Max",
 		"deposit": "Deposit",
-		"withdrawal": "Withdrawal",
+		"withdraw": "Withdraw",
 		"approve": "Approve",
 		"pool_balance": "Pool balances",
 		"total": "Total",
@@ -71,8 +71,17 @@
 		"volume": "24h Volume",
 		"fee": "Trading Fee",
 		"admin_fee":  "Admin Fee",
+		"min_receive": "Min receive",
+		"slippage": "Slippage",
+		"tx_fee": "Estimated tx fee",
 		"virtual_price": "Virtual Price",
 		"a":  "A",
-		"price_oracle":"Price Oracle"
+		"price_oracle":"Price Oracle",
+		"single": "Single",
+		"balanced": "Balanced",
+		"custom": "Custom",
+		"withdraw_single": "Withdraw single coin",
+		"withdraw_balanced": "Withdraw in balanced amount",
+		"withdraw_custom": "Set custom amount"
 	}
 }

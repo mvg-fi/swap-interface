@@ -34,21 +34,54 @@
 		"save": "保存"
 	},
 	"pooltable": {
-		"name": "Name",
-		"apy": "APY",
-		"tvl": "TVL",
-		"volume": "Volume"
+		"name": "名称",
+		"apy": "年化收益",
+		"tvl": "总锁仓量",
+		"volume": "交易量"
 	},
 	"tooltip": {
-		"copy": "Copy",
-		"copied": "Copied!",
-		"explorer": "Explorer",
-		"disconnect": "Disconnect"
+		"copy": "复制",
+		"copied": "已复制!",
+		"explorer": "区块浏览器",
+		"disconnect": "登出"
 	},
 	"account": {
 		"detail": {
-			"transactions": "Transactions",
-			"depositmvm": "Deposit to MVM"
+			"transactions": "历史交易",
+			"depositmvm": "充值到MVM网络"
 		}
+	},
+	"add_liquidity": {
+		"balance": "余额",
+		"max": "最大值",
+		"deposit": "充值",
+		"withdraw": "提现",
+		"approve": "授权",
+		"pool_balance": "流动池资产",
+		"total": "总计",
+		"daily": "每日",
+		"weekly": "每周",
+		"apy": "年化收益",
+		"technical": "技术细节"
+	},
+	"technical": {
+		"pool_address": "合约地址",
+		"token_address": "代币地址",
+		"utilization": "流动性利用率",
+		"volume": "24小时交易量",
+		"fee": "交易手续费",
+		"admin_fee":  "管理费",
+		"min_receive": "最少可获得",
+		"slippage": "滑点",
+		"tx_fee": "预估燃料费用",
+		"virtual_price": "虚拟价格",
+		"a":  "A",
+		"price_oracle":"预言机价格",
+		"single": "单币",
+		"balanced": "平均",
+		"custom": "自定义",
+		"withdraw_single": "提现为单一币种",
+		"withdraw_balanced": "平均提现为所有币种",
+		"withdraw_custom": "设置自定义值"
 	}
 }

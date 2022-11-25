@@ -9,7 +9,7 @@
 </script>
 
 <div class="flex text-center justify-center mx-3">
-  <span class="font-bold text-base"> {$_("add_liquidity.withdrawal")} </span>
+  <span class="font-bold text-base"> {$_("add_liquidity.withdraw")} </span>
   <button on:click={() => switchToDeposit()}>
     <img alt="" src={Refresh} class="w-2.5 ml-2 mb-0.5 cursor-pointer" />
   </button>
