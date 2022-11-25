@@ -19,7 +19,7 @@
   const amounts = [1.53, 1.43, 1.23, 1.12];
 </script>
 
-<div class="m-1 my-5">
+<div class="m-1 my-3">
   <div class="">
     <!-- Selector -->
     <div class="btn-group grid grid-cols-3 font-medium">

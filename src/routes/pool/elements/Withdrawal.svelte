@@ -14,7 +14,7 @@
     <div class="mx-1 select-none">
       <Input />
     </div>
-    <div class="mx-1 select-none">
+    <div class="mx-1 mt-2 select-none">
       <Selector />
     </div>
     <div class="mx-3 my-2">
