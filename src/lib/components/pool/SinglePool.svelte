@@ -87,7 +87,5 @@
 </tr>
 
 <style>
-  a {
-    color: unset;
-  }
+  
 </style>

@@ -7,7 +7,7 @@ import { dedupe } from '$lib/helpers/store/dedupe';
 import { browser } from '$app/environment';
 
 import metaMask from '$lib/images/logo/metamask.svg';
-import walletConnect from '$lib/images/logo/wallet-connect.svg';
+import walletConnect from '$lib/images/logo/walletconnect.svg';
 import mixinMessenger from "$lib/images/logo/mixin.svg";
 
 const persistentProviderKey = persistentWritable<ProviderKey | undefined>(PROVIDER_KEY, undefined);
