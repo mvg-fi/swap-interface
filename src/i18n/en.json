@@ -69,7 +69,7 @@
 		"token_address": "Token Address",
 		"utilization": "Liquidity utilization",
 		"volume": "24h Volume",
-		"fee": "Fee",
+		"fee": "Trading Fee",
 		"admin_fee":  "Admin Fee",
 		"virtual_price": "Virtual Price",
 		"a":  "A",

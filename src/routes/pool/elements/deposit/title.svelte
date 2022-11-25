@@ -20,7 +20,7 @@
 </div>
 
 <style>
-  img:focus {
+  img:hover {
     animation: shake 1s;
     animation-iteration-count: 1;
   }

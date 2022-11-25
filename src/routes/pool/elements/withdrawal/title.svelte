@@ -16,7 +16,7 @@
 </div>
 
 <style>
-  img:focus {
+  img:hover {
     animation: shake 1s;
     animation-iteration-count: 1;
   }
@@ -26,10 +26,10 @@
       transform: rotate(0deg);
     }
     50% {
-      transform: rotate(360deg);
+      transform: rotate(-360deg);
     }
     100% {
-      transform: rotate(360deg);
+      transform: rotate(-360deg);
     }
   }
 </style>

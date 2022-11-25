@@ -23,6 +23,7 @@
 </div>
 
 <!-- <style>
+  Transition: switch mode
   .rotate-y {
     transform: rotateY(360deg);
   }
