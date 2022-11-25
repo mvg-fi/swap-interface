@@ -32,7 +32,7 @@
           {i === 0 ? 'border-r-0' : i === 2 ? 'border-l-0' : ''}
           {focus != -1 ? (i === 0 ? 'bl' : i === 2 ? 'br' : '') : ''}
           {focus === i
-            ? 'bg-slate-600 border-slate-600 text-white hover:bg-slate-500 hover:border-slate-500'
+            ? 'bg-slate-100 hover:bg-slate-200 hover:border-slate-200'
             : ''}"
           data-tip={tooltips[i]}
           on:click={() => {
