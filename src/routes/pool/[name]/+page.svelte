@@ -9,7 +9,7 @@
   console.log($page.params.name);
 </script>
 
-<div class="mx-0 flex flex-row mt-3" in:fade out:fade>
+<div class="mx-0 flex flex-row mt-3" in:fade>
   <div class="mr-12">
     <PoolInfo name={$page.params.name} />
   </div>

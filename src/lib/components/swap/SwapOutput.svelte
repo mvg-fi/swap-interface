@@ -2,35 +2,26 @@
   import {
     selectedFromAsset,
     selectedToAsset,
-    payAmount,
+    receiveAmount,
   } from "$lib/stores/swap/swap";
   import { fetchDyFromContract } from "$lib/helpers/web3/swap";
-  import {
-    selectAssetDialog,
-    setAssetDialog,
-  } from "$lib/stores/swap/selectAsset";
-  import SelectAssetDialog from "./SelectAsset/SelectAssetDialog.svelte";
-  import { _ } from "svelte-i18n";
+  import { selectToAssetDialog, setToAssetDialog } from "$lib/stores/swap/selectAsset";
+  import Image from "../common/image.svelte";
+  import SelectToAssetDialog from "./SelectAsset/SelectToAssetDialog.svelte";
   import { cleave } from "svelte-cleavejs";
   import { maskOption } from "$lib/helpers/constants";
-  import Image from "$lib/components/common/image.svelte";
 
-  $: icon = $selectedFromAsset.icon_url;
-  $: symbol = $selectedFromAsset.symbol;
+
+  $: icon = $selectedToAsset.icon_url;
+  $: symbol = $selectedToAsset.symbol;
 
   let timeout: any = null;
-  function delayInput() {
+  function delayOutput() {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
-      fetchDyFromContract($selectedFromAsset, $selectedToAsset, $payAmount);
+      fetchDyFromContract($selectedFromAsset, $selectedToAsset, $receiveAmount);
     }, 1000);
   }
-
-  const validateInput = (s: string): [boolean, string] => {
-    if (Number(s) <= 0) return [false, $_("input.input_number")];
-
-    return [false, "Invalid Input"];
-  };
 </script>
 
 <div class="flex">
@@ -39,14 +30,14 @@
       type="tel"
       placeholder="0"
       use:cleave={maskOption}
-      on:keyup={delayInput}
-      bind:value={$payAmount}
+      on:keyup={delayOutput}
+      bind:value={$receiveAmount}
       class="input swap-input left input-sm sm:input-lg same-height rounded-2xl"
     />
 
     <button
       class="btn btn-sm sm:btn-lg select-btn same-height same-width"
-      on:click={() => setAssetDialog(true)}
+      on:click={() => setToAssetDialog(true)}
     >
       <div class="avatar">
         <div class="rounded-full w-6 mx-2">
@@ -57,7 +48,7 @@
     </button>
   </label>
 
-  <SelectAssetDialog bind:$selectAssetDialog />
+  <SelectToAssetDialog bind:$selectToAssetDialog />
 </div>
 
 <style>
@@ -65,7 +56,7 @@
     border: 2px solid rgb(239 240 249);
     outline: none;
   }
-  .swap-input:focus {
+  .swap-input:focus{
     outline: none;
   }
   .select-btn {

@@ -64,3 +64,13 @@ export const networkParams: Record<string, NetworkParam> = {
 		blockExplorerUrls: [MVM_SCAN_URL]
 	}
 };
+
+
+// Mask config
+export const maskOption = {
+	numeral: true,
+	numeralDecimalMark: '.',
+	numeralPositiveOnly: true,
+	numeralDecimalScale: 18,
+	numeralThousandsGroupStyle: 'none'
+}

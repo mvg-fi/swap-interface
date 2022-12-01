@@ -10,11 +10,12 @@
   import ApproveButton from "./ApproveButton.svelte";
   import ExchangeRate from "./SwapInfo/ExchangeRate.svelte";
   import Loading from "./SwapInfo/Loading.svelte";
+  import SwapOutput from "./SwapOutput.svelte";
 
-  $: active =
-    ($payAmount != 0 && $payAmount != undefined) ||
-    ($receiveAmount != 0 && $receiveAmount != undefined);
-  $: console.log(active);
+  // $: active =
+  //   ($payAmount != 0 && $payAmount != undefined) ||
+  //   ($receiveAmount != 0 && $receiveAmount != undefined);
+  // $: console.log(active);
 </script>
 
 <div class="card bg-base-100 shadow-xl p-2">
@@ -23,7 +24,7 @@
   </div>
 
   <div class="w-full my-3 mb-2">
-    <SwapInput from={true} id="swap-from" />
+    <SwapInput />
   </div>
 
   <div class="w-full flex justify-center items-center">
@@ -31,14 +32,14 @@
   </div>
 
   <div class="w-full my-3 mt-2">
-    <SwapInput from={false} id="swap-to" />
+    <SwapOutput />
   </div>
 
-  {#if active}
+  <!-- {#if active}
     <ExchangeRate />
   {:else}
     <Loading />
-  {/if}
+  {/if} -->
 
   <div class="w-full pt-3">
     {#if $connected}

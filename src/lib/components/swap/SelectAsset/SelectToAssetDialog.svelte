@@ -6,10 +6,10 @@
   import SingleAsset from "$lib/components/swap/SelectAsset/SingleAsset.svelte";
   import SearchAsset from "$lib/components/swap/SelectAsset/SearchAsset.svelte";
   import { fade } from "svelte/transition";
-  import { setFromAsset } from "$lib/stores/swap/swap";
+  import { setToAsset } from "$lib/stores/swap/swap";
   import {
-    selectAssetDialog,
-    setAssetDialog,
+    selectToAssetDialog,
+    setToAssetDialog,
   } from "$lib/stores/swap/selectAsset";
 
   $: filteredItems = assets.filter((item) => {
@@ -20,16 +20,16 @@
   });
 
   let content: any;
-  function onClickOutside(e:any) {
+  function onClickOutside(e: any) {
     if (content == e.target || content.contains(e.target)) return;
-    setAssetDialog(false);
+    setToAssetDialog(false);
   }
 </script>
 
 <div
   class="modal modal-bottom sm:modal-middle"
   in:fade
-  class:modal-open={$selectAssetDialog}
+  class:modal-open={$selectToAssetDialog}
   on:click={onClickOutside}
   on:keypress={onClickOutside}
 >
@@ -37,7 +37,7 @@
     <div class="sticky top-0 z-10 bg-white">
       <div class="flex p-5">
         <h3 class="font-semibold text-lg flex-1">{$_("select.token")}</h3>
-        <button class="flex-0 btn btn-xs btn-circle btn-ghost" on:click={()=>setAssetDialog(false)}>
+        <button class="flex-0 btn btn-xs btn-circle btn-ghost" on:click={()=>setToAssetDialog(false)}>
           <img src={Close} alt="x" />
         </button>
       </div>
@@ -48,8 +48,8 @@
     <ul class="menu bg-base-100 w-full overflow-y-auto">
       {#each filteredItems as asset}
         <li
-          on:click={() => setFromAsset(asset)}
-          on:keydown={() => setFromAsset(asset)}
+          on:click={() => setToAsset(asset)}
+          on:keydown={() => setToAsset(asset)}
         >
           <SingleAsset {asset} />
         </li>

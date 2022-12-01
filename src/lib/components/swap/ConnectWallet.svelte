@@ -1,22 +1,16 @@
 <script lang="ts">
-  import { selectWalletDialog } from "$lib/stores/selectWallet";
-  import SelectWalletDialog from "../wallets/SelectWalletDialog.svelte";
   import { _ } from "svelte-i18n";
-
-  const id = "connect-wallet";
+  import { setWalletDialog } from "$lib/stores/selectWallet";
 </script>
 
-<label for={id} class="w-full btn btn-lg rounded-2xl bg-black">
+<button
+  class="w-full btn btn-lg rounded-2xl bg-black"
+  on:click={() => {
+    setWalletDialog(true);
+  }}
+>
   {$_("swap.connect_wallet")}
-</label>
-
-<input
-  {id}
-  type="checkbox"
-  class="modal-toggle"
-  bind:checked={$selectWalletDialog}
-/>
-<SelectWalletDialog id="connect-wallet" />
+</button>
 
 <style>
   * {

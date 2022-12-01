@@ -34,6 +34,8 @@
   .search-input {
     width: 100%;
     border-left: none;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
     padding-left: 0;
   }
   .on-focus:focus {

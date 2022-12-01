@@ -12,29 +12,36 @@
   import { account, setProvider } from "$lib/stores/ethers";
   import { registerAndSave } from "$lib/stores/user";
   import { setConnected } from "$lib/stores/connect";
-  import { setWalletDialog } from "$lib/stores/selectWallet";
+  import {
+    setWalletDialog,
+    selectWalletDialog,
+  } from "$lib/stores/selectWallet";
   import { providerKey as cacheProvider } from "$lib/stores/provider";
 
+  let content: any;
   let loading = false;
-  export let id: string;
+  function onClickOutside(e:any) {
+    if (content == e.target || content.contains(e.target)) return;
+     setWalletDialog(false)
+  }
 
   const providers: IProvider[] = [
     {
       key: "injected",
       title: "Metamask",
-      desc: $_('login.BrowserWalletDescription'),
+      desc: $_("login.BrowserWalletDescription"),
       icon: metamask,
     },
     {
       key: "walletconnect",
       title: "WalletConnect",
-      desc: $_('login.WalletConnectDescription'),
+      desc: $_("login.WalletConnectDescription"),
       icon: walletConnect,
     },
     {
       key: "mixinmessenger",
       title: "Mixin Messenger",
-      desc: $_('login.MixinMessengerDescription'),
+      desc: $_("login.MixinMessengerDescription"),
       icon: mixinMessenger,
     },
   ];
@@ -56,15 +63,15 @@
       console.log(e);
       switch (true) {
         case String(e.message).includes("No Web3 Provider found"):
-          showToast("common", 'No Web3 Provider found');
+          showToast("common", "No Web3 Provider found");
           console.log("No Web3 Provider found");
           break;
         case String(e.message).includes("User closed modal"):
-          showToast("common", 'User closed modal');
+          showToast("common", "User closed modal");
           console.log("User closed modal");
           break;
         case String(e.message).includes("User Rejected"):
-          showToast("common", 'User Rejected');
+          showToast("common", "User Rejected");
           console.log("User Rejected");
           break;
       }
@@ -74,8 +81,16 @@
   };
 </script>
 
-<label class="modal modal-bottom sm:modal-middle" for={id}>
-  <div class="modal-box relative w-full p-2 grid grid-cols-2 min-h-[25%] h-[40%]">
+<div
+  class="modal modal-bottom sm:modal-middle"
+  class:modal-open={$selectWalletDialog}
+  on:click={onClickOutside}
+  on:keypress={onClickOutside}
+>
+  <div
+    class="modal-box relative w-full p-2 grid grid-cols-2 min-h-[25%] h-[45%]"
+    bind:this={content}
+  >
     {#each providers as { title, desc, icon, key } (key)}
       <button
         class="px-0 rounded-2xl b option flex flex-col items-center justify-center"
@@ -91,7 +106,7 @@
       </button>
     {/each}
   </div>
-</label>
+</div>
 
 <style>
   .b {
@@ -106,7 +121,7 @@
     overflow: hidden;
     scrollbar-width: none;
   }
-  .img-screen{
+  .img-screen {
     width: 48px;
     height: 48px;
   }

@@ -9,6 +9,7 @@
   import { initi18n } from "../i18n/i18n";
   import "../app.postcss";
   import "./styles.css";
+  import SelectWalletDialog from "$lib/components/wallets/SelectWalletDialog.svelte";
 
   const setupI18n = initi18n();
   const escQuitDialogs = (e: any) => {
@@ -34,6 +35,8 @@
 
     <footer />
   </div>
+
+  <SelectWalletDialog />
   <Toast />
 {/await}
 <svelte:window on:keydown={escQuitDialogs} />
