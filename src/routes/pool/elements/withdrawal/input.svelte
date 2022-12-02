@@ -22,7 +22,7 @@
         type="number"
         placeholder="0"
         bind:value={value}
-        class="input border-0 p-0 w-full max-w-xs input-md outline-none on-focus font-bold text-2xl"
+        class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-2xl"
       />
     </div>
     <div class="avatar mx-1 mr-0">
@@ -56,9 +56,3 @@
     </div>
   </div>
 </div>
-
-<style>
-  .on-focus:focus {
-    outline: none;
-  }
-</style>

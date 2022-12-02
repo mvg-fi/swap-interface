@@ -33,7 +33,7 @@
   on:click={onClickOutside}
   on:keypress={onClickOutside}
 >
-  <div class="modal-box h-4/5 p-0 w-64" bind:this={content}>
+  <div class="modal-box h-4/5 max-w-lg p-0" bind:this={content}>
     <div class="sticky top-0 z-10 bg-white">
       <div class="flex p-5">
         <h3 class="font-semibold text-lg flex-1">{$_("select.token")}</h3>
@@ -68,7 +68,4 @@
   .modal-bottom {
     max-width: none;
   }
-  /* .modal-middle {
-    max-width: 28rem !important;
-  } */
 </style>

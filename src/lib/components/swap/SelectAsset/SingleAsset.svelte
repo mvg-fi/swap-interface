@@ -12,8 +12,8 @@
         </div>
       </div>
       <div class="text-left pl-0">
-        <div class="font-semibold">{asset.name}</div>
-        <div class="text-sm opacity-50">{asset.symbol}</div>
+        <div class="ft truncate text-base">{asset.name}</div>
+        <div class="text-xs font-weight-300 sb">{asset.symbol}</div>
       </div>
     {/if}
   </button>
@@ -22,5 +22,8 @@
 <style>
   .asset-btn-bg:hover {
     background-color: rgba(153, 161, 189, 0.08);
+  }
+  .sb {
+    color: rgb(152, 161, 192);
   }
 </style>

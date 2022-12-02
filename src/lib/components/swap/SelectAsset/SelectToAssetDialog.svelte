@@ -68,7 +68,4 @@
   .modal-bottom {
     max-width: none;
   }
-  /* .modal-middle {
-    max-width: 28rem !important;
-  } */
 </style>

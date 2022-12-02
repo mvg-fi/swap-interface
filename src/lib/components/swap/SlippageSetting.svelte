@@ -102,6 +102,12 @@
     color: black;
     border: none;
   }
+  .custom-btn:hover {
+    color: white;
+    background-color: black;
+    opacity: 0.7;
+    border: none;
+  }
   .bg-color {
     background-color: #f5f5f5;
   }

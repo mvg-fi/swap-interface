@@ -5,15 +5,21 @@
     receiveAmount,
   } from "$lib/stores/swap/swap";
   import { fetchDyFromContract } from "$lib/helpers/web3/swap";
-  import { selectToAssetDialog, setToAssetDialog } from "$lib/stores/swap/selectAsset";
-  import Image from "../common/image.svelte";
+  import { setToAssetDialog } from "$lib/stores/swap/selectAsset";
   import SelectToAssetDialog from "./SelectAsset/SelectToAssetDialog.svelte";
   import { cleave } from "svelte-cleavejs";
+  import { _ } from "svelte-i18n";
   import { maskOption } from "$lib/helpers/constants";
-
+  import { connected } from "$lib/stores/connect";
+  import Image from "$lib/components/common/image.svelte";
+  import ChevronDown from "$lib/images/chevron-down.svg";
 
   $: icon = $selectedToAsset.icon_url;
   $: symbol = $selectedToAsset.symbol;
+
+  $: balance = 0.0001;
+  $: balanceLoaded = true;
+  $: usdLoaded = false;
 
   let timeout: any = null;
   function delayOutput() {
@@ -24,62 +30,65 @@
   }
 </script>
 
-<div class="flex">
-  <label class="input-group">
-    <input
-      type="tel"
-      placeholder="0"
-      use:cleave={maskOption}
-      on:keyup={delayOutput}
-      bind:value={$receiveAmount}
-      class="input swap-input left input-sm sm:input-lg same-height rounded-2xl"
-    />
-
-    <button
-      class="btn btn-sm sm:btn-lg select-btn same-height same-width"
-      on:click={() => setToAssetDialog(true)}
-    >
-      <div class="avatar">
-        <div class="rounded-full w-6 mx-2">
-          <Image src={icon} alt="icon" width="24px" height="24px" />
-        </div>
+<div class="w-full">
+  <div class="p-1 m-1 border-solid bd rounded-2xl">
+    <div class="items-center justfiy-center flex">
+      <div class="flex-1 flex flex-col mx-3">
+        <input
+          type="tel"
+          placeholder="0"
+          use:cleave={maskOption}
+          on:keyup={delayOutput}
+          bind:value={$receiveAmount}
+          class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-2xl"
+        />
       </div>
-      <span class="bg-transparent px-0 mt-1">{symbol}</span>
-    </button>
-  </label>
+      <button
+        class="flex flex-row items-center"
+        on:click={() => setToAssetDialog(true)}
+      >
+        <div class="avatar mx-1 mr-0">
+          <div class="w-7 rounded-full">
+            <Image src={icon} alt="" />
+          </div>
+        </div>
+        <div class="mx-2">
+          <span class="uppercase font-bold text-xl"> {symbol} </span>
+        </div>
+        <div class="w-3 mr-2">
+          <Image src={ChevronDown} alt="" />
+        </div>
+      </button>
+    </div>
 
-  <SelectToAssetDialog bind:$selectToAssetDialog />
+    <div class="flex flex-row mx-2 my-1 opacity-75 text-xs">
+      <div class="flex-1 ml-1">
+        {#if usdLoaded}
+          <span>${(1234 * $receiveAmount).toFixed(2)}</span>
+        {/if}
+      </div>
+
+      {#if balanceLoaded}
+        <button
+          on:click={() => {
+            receiveAmount.set(balance);
+          }}
+          class="tooltip tooltip-left"
+          data-tip={$_("add_liquidity.max")}
+        >
+          <span class="cursor-pointer"
+            >{$_("add_liquidity.balance")}: {balance}</span
+          >
+        </button>
+      {/if}
+    </div>
+  </div>
+
+  <SelectToAssetDialog />
 </div>
 
 <style>
-  .swap-input {
-    border: 2px solid rgb(239 240 249);
-    outline: none;
-  }
-  .swap-input:focus{
-    outline: none;
-  }
-  .select-btn {
-    color: black;
-    border: 2px solid rgb(239 240 249);
-    border-left: none;
-    padding-left: 0;
-    padding-right: 0;
-    background-color: #ffffff;
-  }
-  .select-btn:hover {
-    background-color: transparent;
-    border: 2px solid rgb(239 240 249);
-    border-left: none;
-  }
-  .left {
-    border-top-left-radius: 1rem !important;
-    border-bottom-left-radius: 1rem !important;
-  }
-  .same-height {
-    height: 64px !important;
-  }
-  .same-width {
-    width: 130px !important;
+  .bd {
+    border-width: 1.25px;
   }
 </style>

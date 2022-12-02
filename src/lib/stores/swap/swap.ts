@@ -6,8 +6,8 @@ import { setAssetDialog, setToAssetDialog } from './selectAsset';
 
 export let selectedFromAsset = writable(assets[0])
 export let selectedToAsset = writable(assets[1])
-export let payAmount = writable(0)
-export let receiveAmount = writable(0)
+export let payAmount = writable(undefined)
+export let receiveAmount = writable(undefined)
 export let slippage = writable(DEFAULT_SLIPPAGE)
 export let approved = writable(false)
 export let calculated = writable(false)

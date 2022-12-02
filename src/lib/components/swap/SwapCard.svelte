@@ -1,6 +1,6 @@
 <script lang="ts">
   import { connected } from "$lib/stores/connect";
-  import { approved, payAmount, receiveAmount } from "$lib/stores/swap/swap";
+  import { approved } from "$lib/stores/swap/swap";
 
   import Top from "./Top.svelte";
   import ArrowDown from "./ArrowDown.svelte";
@@ -8,17 +8,11 @@
   import SwapInput from "./SwapInput.svelte";
   import ConnectWallet from "./ConnectWallet.svelte";
   import ApproveButton from "./ApproveButton.svelte";
-  import ExchangeRate from "./SwapInfo/ExchangeRate.svelte";
-  import Loading from "./SwapInfo/Loading.svelte";
   import SwapOutput from "./SwapOutput.svelte";
-
-  // $: active =
-  //   ($payAmount != 0 && $payAmount != undefined) ||
-  //   ($receiveAmount != 0 && $receiveAmount != undefined);
-  // $: console.log(active);
+  import SwapInfo from "./SwapInfo.svelte";
 </script>
 
-<div class="card bg-base-100 shadow-xl p-2">
+<div class="card bg-base-100 shadow-xl p-2 max-w-[480px]">
   <div class="py-2 px-3 flex">
     <Top />
   </div>
@@ -35,11 +29,11 @@
     <SwapOutput />
   </div>
 
-  <!-- {#if active}
-    <ExchangeRate />
-  {:else}
-    <Loading />
-  {/if} -->
+  {#if $connected}
+    <div class="w-full my-3 mt-2">
+      <SwapInfo />
+    </div>
+  {/if}
 
   <div class="w-full pt-3">
     {#if $connected}
