@@ -1,12 +1,12 @@
 import { get } from 'svelte/store'
 import { writable } from "svelte/store";
-import assets from "$lib/assets/assets.json";
+import assets from "$lib/constants/tokenlist.json";
 import { DEFAULT_SLIPPAGE } from "$lib/helpers/constants";
 import { setAssetDialog, setToAssetDialog } from './selectAsset';
 
-export let selectedFromAsset = writable(assets[0])
-export let selectedToAsset = writable(assets[1])
-export let payAmount = writable(undefined)
+export let selectedFromAsset = writable(Object.values(assets)[0])
+export let selectedToAsset = writable(Object.values(assets)[1])
+export let payAmount = writable(null)
 export let receiveAmount = writable(undefined)
 export let slippage = writable(DEFAULT_SLIPPAGE)
 export let approved = writable(false)

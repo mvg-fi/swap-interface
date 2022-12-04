@@ -8,15 +8,7 @@
   /**
    * @type {string}
    */
-   export let alt;
-  /**
-   * @type {string}
-   */
-  export let width='';
-  /**
-   * @type {string}
-   */
-  export let height='';
+  export let alt;
 
   let loaded = false;
   let loading = false;
@@ -34,9 +26,9 @@
 </script>
 
 {#if loaded}
-  <img {src} {alt} {height} {width} />
+  <img {src} {alt} />
 {:else if loading}
-<div class="avatar mask mask-circle">
-  <Skeleton {height} {width} />
-</div>
+  <div class="avatar mask mask-circle">
+    <Skeleton />
+  </div>
 {/if}

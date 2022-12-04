@@ -5,10 +5,10 @@
 
 {#if asset}
   <button class="btn-ghost h-14 asset-btn-bg">
-    {#if asset.icon_url}
+    {#if asset.logoURI}
       <div class="avatar pr-1 pl-1">
         <div class="mask mask-squircle w-10 h-10">
-          <Image src={asset.icon_url} alt="logo" height="40px" width="40px" />
+          <Image src={asset.logoURI} alt="logo" />
         </div>
       </div>
       <div class="text-left pl-0">

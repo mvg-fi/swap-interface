@@ -4,8 +4,8 @@
 </script>
 
 {#each logos as uri}
-  <div class="avatar w-5">
-    <Image src={uri} alt="img" width="20px" height="20px" />
+  <div class="avatar w-5 h-5">
+    <Image src={uri} alt="img" />
   </div>
 {/each}
 

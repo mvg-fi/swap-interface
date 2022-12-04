@@ -2,7 +2,7 @@
   import Loading from "./loading.svelte";
   import Navbar from "$lib/components/navbar/navbar.svelte";
   import Toast from "$lib/components/toast/container.svelte";
-  import { setAssetDialog } from "$lib/stores/swap/selectAsset";
+  import { setAssetDialog, setToAssetDialog } from "$lib/stores/swap/selectAsset";
   import { setWalletDialog } from "$lib/stores/selectWallet";
   import { setSlippageDialog } from "$lib/stores/swap/slippage";
 
@@ -15,6 +15,7 @@
   const escQuitDialogs = (e: any) => {
     if (e.keyCode === 27) {
       setAssetDialog(false);
+      setToAssetDialog(false);
       setWalletDialog(false);
       setSlippageDialog(false);
     }

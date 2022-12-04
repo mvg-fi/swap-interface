@@ -16,7 +16,7 @@ export const mvmProvider = ethers.getDefaultProvider(MVM_RPC_URL);
 
 export const getBalance = async ({
   account,
-  network,
+  network = 'mvm',
   unitName = 18
 }: {
   account: string;
@@ -31,7 +31,7 @@ export const getBalance = async ({
 export const getERC20Balance = async ({
   account,
   contractAddress,
-  network
+  network = 'mvm'
 }: {
   account: string;
   contractAddress: string;
@@ -48,7 +48,7 @@ export const getAssetBalance = async (
   assets: Asset[],
   assetId: string,
   address: string,
-  network: Network
+  network: Network = 'mvm'
 ) => {
   if (assetId === ETH_ASSET_ID) return getBalance({ account: address, network });
 

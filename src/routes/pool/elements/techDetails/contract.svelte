@@ -13,7 +13,7 @@
   var addr_link = `${MVM_SCAN_URL}address/${poolAddress}`;
 </script>
 
-<div in:fade out:fade> 
+<div in:fade> 
   <div class="flex flex-row my-2 text-sm px-6">
     <div class="flex items-center mt-0.5 flex-1">
       <span class="font-semibold capitalize">

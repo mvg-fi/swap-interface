@@ -1,44 +1,60 @@
 <script lang="ts">
+  import Image from "$lib/components/common/image.svelte";
+  import ChevronDown from "$lib/images/chevron-down.svg";
+  import { setToAssetDialog } from "$lib/stores/swap/selectAsset";
+  import SelectToAssetDialog from "./SelectAsset/SelectToAssetDialog.svelte";
+
   import {
-    selectedFromAsset,
     selectedToAsset,
     receiveAmount,
   } from "$lib/stores/swap/swap";
-  import { fetchDyFromContract } from "$lib/helpers/web3/swap";
-  import { setToAssetDialog } from "$lib/stores/swap/selectAsset";
-  import SelectToAssetDialog from "./SelectAsset/SelectToAssetDialog.svelte";
-  import { cleave } from "svelte-cleavejs";
   import { _ } from "svelte-i18n";
-  import { maskOption } from "$lib/helpers/constants";
+  import { cleave } from "svelte-cleavejs";
+  import { address } from "$lib/stores/user";
   import { connected } from "$lib/stores/connect";
-  import Image from "$lib/components/common/image.svelte";
-  import ChevronDown from "$lib/images/chevron-down.svg";
+  import { maskOption } from "$lib/helpers/constants";
+  import { fetchDyFromContract } from "$lib/helpers/web3/swap";
+  import { asyncDerived, writable } from "@square/svelte-store";
+  import { getBalance, getERC20Balance } from "$lib/helpers/web3";
 
-  $: icon = $selectedToAsset.icon_url;
+  const fetchBalance = async () => {
+    return symbol === "ETH"
+      ? (await getBalance({
+          account: $address,
+          network: "mvm",
+          unitName: 18,
+        })) || 0
+      : (await getERC20Balance({
+          account: $address,
+          contractAddress: $selectedToAsset.contract,
+          network: "mvm",
+        })) || 0;
+  };
+
+  $: icon = $selectedToAsset.logoURI;
   $: symbol = $selectedToAsset.symbol;
+  const balance = writable(0);
+  $: balance_store = $selectedToAsset
+    ? asyncDerived(balance, fetchBalance)
+    : null;
 
-  $: balance = 0.0001;
-  $: balanceLoaded = true;
-  $: usdLoaded = false;
-
-  let timeout: any = null;
-  function delayOutput() {
-    clearTimeout(timeout);
-    timeout = setTimeout(function () {
-      fetchDyFromContract($selectedFromAsset, $selectedToAsset, $receiveAmount);
-    }, 1000);
-  }
+  // let timeout: any = null;
+  // function delayOutput() {
+  //   clearTimeout(timeout);
+  //   timeout = setTimeout(function () {
+  //     fetchDyFromContract($selectedFromAsset, $selectedToAsset, $receiveAmount);
+  //   }, 1000);
+  // }
 </script>
 
 <div class="w-full">
-  <div class="p-1 m-1 border-solid bd rounded-2xl">
+  <div class="p-1 border-solid bd rounded-2xl">
     <div class="items-center justfiy-center flex">
       <div class="flex-1 flex flex-col mx-3">
         <input
           type="tel"
           placeholder="0"
           use:cleave={maskOption}
-          on:keyup={delayOutput}
           bind:value={$receiveAmount}
           class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-2xl"
         />
@@ -61,27 +77,25 @@
       </button>
     </div>
 
-    <div class="flex flex-row mx-2 my-1 opacity-75 text-xs">
-      <div class="flex-1 ml-1">
-        {#if usdLoaded}
-          <span>${(1234 * $receiveAmount).toFixed(2)}</span>
+    {#if $connected}
+      <div class="flex flex-row mx-2 my-1 opacity-75 text-xs">
+        <div class="flex-1 ml-1" />
+
+        {#if $balance_store}
+          <button
+            on:click={() => {
+              receiveAmount.set($balance_store);
+            }}
+            class="tooltip tooltip-left"
+            data-tip={$_("add_liquidity.max")}
+          >
+            <span class="cursor-pointer"
+              >{$_("add_liquidity.balance")}: {$balance_store}</span
+            >
+          </button>
         {/if}
       </div>
-
-      {#if balanceLoaded}
-        <button
-          on:click={() => {
-            receiveAmount.set(balance);
-          }}
-          class="tooltip tooltip-left"
-          data-tip={$_("add_liquidity.max")}
-        >
-          <span class="cursor-pointer"
-            >{$_("add_liquidity.balance")}: {balance}</span
-          >
-        </button>
-      {/if}
-    </div>
+    {/if}
   </div>
 
   <SelectToAssetDialog />

@@ -4,11 +4,11 @@
   /**
    * @type {string}
    */
-  export let height;
+  export let height = "20px";
   /**
    * @type {string}
    */
-  export let width;
+  export let width = "20px";
   export let speed = 2;
   export let animate = true;
   export let secondaryColorPercentWidth = 100;

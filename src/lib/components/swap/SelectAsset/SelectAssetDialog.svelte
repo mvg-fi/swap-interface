@@ -1,7 +1,7 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import Close from "$lib/images/close.svg";
-  import assets from "$lib/assets/assets.json";
+  import assets from "$lib/constants/tokenlist.json";
   import { search } from "$lib/stores/swap/searchAsset";
   import SingleAsset from "$lib/components/swap/SelectAsset/SingleAsset.svelte";
   import SearchAsset from "$lib/components/swap/SelectAsset/SearchAsset.svelte";
@@ -12,7 +12,7 @@
     setAssetDialog,
   } from "$lib/stores/swap/selectAsset";
 
-  $: filteredItems = assets.filter((item) => {
+  $: filteredItems = Object.values(assets).filter((item) => {
     return (
       item.symbol.toLowerCase().match($search) ||
       item.name.toLowerCase().match($search)
@@ -20,15 +20,15 @@
   });
 
   let content: any;
-  function onClickOutside(e:any) {
+  function onClickOutside(e: any) {
     if (content == e.target || content.contains(e.target)) return;
     setAssetDialog(false);
   }
 </script>
 
 <div
-  class="modal modal-bottom sm:modal-middle"
   in:fade
+  class="modal modal-bottom sm:modal-middle"
   class:modal-open={$selectAssetDialog}
   on:click={onClickOutside}
   on:keypress={onClickOutside}
@@ -37,7 +37,10 @@
     <div class="sticky top-0 z-10 bg-white">
       <div class="flex p-5">
         <h3 class="font-semibold text-lg flex-1">{$_("select.token")}</h3>
-        <button class="flex-0 btn btn-xs btn-circle btn-ghost" on:click={()=>setAssetDialog(false)}>
+        <button
+          class="flex-0 btn btn-xs btn-circle btn-ghost"
+          on:click={() => setAssetDialog(false)}
+        >
           <img src={Close} alt="x" />
         </button>
       </div>

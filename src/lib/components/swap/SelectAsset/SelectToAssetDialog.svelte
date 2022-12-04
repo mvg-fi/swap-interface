@@ -1,7 +1,7 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import Close from "$lib/images/close.svg";
-  import assets from "$lib/assets/assets.json";
+  import assets from "$lib/constants/tokenlist.json";
   import { search } from "$lib/stores/swap/searchAsset";
   import SingleAsset from "$lib/components/swap/SelectAsset/SingleAsset.svelte";
   import SearchAsset from "$lib/components/swap/SelectAsset/SearchAsset.svelte";
@@ -12,7 +12,7 @@
     setToAssetDialog,
   } from "$lib/stores/swap/selectAsset";
 
-  $: filteredItems = assets.filter((item) => {
+  $: filteredItems = Object.values(assets).filter((item) => {
     return (
       item.symbol.toLowerCase().match($search) ||
       item.name.toLowerCase().match($search)
@@ -33,11 +33,14 @@
   on:click={onClickOutside}
   on:keypress={onClickOutside}
 >
-  <div class="modal-box h-4/5 p-0 w-64" bind:this={content}>
+  <div class="modal-box h-4/5 max-w-lg p-0" bind:this={content}>
     <div class="sticky top-0 z-10 bg-white">
       <div class="flex p-5">
         <h3 class="font-semibold text-lg flex-1">{$_("select.token")}</h3>
-        <button class="flex-0 btn btn-xs btn-circle btn-ghost" on:click={()=>setToAssetDialog(false)}>
+        <button
+          class="flex-0 btn btn-xs btn-circle btn-ghost"
+          on:click={() => setToAssetDialog(false)}
+        >
           <img src={Close} alt="x" />
         </button>
       </div>

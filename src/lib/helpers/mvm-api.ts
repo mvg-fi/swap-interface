@@ -1,5 +1,5 @@
-import { CodeClient } from '@mixin.dev/mixin-node-sdk';
-import type { PaymentRequestResponse } from '@mixin.dev/mixin-node-sdk';
+import { CodeClient, NetworkClient } from '@mixin.dev/mixin-node-sdk';
+import type { PaymentRequestResponse, NetworkAssetResponse } from '@mixin.dev/mixin-node-sdk';
 import type { RegisteredUser } from '$lib/types/user';
 import ExternalClient from '@mixin.dev/mixin-node-sdk/src/client/external';
 
@@ -17,7 +17,6 @@ export interface TokenList {
 	symbol:       string;
 }
 
-
 export const register = async (address: string): Promise<RegisteredUser> => {
 	const response = await fetch('https://bridge.mvm.dev/users', {
 		method: 'POST',
@@ -33,6 +32,13 @@ export const fetchCode = async (code_id: string): Promise<PaymentRequestResponse
 	const response = await client.fetch(code_id);
 	return response as PaymentRequestResponse;
 };
+
+export const fetchAsset =async (assetID: string) => {
+	const client = NetworkClient();
+	const response = await client.fetchAsset(assetID);
+	console.log(response.price_usd)
+	return response as NetworkAssetResponse;
+}
 
 export const fetchExchangeRates = ExternalClient().exchangeRates;
 
@@ -57,6 +63,6 @@ export const fetchMVGTokenList = async () => {
 		`https://raw.githubusercontent.com/zed-wong/mvm-tokenlist/main/MVG-tokenlist.json`
 	)
 	const result = await response.json();
-	console.log("result:",result)
+	console.log("result:",result);
 	return result as TokenList[]
 }
