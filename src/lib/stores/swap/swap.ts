@@ -38,5 +38,4 @@ export const switchAsset = () => {
   selectedFromAsset.set(get(selectedToAsset))
   selectedToAsset.set(s)
   payAmount.set(get(receiveAmount))
-  receiveAmount.set(a) //TODO
 }

@@ -51,8 +51,8 @@
     <ul class="menu bg-base-100 w-full overflow-y-auto">
       {#each filteredItems as asset}
         <li
-          on:click={() => setFromAsset(asset)}
-          on:keydown={() => setFromAsset(asset)}
+          on:click={() => {setFromAsset(asset); search.set('')}}
+          on:keydown={() => {setFromAsset(asset); search.set('')}}
         >
           <SingleAsset {asset} />
         </li>

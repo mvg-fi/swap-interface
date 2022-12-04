@@ -56,7 +56,7 @@
   const usd_total = writable(0);
   $: usd_store = $selectedFromAsset ? asyncDerived(usd, fetchUSD) : null;
   $: usd_value = derived(usd_total, () => {
-    return formatUSMoney((Number($usd_store) * Number($payAmount)).toFixed(2));
+    return formatUSMoney((Number($usd_store) * Number($payAmount)).toFixed(2)) || 0;
   });
   $: balance_store = $selectedFromAsset
     ? asyncDerived(balance, fetchBalance)
@@ -114,6 +114,8 @@
           </button>
         {/if}
       </div>
+    <!-- {:else}
+      <div class="flex flex-row mx-2 my-1 opacity-75 text-xs h-6" /> -->
     {/if}
   </div>
 

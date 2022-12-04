@@ -78,7 +78,7 @@
     </div>
 
     {#if $connected}
-      <div class="flex flex-row mx-2 my-1 opacity-75 text-xs">
+      <div class="flex flex-row mx-2 my-1 opacity-75 text-xs h-6">
         <div class="flex-1 ml-1" />
 
         {#if $balance_store}
@@ -95,6 +95,8 @@
           </button>
         {/if}
       </div>
+    <!-- {:else}
+      <div class="flex flex-row mx-2 my-1 opacity-75 text-xs h-6" /> -->
     {/if}
   </div>
 
