@@ -27,7 +27,7 @@
       {#each ranges as _, i}
         <button
           class="btn btn-sm bg-white hover:bg-slate-100
-          border-2 border-gray-200 hover:border-gray-200 bd
+          border-2 border-gray-200 hover:border-gray-200
           font-medium text-xs text-black tooltip no-margin
           {i === 0 ? 'border-r-0' : i === 2 ? 'border-l-0' : ''}
           {focus != -1 ? (i === 0 ? 'bl' : i === 2 ? 'br' : '') : ''}
@@ -51,7 +51,7 @@
           {#each coins as coin, i}
             <button
               class="flex flex-row items-center justify-center h-16 gap-1 hover:bg-slate-100
-              border-2 border-gray-200 border-x-0 border-t-0 bd
+              border-2 border-gray-200 border-x-0 border-t-0
               {i === 0 ? 'bdl2' : i === coins.length - 1 ? 'bdr2' : ''}
               {m1focus === i ? 'bg-slate-100 hover:bg-slate-100' : ''}"
               on:click={() => {
