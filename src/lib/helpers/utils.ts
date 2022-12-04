@@ -33,3 +33,7 @@ export const getToday = (sub: number = 0) => {
 	d.setDate(d.getDate()-sub)
 	return d.toJSON().slice(0,10).replace(/-/g,'/');
 }
+
+export const format8Decimals = (s: string) => {
+	return Math.floor(Number(s)*10**8)/10**8 || 0
+}

@@ -18,7 +18,7 @@
   import { fetchDyFromContract } from "$lib/helpers/web3/swap";
   import { setAssetDialog } from "$lib/stores/swap/selectAsset";
   import { getBalance, getERC20Balance } from "$lib/helpers/web3";
-  import { formatUSMoney } from "$lib/helpers/utils";
+  import { format8Decimals, formatUSMoney } from "$lib/helpers/utils";
 
   let timeout: any = null;
   const delayInput = () => {
@@ -35,7 +35,7 @@
 
   const fetchBalance = async () => {
     return symbol === "ETH"
-      ? (await getBalance({
+      ? format8Decimals(await getBalance({
           account: $address,
           network: "mvm",
           unitName: 18,
@@ -64,7 +64,7 @@
 </script>
 
 <div class="w-full">
-  <div class="p-1 border-solid bd rounded-2xl">
+  <div class="p-1 py-2 border-solid bd rounded-2xl">
     <div class="items-center justfiy-center flex space-x-0">
       <div class="flex flex-col mx-3">
         <input
@@ -73,7 +73,7 @@
           use:cleave={maskOption}
           on:keyup={delayInput}
           bind:value={$payAmount}
-          class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-2xl"
+          class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-3xl"
         />
       </div>
       <button
@@ -114,8 +114,6 @@
           </button>
         {/if}
       </div>
-    <!-- {:else}
-      <div class="flex flex-row mx-2 my-1 opacity-75 text-xs h-6" /> -->
     {/if}
   </div>
 

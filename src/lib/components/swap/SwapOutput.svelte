@@ -16,10 +16,11 @@
   import { fetchDyFromContract } from "$lib/helpers/web3/swap";
   import { asyncDerived, writable } from "@square/svelte-store";
   import { getBalance, getERC20Balance } from "$lib/helpers/web3";
+    import { format8Decimals } from "$lib/helpers/utils";
 
   const fetchBalance = async () => {
     return symbol === "ETH"
-      ? (await getBalance({
+      ? format8Decimals(await getBalance({
           account: $address,
           network: "mvm",
           unitName: 18,
@@ -48,7 +49,7 @@
 </script>
 
 <div class="w-full">
-  <div class="p-1 border-solid bd rounded-2xl">
+  <div class="p-1 py-2 border-solid bd rounded-2xl">
     <div class="items-center justfiy-center flex">
       <div class="flex-1 flex flex-col mx-3">
         <input
@@ -56,7 +57,7 @@
           placeholder="0"
           use:cleave={maskOption}
           bind:value={$receiveAmount}
-          class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-2xl"
+          class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-3xl"
         />
       </div>
       <button
@@ -78,7 +79,7 @@
     </div>
 
     {#if $connected}
-      <div class="flex flex-row mx-2 my-1 opacity-75 text-xs h-6">
+      <div class="flex flex-row mx-2 my-1 opacity-75 text-xs">
         <div class="flex-1 ml-1" />
 
         {#if $balance_store}
@@ -95,8 +96,6 @@
           </button>
         {/if}
       </div>
-    <!-- {:else}
-      <div class="flex flex-row mx-2 my-1 opacity-75 text-xs h-6" /> -->
     {/if}
   </div>
 
