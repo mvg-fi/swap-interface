@@ -18,7 +18,7 @@
 </script>
 
 {#each coins as coin, i}
-  <div class="p-1 m-1 border-solid border-2 rounded-2xl">
+  <div class="p-1 m-1 border-solid border-2 rounded-2xl bd">
     <div class="items-center justfiy-center flex">
       <div class="flex-1 flex flex-col mx-3">
         <input
@@ -56,5 +56,8 @@
 <style>
   .on-focus:focus {
     outline: none;
+  }
+  .bd {
+    border-width: 1.25px;
   }
 </style>
