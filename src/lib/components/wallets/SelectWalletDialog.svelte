@@ -17,7 +17,9 @@
     selectWalletDialog,
   } from "$lib/stores/selectWallet";
   import { providerKey as cacheProvider } from "$lib/stores/provider";
-
+  import { updateAssets } from "$lib/stores/asset";
+  
+  // TODO: add loading on click
   let content: any;
   let loading = false;
   function onClickOutside(e:any) {
@@ -55,7 +57,7 @@
 
       if (!$account) throw new Error("No account found");
       if (!$cacheProvider) throw new Error("No cached provider found");
-
+      await updateAssets();
       await registerAndSave($account);
       setWalletDialog(false);
       setConnected(true);

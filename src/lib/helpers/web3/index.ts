@@ -1,5 +1,5 @@
 import { ethers, utils, type BigNumberish } from 'ethers';
-import ERC20_ABI  from '$lib/constants/abis/erc20.json';
+import ERC20_ABI from '$lib/constants/abis/erc20.json';
 import {
   ETH_ASSET_ID,
   MAINNET_CHAIN_HEX_ID,
@@ -7,6 +7,7 @@ import {
   MVM_RPC_URL,
   networkParams
 } from '$lib/helpers/constants';
+import { format8Decimals } from '$lib/helpers/utils';
 import type { Network } from '$lib/types/network';
 import type { Asset } from '$lib/types/asset';
 import { format } from '$lib/helpers/web3/big';
@@ -50,10 +51,10 @@ export const getAssetBalance = async (
   address: string,
   network: Network = 'mvm'
 ) => {
-  if (assetId === ETH_ASSET_ID) return getBalance({ account: address, network });
+  if (assetId === ETH_ASSET_ID) return format8Decimals(await getBalance({ account: address, network }));
 
-  const asset = assets.find((a) => a.asset_id === assetId);
-  const contract = network === 'mvm' ? asset?.contract : asset?.asset_key;
+  const asset = assets.find((a) => a.mixinAssetId === assetId);
+  const contract = network === 'mvm' ? asset?.contract : '';
   if (!contract) return '0';
 
   const balance = await getERC20Balance({
@@ -62,7 +63,7 @@ export const getAssetBalance = async (
     network
   });
 
-  return format({ n: balance, dp: 8, fixed: true });
+  return format({ n: balance, dp: 8, fixed: false });
 };
 
 export const switchNetwork = async (provider: ethers.providers.Web3Provider, network: Network) => {

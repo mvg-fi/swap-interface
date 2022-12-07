@@ -13,12 +13,10 @@ export let approved = writable(false)
 export let calculated = writable(false)
 
 export const setFromAsset = (asset: any) => {
-  console.log('setFromAsset:', asset.symbol)
   selectedFromAsset.set(asset)
   setAssetDialog(false)
 }
 export const setToAsset = (asset: any) => {
-  console.log('setToAsset:', asset.symbol)
   selectedToAsset.set(asset)
   setToAssetDialog(false)
 }
@@ -34,8 +32,7 @@ export const setCalculated = (yes: boolean) => {
 
 export const switchAsset = () => {
   const s = get(selectedFromAsset)
-  const a = get(payAmount)
   selectedFromAsset.set(get(selectedToAsset))
   selectedToAsset.set(s)
-  payAmount.set(get(receiveAmount))
+  payAmount.set(get(receiveAmount) || null)
 }

@@ -15,7 +15,7 @@ import { TEST_STABLE_SWAP_ADDRESS, TEST_TRICRYPTO_ADDRESS } from '$lib/constants
 //   mvmProvider
 // )
 
-export const fetchDyFromContract = (from: object, to: object, amount: number) => {
+export const fetchDyFromContract = (from: object, to: object, amount: number | null) => {
   if (amount == 0 || amount == null) {return}
   console.log(from, to, amount)
 }

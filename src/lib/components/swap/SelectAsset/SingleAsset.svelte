@@ -1,20 +1,33 @@
 <script lang="ts">
+  import { connected } from "$lib/stores/connect";
+  import Loading from "../SwapInfo/Loading.svelte";
+  import { getCachedAssetBalance } from "$lib/stores/asset";
   import Image from "$lib/components/common/image.svelte";
-  export let asset: object;
+  import type { Asset } from "$lib/types/asset";
+  export let asset: Asset;
+
+  $: balance = getCachedAssetBalance(asset.mixinAssetId)
 </script>
 
 {#if asset}
-  <button class="btn-ghost h-14 asset-btn-bg">
+  <button class="btn-ghost h-14 asset-btn-bg flex flex-row">
     {#if asset.logoURI}
-      <div class="avatar pr-1 pl-1">
+      <div class="avatar px-1">
         <div class="mask mask-squircle w-10 h-10">
           <Image src={asset.logoURI} alt="logo" />
         </div>
       </div>
-      <div class="text-left pl-0">
-        <div class="ft truncate text-base">{asset.name}</div>
+      <div class="text-left pl-0 flex-1">
+        <div class="truncate text-base">{asset.name}</div>
         <div class="text-xs font-weight-300 sb">{asset.symbol}</div>
       </div>
+      {#if $connected && $balance != null}
+        <div class="px-1 truncate">
+          {$balance}
+        </div>
+      {:else if $connected && $balance == null}
+        <Loading />
+      {/if}
     {/if}
   </button>
 {/if}

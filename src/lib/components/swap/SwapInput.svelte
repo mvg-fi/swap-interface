@@ -1,7 +1,8 @@
 <script lang="ts">
-  import SelectAssetDialog from "./SelectAsset/SelectAssetDialog.svelte";
+  import Svg from "$lib/components/common/svg.svelte";
   import Image from "$lib/components/common/image.svelte";
   import ChevronDown from "$lib/images/chevron-down.svg";
+  import SelectAssetDialog from "./SelectAsset/SelectAssetDialog.svelte";
 
   import {
     selectedFromAsset,
@@ -10,15 +11,14 @@
   } from "$lib/stores/swap/swap";
   import { _ } from "svelte-i18n";
   import { cleave } from "svelte-cleavejs";
-  import { maskOption } from "$lib/helpers/constants";
-  import { address } from "$lib/stores/user";
+  import { assets } from "$lib/stores/asset";
+  import { derived } from "@square/svelte-store";
   import { connected } from "$lib/stores/connect";
-  import { fetchAsset } from "$lib/helpers/mvm-api";
-  import { asyncDerived, derived, writable } from "@square/svelte-store";
+  import { formatUSMoney } from "$lib/helpers/utils";
+  import { maskOption } from "$lib/helpers/constants";
+  import { getCachedAssetBalance } from "$lib/stores/asset";
   import { fetchDyFromContract } from "$lib/helpers/web3/swap";
   import { setAssetDialog } from "$lib/stores/swap/selectAsset";
-  import { getBalance, getERC20Balance } from "$lib/helpers/web3";
-  import { format8Decimals, formatUSMoney } from "$lib/helpers/utils";
 
   let timeout: any = null;
   const delayInput = () => {
@@ -29,38 +29,15 @@
   };
   const validateInput = (s: string): [boolean, string] => {
     if (Number(s) <= 0) return [false, $_("input.input_number")];
-
     return [false, "Invalid Input"];
   };
-
-  const fetchBalance = async () => {
-    return symbol === "ETH"
-      ? format8Decimals(await getBalance({
-          account: $address,
-          network: "mvm",
-          unitName: 18,
-        })) || 0
-      : (await getERC20Balance({
-          account: $address,
-          contractAddress: $selectedFromAsset.contract,
-          network: "mvm",
-        })) || 0;
-  };
-  const fetchUSD = async () => {
-    return (await fetchAsset($selectedFromAsset.mixinAssetId)).price_usd || 0;
-  };
-  $: icon = $selectedFromAsset.logoURI;
+  const fetchUSD = () => { return $assets.find((obj)=>obj.mixinAssetId==$selectedFromAsset.mixinAssetId)?.priceUsd || 0};
+  
   $: symbol = $selectedFromAsset.symbol;
-  const usd = writable(0);
-  const balance = writable(0);
-  const usd_total = writable(0);
-  $: usd_store = $selectedFromAsset ? asyncDerived(usd, fetchUSD) : null;
-  $: usd_value = derived(usd_total, () => {
-    return formatUSMoney((Number($usd_store) * Number($payAmount)).toFixed(2)) || 0;
-  });
-  $: balance_store = $selectedFromAsset
-    ? asyncDerived(balance, fetchBalance)
-    : null;
+  $: usd_store = derived(balance, fetchUSD);
+  $: maskOption.numeralDecimalScale = $selectedFromAsset.decimals
+  $: balance = getCachedAssetBalance($selectedFromAsset.mixinAssetId)
+  $: usd_value = derived(usd_store, () => {return formatUSMoney((Number($usd_store) * Number($payAmount)).toFixed(2)) || 0;});
 </script>
 
 <div class="w-full">
@@ -81,7 +58,7 @@
         on:click={() => setAssetDialog(true)}
       >
         <div class="avatar mx-1 mr-0 w-7 rounded-full mz-box">
-          <Image src={icon} alt="" />
+          <Image src={$selectedFromAsset.logoURI} alt="" />
         </div>
         <div class="flex itmes-center">
           <span class="uppercase font-bold text-xl mx-2">
@@ -89,11 +66,10 @@
           </span>
         </div>
         <div class="w-3 mr-2">
-          <Image src={ChevronDown} alt="" />
+          <Svg src={ChevronDown} alt="" />
         </div>
       </button>
     </div>
-
     {#if $connected}
       <div class="flex flex-row mx-2 my-1 opacity-75 text-xs">
         <div class="flex-1 ml-1">
@@ -102,15 +78,15 @@
           {/if}
         </div>
 
-        {#if $balance_store}
+        {#if $balance}
           <button
             on:click={() => {
-              payAmount.set($balance_store);
+              payAmount.set($balance);
             }}
             class="tooltip tooltip-left"
             data-tip={$_("add_liquidity.max")}
           >
-            <span>{$_("add_liquidity.balance")}: {$balance_store}</span>
+            <span>{$_("add_liquidity.balance")}: {$balance}</span>
           </button>
         {/if}
       </div>

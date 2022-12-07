@@ -103,9 +103,8 @@
     border: none;
   }
   .custom-btn:hover {
-    color: white;
-    background-color: black;
-    opacity: 0.7;
+    color: black;
+    background-color: #f5f5f5;
     border: none;
   }
   .bg-color {
@@ -117,7 +116,7 @@
   .no-border {
     border: none;
   }
-  .black-btn {
+  .black-btn, .black-btn:hover {
     color: white;
     background-color: black;
   }

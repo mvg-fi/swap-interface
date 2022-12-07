@@ -1,43 +1,21 @@
 <script lang="ts">
+  import Svg from "$lib/components/common/svg.svelte";
   import Image from "$lib/components/common/image.svelte";
   import ChevronDown from "$lib/images/chevron-down.svg";
   import { setToAssetDialog } from "$lib/stores/swap/selectAsset";
   import SelectToAssetDialog from "./SelectAsset/SelectToAssetDialog.svelte";
 
-  import {
-    selectedToAsset,
-    receiveAmount,
-  } from "$lib/stores/swap/swap";
+  import { selectedToAsset, receiveAmount } from "$lib/stores/swap/swap";
   import { _ } from "svelte-i18n";
   import { cleave } from "svelte-cleavejs";
-  import { address } from "$lib/stores/user";
   import { connected } from "$lib/stores/connect";
   import { maskOption } from "$lib/helpers/constants";
+  import { getCachedAssetBalance } from "$lib/stores/asset";
   import { fetchDyFromContract } from "$lib/helpers/web3/swap";
-  import { asyncDerived, writable } from "@square/svelte-store";
-  import { getBalance, getERC20Balance } from "$lib/helpers/web3";
-    import { format8Decimals } from "$lib/helpers/utils";
-
-  const fetchBalance = async () => {
-    return symbol === "ETH"
-      ? format8Decimals(await getBalance({
-          account: $address,
-          network: "mvm",
-          unitName: 18,
-        })) || 0
-      : (await getERC20Balance({
-          account: $address,
-          contractAddress: $selectedToAsset.contract,
-          network: "mvm",
-        })) || 0;
-  };
 
   $: icon = $selectedToAsset.logoURI;
   $: symbol = $selectedToAsset.symbol;
-  const balance = writable(0);
-  $: balance_store = $selectedToAsset
-    ? asyncDerived(balance, fetchBalance)
-    : null;
+  $: balance = getCachedAssetBalance($selectedToAsset.mixinAssetId)
 
   // let timeout: any = null;
   // function delayOutput() {
@@ -73,7 +51,7 @@
           <span class="uppercase font-bold text-xl"> {symbol} </span>
         </div>
         <div class="w-3 mr-2">
-          <Image src={ChevronDown} alt="" />
+          <Svg src={ChevronDown} alt="" />
         </div>
       </button>
     </div>
@@ -82,16 +60,16 @@
       <div class="flex flex-row mx-2 my-1 opacity-75 text-xs">
         <div class="flex-1 ml-1" />
 
-        {#if $balance_store}
+        {#if $balance}
           <button
             on:click={() => {
-              receiveAmount.set($balance_store);
+              receiveAmount.set($balance);
             }}
             class="tooltip tooltip-left"
             data-tip={$_("add_liquidity.max")}
           >
             <span class="cursor-pointer"
-              >{$_("add_liquidity.balance")}: {$balance_store}</span
+              >{$_("add_liquidity.balance")}: {$balance}</span
             >
           </button>
         {/if}

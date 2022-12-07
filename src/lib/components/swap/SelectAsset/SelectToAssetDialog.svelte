@@ -1,7 +1,6 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import Close from "$lib/images/close.svg";
-  import assets from "$lib/constants/tokenlist.json";
   import { search } from "$lib/stores/swap/searchAsset";
   import SingleAsset from "$lib/components/swap/SelectAsset/SingleAsset.svelte";
   import SearchAsset from "$lib/components/swap/SelectAsset/SearchAsset.svelte";
@@ -11,8 +10,9 @@
     selectToAssetDialog,
     setToAssetDialog,
   } from "$lib/stores/swap/selectAsset";
+  import { assets } from "$lib/stores/asset";
 
-  $: filteredItems = Object.values(assets).filter((item) => {
+  $: filteredItems = $assets.filter((item) => {
     return (
       item.symbol.toLowerCase().match($search) ||
       item.name.toLowerCase().match($search)
@@ -27,8 +27,8 @@
 </script>
 
 <div
-  class="modal modal-bottom sm:modal-middle"
   in:fade
+  class="modal modal-bottom sm:modal-middle"
   class:modal-open={$selectToAssetDialog}
   on:click={onClickOutside}
   on:keypress={onClickOutside}
@@ -57,13 +57,20 @@
           <SingleAsset {asset} />
         </li>
       {/each}
+      {#if filteredItems.length === 0}
+        <!-- TODO Show no result -->
+      {/if}
     </ul>
   </div>
 </div>
 
 <style>
+  .modal {
+    --tw-bg-opacity: 0.6;
+  }
   .modal-box {
     scrollbar-width: none;
+    max-width: 28rem;
   }
   .modal-box::-webkit-scrollbar {
     display: none;
