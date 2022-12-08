@@ -5,10 +5,15 @@
   import Deposit from "../elements/Deposit.svelte";
   import PoolInfo from "../elements/PoolInfo.svelte";
   import Withdrawal from "../elements/Withdrawal.svelte";
+  import Title from "../elements/poolInfo/title.svelte";
 
   console.log($page.params.name);
 </script>
 
+<!-- Name -->
+<div class="w-full flex items-center justify-center pb-1" in:fade>
+  <Title name={$page.params.name}/>
+</div>
 <div class="mx-0 flex flex-row mt-3" in:fade>
   <div class="mr-12">
     <PoolInfo name={$page.params.name} />
@@ -21,13 +26,3 @@
     {/if}
   </div>
 </div>
-
-<!-- <style>
-  Transition: switch mode
-  .rotate-y {
-    transform: rotateY(360deg);
-  }
-  .e {
-    transition: transform 1s;
-  }
-</style> -->

@@ -1,6 +1,7 @@
 <script lang="ts">
-  import Image from "$lib/components/common/image.svelte";
   import { _ } from "svelte-i18n";
+  import Image from "$lib/components/common/image.svelte";
+  
   const coin = "4stable";
   const icon = "https://mixin-images.zeromesh.net/MZhG5lLirhrfLHpDf16NCmSrUUWY9rO4FX7BqMQPbvzTrCDNAxqO6ovERoDIU7puvXatQ9suZglFw_GiBO_26lg3A1LdbLV6Fj7h=s128"
   
@@ -15,7 +16,7 @@
   };
 </script>
 
-<div class="p-1 m-1 border-solid border-2 rounded-2xl bd">
+<div class="p-1 m-1 border-solid rounded-2xl bd">
   <div class="items-center justfiy-center flex">
     <div class="flex-1 flex flex-col mx-3">
       <input

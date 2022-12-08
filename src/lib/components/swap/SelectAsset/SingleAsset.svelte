@@ -1,9 +1,9 @@
 <script lang="ts">
   import { connected } from "$lib/stores/connect";
-  import Loading from "../SwapInfo/Loading.svelte";
   import { getCachedAssetBalance } from "$lib/stores/asset";
   import type { Asset } from "$lib/types/asset";
   import IconAsset from "$lib/components/common/iconAsset.svelte";
+  import Loading from "$lib/components/swap/SwapInfo/Loading.svelte";
   export let asset: Asset;
 
   $: balance = getCachedAssetBalance(asset.mixinAssetId);

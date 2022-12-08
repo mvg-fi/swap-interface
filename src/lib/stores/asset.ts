@@ -31,7 +31,7 @@ export const updateAssets = async () => {
 
 export const getCachedAssetBalance = (assetId: string) => {
 	return asyncDerived([assets, user, connected], async ([$assets, $user, $connected]) => {
-		const ass = $assets.find((ass) => { return ass.mixinAssetId === assetId })
+		const ass = $assets.find((ass) => { return ass.mixinAssetId === assetId || ass.contract === assetId })
 		return ass?.symbol === 'ETH' 
 		? format8Decimals(String(ass.balance)) || 0 
 		: $assets.find((ass) => { return ass.mixinAssetId === assetId })?.balance || 0
