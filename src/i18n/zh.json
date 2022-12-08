@@ -17,7 +17,8 @@
 		"pleaseInstallMetaMaskFirst": "请先安装 MetaMask"
 	},
 	"select":{
-		"token": "选择代币"
+		"token": "选择代币",
+		"no_result": "No result"
 	},
 	"connect": {
 		"title": "连接"

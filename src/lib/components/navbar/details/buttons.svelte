@@ -1,6 +1,6 @@
 <script lang="ts">
   import Copy from "$lib/images/copy.svg";
-  import Copied from "$lib/images/copied.svg";
+  import Copied from "$lib/images/check.svg";
   import Explore from "$lib/images/arrow-top-right.svg";
   import Quit from "$lib/images/power.svg";
   import { MVM_SCAN_URL } from "$lib/helpers/constants";

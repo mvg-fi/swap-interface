@@ -17,7 +17,8 @@
 		"pleaseInstallMetaMaskFirst": "Please install MetaMask first"
 	},
 	"select":{
-		"token": "Select a token"
+		"token": "Select a token",
+		"no_result": "No result"
 	},
 	"connect": {
 		"title": "Connect",

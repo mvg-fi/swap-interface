@@ -2,6 +2,7 @@
   import { _ } from "svelte-i18n";
   import Close from "$lib/images/close.svg";
   import { search } from "$lib/stores/swap/searchAsset";
+  import NoResult from "$lib/components/swap/SelectAsset/NoResult.svelte";
   import SingleAsset from "$lib/components/swap/SelectAsset/SingleAsset.svelte";
   import SearchAsset from "$lib/components/swap/SelectAsset/SearchAsset.svelte";
   import { fade } from "svelte/transition";
@@ -48,19 +49,32 @@
         <SearchAsset />
       </div>
     </div>
-    <ul class="menu bg-base-100 w-full overflow-y-auto">
-      {#each filteredItems as asset}
-        <li
-          on:click={() => setToAsset(asset)}
-          on:keydown={() => setToAsset(asset)}
+    <div class="h-full overflow-y-auto">
+      {#if filteredItems.length != 0}
+        <ul class="menu bg-base-100 w-full overflow-y-auto">
+          {#each filteredItems as asset}
+            <li
+              on:click={() => {
+                setToAsset(asset)
+                search.set("");
+              }}
+              on:keydown={() => {
+                setToAsset(asset)
+                search.set("");
+              }}
+            >
+              <SingleAsset {asset} />
+            </li>
+          {/each}
+        </ul>
+      {:else}
+        <div
+          class="flex grow flex-col items-center justify-center space-y-3 py-0 h-full w-full items-center justify-center"
         >
-          <SingleAsset {asset} />
-        </li>
-      {/each}
-      {#if filteredItems.length === 0}
-        <!-- TODO Show no result -->
+          <NoResult />
+        </div>
       {/if}
-    </ul>
+    </div>
   </div>
 </div>
 

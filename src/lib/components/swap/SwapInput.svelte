@@ -32,7 +32,8 @@
     return [false, "Invalid Input"];
   };
   const fetchUSD = () => { return $assets.find((obj)=>obj.mixinAssetId==$selectedFromAsset.mixinAssetId)?.priceUsd || 0};
-  // TODO (usd, balance is not active)
+  
+  // TODO (usd, balance are not active)
   $: symbol = $selectedFromAsset.symbol;
   $: usd_store = derived(balance, fetchUSD);
   $: maskOption.numeralDecimalScale = $selectedFromAsset.decimals

@@ -107,11 +107,12 @@
     bind:this={content}
   >
     {#if loading}
+    <!-- TODO loading svg is too thin -->
       <div class="flex justify-center items-center w-full h-full">
         <div class="text-center">
           <img src={loadingHuge} alt="" class="w-full h-40"/>
           
-          <span class="font-normal text-xl text-black"> {$_('connect.waiting')} </span>
+          <span class="font-normal text-xl text-black tracking-wide"> {$_('connect.waiting')} </span>
         </div>
       </div>
     {:else}
