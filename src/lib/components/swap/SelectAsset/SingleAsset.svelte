@@ -2,12 +2,11 @@
   import { connected } from "$lib/stores/connect";
   import Loading from "../SwapInfo/Loading.svelte";
   import { getCachedAssetBalance } from "$lib/stores/asset";
-  import Image from "$lib/components/common/image.svelte";
   import type { Asset } from "$lib/types/asset";
-    import IconAsset from "$lib/components/common/iconAsset.svelte";
+  import IconAsset from "$lib/components/common/iconAsset.svelte";
   export let asset: Asset;
 
-  $: balance = getCachedAssetBalance(asset.mixinAssetId)
+  $: balance = getCachedAssetBalance(asset.mixinAssetId);
 </script>
 
 {#if asset}
@@ -15,7 +14,7 @@
     {#if asset.logoURI}
       <div class="avatar px-1">
         <div class="w-10 h-10">
-          <IconAsset {asset} />
+          <IconAsset {asset} class="h-10 w-10" />
         </div>
       </div>
       <div class="text-left pl-0 flex-1">

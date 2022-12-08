@@ -1,7 +1,7 @@
 <script lang="ts">
   import Svg from "$lib/components/common/svg.svelte";
-  import Image from "$lib/components/common/image.svelte";
   import ChevronDown from "$lib/images/chevron-down.svg";
+  import IconAsset from "$lib/components/common/iconAsset.svelte";
   import SelectAssetDialog from "./SelectAsset/SelectAssetDialog.svelte";
 
   import {
@@ -33,7 +33,6 @@
   };
   const fetchUSD = () => { return $assets.find((obj)=>obj.mixinAssetId==$selectedFromAsset.mixinAssetId)?.priceUsd || 0};
   
-  // TODO (usd, balance are not active)
   $: symbol = $selectedFromAsset.symbol;
   $: usd_store = derived(balance, fetchUSD);
   $: balance = getCachedAssetBalance($selectedFromAsset.mixinAssetId)
@@ -58,7 +57,7 @@
         on:click={() => setAssetDialog(true)}
       >
         <div class="avatar mx-1 mr-0 w-7 rounded-full mz-box">
-          <Image src={$selectedFromAsset.logoURI} alt="" />
+          <IconAsset asset={$selectedFromAsset} assetClass="h-10 w-10"/>
         </div>
         <div class="flex itmes-center">
           <span class="uppercase font-bold text-xl mx-2">
@@ -70,6 +69,7 @@
         </div>
       </button>
     </div>
+    
     {#if $connected}
       <div class="flex flex-row mx-2 my-1 opacity-75 text-xs">
         <div class="flex-1 ml-1">

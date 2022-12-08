@@ -11,9 +11,9 @@ export interface TokenList {
 }
 
 export interface Asset extends TokenList {
-	balance: string | Number | undefined,
-	priceUsd: string | Number | undefined,
-	mixinChainName: string,
-	mixinChainSymbol: string,
-	mixinChainIconUrl: string,
+	balance?: string | Number | undefined,
+	priceUsd?: string | Number | undefined,
+	mixinChainName?: string,
+	mixinChainSymbol?: string,
+	mixinChainIconUrl?: string,
 }

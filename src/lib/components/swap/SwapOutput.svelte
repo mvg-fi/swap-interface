@@ -2,6 +2,7 @@
   import Svg from "$lib/components/common/svg.svelte";
   import Image from "$lib/components/common/image.svelte";
   import ChevronDown from "$lib/images/chevron-down.svg";
+  import IconAsset from "$lib/components/common/iconAsset.svelte";
   import { setToAssetDialog } from "$lib/stores/swap/selectAsset";
   import SelectToAssetDialog from "./SelectAsset/SelectToAssetDialog.svelte";
 
@@ -15,7 +16,7 @@
 
   $: icon = $selectedToAsset.logoURI;
   $: symbol = $selectedToAsset.symbol;
-  $: balance = getCachedAssetBalance($selectedToAsset.mixinAssetId)
+  $: balance = getCachedAssetBalance($selectedToAsset.mixinAssetId);
 
   // let timeout: any = null;
   // function delayOutput() {
@@ -39,16 +40,16 @@
         />
       </div>
       <button
-        class="flex flex-row items-center"
+        class="flex flex-row items-center content-center mz-box"
         on:click={() => setToAssetDialog(true)}
       >
-        <div class="avatar mx-1 mr-0">
-          <div class="w-7 rounded-full">
-            <Image src={icon} alt="" />
-          </div>
+        <div class="avatar mx-1 mr-0 w-7 rounded-full mz-box">
+          <IconAsset asset={$selectedToAsset} />
         </div>
-        <div class="mx-2">
-          <span class="uppercase font-bold text-xl"> {symbol} </span>
+        <div class="flex itmes-center">
+          <span class="uppercase font-bold text-xl mx-2">
+            {symbol}
+          </span>
         </div>
         <div class="w-3 mr-2">
           <Svg src={ChevronDown} alt="" />

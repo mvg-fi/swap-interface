@@ -4,8 +4,8 @@ import assets from "$lib/constants/tokenlist.json";
 import { DEFAULT_SLIPPAGE } from "$lib/helpers/constants";
 import { setAssetDialog, setToAssetDialog } from './selectAsset';
 
-export let selectedFromAsset = writable(Object.values(assets)[0])
-export let selectedToAsset = writable(Object.values(assets)[1])
+export let selectedFromAsset = writable(Object.values(assets).find((obj)=>{return obj.symbol==='ETH'}))
+export let selectedToAsset = writable(Object.values(assets).find((obj)=>{return obj.symbol==='BTC'}))
 export let payAmount = writable(null)
 export let receiveAmount = writable(undefined)
 export let slippage = writable(DEFAULT_SLIPPAGE)

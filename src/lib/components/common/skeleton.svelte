@@ -1,21 +1,12 @@
-<script>
+<script lang="ts">
   export let secondaryColor = "#F5F5F7";
   export let primaryColor = "#EBECEF";
-  /**
-   * @type {string}
-   */
-  export let height = "20px";
-  /**
-   * @type {string}
-   */
-  export let width = "20px";
+  export let height: string | undefined = '40px';
+  export let width: string | undefined = '40px';
   export let speed = 2;
   export let animate = true;
   export let secondaryColorPercentWidth = 100;
-  /**
-   * @type {null}
-   */
-  export let ariaLabel = null;
+  export let ariaLabel: string | undefined = undefined;
 
   let idClip = getUniqueId();
   let idGradient = getUniqueId();
