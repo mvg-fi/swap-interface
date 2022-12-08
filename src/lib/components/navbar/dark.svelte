@@ -2,14 +2,14 @@
   import { dark } from "$lib/stores/darkmode";
 </script>
 
-<div class="avatar">
-  <div class="rounded-full">
+<div class="avatar w-8 h-8">
+  <div class="rounded-full flex items-center justify-center">
     <label class="swap swap-rotate mx-2" data-toggle-theme="dark" data-act-class="pl-4">
       <input type="checkbox" bind:checked={$dark} />
 
       <!-- sun icon -->
       <svg
-        class="icon swap-on fill-current w-12 h-12 p-1"
+        class="w-6 swap-on fill-current"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         ><path
@@ -19,7 +19,7 @@
 
       <!-- moon icon -->
       <svg
-        class="icon swap-off fill-current w-12 h-12 p-1"
+        class="swap-off fill-current"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         ><path
@@ -31,9 +31,6 @@
 </div>
 
 <style>
-  .icon {
-    width: 32px;
-  }
   .avatar:hover {
     border-radius: 10px;
     /* border-color: hsl(var(--bc) / var(--tw-bg-opacity));

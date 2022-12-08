@@ -31,7 +31,7 @@
       <Connect />
     {/if}
   </div>
-  <div>
+  <div class="mr-2">
     <Dark />
   </div>
 </div>

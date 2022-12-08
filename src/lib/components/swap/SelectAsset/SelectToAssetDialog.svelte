@@ -34,7 +34,7 @@
   on:click={onClickOutside}
   on:keypress={onClickOutside}
 >
-  <div class="modal-box h-4/5 max-w-lg p-0" bind:this={content}>
+  <div class="modal-box h-4/5 p-0 flex flex-col" bind:this={content}>
     <div class="sticky top-0 z-10 bg-white">
       <div class="flex p-5">
         <h3 class="font-semibold text-lg flex-1">{$_("select.token")}</h3>
@@ -42,7 +42,7 @@
           class="flex-0 btn btn-xs btn-circle btn-ghost"
           on:click={() => setToAssetDialog(false)}
         >
-          <img src={Close} alt="x" />
+          <img src={Close} alt="" />
         </button>
       </div>
       <div class="pb-4 px-5">
