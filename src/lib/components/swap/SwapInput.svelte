@@ -36,7 +36,6 @@
   // TODO (usd, balance are not active)
   $: symbol = $selectedFromAsset.symbol;
   $: usd_store = derived(balance, fetchUSD);
-  $: maskOption.numeralDecimalScale = $selectedFromAsset.decimals
   $: balance = getCachedAssetBalance($selectedFromAsset.mixinAssetId)
   $: usd_value = derived(usd_store, () => {return formatUSMoney((Number($usd_store) * Number($payAmount)).toFixed(2)) || 0;});
 </script>

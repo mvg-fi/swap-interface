@@ -4,6 +4,7 @@
   import { getCachedAssetBalance } from "$lib/stores/asset";
   import Image from "$lib/components/common/image.svelte";
   import type { Asset } from "$lib/types/asset";
+    import IconAsset from "$lib/components/common/iconAsset.svelte";
   export let asset: Asset;
 
   $: balance = getCachedAssetBalance(asset.mixinAssetId)
@@ -13,8 +14,8 @@
   <button class="btn-ghost h-14 asset-btn-bg flex flex-row">
     {#if asset.logoURI}
       <div class="avatar px-1">
-        <div class="mask mask-squircle w-10 h-10">
-          <Image src={asset.logoURI} alt="logo" />
+        <div class="w-10 h-10">
+          <IconAsset {asset} />
         </div>
       </div>
       <div class="text-left pl-0 flex-1">
