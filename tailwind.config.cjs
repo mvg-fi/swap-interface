@@ -11,7 +11,8 @@ const config = {
 
   daisyui: {
     theme: ["light", "dark"]
-  }
+  },
+  important: true,
 };
 
 module.exports = config;

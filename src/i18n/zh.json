@@ -1,7 +1,8 @@
 {
 	"navbar": {
 		"swap": "交易",
-		"pool": "资产池"
+		"pool": "资产池",
+		"dashboard": "Dashboard"
 	},
 	"swap": {
 		"title": "交易",
@@ -12,6 +13,7 @@
 		"BrowserWalletDescription": "使用浏览器钱包连接",
 		"WalletConnectDescription": "使用 WalletConnect 连接",
 		"MixinMessengerDescription": "使用 Mixin Messenger 连接",
+		"FennecDescription": "Connect using Fennec",
 		"pleaseInstallMetaMaskFirst": "请先安装 MetaMask"
 	},
 	"select":{

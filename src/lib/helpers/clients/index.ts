@@ -14,6 +14,8 @@ export const createWeb3Client = async (provider: ProviderKey = 'injected') => {
 		case 'mixinmessenger':
 			connect = (await import('./mixin-messenger')).default;
 			break;
+		case 'fennec':
+			break;
 	}
 
 	return {

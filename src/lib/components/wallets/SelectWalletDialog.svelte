@@ -1,10 +1,13 @@
 <script lang="ts">
+  import fennec from "$lib/images/logo/fennec.png";
   import metamask from "$lib/images/logo/metamask.svg";
+  import loadingHuge from "$lib/images/loading-huge.svg";
   import mixinMessenger from "$lib/images/logo/mixin.svg";
   import walletConnect from "$lib/images/logo/walletconnect.svg";
 
   import { showToast } from "$lib/components/toast/container.svelte";
 
+  import clsx from 'clsx';
   import { _ } from "svelte-i18n";
   import type { IProvider } from "$lib/types/provider";
   import type { ProviderKey } from "$lib/types/provider";
@@ -18,13 +21,13 @@
   } from "$lib/stores/selectWallet";
   import { providerKey as cacheProvider } from "$lib/stores/provider";
   import { updateAssets } from "$lib/stores/asset";
-  
-  // TODO: add loading on click
+
   let content: any;
   let loading = false;
-  function onClickOutside(e:any) {
+  function onClickOutside(e: any) {
+    if (content === null) return;
     if (content == e.target || content.contains(e.target)) return;
-     setWalletDialog(false)
+    setWalletDialog(false);
   }
 
   const providers: IProvider[] = [
@@ -45,6 +48,12 @@
       title: "Mixin Messenger",
       desc: $_("login.MixinMessengerDescription"),
       icon: mixinMessenger,
+    },
+    {
+      key: "fennec",
+      title: "Fennec",
+      desc: $_("login.FennecDescription"),
+      icon: fennec,
     },
   ];
 
@@ -78,35 +87,50 @@
           break;
       }
     } finally {
-      loading = false;
+      setTimeout(()=>{
+        loading = false;
+      }, 1000)
     }
   };
+
+  $: modalbox = clsx(loading ? "h-[33%]" : "grid grid-cols-2 min-h-[25%] h-[45%]", "modal-box relative w-full p-2")
 </script>
 
 <div
-  class="modal modal-bottom sm:modal-middle"
+  class="modal modal-middle"
   class:modal-open={$selectWalletDialog}
-  on:click={onClickOutside}
   on:keypress={onClickOutside}
+  on:click={onClickOutside}
 >
   <div
-    class="modal-box relative w-full p-2 grid grid-cols-2 min-h-[25%] h-[45%]"
+    class={modalbox}
     bind:this={content}
   >
-    {#each providers as { title, desc, icon, key } (key)}
-      <button
-        class="px-0 rounded-2xl b option flex flex-col items-center justify-center"
-        on:click={() => connect(key)}
-      >
-        <div class="img-screen">
-          <img loading="lazy" src={icon} alt={title} width="48" height="48" />
+    {#if loading}
+      <div class="flex justify-center items-center w-full h-full">
+        <div class="text-center">
+          <img src={loadingHuge} alt="" class="w-full h-40"/>
+          
+          <span class="font-normal text-xl text-black"> {$_('connect.waiting')} </span>
         </div>
-        <div class="mt-3 text-xl">
-          <div class="font-bold">{title}</div>
-        </div>
-        <div class="text-sm font-semibold opacity-20 pt-3">{desc}</div>
-      </button>
-    {/each}
+      </div>
+    {:else}
+      {#each providers as { title, desc, icon, key } (key)}
+        <button
+          class="px-0 rounded-2xl b option flex flex-col items-center justify-center"
+          on:click={() => connect(key)}
+          bind:this={content}
+        >
+          <div class="img-screen">
+            <img loading="lazy" src={icon} alt={title} width="48" height="48" />
+          </div>
+          <div class="mt-3 text-xl">
+            <div class="font-bold">{title}</div>
+          </div>
+          <div class="text-sm font-semibold opacity-20 pt-3">{desc}</div>
+        </button>
+      {/each}
+    {/if}
   </div>
 </div>
 

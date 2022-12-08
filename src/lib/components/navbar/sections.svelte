@@ -22,6 +22,15 @@
       {$_("navbar.pool")}
     </a>
   </li>
+  <li>
+    <a
+      href="/dashboard"
+      class="btn btn-ghost no-animation sub"
+      class:selected={$page.url.pathname === "/dashboard"}
+    >
+      {$_("navbar.dashboard")}
+    </a>
+  </li>
 </ul>
 
 <style>

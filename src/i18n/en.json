@@ -1,7 +1,8 @@
 {
 	"navbar": {
 		"swap": "Swap",
-		"pool": "Pools"
+		"pool": "Pools",
+		"dashboard": "Dashboard"
 	},
 	"swap": {
 		"title": "Swap",
@@ -12,13 +13,15 @@
 		"BrowserWalletDescription": "Connect using browser wallet",
 		"WalletConnectDescription": "Connect using WalletConnect",
 		"MixinMessengerDescription": "Connect using Mixin Messenger",
+		"FennecDescription": "Connect using Fennec",
 		"pleaseInstallMetaMaskFirst": "Please install MetaMask first"
 	},
 	"select":{
 		"token": "Select a token"
 	},
 	"connect": {
-		"title": "Connect"
+		"title": "Connect",
+		"waiting": "Waiting to connect"
 	},
 	"error": {
 		"userClosedModal": "User closed modal",
