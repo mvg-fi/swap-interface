@@ -1,5 +1,3 @@
 # Unknown-interface
 
-- Swap
-
-- Pool
+AMM implementation
