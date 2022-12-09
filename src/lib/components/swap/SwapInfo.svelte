@@ -18,7 +18,7 @@
     {#if $payAmount && $receiveAmount && $selectedFromAsset && $selectedToAsset}
       <button on:click={()=>rotate=!rotate} class="z-10">
         <div class="flex flex-row align-middle">
-          <img src={info} alt="" class="w-4 mr-1 opacity-40"/>
+          <img src={info} alt="" class="w-4 mr-2 opacity-40 z-20"/>
           <span class="font-semibold">
             {`1 ${rotate ? $selectedToAsset.symbol : $selectedFromAsset.symbol}
               = ${rotate ? formatDecimals($payAmount / $receiveAmount, 4) : formatDecimals($receiveAmount / $payAmount, 4)}
