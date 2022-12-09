@@ -39,7 +39,7 @@
     "@square/svelte-store": "^1.0.1",
     "@walletconnect/web3-provider": "^1.8.0",
     "bignumber.js": "^9.1.0",
-    "daisyui": "^2.31.0",
+    "daisyui": "^2.42.1",
     "ethers": "^5.7.2",
     "focus-svelte": "^0.3.4",
     "js-cookie": "^3.0.1",

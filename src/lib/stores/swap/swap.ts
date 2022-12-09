@@ -7,7 +7,7 @@ import { setAssetDialog, setToAssetDialog } from './selectAsset';
 export let selectedFromAsset = writable(Object.values(assets).find((obj)=>{return obj.symbol==='ETH'}))
 export let selectedToAsset = writable(Object.values(assets).find((obj)=>{return obj.symbol==='BTC'}))
 export let payAmount = writable(null)
-export let receiveAmount = writable(undefined)
+export let receiveAmount = writable(null)
 export let slippage = writable(DEFAULT_SLIPPAGE)
 export let approved = writable(false)
 export let calculated = writable(false)

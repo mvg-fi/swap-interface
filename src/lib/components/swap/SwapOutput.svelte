@@ -1,6 +1,5 @@
 <script lang="ts">
   import Svg from "$lib/components/common/svg.svelte";
-  import Image from "$lib/components/common/image.svelte";
   import ChevronDown from "$lib/images/chevron-down.svg";
   import IconAsset from "$lib/components/common/iconAsset.svelte";
   import { setToAssetDialog } from "$lib/stores/swap/selectAsset";
@@ -9,14 +8,20 @@
   import { selectedToAsset, receiveAmount } from "$lib/stores/swap/swap";
   import { _ } from "svelte-i18n";
   import { cleave } from "svelte-cleavejs";
+  import { assets } from "$lib/stores/asset";
+  import { derived } from "@square/svelte-store";
   import { connected } from "$lib/stores/connect";
+  import { formatUSMoney } from "$lib/helpers/utils";
   import { maskOption } from "$lib/helpers/constants";
   import { getCachedAssetBalance } from "$lib/stores/asset";
   import { fetchDyFromContract } from "$lib/helpers/web3/swap";
 
-  $: icon = $selectedToAsset.logoURI;
+  const fetchUSD = () => { return $assets.find((obj)=>obj.mixinAssetId==$selectedToAsset.mixinAssetId)?.priceUsd || 0};
+  
   $: symbol = $selectedToAsset.symbol;
+  $: usd_store = derived(balance, fetchUSD);
   $: balance = getCachedAssetBalance($selectedToAsset.mixinAssetId);
+  $: usd_value = derived(usd_store, () => {return formatUSMoney((Number($usd_store) * Number($receiveAmount)).toFixed(2)) || 0;});
 
   // let timeout: any = null;
   // function delayOutput() {
@@ -59,7 +64,11 @@
 
     {#if $connected}
       <div class="flex flex-row mx-2 my-1 opacity-75 text-xs">
-        <div class="flex-1 ml-1" />
+        <div class="flex-1 ml-1">
+          {#if $usd_store}
+            <span>${$usd_value}</span>
+          {/if}
+        </div>
 
         {#if $balance}
           <button

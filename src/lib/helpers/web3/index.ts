@@ -7,7 +7,7 @@ import {
   MVM_RPC_URL,
   networkParams
 } from '$lib/helpers/constants';
-import { format8Decimals } from '$lib/helpers/utils';
+import { formatDecimals } from '$lib/helpers/utils';
 import type { Network } from '$lib/types/network';
 import type { Asset } from '$lib/types/asset';
 import { format } from '$lib/helpers/web3/big';
@@ -51,7 +51,7 @@ export const getAssetBalance = async (
   address: string,
   network: Network = 'mvm'
 ) => {
-  if (assetId === ETH_ASSET_ID) return format8Decimals(await getBalance({ account: address, network }));
+  if (assetId === ETH_ASSET_ID) return formatDecimals(await getBalance({ account: address, network }), 8);
 
   const asset = assets.find((a) => a.mixinAssetId === assetId);
   const contract = network === 'mvm' ? asset?.contract : '';

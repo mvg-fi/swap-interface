@@ -3,7 +3,7 @@
 	"navbar": {
 		"swap": "交易",
 		"pool": "资产池",
-		"dashboard": "Dashboard"
+		"dashboard": "控制台"
 	},
 	"swap": {
 		"title": "交易",
@@ -17,16 +17,16 @@
 		"BrowserWalletDescription": "使用浏览器钱包连接",
 		"WalletConnectDescription": "使用 WalletConnect 连接",
 		"MixinMessengerDescription": "使用 Mixin Messenger 连接",
-		"FennecDescription": "Connect using Fennec",
+		"FennecDescription": "使用 Fennec 连接",
 		"pleaseInstallMetaMaskFirst": "请先安装 MetaMask"
 	},
 	"select":{
 		"token": "选择代币",
-		"no_result": "No result"
+		"no_result": "未找到结果"
 	},
 	"connect": {
 		"title": "连接",
-		"waiting": "Waiting to connect"
+		"waiting": "等待连接中"
 	},
 	"error": {
 		"userClosedModal": "您已取消连接",

@@ -22,7 +22,7 @@ export const findAssetsFromTokenList = (tokenList: Asset[], tokenAddresses: stri
 	})
 	return list
 }
-export const formatUSMoney = (x: string | Number) => {
+export const formatUSMoney = (x: string | number) => {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
@@ -32,6 +32,6 @@ export const getToday = (sub: number = 0) => {
 	return d.toJSON().slice(0,10).replace(/-/g,'/');
 }
 
-export const format8Decimals = (s: string) => {
-	return Math.floor(Number(s)*10**8)/10**8 || 0
+export const formatDecimals = (s: string|number, n: number) => {
+	return Math.floor(Number(s)*10**n)/10**n || 0
 }

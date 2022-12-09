@@ -5,7 +5,7 @@ import { fetchAssets } from '$lib/helpers/mvm-api';
 import { asyncDerived } from '@square/svelte-store';
 import { deepWritable } from '$lib/stores/common/deep';
 import { connected } from '$lib/stores/connect';
-import { format8Decimals } from '$lib/helpers/utils';
+import { formatDecimals } from '$lib/helpers/utils';
 
 export const assets = deepWritable<Asset[]>([], (set) => {
 	const timer = setInterval(async () => {
@@ -33,7 +33,7 @@ export const getCachedAssetBalance = (assetId: string) => {
 	return asyncDerived([assets, user, connected], async ([$assets, $user, $connected]) => {
 		const ass = $assets.find((ass) => { return ass.mixinAssetId === assetId || ass.contract === assetId })
 		return ass?.symbol === 'ETH' 
-		? format8Decimals(String(ass.balance)) || 0 
+		? formatDecimals(String(ass.balance), 8) || 0 
 		: $assets.find((ass) => { return ass.mixinAssetId === assetId })?.balance || 0
 	})
 }

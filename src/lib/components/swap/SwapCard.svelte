@@ -1,7 +1,6 @@
 <script lang="ts">
   import { connected } from "$lib/stores/connect";
   import { approved } from "$lib/stores/swap/swap";
-  import type { Asset } from "$lib/types/asset";
 
   import Top from "./Top.svelte";
   import ArrowDown from "./ArrowDown.svelte";
@@ -14,7 +13,7 @@
 </script>
 
 <div class="card bg-base-100 shadow-xl p-2 max-w-[480px]">
-  <div class="py-2 px-3 flex">
+  <div class="py-2 px-3 flex select-none">
     <Top />
   </div>
 
@@ -31,7 +30,7 @@
   </div>
 
   {#if $connected}
-    <div class="w-full my-3 mt-2">
+    <div class="w-full">
       <SwapInfo />
     </div>
   {/if}
