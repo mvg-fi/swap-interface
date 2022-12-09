@@ -1,5 +1,4 @@
-import type { TokenLists } from "./mvm-api";
-import emptyToken from "$lib/images/empty-token.svg"
+import type {Asset} from "$lib/types/asset"
 import { getAddress } from "ethers/lib/utils";
 
 export const toHex = (num: string | number) => {
@@ -11,19 +10,18 @@ export const shortenAddress = (addr: string, start: number, end: number) => {
 	return addr.substring(0, start).toLowerCase() + "..." + addr.substring(addr.length - end).toLowerCase();
 }
 
-export const findIconFromTokenList = (tokenLists: TokenLists, tokenAddress: string) => {
+export const findAssetFromTokenList = (tokenList: Asset[], tokenAddress: string): Asset | undefined => {
 	tokenAddress = getAddress(tokenAddress)
-	return Object.values(tokenLists)[0][tokenAddress] == undefined ? emptyToken : Object.values(tokenLists)[0][tokenAddress].logoURI
+	return tokenList.find((obj)=>{return obj.contract === tokenAddress}) 
 }
 
-export const findIconsFromTokenList = (tokenList: TokenLists, tokenAddresses: string[]) => {
-	let list: string[] = [];
+export const findAssetsFromTokenList = (tokenList: Asset[], tokenAddresses: string[]): (Asset| undefined)[] => {
+	let list: (Asset|undefined)[] = [];
 	tokenAddresses.forEach((e) => {
-		list.push(findIconFromTokenList(tokenList, e))
+		list.push(findAssetFromTokenList(tokenList, e))
 	})
 	return list
 }
-
 export const formatUSMoney = (x: string | Number) => {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

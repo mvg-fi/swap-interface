@@ -1,48 +1,16 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import * as _tokenList from "$lib/constants/tokenlist.json";
-  import type { TokenLists } from "$lib/helpers/mvm-api";
-  import { findIconsFromTokenList, shortenAddress } from "$lib/helpers/utils";
+  import type { PoolData } from "$lib/types/pool";
+  import _tokenList from "$lib/constants/tokenlist.json";
   import PoolIcon from "$lib/components/pool/PoolIcon.svelte";
-  export let pool: IPoolData;
-
-  interface IPoolData {
-    name: string;
-    full_name: string;
-    symbol: string;
-    reference_asset: string;
-    swap_address: string;
-    token_address: string;
-    gauge_address?: string;
-    deposit_address?: string;
-    sCurveRewards_address?: string;
-    reward_contract?: string;
-    is_plain?: boolean;
-    is_lending?: boolean;
-    is_meta?: boolean;
-    is_crypto?: boolean;
-    is_fake?: boolean;
-    is_factory?: boolean;
-    base_pool?: string;
-    underlying_coins: string[];
-    wrapped_coins: string[];
-    underlying_coin_addresses: string[];
-    wrapped_coin_addresses: string[];
-    underlying_decimals: number[];
-    wrapped_decimals: number[];
-    use_lending?: boolean[];
-    swap_abi?: any;
-    gauge_abi?: any;
-    deposit_abi?: any;
-    sCurveRewards_abi?: any;
-  }
+  import { findAssetsFromTokenList, shortenAddress } from "$lib/helpers/utils";
   
-  const tokenlist: TokenLists = _tokenList;
-  $: logos = findIconsFromTokenList(tokenlist, pool.underlying_coin_addresses);
+  export let pool: PoolData;
 
-  const toPoolDetail = (pool: IPoolData) => {
+  const underlying_coin_addresses = ['0x034A771797a1C8694Bc33E1AA89f51d1f828e5A4', '0x07DeF5AD4e59Ff1f64694fBA1BA4E513A71E4a83', '0x0e42Ae5649B3a67842AF0F3fC21d09d9b850A694', '0x181251D3A501961d4Af2AF46E33C71A5D808c25B']
+  $: assets = findAssetsFromTokenList(Object.values(_tokenList), underlying_coin_addresses)
+  const toPoolDetail = (pool: PoolData) => {
     const path = `/pool/${pool.name}`
-    console.log(path)
     goto(path);
   };
 </script>
@@ -59,7 +27,7 @@
   <td>
     <div class="flex items-center space-x-4">
       <button class="min-w-[2rem] inline-grid grid-cols-2">
-        <PoolIcon {logos} />
+        <PoolIcon {assets} />
       </button>
 
       <div class="grow-1">

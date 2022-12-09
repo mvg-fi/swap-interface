@@ -22,7 +22,7 @@
     };
   });
 </script>
-<!-- TODO (!BUG in chrome) -->
+
 {#if loaded}
   <img {src} {alt} loading="lazy" class={clsx(imgClass)}/>
 {:else if loading}

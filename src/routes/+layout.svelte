@@ -1,15 +1,22 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import Loading from "./loading.svelte";
+  import { assets } from '$lib/stores/asset';
+  import type { Asset } from '$lib/types/asset';
   import Navbar from "$lib/components/navbar/navbar.svelte";
   import Toast from "$lib/components/toast/container.svelte";
-  import { setAssetDialog, setToAssetDialog } from "$lib/stores/swap/selectAsset";
   import { setWalletDialog } from "$lib/stores/selectWallet";
   import { setSlippageDialog } from "$lib/stores/swap/slippage";
+  import { setAssetDialog, setToAssetDialog } from "$lib/stores/swap/selectAsset";
+  import SelectWalletDialog from "$lib/components/wallets/SelectWalletDialog.svelte";
 
   import { initi18n } from "../i18n/i18n";
   import "../app.postcss";
   import "./styles.css";
-  import SelectWalletDialog from "$lib/components/wallets/SelectWalletDialog.svelte";
+    
+  let a: Asset[] | undefined = $page.data.assets;
+	a?.length && !$assets.length && assets.set(a);
+	$: a?.length && !$assets.length && assets.set(a);
 
   const setupI18n = initi18n();
   const escQuitDialogs = (e: any) => {

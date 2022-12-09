@@ -66,8 +66,8 @@
 
       if (!$account) throw new Error("No account found");
       if (!$cacheProvider) throw new Error("No cached provider found");
-      await updateAssets();
       await registerAndSave($account);
+      await updateAssets();
       setWalletDialog(false);
       setConnected(true);
     } catch (e: any) {

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
+	import { updateAssets } from "$lib/stores/asset";
 	import { onMount } from "svelte";
 
 	onMount(() => {
@@ -13,5 +14,4 @@
 </svelte:head>
 
 <style>
-
 </style>
