@@ -1,4 +1,5 @@
 {
+	"appName": "MVG",
 	"navbar": {
 		"swap": "交易",
 		"pool": "资产池",
@@ -7,6 +8,9 @@
 	"swap": {
 		"title": "交易",
 		"connect_wallet": "连接钱包"
+	},
+	"pool": {
+    "title": "资产池"
 	},
 	"login": {
 		"title": "登录",
@@ -21,7 +25,8 @@
 		"no_result": "No result"
 	},
 	"connect": {
-		"title": "连接"
+		"title": "连接",
+		"waiting": "Waiting to connect"
 	},
 	"error": {
 		"userClosedModal": "您已取消连接",

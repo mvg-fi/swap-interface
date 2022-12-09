@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { _ } from "svelte-i18n";
   import { page } from "$app/stores";
   import { fade } from "svelte/transition";
   import { depositMode as deposit } from "$lib/stores/pool/mode";
@@ -7,12 +8,17 @@
   import Withdrawal from "../elements/Withdrawal.svelte";
   import Title from "../elements/poolInfo/title.svelte";
 
-  console.log($page.params.name);
+  $: poolName = $page.params.name;
 </script>
+
+<svelte:head>
+  <title>{`${poolName} | ${$_("appName")}`}</title>
+  <meta name="description" content="" />
+</svelte:head>
 
 <!-- Name -->
 <div class="w-full flex items-center justify-center pb-1" in:fade>
-  <Title name={$page.params.name}/>
+  <Title name={poolName} />
 </div>
 <div class="mx-0 flex flex-row mt-3" in:fade>
   <div class="mr-12">
