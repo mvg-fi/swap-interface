@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-  <title>{`${$_("navbar.swap")} | ${$_("appName")}`}</title>
+  <title>{`${$_("navbar.swap")} - ${$_("appName")}`}</title>
   <meta name="description" content="" />
 </svelte:head>
 

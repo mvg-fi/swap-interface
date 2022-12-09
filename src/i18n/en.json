@@ -1,5 +1,6 @@
 {
 	"appName": "MVG",
+	"appIntro": "An AMM Protocol on MVM Mainnet",
 	"navbar": {
 		"swap": "Swap",
 		"pool": "Pools",

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from "svelte-i18n";
 	import { onMount } from "svelte";
 	import { goto } from "$app/navigation";
 
@@ -8,6 +9,6 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>{`${$_("appName")} - ${$_('appIntro')}`}</title>
 	<meta name="description" content="" />
 </svelte:head>

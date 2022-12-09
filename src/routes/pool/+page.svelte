@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-  <title>{`${$_("navbar.pool")} | ${$_("appName")}`}</title>
+  <title>{`${$_("navbar.pool")} - ${$_("appName")}`}</title>
   <meta name="description" content="" />
 </svelte:head>
 
