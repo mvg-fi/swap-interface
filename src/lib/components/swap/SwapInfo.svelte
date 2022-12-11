@@ -16,18 +16,18 @@
       key: $_('technical.excepted_output'),
       value: 0,
     },
-    price_impact: {
-      key: $_('technical.price_impact'),
+    min_receive: {
+      key: $_('technical.min_receive'),
       value: 0,
     },
     trade_through: {
       key: $_('technical.trade_through'),
-      value: '',
+      value: '3pool',
     },
-    min_receive: {
-      key: $_('technical.min_receive'),
+    price_impact: {
+      key: $_('technical.price_impact'),
       value: 0,
-    }
+    },
   };
 </script>
 
@@ -49,14 +49,12 @@
       </button>
     {/if}
   </div>
-  <div class="collapse-content">
-    <div class="h-full w-full flex-col flex text-c a">
+  <div class="collapse-content py-0">
+    <div class="h-full w-full text-c">
       {#each Object.values(infos) as info}
-        <div class="flex flex-row">
-          <div class="my-1 flex-1">
-            <span>{info.key}</span>
-          </div>
-          <div class="text-center">
+        <div class="">
+          <div class="my-2 mr-1 flex justify-between">
+            <span>{info.key}:</span>
             <span>{info.value}</span>
           </div>
         </div>
