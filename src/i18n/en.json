@@ -91,6 +91,9 @@
 		"custom": "Custom",
 		"withdraw_single": "Withdraw single coin",
 		"withdraw_balanced": "Withdraw in balanced amount",
-		"withdraw_custom": "Set custom amount"
+		"withdraw_custom": "Set custom amount",
+		"excepted_output":"Excepted output",
+		"price_impact":"Price impact",
+		"trade_through":"Trade through"
 	}
 }

@@ -1,4 +1,5 @@
 import type {Asset} from "$lib/types/asset"
+import type { PoolData } from "$lib/types/pool";
 import { getAddress } from "ethers/lib/utils";
 
 export const toHex = (num: string | number) => {
@@ -33,5 +34,44 @@ export const getToday = (sub: number = 0) => {
 }
 
 export const formatDecimals = (s: string|number, n: number) => {
-	return Math.floor(Number(s)*10**n)/10**n || 0
+	return Math.floor(Number(s)*10**n)/10**n
+}
+
+// // SORT BY NUMBER
+// export const sortByNumber = (colHeader: any) => {
+// 	data = data.sort((obj1, obj2) => {
+// 		return ascendingOrder ? Number(obj1[colHeader]) - Number(obj2[colHeader])
+// 		: Number(obj2[colHeader]) - Number(obj1[colHeader])
+// 	});
+// 	selectedHeader = colHeader;
+// }
+
+export const sortByString = (colHeader: string, data: PoolData[], ascendingOrder: boolean) => {
+	data = data.sort((obj1, obj2) => {
+		if (obj1[colHeader] < obj2[colHeader]) {
+			return -1;
+		} else if (obj1[colHeader] > obj2[colHeader]) {
+			return 1;
+		}
+		return 0;
+	});
+	if (!ascendingOrder) {
+		data = data.reverse()
+	}
+	console.log('sorted:', data)
+	return data
+}
+
+export const sortByNumber = (colHeader: string, data: PoolData[], ascendingOrder: boolean) => {
+	data = data.sort((obj1, obj2) => {
+		return ascendingOrder ? Number(obj1[colHeader]) - Number(obj2[colHeader])
+		: Number(obj2[colHeader]) - Number(obj1[colHeader])
+	});
+}
+
+export const sortPools = (colHeader: string, data: PoolData[], ascendingOrder: boolean) => {
+	if (colHeader === 'name') {
+		return sortByString(colHeader, data, ascendingOrder)
+	}
+	return sortByNumber(colHeader, data, ascendingOrder)
 }

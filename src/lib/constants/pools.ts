@@ -1,4 +1,6 @@
-export const pools = {
+import type { POOLDATA } from "$lib/types/pool";
+
+export const pools: POOLDATA = {
   stable: {
     name: "stable",
     full_name: "stable",
@@ -23,6 +25,9 @@ export const pools = {
     ],
     underlying_decimals: [8, 8, 8, 8],
     wrapped_decimals: [8, 8, 8, 8],
+    apy: '0.34',
+    tvl: '10k',
+    volume: '40k',
   },
   stabletest: {
     name: "stabletest",
@@ -48,6 +53,9 @@ export const pools = {
     ],
     underlying_decimals: [8, 8, 8, 8],
     wrapped_decimals: [8, 8, 8, 8],
+    apy: '0.64',
+    tvl: '60k',
+    volume: '4k',
   },
   tricrypto2: {
     name: "tricrypto2",
@@ -72,9 +80,12 @@ export const pools = {
     ],
     underlying_decimals: [6, 8, 18],
     wrapped_decimals: [6, 8, 18],
+    apy: '0.21',
+    tvl: '100k',
+    volume: '2k',
   },
   stt: {
-    name: "stabletest",
+    name: "asdfsadf",
     full_name: "stabletest",
     symbol: "stabletest",
     reference_asset: "USD",
@@ -93,9 +104,12 @@ export const pools = {
     ],
     underlying_decimals: [8, 8],
     wrapped_decimals: [8, 8],
+    apy: '0.21',
+    tvl: '100k',
+    volume: '2k',
   },
   sbt: {
-    name: "stabletest",
+    name: "zxcvxczv",
     full_name: "stabletest",
     symbol: "stabletest",
     reference_asset: "USD",
@@ -114,9 +128,12 @@ export const pools = {
     ],
     underlying_decimals: [8, 8],
     wrapped_decimals: [8, 8],
+    apy: '0.21',
+    tvl: '100k',
+    volume: '2k',
   },
   sbtt: {
-    name: "stabletest",
+    name: "qwerwer",
     full_name: "stabletest",
     symbol: "stabletest",
     reference_asset: "USD",
@@ -135,9 +152,12 @@ export const pools = {
     ],
     underlying_decimals: [8, 8],
     wrapped_decimals: [8, 8],
+    apy: '0.21',
+    tvl: '100k',
+    volume: '2k',
   },
   sb2t: {
-    name: "stabletest",
+    name: "jijilnm",
     full_name: "stabletest",
     symbol: "stabletest",
     reference_asset: "USD",
@@ -156,5 +176,8 @@ export const pools = {
     ],
     underlying_decimals: [8, 8],
     wrapped_decimals: [8, 8],
+    apy: '0.21',
+    tvl: '100k',
+    volume: '2k',
   },
 };

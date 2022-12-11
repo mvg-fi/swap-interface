@@ -12,7 +12,7 @@
 </script>
 
 <svelte:head>
-  <title>{`${poolName} | ${$_("appName")}`}</title>
+  <title>{`${poolName} - ${$_("appName")}`}</title>
   <meta name="description" content="" />
 </svelte:head>
 

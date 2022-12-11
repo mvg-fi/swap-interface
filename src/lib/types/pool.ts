@@ -28,6 +28,21 @@ export interface IPoolData {
   deposit_abi?: any;
   sCurveRewards_abi?: any;
 }
+
+export interface PoolData extends IPoolData {
+  // Graph
+  apy?: string;
+  tvl?: string;
+
+  // Curve js
+  volume?: string;
+  parameters?: PoolParameters;
+}
+
+export interface POOLDATA {
+  [key:string]: PoolData;
+}
+
 interface PoolParameters {
   lpTokenSupply?: string | undefined;
   virtualPrice?: string | undefined;
@@ -41,13 +56,4 @@ interface PoolParameters {
   gamma?: string | undefined;
   priceOracle?: string | undefined;
   priceScale?: string | undefined;
-}
-export interface PoolData extends IPoolData {
-  // Graph
-  Apy?: string;
-  Tvl?: string;
-
-  // Curve js
-  Volume?: string;
-  Parameters?: PoolParameters;
 }

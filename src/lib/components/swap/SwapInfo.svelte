@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { _ } from "svelte-i18n";
   import info from "$lib/images/information.svg";
   import { formatDecimals } from "$lib/helpers/utils";
   import {
@@ -10,18 +11,38 @@
 
   let checked = false;
   let rotate = false;
+  let infos = {
+    excepted_output: {
+      key: $_('technical.excepted_output'),
+      value: 0,
+    },
+    price_impact: {
+      key: $_('technical.price_impact'),
+      value: 0,
+    },
+    trade_through: {
+      key: $_('technical.trade_through'),
+      value: '',
+    },
+    min_receive: {
+      key: $_('technical.min_receive'),
+      value: 0,
+    }
+  };
 </script>
 
 <div class="collapse collapse-arrow border-base-300 rounded-2xl">
   <input type="checkbox" bind:checked />
-  <div class="collapse-title text-sm font-medium flex flex-col justify-center items-start py-3">
+  <div class="collapse-title text-sm font-medium flex flex-col justify-center items-start py-3 z-0">
     {#if $payAmount && $receiveAmount && $selectedFromAsset && $selectedToAsset}
-      <button on:click={()=>rotate=!rotate} class="z-10">
+      <button on:click={()=>rotate=!rotate} class="">
         <div class="flex flex-row align-middle">
-          <img src={info} alt="" class="w-4 mr-2 opacity-40 z-20"/>
-          <span class="font-semibold">
+          <div class="tooltip" data-tip="hello">
+            <img src={info} alt="" class="w-4 mr-2 opacity-40 z-20"/>
+          </div>
+          <span class="font-medium">
             {`1 ${rotate ? $selectedToAsset.symbol : $selectedFromAsset.symbol}
-              = ${rotate ? formatDecimals($payAmount / $receiveAmount, 4) : formatDecimals($receiveAmount / $payAmount, 4)}
+              = ${rotate ? formatDecimals($payAmount / $receiveAmount, 6) : formatDecimals($receiveAmount / $payAmount, 6)}
                 ${rotate ? $selectedFromAsset.symbol : $selectedToAsset.symbol}`}
           </span>
         </div>
@@ -29,19 +50,22 @@
     {/if}
   </div>
   <div class="collapse-content">
-    <div class="h-full w-full flex-col flex">
-      <div>Expected output</div>
-      <div>Price Impact</div>
-      <div>Trade through</div>
-      <div>Slippage tolerance</div>
+    <div class="h-full w-full flex-col flex text-c a">
+      {#each Object.values(infos) as info}
+        <div class="flex flex-row">
+          <div class="my-1 flex-1">
+            <span>{info.key}</span>
+          </div>
+          <div class="text-center">
+            <span>{info.value}</span>
+          </div>
+        </div>
+      {/each}
     </div>
   </div>
 </div>
 
 <style>
-  /* .bd {
-    border-width: 1.25px;
-  } */
   .collapse {
     visibility: visible !important;
   }
@@ -51,5 +75,9 @@
   .collapse-arrow .collapse-title::after{
     height: 0.4rem;
     width: 0.4rem;
+    opacity: 0.5;
+  }
+  .text-c {
+    color: rgb(119, 128, 160);
   }
 </style>
