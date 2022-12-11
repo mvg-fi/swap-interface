@@ -66,7 +66,7 @@
       <div class="flex flex-row mx-2 my-1 opacity-75 text-xs">
         <div class="flex-1 ml-1">
           {#if $usd_store}
-            <span>${$usd_value}</span>
+            <span>{$usd_value}</span>
           {/if}
         </div>
 

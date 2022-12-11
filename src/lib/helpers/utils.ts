@@ -24,7 +24,15 @@ export const findAssetsFromTokenList = (tokenList: Asset[], tokenAddresses: stri
 	return list
 }
 export const formatUSMoney = (x: string | number) => {
-	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(x))
+}
+
+export const formatCompactUSD = (x: number) => {
+	return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 2, notation: "compact" , compactDisplay: "short" }).format(x)
+}
+
+export const formatPercentage = (x: number) => {
+	return Number(x/100).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2})
 }
 
 export const getToday = (sub: number = 0) => {
@@ -36,15 +44,6 @@ export const getToday = (sub: number = 0) => {
 export const formatDecimals = (s: string|number, n: number) => {
 	return Math.floor(Number(s)*10**n)/10**n
 }
-
-// // SORT BY NUMBER
-// export const sortByNumber = (colHeader: any) => {
-// 	data = data.sort((obj1, obj2) => {
-// 		return ascendingOrder ? Number(obj1[colHeader]) - Number(obj2[colHeader])
-// 		: Number(obj2[colHeader]) - Number(obj1[colHeader])
-// 	});
-// 	selectedHeader = colHeader;
-// }
 
 export const sortByString = (colHeader: string, data: PoolData[], ascendingOrder: boolean) => {
 	data = data.sort((obj1, obj2) => {
@@ -58,14 +57,13 @@ export const sortByString = (colHeader: string, data: PoolData[], ascendingOrder
 	if (!ascendingOrder) {
 		data = data.reverse()
 	}
-	console.log('sorted:', data)
 	return data
 }
 
 export const sortByNumber = (colHeader: string, data: PoolData[], ascendingOrder: boolean) => {
-	data = data.sort((obj1, obj2) => {
-		return ascendingOrder ? Number(obj1[colHeader]) - Number(obj2[colHeader])
-		: Number(obj2[colHeader]) - Number(obj1[colHeader])
+	return data.sort((obj1, obj2) => {
+		return ascendingOrder ? Number(obj2[colHeader]) - Number(obj1[colHeader])
+		: Number(obj1[colHeader]) - Number(obj2[colHeader])
 	});
 }
 

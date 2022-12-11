@@ -1,11 +1,11 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import { pools } from "$lib/constants/pools";
-  import SinglePool from "./SinglePool.svelte";
-  import { sortByNumber, sortByString } from "$lib/helpers/utils";
+  import { sortPools } from "$lib/helpers/utils";
   import caretUp from "$lib/images/caret-up.svg";
   import { search } from "$lib/stores/searchPool";
   import caretDown from "$lib/images/caret-down.svg";
+  import SinglePool from "$lib/components/pool/SinglePool.svelte";
   import NoResult from "$lib/components/swap/SelectAsset/NoResult.svelte";
 
   $: visiablePools =
@@ -36,16 +36,12 @@
   ];
   let selectedField = keys[0];
   let asc = true;
-  $: sortedPools =
-    selectedField === keys[0]
-      ? sortByString(selectedField, visiablePools, asc)
-      : sortByNumber(selectedField, visiablePools, asc);
+  $: sortedPools = sortPools(selectedField, visiablePools, asc);
 </script>
 
 <div class="mt-3">
   <div class="overflow-x-auto w-full select-none">
     <table class="table w-full">
-      <!-- Object.values(visiablePools).length -->
       {#if sortedPools.length != 0}
         <thead>
           <tr>
@@ -54,14 +50,12 @@
                 class="cursor-pointer"
                 on:click={() => {
                   selectedField = keys[i];
-                  asc = !asc;
-                  console.log(selectedField, i);
                 }}
               >
                 <div class="flex flex-row items-center">
                   <span>{th}</span>
                   {#if keys[i] === selectedField}
-                    <button class="w-5">
+                    <button class="w-5" on:click={()=>asc = !asc}>
                       {#if asc}
                         <img src={caretDown} alt="" />
                       {:else}

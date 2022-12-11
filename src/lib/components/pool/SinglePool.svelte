@@ -3,7 +3,7 @@
   import type { PoolData } from "$lib/types/pool";
   import _tokenList from "$lib/constants/tokenlist.json";
   import PoolIcon from "$lib/components/pool/PoolIcon.svelte";
-  import { findAssetsFromTokenList, shortenAddress } from "$lib/helpers/utils";
+  import { findAssetsFromTokenList, formatCompactUSD, formatPercentage, shortenAddress } from "$lib/helpers/utils";
   
   export let pool: PoolData;
 
@@ -13,6 +13,10 @@
     const path = `/pool/${pool.name}`
     goto(path);
   };
+
+  $: apy = pool.apy ? formatPercentage(Number(pool.apy)) : '-'
+  $: tvl = pool.tvl ? formatCompactUSD(Number(pool.tvl)) : '-'
+  $: volume = pool.volume ? formatCompactUSD(Number(pool.volume)) : '-'
 </script>
 
 <!-- Icon and Name-->
@@ -45,13 +49,13 @@
   </td>
 
   <!-- APY -->
-  <td> {"0.35"}% </td>
+  <td> {apy} </td>
 
   <!-- TVL -->
-  <td>${"0.5k"}</td>
+  <td> {tvl}</td>
 
   <!-- Volume -->
-  <td>${"10k"} </td>
+  <td> {volume} </td>
 </tr>
 
 <style>
