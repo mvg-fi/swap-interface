@@ -17,4 +17,4 @@
     stroke-linejoin="round"
   /></svg
 >
-<div class="font-semibold uppercase opacity-20">{$_("select.no_result")}</div>
+<div class="font-semibold uppercase opacity-20 text-base-content">{$_("select.no_result")}</div>

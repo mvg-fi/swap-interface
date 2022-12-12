@@ -6,7 +6,7 @@
 
 <ul class="menu bg-base-100 text-slate-500 p-1 rounded-box">
   <li>
-    <a class="p-3 flex flex-row hover:text-black" href={BRIDGE_URL} target="_blank" rel="noreferrer">
+    <a class="p-3 flex flex-row text-base-content/70 hover:text-base-content" href={BRIDGE_URL} target="_blank" rel="noreferrer">
       <span class="flex-1"> {$_('account.detail.depositmvm')} </span>
       <img src={ChevronRight} class="w-3" alt="" />
     </a>
@@ -14,7 +14,7 @@
   <!-- svelte-ignore a11y-missing-attribute -->
   <!-- TODO (Implement transation sub page) -->
   <li>
-    <a class="p-3 flex flex-row hover:text-black">
+    <a class="p-3 flex flex-row text-base-content/70 hover:text-base-content">
       <span class="flex-1"> {$_('account.detail.transactions')} </span>
       <img src={ChevronRight} class="w-3" alt="" />
     </a>

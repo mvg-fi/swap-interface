@@ -22,11 +22,11 @@
 </script>
 
 <div
-  class="dropdown dropdown-bottom dropdown-end"
+  class="dropdown dropdown-bottom dropdown-end text-base-content"
   on:focusout={handleDropdownFocusLost}
 >
   <button
-    class="btn mx-1 rounded-2xl bg-transparent text-black border-none account-btn flex"
+    class="btn mx-1 rounded-2xl bg-transparent text-base-content border-none account-btn flex"
     on:click={handleDropdownClick}
   >
     <img
@@ -49,7 +49,7 @@
   <div
     tabindex="0"
     style:visibility={isDropdownOpen ? "visible" : "hidden"} 
-    class="dropdown-content card card-compact w-80 p-2 shadow bg-white text-primary-content mt-3"
+    class="dropdown-content card card-compact w-80 p-2 shadow bg-base-100 text-primary-content mt-3"
   >
     <Details />
   </div>

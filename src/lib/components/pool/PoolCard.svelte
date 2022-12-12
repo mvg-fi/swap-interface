@@ -4,7 +4,7 @@
     import { fade } from "svelte/transition";
 </script>
 
-<div class="card w-full flex flex-col p-4 rounded-2xl bg-base-100">
+<div class="card w-full flex flex-col p-4 rounded-lg bg-base-100">
   <div>
     <SearchPool />
   </div>

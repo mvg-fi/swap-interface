@@ -29,7 +29,7 @@
 
 <div
   in:fade
-  class="modal modal-bottom sm:modal-middle"
+  class="modal modal-bottom sm:modal-middle text-base-content"
   class:modal-open={$selectAssetDialog}
   on:click={onClickOutside}
   on:keypress={onClickOutside}
@@ -37,7 +37,7 @@
   <div class="modal-box h-4/5 p-0 flex flex-col" bind:this={content}>
     <div class="sticky top-0 z-10 bg-transparent">
       <div class="flex p-5">
-        <h3 class="font-semibold text-lg flex-1 text-base-content">{$_("select.token")}</h3>
+        <h3 class="font-semibold text-lg flex-1">{$_("select.token")}</h3>
         <button
           class="flex-0 btn btn-xs btn-circle btn-ghost"
           on:click={() => setAssetDialog(false)}

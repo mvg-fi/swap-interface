@@ -4,11 +4,11 @@
   import Close from "$lib/images/close.svg";
   import SettingIcon from "$lib/images/setting.svg";
   import { slippage, setSlippage } from "$lib/stores/swap/swap";
-  import { slippageDialog } from "$lib/stores/swap/slippage"
+  import { slippageDialog } from "$lib/stores/swap/slippage";
 
   const ranges = [0.1, 0.5, 1];
   let slipValue: number;
-  $: valid = slipValue >= 0 && slipValue <= 50
+  $: valid = slipValue >= 0 && slipValue <= 50;
   const unsub = slippage.subscribe((value) => (slipValue = value));
   onDestroy(unsub);
 </script>
@@ -17,12 +17,17 @@
   <img src={SettingIcon} alt="s" class="setting" />
 </label>
 
-<input type="checkbox" id="swap-settings" class="modal-toggle" bind:checked={$slippageDialog}/>
+<input
+  type="checkbox"
+  id="swap-settings"
+  class="modal-toggle"
+  bind:checked={$slippageDialog}
+/>
 <div class="modal modal-bottom sm:modal-middle">
   <div class="modal-box">
     <div class="flex mb-4">
       <h3 class="font-bold text-lg text-black flex-1 content-center">
-        {$_('slippage.setting')}
+        {$_("slippage.setting")}
       </h3>
       <label for="swap-settings" class="flex-0 btn btn-xs btn-circle btn-ghost">
         <img src={Close} alt="x" />
@@ -31,34 +36,22 @@
 
     <div class="mb-3">
       <div class="my-5 btn-group grid grid-cols-4">
-        <button
-          class="btn btn-sm custom-btn bg-color font-medium text-xs {slipValue ===
-          ranges[0]
-            ? 'black-btn'
-            : ''}"
-          on:click={() => setSlippage(ranges[0])}>{ranges[0]}%</button
-        >
-        <button
-          class="btn btn-sm custom-btn bg-color font-medium text-xs {slipValue ===
-          ranges[1]
-            ? 'black-btn'
-            : ''}"
-          on:click={() => setSlippage(ranges[1])}>{ranges[1]}%</button
-        >
-        <button
-          class="btn btn-sm custom-btn bg-color font-medium text-xs {slipValue ===
-          ranges[2]
-            ? 'black-btn'
-            : ''}"
-          on:click={() => setSlippage(ranges[2])}>{ranges[2]}%</button
-        >
+        {#each ranges as r}
+          <button
+            class="btn btn-sm custom-btn bg-color font-medium text-xs {slipValue ===
+            r
+              ? 'black-btn'
+              : ''}"
+            on:click={() => setSlippage(r)}>{r}%</button
+          >
+        {/each}
         <button
           class="btn btn-sm custom-btn bg-color font-medium text-xs {!ranges.includes(
             slipValue
           )
             ? 'black-btn'
             : ''}"
-          on:click={() => setSlippage(0)}>{$_('slippage.custom')}</button
+          on:click={() => setSlippage(0)}>{$_("slippage.custom")}</button
         >
       </div>
 
@@ -78,7 +71,11 @@
     </div>
 
     <div class="w-full flex justify-center content-center pt-5">
-      <label for="swap-settings" class="btn rounded-3xl {valid ?'black-btn':'btn-disabled'}">{$_('slippage.save')}</label>
+      <label
+        for="swap-settings"
+        class="btn rounded-3xl {valid ? 'black-btn' : 'btn-disabled'}"
+        >{$_("slippage.save")}</label
+      >
     </div>
   </div>
 </div>
@@ -116,7 +113,8 @@
   .no-border {
     border: none;
   }
-  .black-btn, .black-btn:hover {
+  .black-btn,
+  .black-btn:hover {
     color: white;
     background-color: black;
   }

@@ -29,7 +29,7 @@
 
 <div
   in:fade
-  class="modal modal-bottom sm:modal-middle"
+  class="modal modal-bottom sm:modal-middle text-base-content"
   class:modal-open={$selectToAssetDialog}
   on:click={onClickOutside}
   on:keypress={onClickOutside}

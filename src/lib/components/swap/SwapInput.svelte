@@ -71,7 +71,7 @@
     </div>
     
     {#if $connected}
-      <div class="flex flex-row mx-2 my-1 opacity-75 text-xs">
+      <div class="flex flex-row mx-2 my-1 opacity-75 text-xs text-base-content">
         <div class="flex-1 ml-1">
           {#if $usd_store}
             <span>{$usd_value}</span>

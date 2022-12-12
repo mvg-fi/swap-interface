@@ -7,7 +7,7 @@
   });
 </script>
 
-<div class="avatar w-8 h-8">
+<div class="avatar px-2">
   <div class="rounded-full flex items-center justify-center">
     <label class="swap swap-rotate">
       <input type="checkbox" />
