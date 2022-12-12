@@ -7,7 +7,7 @@
 <div class="form-control">
   <div class="input-group">
     <button
-      class="btn btn-square btn-bordered btn-disabled search-btn on-focus"
+      class="btn btn-square btn-bordered btn-disabled search-btn on-focus bg-transparent"
     >
       <img src={searchIcon} alt="search" class="w-6 search-icon" />
     </button>
@@ -15,7 +15,7 @@
       type="text"
       bind:value={$search}
       placeholder={$_("search.pool")}
-      class="input block input-bordered search-input on-focus"
+      class="input block input-bordered search-input on-focus text-base-content"
     />
   </div>
 </div>

@@ -60,7 +60,7 @@
           <IconAsset asset={$selectedFromAsset} assetClass="h-10 w-10"/>
         </div>
         <div class="flex itmes-center">
-          <span class="uppercase font-bold text-xl mx-2">
+          <span class="uppercase font-bold text-xl mx-2 text-base-content">
             {symbol}
           </span>
         </div>

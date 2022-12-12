@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="text-left pl-0 flex-1">
-        <div class="truncate text-base">{asset.name}</div>
+        <div class="truncate text-base-content">{asset.name}</div>
         <div class="text-xs font-weight-300 sb">{asset.symbol}</div>
       </div>
       {#if $connected && $balance != null}

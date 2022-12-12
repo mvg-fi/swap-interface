@@ -97,7 +97,7 @@
 </script>
 
 <div
-  class="modal modal-middle"
+  class="modal modal-middle text-base-content"
   class:modal-open={$selectWalletDialog}
   on:keypress={onClickOutside}
   on:click={onClickOutside}

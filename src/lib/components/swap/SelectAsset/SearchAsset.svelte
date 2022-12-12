@@ -7,7 +7,7 @@
 <div class="form-control">
   <div class="input-group">
     <button
-      class="btn btn-square btn-bordered btn-disabled search-btn on-focus"
+      class="btn btn-square btn-bordered btn-disabled search-btn on-focu bg-transparent"
     >
       <img src={searchIcon} alt="search" class="w-6 search-icon" />
     </button>

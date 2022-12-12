@@ -3,7 +3,9 @@
   import { _ } from "svelte-i18n";
 </script>
 
-<span class="font-medium flex-1"> {$_('swap.title')} </span>
+<span class="font-medium flex-1 text-base-content"> 
+  {$_('swap.title')} 
+</span>
 <div class="flex-0">
   <SlippageSetting />
 </div>

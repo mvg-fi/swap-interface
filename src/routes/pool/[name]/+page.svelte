@@ -17,10 +17,10 @@
 </svelte:head>
 
 <!-- Name -->
-<div class="w-full flex items-center justify-center pb-1" in:fade>
+<div class="w-full flex items-center justify-center pb-1  text-base-content" in:fade>
   <Title name={poolName} />
 </div>
-<div class="mx-0 flex flex-row mt-3" in:fade>
+<div class="mx-0 flex flex-row mt-3 text-base-content" in:fade>
   <div class="mr-12">
     <PoolInfo name={$page.params.name} />
   </div>

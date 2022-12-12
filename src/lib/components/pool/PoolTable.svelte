@@ -52,7 +52,7 @@
                   selectedField = keys[i];
                 }}
               >
-                <div class="flex flex-row items-center">
+                <div class="flex flex-row items-center text-base-content">
                   <span>{th}</span>
                   {#if keys[i] === selectedField}
                     <button class="w-5" on:click={()=>asc = !asc}>
@@ -68,7 +68,7 @@
             {/each}
           </tr>
         </thead>
-        <tbody class="cursor-pointer">
+        <tbody class="cursor-pointer text-base-content">
           {#each sortedPools as pool}
             <SinglePool {pool} />
           {/each}

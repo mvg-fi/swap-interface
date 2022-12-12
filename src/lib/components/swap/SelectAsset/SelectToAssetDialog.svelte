@@ -35,7 +35,7 @@
   on:keypress={onClickOutside}
 >
   <div class="modal-box h-4/5 p-0 flex flex-col" bind:this={content}>
-    <div class="sticky top-0 z-10 bg-white">
+    <div class="sticky top-0 z-10 bg-tranparent">
       <div class="flex p-5">
         <h3 class="font-semibold text-lg flex-1">{$_("select.token")}</h3>
         <button
@@ -69,7 +69,7 @@
         </ul>
       {:else}
         <div
-          class="flex grow flex-col items-center justify-center space-y-3 py-0 h-full w-full items-center justify-center"
+          class="flex grow flex-col space-y-3 py-0 h-full w-full items-center justify-center"
         >
           <NoResult />
         </div>

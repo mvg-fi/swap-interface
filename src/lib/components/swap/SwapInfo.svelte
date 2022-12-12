@@ -34,6 +34,7 @@
 <div class="collapse collapse-arrow border-base-300 rounded-2xl">
   <input type="checkbox" bind:checked />
   <div class="collapse-title text-sm font-medium flex flex-col justify-center items-start py-3 z-0">
+    <!-- TODO (fetch and loading) -->
     {#if $payAmount && $receiveAmount && $selectedFromAsset && $selectedToAsset}
       <button on:click={()=>rotate=!rotate} class="">
         <div class="flex flex-row align-middle">
@@ -62,6 +63,8 @@
     </div>
   </div>
 </div>
+
+<!-- TODO (Slippage alert) -->
 
 <style>
   .collapse {
