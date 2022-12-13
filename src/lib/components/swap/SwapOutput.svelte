@@ -41,7 +41,7 @@
           placeholder="0"
           use:cleave={maskOption}
           bind:value={$receiveAmount}
-          class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-3xl"
+          class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-3xl transition-none"
         />
       </div>
       <button
@@ -56,7 +56,7 @@
             {symbol}
           </span>
         </div>
-        <div class="w-3 mr-2">
+        <div class="w-3 mr-2 [[data-theme=dark]_&]:invert">
           <Svg src={ChevronDown} alt="" />
         </div>
       </button>

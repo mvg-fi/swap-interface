@@ -7,8 +7,7 @@
   
   const price = 1224;
   const balance = 0.001;
-  $: value = 0;
-  // $: console.log(value)
+  $: value = null;
 
   const setMax = (x: number) => {
     console.log(x);
@@ -23,7 +22,7 @@
         type="number"
         placeholder="0"
         bind:value={value}
-        class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-2xl"
+        class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-2xl transition-none"
       />
     </div>
     <div class="avatar mx-1 mr-0">

@@ -22,9 +22,9 @@
     <span class="flex-1">{$_("add_liquidity.technical")}</span>
     <button>
       {#if widget}
-        <img src={ArrowUp} alt="" class="w-5" />
+        <img src={ArrowUp} alt="" class="w-5 [[data-theme=dark]_&]:invert" />
       {:else}
-        <img src={ArrowDown} alt="" class="w-5" />
+        <img src={ArrowDown} alt="" class="w-5 [[data-theme=dark]_&]:invert" />
       {/if}
     </button>
   </div>

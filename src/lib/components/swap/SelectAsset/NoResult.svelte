@@ -7,6 +7,7 @@
   height="80"
   viewBox="0 0 80 80"
   fill="none"
+  class="[[data-theme=dark]_&]:invert"
   xmlns="http://www.w3.org/2000/svg"
   ><path
     opacity=".1"

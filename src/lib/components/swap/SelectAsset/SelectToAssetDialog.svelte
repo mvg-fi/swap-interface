@@ -42,7 +42,7 @@
           class="flex-0 btn btn-xs btn-circle btn-ghost"
           on:click={() => setToAssetDialog(false)}
         >
-          <img src={Close} alt="" />
+          <img src={Close} alt="" class="[[data-theme=dark]_&]:invert" />
         </button>
       </div>
       <div class="pb-4 px-5">

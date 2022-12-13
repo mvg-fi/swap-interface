@@ -30,7 +30,7 @@
         <img
           src={Link}
           alt=""
-          class="w-2.5 ml-1"
+          class="w-2.5 ml-1 [[data-theme=dark]_&]:invert"
         />
       </div>
     </a>
@@ -52,7 +52,7 @@
         <img
           src={Link}
           alt=""
-          class="w-2.5 ml-1"
+          class="w-2.5 ml-1 [[data-theme=dark]_&]:invert"
         />
       </div>
     </a>

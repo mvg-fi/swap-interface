@@ -9,13 +9,13 @@
     <button
       class="btn btn-square btn-bordered btn-disabled search-btn on-focus bg-transparent"
     >
-      <img src={searchIcon} alt="search" class="w-6 search-icon" />
+      <img src={searchIcon} alt="search" class="w-6 search-icon [[data-theme=dark]_&]:invert" />
     </button>
     <input
       type="text"
       bind:value={$search}
       placeholder={$_("search.pool")}
-      class="input block input-bordered search-input on-focus text-base-content"
+      class="input block input-bordered search-input on-focus text-base-content transition-none"
     />
   </div>
 </div>

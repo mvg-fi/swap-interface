@@ -14,7 +14,7 @@
 </script>
 
 <label for="swap-settings">
-  <img src={SettingIcon} alt="s" class="setting" />
+  <img src={SettingIcon} alt="s" class="setting [[data-theme=dark]_&]:invert" />
 </label>
 
 <input
@@ -26,11 +26,11 @@
 <div class="modal modal-bottom sm:modal-middle">
   <div class="modal-box">
     <div class="flex mb-4">
-      <h3 class="font-bold text-lg text-black flex-1 content-center">
+      <h3 class="font-bold text-lg text-base-content flex-1 content-center">
         {$_("slippage.setting")}
       </h3>
       <label for="swap-settings" class="flex-0 btn btn-xs btn-circle btn-ghost">
-        <img src={Close} alt="x" />
+        <img src={Close} alt="x" class="[[data-theme=dark]_&]:invert"/>
       </label>
     </div>
 

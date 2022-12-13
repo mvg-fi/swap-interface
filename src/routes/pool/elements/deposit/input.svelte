@@ -35,7 +35,7 @@
           placeholder="0"
           bind:value={value[i]}
           use:cleave={maskOption}
-          class="input border-0 p-0 w-full max-w-xs input-md outline-none on-focus font-bold text-2xl"
+          class="input border-0 p-0 w-full max-w-xs input-md outline-none on-focus font-bold text-2xl transition-none"
         />
       </div>
       <div class="avatar mx-1 mr-0">

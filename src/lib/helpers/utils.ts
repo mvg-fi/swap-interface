@@ -27,8 +27,8 @@ export const formatUSMoney = (x: string | number) => {
 	return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(x))
 }
 
-export const formatCompactUSD = (x: number) => {
-	return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 2, notation: "compact" , compactDisplay: "short" }).format(x)
+export const formatCompactUSD = (x: number, places:number=2) => {
+	return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: places, notation: "compact" , compactDisplay: "short" }).format(x)
 }
 
 export const formatPercentage = (x: number) => {

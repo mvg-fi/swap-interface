@@ -8,7 +8,9 @@
 	},
 	"swap": {
 		"title": "Swap",
-		"connect_wallet": "Connect Wallet"
+		"connect_wallet": "Connect Wallet",
+		"loading": "Fetching best price...",
+		"not_available": "Swap is not available"
 	},
 	"pool": {
     "title": "Pool"

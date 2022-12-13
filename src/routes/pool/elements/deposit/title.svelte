@@ -14,7 +14,7 @@
     <img
       alt=""
       src={Refresh}
-      class="w-2.5 ml-2 mb-0.5 cursor-pointer"
+      class="w-2.5 ml-2 mb-0.5 cursor-pointer [[data-theme=dark]_&]:invert"
     />
   </button>
 </div>

@@ -57,9 +57,9 @@
                   {#if keys[i] === selectedField}
                     <button class="w-5" on:click={()=>asc = !asc}>
                       {#if asc}
-                        <img src={caretDown} alt="" />
+                        <img src={caretDown} alt="" class="[[data-theme=dark]_&]:invert"/>
                       {:else}
-                        <img src={caretUp} alt="" />
+                        <img src={caretUp} alt="" class="[[data-theme=dark]_&]:invert"/>
                       {/if}
                     </button>
                   {/if}

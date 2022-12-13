@@ -9,8 +9,10 @@ export let selectedToAsset = writable(Object.values(assets).find((obj)=>{return 
 export let payAmount = writable(null)
 export let receiveAmount = writable(null)
 export let slippage = writable(DEFAULT_SLIPPAGE)
+export let activeSlippage = writable(null)
 export let approved = writable(false)
-export let calculated = writable(false)
+export let swapFetched = writable(false)
+export let swapNotAvail = writable(false)
 
 export const setFromAsset = (asset: any) => {
   selectedFromAsset.set(asset)
@@ -26,8 +28,8 @@ export const setSlippage = (number: number) => {
 export const setApproved = (yes: boolean) => {
   approved.set(yes)
 }
-export const setCalculated = (yes: boolean) => {
-  calculated.set(yes)
+export const setSwapFetched = (yes: boolean) => {
+  swapFetched.set(yes)
 }
 
 export const switchAsset = () => {

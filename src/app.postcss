@@ -19,4 +19,7 @@
   .modal {
     transition-property: all;
   }
+  .menu :where(li:not(.disabled)) > :where(:not(ul)) {
+    transition-property: none;
+  }
 }

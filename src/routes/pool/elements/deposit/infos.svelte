@@ -1,5 +1,6 @@
 <script lang="ts">
   import { NATIVE_TOKEN_SYMBOL } from "$lib/helpers/constants";
+    import { formatPercentage } from "$lib/helpers/utils";
   import Setting from "$lib/images/setting.svg";
   import { _ } from "svelte-i18n"
 
@@ -10,7 +11,7 @@
 
   const items = [
     { key: $_('technical.min_receive')+":", value: `${min_receive} ${lp_token_name}` },
-    { key: $_('technical.slippage')+":", value: `${slippage}%` },
+    { key: $_('technical.slippage')+":", value: `${formatPercentage(slippage)}` },
     { key: $_('technical.tx_fee')+":", value: `${tx_fee} ${NATIVE_TOKEN_SYMBOL}` },
   ];
 </script>
@@ -21,7 +22,7 @@
     <span class="text-sm"> {item.value} </span>
     
     {#if i === 1}
-      <img src={Setting} alt="" class="w-3 opacity-70 ml-1 cursor-pointer setting">
+      <img src={Setting} alt="" class="w-3 opacity-70 ml-1 cursor-pointer setting [[data-theme=dark]_&]:invert">
     {/if}
   </div>
 {/each}

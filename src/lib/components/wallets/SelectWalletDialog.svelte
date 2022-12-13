@@ -110,9 +110,9 @@
     <!-- TODO loading svg is too thin -->
       <div class="flex justify-center items-center w-full h-full">
         <div class="text-center">
-          <img src={loadingHuge} alt="" class="w-full h-40"/>
+          <img src={loadingHuge} alt="" class="w-full h-40 [[data-theme=dark]_&]:invert"/>
           
-          <span class="font-normal text-xl text-black tracking-wide"> {$_('connect.waiting')} </span>
+          <span class="font-normal text-xl text-base-content tracking-wide"> {$_('connect.waiting')} </span>
         </div>
       </div>
     {:else}

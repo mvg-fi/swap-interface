@@ -1,9 +1,10 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
   import { _ } from "svelte-i18n";
+    import { formatCompactUSD, formatPercentage } from "$lib/helpers/utils";
 
   const util = "45";
-  const volume = "42.23M";
+  const volume = "4222345";
 </script>
 
 <div in:fade>
@@ -16,9 +17,9 @@
 
     <div class="flex items-center mt-0.5 cursor-pointer">
       <span
-        class="font-medium text-base uppercase text-inherit hover:text-indigo-500"
+        class="font-medium text-base uppercase text-inherit"
       >
-        {util}%
+        {formatPercentage(Number(util))}
       </span>
     </div>
   </div>
@@ -32,7 +33,7 @@
 
     <div class="flex items-center mt-0.5 cursor-pointer">
       <span class="font-medium text-base uppercase text-inherit ">
-        ${volume}
+        {formatCompactUSD(Number(volume),3)}
       </span>
     </div>
   </div>

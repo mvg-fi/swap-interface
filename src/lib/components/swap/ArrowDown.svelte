@@ -4,7 +4,7 @@
 </script>
 
 <button on:click={switchAsset}>
-  <img src={DownIcon} alt="s" class="down" />
+  <img src={DownIcon} alt="s" class="down [[data-theme=dark]_&]:invert" />
 </button>
 
 <style>
