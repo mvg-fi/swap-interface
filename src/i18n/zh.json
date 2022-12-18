@@ -2,7 +2,7 @@
 	"appName": "MVG",
 	"navbar": {
 		"swap": "交易",
-		"pool": "资产池",
+		"pool": "流动池",
 		"dashboard": "控制台"
 	},
 	"swap": {
@@ -10,7 +10,7 @@
 		"connect_wallet": "连接钱包"
 	},
 	"pool": {
-    "title": "资产池"
+    "title": "流动池"
 	},
 	"login": {
 		"title": "登录",

@@ -12,7 +12,7 @@
   import SwapInfo from "./SwapInfo.svelte";
   import SlippageWarning from "./SlippageWarning.svelte";
   import SwapInfoLoading from "./SwapInfo/SwapInfoLoading.svelte";
-    import SwapNotAvailable from "./SwapInfo/SwapNotAvailable.svelte";
+  import SwapNotAvailable from "./SwapInfo/SwapNotAvailable.svelte";
 </script>
 
 <div class="card bg-base-100 shadow-xl p-2 max-w-[480px]">
@@ -36,11 +36,11 @@
     <div class="w-full">
       <SwapInfo />
     </div>
-  {:else if ($connected && !$swapFetched)}
+  {:else if $connected && !$swapFetched}
     <div class="px-2">
       <SwapInfoLoading />
     </div>
-  {:else if ($connected && $swapFetched && $swapNotAvail)}
+  {:else if $connected && $swapFetched && $swapNotAvail}
     <div>
       <SwapNotAvailable />
     </div>

@@ -74,15 +74,15 @@
       console.log(e);
       switch (true) {
         case String(e.message).includes("No Web3 Provider found"):
-          showToast("common", "No Web3 Provider found");
+          showToast("common", $_('error.NoProvider'));
           console.log("No Web3 Provider found");
           break;
         case String(e.message).includes("User closed modal"):
-          showToast("common", "User closed modal");
+          showToast("common", $_('error.userClosedModal'));
           console.log("User closed modal");
           break;
         case String(e.message).includes("User Rejected"):
-          showToast("common", "User Rejected");
+          showToast("common", $_('error.userRejected'));
           console.log("User Rejected");
           break;
       }

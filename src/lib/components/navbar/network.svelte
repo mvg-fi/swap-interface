@@ -12,6 +12,11 @@
   </span>
 </div>
 
+<!-- 
+  1. If pay network is evm compatible, then switch and check the network. else, do nothing.
+  2. check balance, check 
+-->
+
 <style>
   .mvm-logo {
     height: 20px;

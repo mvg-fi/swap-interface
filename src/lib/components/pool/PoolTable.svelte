@@ -7,7 +7,12 @@
   import caretDown from "$lib/images/caret-down.svg";
   import SinglePool from "$lib/components/pool/SinglePool.svelte";
   import NoResult from "$lib/components/swap/SelectAsset/NoResult.svelte";
-
+  
+  // let timeout: any = null;
+  // const delayOutput = () => {
+  //   clearTimeout(timeout);
+  //   timeout = setTimeout(function () {}, 1000);
+  // };
   $: visiablePools =
     $search == ""
       ? Object.values(pools)
@@ -39,7 +44,7 @@
   $: sortedPools = sortPools(selectedField, visiablePools, asc);
 </script>
 
-<div class="mt-3">
+<div>
   <div class="overflow-x-auto w-full select-none">
     <table class="table w-full">
       {#if sortedPools.length != 0}
@@ -75,7 +80,7 @@
         </tbody>
       {:else}
         <div
-          class="flex grow flex-col space-y-3 py-6 h-full w-full items-center justify-center"
+          class="flex grow flex-col space-y-3 py-12 h-full w-full items-center justify-center"
         >
           <NoResult />
         </div>

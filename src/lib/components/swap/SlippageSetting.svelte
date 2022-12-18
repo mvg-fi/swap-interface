@@ -2,9 +2,8 @@
   import { _ } from "svelte-i18n";
   import { onDestroy } from "svelte";
   import Close from "$lib/images/close.svg";
-  import SettingIcon from "$lib/images/setting.svg";
-  import { slippage, setSlippage } from "$lib/stores/swap/swap";
   import { slippageDialog } from "$lib/stores/swap/slippage";
+  import { slippage, setSlippage } from "$lib/stores/swap/swap";
 
   const ranges = [0.1, 0.5, 1];
   let slipValue: number;
@@ -13,57 +12,47 @@
   onDestroy(unsub);
 </script>
 
-<label for="swap-settings">
-  <img src={SettingIcon} alt="s" class="setting [[data-theme=dark]_&]:invert" />
-</label>
-
-<input
-  type="checkbox"
-  id="swap-settings"
-  class="modal-toggle"
-  bind:checked={$slippageDialog}
-/>
-<div class="modal modal-bottom sm:modal-middle">
+<div class="modal modal-bottom sm:modal-middle" class:modal-open={$slippageDialog}>
   <div class="modal-box">
     <div class="flex mb-4">
       <h3 class="font-bold text-lg text-base-content flex-1 content-center">
         {$_("slippage.setting")}
       </h3>
-      <label for="swap-settings" class="flex-0 btn btn-xs btn-circle btn-ghost">
+      <button class="flex-0 btn btn-xs btn-circle btn-ghost" on:click={()=>slippageDialog.set(false)}>
         <img src={Close} alt="x" class="[[data-theme=dark]_&]:invert"/>
-      </label>
+      </button>
     </div>
 
     <div class="mb-3">
-      <div class="my-5 btn-group grid grid-cols-4">
+      <div class="my-5 btn-group grid grid-cols-4 [[data-theme=dark]_&]:invert">
         {#each ranges as r}
           <button
-            class="btn btn-sm custom-btn bg-color font-medium text-xs {slipValue ===
+            class="btn btn-sm border-none text-base-content bg-color font-medium text-xs {slipValue ===
             r
-              ? 'black-btn'
+              ? 'bg-neutral text-neutral-content'
               : ''}"
             on:click={() => setSlippage(r)}>{r}%</button
           >
         {/each}
         <button
-          class="btn btn-sm custom-btn bg-color font-medium text-xs {!ranges.includes(
+          class="btn btn-sm border-none text-base-content bg-color font-medium text-xs {!ranges.includes(
             slipValue
           )
-            ? 'black-btn'
+            ? 'bg-neutral text-neutral-content'
             : ''}"
           on:click={() => setSlippage(0)}>{$_("slippage.custom")}</button
         >
       </div>
 
       <div class="form-control">
-        <div class="input-group">
+        <div class="input-group [[data-theme=dark]_&]:invert">
           <input
             type="text"
             placeholder="Type here"
             bind:value={$slippage}
-            class="input input-bordered w-full bg-color no-outline no-border"
+            class="input input-bordered w-full bg-color outline-0 border-none"
           />
-          <button class="btn btn-square custom-btn btn-disabled bg-color">
+          <button class="btn btn-square border-none text-base-content btn-disabled bg-color">
             %
           </button>
         </div>
@@ -71,51 +60,17 @@
     </div>
 
     <div class="w-full flex justify-center content-center pt-5">
-      <label
-        for="swap-settings"
-        class="btn rounded-3xl {valid ? 'black-btn' : 'btn-disabled'}"
-        >{$_("slippage.save")}</label
+      <button
+        class="btn rounded-3xl {valid ? 'bg-neutual-focus' : 'btn-disabled'}" 
+        on:click={()=>slippageDialog.set(false)}
+        >{$_("slippage.save")}</button
       >
     </div>
   </div>
 </div>
 
 <style>
-  .setting {
-    width: 20px;
-    opacity: 0.8;
-  }
-  .setting:hover {
-    opacity: 0.5;
-    cursor: pointer;
-    transform: rotate(40deg);
-    transition: transform 0.5s;
-  }
-  .setting:not(:hover) {
-    transform: rotate(-40deg);
-    transition: transform 0.6s;
-  }
-  .custom-btn {
-    color: black;
-    border: none;
-  }
-  .custom-btn:hover {
-    color: black;
-    background-color: #f5f5f5;
-    border: none;
-  }
   .bg-color {
     background-color: #f5f5f5;
-  }
-  .no-outline {
-    outline: none !important;
-  }
-  .no-border {
-    border: none;
-  }
-  .black-btn,
-  .black-btn:hover {
-    color: white;
-    background-color: black;
   }
 </style>

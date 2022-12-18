@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
   import { _ } from "svelte-i18n";
+  import { fade } from "svelte/transition";
     import { formatCompactUSD, formatPercentage } from "$lib/helpers/utils";
 
   const util = "45";
@@ -15,7 +15,7 @@
       </span>
     </div>
 
-    <div class="flex items-center mt-0.5 cursor-pointer">
+    <div class="flex items-center mt-0.5">
       <span
         class="font-medium text-base uppercase text-inherit"
       >
@@ -31,7 +31,7 @@
       </span>
     </div>
 
-    <div class="flex items-center mt-0.5 cursor-pointer">
+    <div class="flex items-center mt-0.5">
       <span class="font-medium text-base uppercase text-inherit ">
         {formatCompactUSD(Number(volume),3)}
       </span>

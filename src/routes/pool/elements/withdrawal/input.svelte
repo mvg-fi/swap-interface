@@ -1,5 +1,7 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
+  import { cleave } from "svelte-cleavejs";
+  import { maskOption } from "$lib/helpers/constants";
   import Image from "$lib/components/common/image.svelte";
   
   const coin = "4stable";
@@ -10,7 +12,6 @@
   $: value = null;
 
   const setMax = (x: number) => {
-    console.log(x);
     value = x;
   };
 </script>
@@ -19,17 +20,18 @@
   <div class="items-center justfiy-center flex">
     <div class="flex-1 flex flex-col mx-3">
       <input
-        type="number"
+        type="tel"
         placeholder="0"
         bind:value={value}
+        use:cleave={maskOption}
         class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-2xl transition-none"
       />
     </div>
-    <div class="avatar mx-1 mr-0">
+    <!-- <div class="avatar mx-1 mr-0">
       <div class="w-7 rounded-full">
         <Image src={icon} alt="" />
       </div>
-    </div>
+    </div> -->
     <div class="mt-0.5 mx-2">
       <span class="uppercase font-bold"> {coin} </span>
     </div>

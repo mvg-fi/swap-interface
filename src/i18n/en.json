@@ -4,7 +4,10 @@
 	"navbar": {
 		"swap": "Swap",
 		"pool": "Pools",
-		"dashboard": "Dashboard"
+		"dashboard": "Dashboard",
+		"bridge": "Bridge",
+		"view_doc": "View Documentation",
+		"help_center": "Help Center"
 	},
 	"swap": {
 		"title": "Swap",
@@ -13,7 +16,19 @@
 		"not_available": "Swap is not available"
 	},
 	"pool": {
-    "title": "Pool"
+    "title": "Pool",
+		"myLiquidity": "My Liquidity"
+	},
+	"bridge": {
+		"title": "Bridge",
+		"from": "From",
+		"to": "To",
+		"memo": "Memo",
+		"enter_recipient_address":"Please enter recipient address",
+		"enter_memo": "Please enter memo",
+		"autofill": "Autofill connected address",
+		"bridge": "Bridge",
+		"approve": "Approve"
 	},
 	"login": {
 		"title": "Login",
@@ -32,6 +47,7 @@
 		"waiting": "Waiting to connect"
 	},
 	"error": {
+		"NoProvider": "No Web3 Provider found",
 		"userClosedModal": "User closed modal",
 		"userRejected": "User rejceted"
 	},
@@ -83,6 +99,7 @@
 		"fee": "Trading Fee",
 		"admin_fee":  "Admin Fee",
 		"min_receive": "Min receive",
+		"min_receive_info": "Minium amount of token you will receive",
 		"slippage": "Slippage",
 		"tx_fee": "Estimated tx fee",
 		"virtual_price": "Virtual Price",
@@ -95,7 +112,10 @@
 		"withdraw_balanced": "Withdraw in balanced amount",
 		"withdraw_custom": "Set custom amount",
 		"excepted_output":"Excepted output",
+		"excepted_output_info": "Amount of token you will receive",
 		"price_impact":"Price impact",
-		"trade_through":"Trade through"
+		"price_impact_info":"Percentage of token price will change",
+		"trade_through":"Trade through",
+		"trade_through_info":"Pools the transaction will go through"
 	}
 }

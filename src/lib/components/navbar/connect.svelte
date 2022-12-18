@@ -4,21 +4,10 @@
 </script>
 
 <button
-  class="connect btn modal-button mx-2 bg-black"
+  class="border-none rounded-2xl h-12 min-h-12 btn modal-button mx-2 bg-neutral"
   on:click={() => {
     setWalletDialog(true);
   }}
 >
   {$_("connect.title")}
 </button>
-
-<style>
-  .connect {
-    border: none;
-    border-radius: 1rem;
-  }
-  .btn {
-    height: 48px;
-    min-height: 48px !important;
-  }
-</style>

@@ -15,22 +15,22 @@
     excepted_output: {
       key: $_('technical.excepted_output'),
       value: 0,
-      info: 'Amount of token you will receive',
+      info: $_('technical.excepted_output_info'),
     },
     min_receive: {
       key: $_('technical.min_receive'),
       value: 0,
-      info: 'Minium amount of token you will receive',
+      info: $_('technical.min_receive_info'),
     },
     trade_through: {
       key: $_('technical.trade_through'),
       value: '3pool',
-      info: 'Pools the transaction will go through',
+      info: $_('technical.trade_through_info'),
     },
     price_impact: {
       key: $_('technical.price_impact'),
       value: 0,
-      info: 'Percentage of token price will change',
+      info: $_('technical.price_impact_info'),
     },
   };
 </script>
@@ -42,8 +42,7 @@
     {#if $payAmount && $receiveAmount && $selectedFromAsset && $selectedToAsset}
       <button on:click={()=>rotate=!rotate}>
         <div class="flex flex-row align-middle">
-          <!-- TODO (explain exchange rate) -->
-          <div class="dropdown dropdown-top dropdown-hover flex items-center mr-2 z-20">
+          <div class="dropdown dropdown-top dropdown-hover flex items-center mr-2 z-20 [[data-theme=dark]_&]:invert">
             <img src={Switch} alt="" class="w-4 opacity-40 shake"/>
           </div>
           <span class="font-medium text-base-content z-20">
@@ -60,6 +59,7 @@
       {#each Object.values(infos) as info, i}
         <div>
           <div class="my-2 mr-1 flex justify-between">
+            <!-- TODO: fix dropdown got cut, and top only -->
             <div class="dropdown dropdown-hover" class:dropdown-bottom={i==0||i==1} class:dropdown-top={i==2||i==3}>
               <button tabindex="0">
                 <span class="select-none">{info.key}:</span>

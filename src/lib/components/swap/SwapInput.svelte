@@ -49,7 +49,7 @@
           use:cleave={maskOption}
           on:keyup={delayInput}
           bind:value={$payAmount}
-          class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-3xl transition-none"
+          class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-3xl transition-none text-base-content"
         />
       </div>
       <button

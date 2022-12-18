@@ -4,7 +4,7 @@
 </script>
 
 <button
-  class="w-full btn btn-lg rounded-2xl bg-black"
+  class="w-full btn btn-lg rounded-2xl bg-neutral text-neutral-content border-none"
   on:click={() => {
     setWalletDialog(true);
   }}
