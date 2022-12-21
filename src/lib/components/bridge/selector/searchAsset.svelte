@@ -1,7 +1,7 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import searchIcon from "$lib/images/search.svg";
-  import { search } from "$lib/stores/swap/searchAsset";
+  import { search } from "$lib/stores/bridge/searchAsset";
 </script>
 
 <div class="form-control">

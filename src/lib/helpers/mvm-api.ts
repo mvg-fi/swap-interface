@@ -124,11 +124,11 @@ export const fetchMvmTokens = async (address: `0x${string}`) => {
 	return result;
 };
 
-export const fetchMVGTokenList = async () => {
-	const response = await fetch(
-		`https://raw.githubusercontent.com/zed-wong/mvm-tokenlist/main/MVG-tokenlist.json`
-	)
-	const result = await response.json();
-	console.log("result:",result);
-	return result as TokenList[]
-}
+// export const fetchMVGTokenList = async () => {
+// 	const response = await fetch(
+// 		`https://raw.githubusercontent.com/zed-wong/mvm-tokenlist/main/MVG-tokenlist.json`
+// 	)
+// 	const result = await response.json();
+// 	console.log("result:",result);
+// 	return result as TokenList[]
+// }

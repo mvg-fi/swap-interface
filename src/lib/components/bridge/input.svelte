@@ -1,6 +1,5 @@
 <script lang="ts">
   import Svg from "$lib/components/common/svg.svelte";
-  import SelectAssetDialog from "./selectAsset.svelte";
   import CaretDown from "$lib/images/caret-down.svg";
   import IconAsset from "$lib/components/common/iconAsset.svelte";
 
@@ -8,7 +7,8 @@
     selectedFromAsset,
     selectedToAsset,
     payAmount,
-    receiveAmount
+    receiveAmount,
+    inputFrom
   } from "$lib/stores/bridge/bridge";
   import { _ } from "svelte-i18n";
   import { cleave } from "svelte-cleavejs";
@@ -30,6 +30,7 @@
       fetchDyFromContract($selectedFromAsset, $selectedToAsset, $payAmount);
     }, 1000);
   };
+  // TODO: validate input
   const validateInput = (s: string): [boolean, string] => {
     if (Number(s) <= 0) return [false, $_("input.input_number")];
     return [false, "Invalid Input"];
@@ -63,7 +64,7 @@
       </div>
       <button
         class="flex flex-row items-center content-center mz-box rounded-3xl p-2 bg-base-100 space-x-3 mr-2"
-        on:click={() => setAssetDialog(true)}
+        on:click={() => {setAssetDialog(true); inputFrom.set(from)}}
       >
         <div class="avatar ml-2 w-8 rounded-full mz-box">
           <IconAsset asset={selected_asset} assetClass="h-10 w-10"/>
@@ -108,9 +109,8 @@
       </div>
     {/if}
   </div>
-
-  <!-- <SelectAssetDialog /> -->
 </div>
+
 
 <style>
   .mz-box {

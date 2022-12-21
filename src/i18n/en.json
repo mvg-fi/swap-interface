@@ -26,9 +26,11 @@
 		"memo": "Memo",
 		"enter_recipient_address":"Please enter recipient address",
 		"enter_memo": "Please enter memo",
-		"autofill": "Autofill connected address",
+		"autofill": "Autofill",
+		"delete": "Delete",
 		"bridge": "Bridge",
-		"approve": "Approve"
+		"approve": "Approve",
+		"search_network": "Search network"
 	},
 	"login": {
 		"title": "Login",

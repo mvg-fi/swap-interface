@@ -1,22 +1,38 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
-  import Close from "$lib/images/close.svg";
-  import { search } from "$lib/stores/swap/searchAsset";
-  import NoResult from "$lib/components/swap/SelectAsset/NoResult.svelte";
-  import SingleAsset from "$lib/components/swap/SelectAsset/SingleAsset.svelte";
-  import SearchAsset from "$lib/components/swap/SelectAsset/SearchAsset.svelte";
   import { fade } from "svelte/transition";
-  import { setFromAsset } from "$lib/stores/swap/swap";
+  import Close from "$lib/images/close.svg";
+  import { search } from "$lib/stores/bridge/searchAsset";
+  import {
+    setFromAsset,
+    setToAsset,
+    inputFrom,
+  } from "$lib/stores/bridge/bridge";
+  import NoResult from "$lib/components/swap/SelectAsset/NoResult.svelte";
+  import SingleAsset from "$lib/components/bridge/selector/singleAsset.svelte";
+  import SearchAsset from "$lib/components/bridge/selector/searchAsset.svelte";
   import {
     selectAssetDialog,
     setAssetDialog,
-  } from "$lib/stores/swap/selectAsset";
+  } from "$lib/stores/bridge/selectAsset";
   import { assets } from "$lib/stores/asset";
+  import NetworkSelector from "./selector/networkSelector.svelte";
+  import { selectedNetwork } from "$lib/stores/bridge/searchNetwork";
 
-  $: filteredItems = $assets.filter((item) => {
+  $: initFiltered = $assets.filter((item) => {
+    if ($selectedNetwork != null) {
+      return item.mixinChainId
+        .toLowerCase()
+        .match($selectedNetwork.mixinChainId);
+    }
+    return item;
+  });
+  $: filteredItems = initFiltered.filter((item) => {
     return (
       item.symbol.toLowerCase().match($search) ||
-      item.name.toLowerCase().match($search)
+      item.name.toLowerCase().match($search) ||
+      item.mixinChainName?.toLowerCase().match($search) ||
+      item.mixinChainSymbol?.toLowerCase().match($search)
     );
   });
 
@@ -25,14 +41,23 @@
     if (content == e.target || content.contains(e.target)) return;
     setAssetDialog(false);
   }
+
+  function onKeyDown(e: any) {
+    if (e.keyCode === 27) {
+      setAssetDialog(false);
+    }
+  }
 </script>
 
+<!-- TODO: Better UI and fonts -->
+<!-- TODO: Use single svelte:window for every dialog -->
+<svelte:window on:keydown={onKeyDown} />
 <div
   in:fade
-  class="modal modal-bottom sm:modal-middle text-base-content"
-  class:modal-open={$selectAssetDialog}
   on:click={onClickOutside}
   on:keypress={onClickOutside}
+  class:modal-open={$selectAssetDialog}
+  class="modal modal-bottom sm:modal-middle text-base-content"
 >
   <div class="modal-box h-4/5 p-0 flex flex-col" bind:this={content}>
     <div class="sticky top-0 z-10 bg-transparent">
@@ -45,21 +70,32 @@
           <img src={Close} alt="" class="[[data-theme=dark]_&]:invert" />
         </button>
       </div>
-      <div class="pb-4 px-5">
+      <div class="pb-2 mb-2 px-5">
         <SearchAsset />
       </div>
+      <div class="">
+        <NetworkSelector />
+      </div>
     </div>
-    <div class="h-full overflow-y-auto">
+    <div class="h-full overflow-y-auto border-t">
       {#if filteredItems.length != 0}
         <ul class="menu bg-base-100 w-full overflow-y-auto">
           {#each filteredItems as asset}
             <li
               on:click={() => {
-                setFromAsset(asset);
+                if ($inputFrom) {
+                  setFromAsset(asset);
+                } else {
+                  setToAsset(asset);
+                }
                 search.set("");
               }}
               on:keydown={() => {
-                setFromAsset(asset);
+                if ($inputFrom) {
+                  setFromAsset(asset);
+                } else {
+                  setToAsset(asset);
+                }
                 search.set("");
               }}
             >

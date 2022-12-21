@@ -1,7 +1,7 @@
 import { get, writable } from 'svelte/store'
 import assets from "$lib/constants/tokenlist.json";
 import { DEFAULT_SLIPPAGE } from "$lib/helpers/constants";
-import { setAssetDialog, setToAssetDialog } from './selectAsset';
+import { setAssetDialog } from './selectAsset';
 
 export let selectedFromAsset = writable(Object.values(assets).find((obj) => { return obj.symbol === 'ETH' }))
 export let selectedToAsset = writable(Object.values(assets).find((obj) => { return obj.symbol === 'BTC' }))
@@ -14,6 +14,7 @@ export let activeSlippage = writable(null)
 export let approved = writable(false)
 export let swapFetched = writable(true)
 export let swapNotAvail = writable(true)
+export let inputFrom = writable(false)
 
 export const setFromAsset = (asset: any) => {
   selectedFromAsset.set(asset)
@@ -21,7 +22,7 @@ export const setFromAsset = (asset: any) => {
 }
 export const setToAsset = (asset: any) => {
   selectedToAsset.set(asset)
-  setToAssetDialog(false)
+  setAssetDialog(false)
 }
 export const setSlippage = (number: number) => {
   slippage.set(number)

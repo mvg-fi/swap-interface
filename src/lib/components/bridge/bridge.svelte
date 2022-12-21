@@ -5,6 +5,7 @@
   import Info from "$lib/components/bridge/info.svelte";
   import Recipient from "$lib/components/bridge/recipient.svelte";
   import Button from "$lib/components/bridge/button.svelte";
+  import SelectAssetDialog from "$lib/components/bridge/selectAsset.svelte";
 </script>
 
 <div class="card bg-base-100 shadow-xl p-5 max-w-[480px]">
@@ -33,3 +34,5 @@
     <Button />
   </div>
 </div>
+
+<SelectAssetDialog />

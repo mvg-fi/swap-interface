@@ -4,7 +4,7 @@
   import List from "./details/list.svelte";
 </script>
 
-<div class="card-body flex flex-col p-0">
+<div class="card-body flex flex-col !p-0">
   <div class="text-base-content flex flex-row text-start items-center p-3 pb-2">
     <Account />
   </div>
