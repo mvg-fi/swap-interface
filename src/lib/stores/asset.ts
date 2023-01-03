@@ -12,8 +12,9 @@ export const assets = deepWritable<Asset[]>([], (set) => {
 		const { user } = await import('./user');
 		const $user = get(user);
 		if (!$user) return;
-		const assets = await fetchAssets($user);
-		set(assets);
+		// TODO: uncomment
+		// const assets = await fetchAssets($user);
+		// set(assets);
 	}, 20000);
 
 	return () => {

@@ -93,7 +93,7 @@
     }
   };
 
-  $: modalbox = clsx(loading ? "h-[33%]" : "grid grid-cols-2 min-h-[25%] h-[45%]", "modal-box relative w-full p-2")
+  $: modalbox = clsx(loading ? "h-[33%] !max-w-[26rem]" : "grid grid-cols-2 min-h-[25%] h-[45%]", "modal-box relative w-full p-2")
 </script>
 
 <div
@@ -107,20 +107,22 @@
     bind:this={content}
   >
     {#if loading}
-    <!-- TODO loading svg is too thin -->
-      <div class="flex justify-center items-center w-full h-full">
+      <!-- TODO loading svg is too thin -->
+      <div class="flex flex-col justify-center items-center w-full h-full">
+        <img src={loadingHuge} alt="" class="w-full h-40 [[data-theme=dark]_&]:invert"/>
         <div class="text-center">
-          <img src={loadingHuge} alt="" class="w-full h-40 [[data-theme=dark]_&]:invert"/>
-          
           <span class="font-normal text-xl text-base-content tracking-wide"> {$_('connect.waiting')} </span>
+        </div>
+        <div class="text-center mt-2">
+          <span class="font-normal text-sm opacity-20 text-base-content tracking-wide"> {$_('connect.pleaseConfirm')} </span>
         </div>
       </div>
     {:else}
       {#each providers as { title, desc, icon, key } (key)}
         <button
-          class="px-0 rounded-2xl b option flex flex-col items-center justify-center"
-          on:click={() => connect(key)}
           bind:this={content}
+          on:click={() => connect(key)}
+          class="px-0 rounded-2xl b option flex flex-col items-center justify-center"
         >
           <div class="img-screen">
             <img loading="lazy" src={icon} alt={title} width="48" height="48" />

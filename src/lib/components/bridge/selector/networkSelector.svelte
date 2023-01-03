@@ -31,7 +31,7 @@
   class="w-full mt-2 h-4 flex justify-center items-center"
   on:click={() => (expended = !expended)}
 >
-  <div class="w-3 opacity-50">
+  <div class="w-3 opacity-50 [[data-theme=dark]_&]:invert">
     <Svg src={expended ? Up : Down} alt="" />
   </div>
 </button>

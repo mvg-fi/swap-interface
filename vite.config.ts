@@ -1,7 +1,7 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
-import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
-import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill';
+// import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
+// import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill';
 import inject from '@rollup/plugin-inject';
 
 import svg from '@poppanator/sveltekit-svg';
@@ -49,11 +49,11 @@ const config = {
 			},
 			// Enable esbuild polyfill plugins
 			plugins: [
-				NodeGlobalsPolyfillPlugin({
-					buffer: true,
-					process: true
-				}),
-				NodeModulesPolyfillPlugin()
+				// NodeGlobalsPolyfillPlugin({
+				// 	buffer: true,
+				// 	process: true
+				// }),
+				// NodeModulesPolyfillPlugin()
 			]
 		}
 	},

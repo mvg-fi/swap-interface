@@ -1,4 +1,5 @@
 <script lang="ts">
+  import clsx from "clsx";
   import { _ } from "svelte-i18n";
   import { fade } from "svelte/transition";
   import Close from "$lib/images/close.svg";
@@ -7,6 +8,8 @@
     setFromAsset,
     setToAsset,
     inputFrom,
+    selectedFromAsset,
+    selectedToAsset,
   } from "$lib/stores/bridge/bridge";
   import NoResult from "$lib/components/swap/SelectAsset/NoResult.svelte";
   import SingleAsset from "$lib/components/bridge/selector/singleAsset.svelte";
@@ -22,19 +25,21 @@
   $: initFiltered = $assets.filter((item) => {
     if ($selectedNetwork != null) {
       return item.mixinChainId
-        .toLowerCase()
-        .match($selectedNetwork.mixinChainId);
+        .toUpperCase()
+        .match($selectedNetwork.mixinChainId.toUpperCase());
     }
     return item;
   });
   $: filteredItems = initFiltered.filter((item) => {
     return (
-      item.symbol.toLowerCase().match($search) ||
-      item.name.toLowerCase().match($search) ||
-      item.mixinChainName?.toLowerCase().match($search) ||
-      item.mixinChainSymbol?.toLowerCase().match($search)
+      item.symbol.toUpperCase().match($search.toUpperCase())
+      // item.name.toUpperCase().match($search.toUpperCase()) ||
+      // item.mixinChainName?.toUpperCase().match($search.toUpperCase()) ||
+      // item.mixinChainSymbol?.toUpperCase().match($search.toUpperCase())
     );
   });
+  $: highlighted = $inputFrom ? $selectedFromAsset : $selectedToAsset
+  $: _highlighted = $inputFrom ? $selectedToAsset : $selectedFromAsset
 
   let content: any;
   function onClickOutside(e: any) {
@@ -57,7 +62,7 @@
   on:click={onClickOutside}
   on:keypress={onClickOutside}
   class:modal-open={$selectAssetDialog}
-  class="modal modal-bottom sm:modal-middle text-base-content"
+  class="modal modal-bottom sm:modal-middle text-base-content select-none"
 >
   <div class="modal-box h-4/5 p-0 flex flex-col" bind:this={content}>
     <div class="sticky top-0 z-10 bg-transparent">
@@ -98,6 +103,10 @@
                 }
                 search.set("");
               }}
+              class={clsx(
+                highlighted.mixinAssetId == asset.mixinAssetId && "bg-base-300 opacity-40 text-base-content btn-disabled current",
+                _highlighted.mixinAssetId == asset.mixinAssetId && "bg-base-300 opacity-40 text-base-content btn-disabled")
+              }
             >
               <SingleAsset {asset} />
             </li>
@@ -127,5 +136,8 @@
   }
   .modal-bottom {
     max-width: none;
+  }
+  .current {
+    box-shadow: inset 4px 0em skyblue;
   }
 </style>

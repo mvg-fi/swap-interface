@@ -7,11 +7,31 @@
   import ChevronUp from "$lib/images/chevron-up.svg";
   import ChevronDown from "$lib/images/chevron-down.svg";
   import CircleWarning from "$lib/images/circle-warning.svg";
-  import { receiverAddr, receiverMemo } from "$lib/stores/bridge/bridge";
+  import {
+    receiverAddr,
+    receiverMemo,
+    selectedToAsset,
+  } from "$lib/stores/bridge/bridge";
+  import { connected } from "$lib/stores/connect";
+  import { validate } from "multicoin-address-validator";
 
   let haveMemo = false;
   let validated = true;
   let autofill = true;
+
+  // TODO: validate address
+  const validation = () => {
+    console.log('validated:',$receiverAddr)
+    if (!$connected) return
+    if ($receiverAddr === null || $receiverAddr === '') return
+    if ($selectedToAsset === null || $selectedToAsset === undefined) return
+    if (validate($receiverAddr, $selectedToAsset.symbol)) {
+      validated = true
+    } else{
+      validated = false;
+    }
+    console.log('validated:',validated)
+  }
 </script>
 
 <div class="form-control text-base-content">
@@ -23,13 +43,14 @@
         !haveMemo && "!rounded-l-3xl",
         haveMemo && "!rounded-tl-3xl !rounded-b-none"
       )}
+      on:change={()=>validation()}
       placeholder={$_("bridge.enter_recipient_address")}
     />
 
     <!-- Validation -->
     {#if !validated}
-      <button class="btn btn-disabled bg-base-200 border-none px-1">
-        <div class="tooltip" data-tip={$_("bridge.memo")}>
+      <button class="btn bg-base-200 border-none px-1 hover:bg-base-200">
+        <div class="tooltip" data-tip={$_("bridge.invalid_address")}>
           <img
             src={CircleWarning}
             alt=""
@@ -40,7 +61,7 @@
     {/if}
 
     <!-- Autofill -->
-    {#if autofill && $receiverAddr == null || $receiverAddr == ''}
+    {#if $connected && autofill && ($receiverAddr == null || $receiverAddr == "")}
       <button
         class="btn bg-base-200 border-none px-1 hover:bg-base-200"
         on:click={() => receiverAddr.set($address)}
@@ -49,13 +70,17 @@
           <img src={$providerLogo} alt="" class="w-4 fill-error" />
         </div>
       </button>
-    {:else if $receiverAddr != null || $receiverAddr != ''}
+    {:else if $connected && $receiverAddr != ""}
       <button
         class="btn bg-base-200 border-none px-1 hover:bg-base-200"
         on:click={() => receiverAddr.set(null)}
       >
         <div class="tooltip" data-tip={$_("bridge.delete")}>
-          <img src={Close} alt="" class="w-4 fill-error" />
+          <img
+            src={Close}
+            alt=""
+            class="w-4 fill-error [[data-theme=dark]_&]:invert"
+          />
         </div>
       </button>
     {/if}
@@ -73,7 +98,7 @@
         <img
           alt=""
           src={haveMemo ? ChevronUp : ChevronDown}
-          class="w-5 [[data-theme=dark]_&]:invert"
+          class="w-4 [[data-theme=dark]_&]:invert"
         />
       </div>
     </button>
@@ -89,3 +114,9 @@
     </div>
   {/if}
 </div>
+
+<style>
+  .tooltip {
+    z-index: 1;
+  }
+</style>

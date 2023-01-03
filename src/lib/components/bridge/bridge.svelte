@@ -6,6 +6,7 @@
   import Recipient from "$lib/components/bridge/recipient.svelte";
   import Button from "$lib/components/bridge/button.svelte";
   import SelectAssetDialog from "$lib/components/bridge/selectAsset.svelte";
+  import Process from "./deposit/process.svelte";
 </script>
 
 <div class="card bg-base-100 shadow-xl p-5 max-w-[480px]">
@@ -36,3 +37,4 @@
 </div>
 
 <SelectAssetDialog />
+<Process />

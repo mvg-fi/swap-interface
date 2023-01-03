@@ -1,6 +1,8 @@
-import type {Asset} from "$lib/types/asset"
+import type { Asset } from "$lib/types/asset"
+import type { Chain } from "$lib/types/chain";
 import type { PoolData } from "$lib/types/pool";
 import { getAddress } from "ethers/lib/utils";
+import Chainlist from "$lib/constants/chainlist.json"
 
 export const toHex = (num: string | number) => {
 	const val = Number(num);
@@ -13,11 +15,11 @@ export const shortenAddress = (addr: string, start: number, end: number) => {
 
 export const findAssetFromTokenList = (tokenList: Asset[], tokenAddress: string): Asset | undefined => {
 	tokenAddress = getAddress(tokenAddress)
-	return tokenList.find((obj)=>{return obj.contract === tokenAddress}) 
+	return tokenList.find((obj) => { return obj.contract === tokenAddress })
 }
 
-export const findAssetsFromTokenList = (tokenList: Asset[], tokenAddresses: string[]): (Asset| undefined)[] => {
-	let list: (Asset|undefined)[] = [];
+export const findAssetsFromTokenList = (tokenList: Asset[], tokenAddresses: string[]): (Asset | undefined)[] => {
+	let list: (Asset | undefined)[] = [];
 	tokenAddresses.forEach((e) => {
 		list.push(findAssetFromTokenList(tokenList, e))
 	})
@@ -27,22 +29,22 @@ export const formatUSMoney = (x: string | number) => {
 	return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(x))
 }
 
-export const formatCompactUSD = (x: number, places:number=2) => {
-	return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: places, notation: "compact" , compactDisplay: "short" }).format(x)
+export const formatCompactUSD = (x: number, places: number = 2) => {
+	return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: places, notation: "compact", compactDisplay: "short" }).format(x)
 }
 
 export const formatPercentage = (x: number) => {
-	return Number(x/100).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2})
+	return Number(x / 100).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 })
 }
 
 export const getToday = (sub: number = 0) => {
 	const d = new Date()
-	d.setDate(d.getDate()-sub)
-	return d.toJSON().slice(0,10).replace(/-/g,'/');
+	d.setDate(d.getDate() - sub)
+	return d.toJSON().slice(0, 10).replace(/-/g, '/');
 }
 
-export const formatDecimals = (s: string|number, n: number) => {
-	return Math.floor(Number(s)*10**n)/10**n
+export const formatDecimals = (s: string | number, n: number) => {
+	return Math.floor(Number(s) * 10 ** n) / 10 ** n
 }
 
 export const sortByString = (colHeader: string, data: PoolData[], ascendingOrder: boolean) => {
@@ -63,7 +65,7 @@ export const sortByString = (colHeader: string, data: PoolData[], ascendingOrder
 export const sortByNumber = (colHeader: string, data: PoolData[], ascendingOrder: boolean) => {
 	return data.sort((obj1, obj2) => {
 		return ascendingOrder ? Number(obj2[colHeader]) - Number(obj1[colHeader])
-		: Number(obj1[colHeader]) - Number(obj2[colHeader])
+			: Number(obj1[colHeader]) - Number(obj2[colHeader])
 	});
 }
 
@@ -72,4 +74,10 @@ export const sortPools = (colHeader: string, data: PoolData[], ascendingOrder: b
 		return sortByString(colHeader, data, ascendingOrder)
 	}
 	return sortByNumber(colHeader, data, ascendingOrder)
+}
+
+export const isEVMAsset = (assetID: string) => {
+	return Object.values(Chainlist).find((chain) => {
+		return chain.mixinAssetId === assetID
+	})?.evm || false
 }

@@ -30,7 +30,17 @@
 		"delete": "Delete",
 		"bridge": "Bridge",
 		"approve": "Approve",
-		"search_network": "Search network"
+		"search_network": "Search network",
+		"invalid_address": "Invalid Address",
+		"pay_with": "Pay with",
+		"view_address": "View address",
+		"deposit": "Deposit",
+		"cancel": "Cancel",
+		"back": "Back",
+		"switch_network": "Switch network",
+		"switch_network_info0":"Please switch to the",
+		"switch_network_info1":"to continue",
+		"network": "network"
 	},
 	"login": {
 		"title": "Login",
@@ -46,7 +56,8 @@
 	},
 	"connect": {
 		"title": "Connect",
-		"waiting": "Waiting to connect"
+		"waiting": "Waiting to connect",
+		"pleaseConfirm": "Please confirm in your wallet"
 	},
 	"error": {
 		"NoProvider": "No Web3 Provider found",

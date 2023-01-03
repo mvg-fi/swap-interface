@@ -22,7 +22,7 @@
         <div class="text-xs font-weight-300 sb">{asset.symbol}</div>
       </div>
       {#if $connected && $balance != null}
-        <div class="px-1 truncate">
+        <div class="text-base px-1 truncate">
           {$balance}
         </div>
       {:else if $connected && $balance == null}

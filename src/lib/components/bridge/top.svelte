@@ -32,7 +32,7 @@
     transform: rotate(-20deg);
     transition: transform 0.6s;
   }
-  .history {
+  /* .history {
     width: 22px;
     opacity: 0.8;
     transition: transform 0.5s;
@@ -41,5 +41,5 @@
     opacity: 0.6;
     transform: rotate(20deg);
     transition: transform 0.5s;
-  }
+  } */
 </style>

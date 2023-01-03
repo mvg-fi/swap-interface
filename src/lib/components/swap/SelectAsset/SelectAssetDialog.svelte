@@ -15,8 +15,8 @@
 
   $: filteredItems = $assets.filter((item) => {
     return (
-      item.symbol.toLowerCase().match($search) ||
-      item.name.toLowerCase().match($search)
+      item.symbol.toUpperCase().match($search.toUpperCase()) ||
+      item.name.toUpperCase().match($search.toUpperCase())
     );
   });
 
