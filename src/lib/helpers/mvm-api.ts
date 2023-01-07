@@ -3,7 +3,6 @@ import ExternalClient from '@mixin.dev/mixin-node-sdk/src/client/external';
 import { CodeClient, NetworkClient } from '@mixin.dev/mixin-node-sdk';
 import type { RegisteredUser, User } from '$lib/types/user';
 import { ETH_ASSET_ID } from '$lib/helpers/constants';
-import type { TokenList } from '$lib/types/asset'
 import TL from '$lib/constants/tokenlist.json';
 import { getBalance } from '$lib/helpers/web3';
 import type { Asset } from '$lib/types/asset';
@@ -124,9 +123,9 @@ export const fetchMvmTokens = async (address: `0x${string}`) => {
 	return result;
 };
 
-// export const fetchMVGTokenList = async () => {
+// export const fetchTokenList = async () => {
 // 	const response = await fetch(
-// 		`https://raw.githubusercontent.com/zed-wong/mvm-tokenlist/main/MVG-tokenlist.json`
+// 		`https://raw.githubusercontent.com/zed-wong/mvm-tokenlist/main/pure-tokenlist.json`
 // 	)
 // 	const result = await response.json();
 // 	console.log("result:",result);

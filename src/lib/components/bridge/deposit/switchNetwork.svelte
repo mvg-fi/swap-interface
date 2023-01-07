@@ -1,5 +1,6 @@
 <!-- 1 -->
 <script lang="ts">
+  import clsx from "clsx";
   import { _ } from "svelte-i18n";
   import { chainId, library, provider } from "$lib/stores/ethers";
   import { switchNetwork } from "$lib/helpers/web3";
@@ -8,18 +9,19 @@
   import { selectedFromAsset } from "$lib/stores/bridge/bridge";
   import { getChainByAsset } from "$lib/helpers/utils";
 
+  let switchLoading = false;
+
   const changeNetwork = async () => {
     if (!$library) return;
     if (!$supposedNetwork) return;
+
+    switchLoading = true;
     const result = await switchNetwork($library, $supposedNetwork);
     if (result === null) {
-      mode.set(3)
+      mode.set(3);
     }
+    switchLoading = false;
   };
-
-  // $: NetworkCorrect = $supposedNetwork === $chainId;
-  // $: if(NetworkCorrect) mode.set(4)
-  // $: console.log(NetworkCorrect)
 </script>
 
 <div class="warning-icon flex items-center justify-center p-4">
@@ -56,9 +58,14 @@
   <div class="switch-network-btn justify-center p-2">
     <button
       on:click={() => changeNetwork()}
-      class="btn bg-blue-700 border-base-200 hover:bg-blue-800 hover:border-base-300 rounded-2xl"
+      class={clsx(
+        "btn bg-blue-700 border-base-200 hover:bg-blue-800 hover:border-base-300 rounded-2xl",
+        switchLoading && "loading btn-square"
+      )}
     >
-      <span class="text-base-100"> {$_("bridge.switch_network")} </span>
+      {#if !switchLoading}
+        <span class="text-base-100"> {$_("bridge.switch_network")} </span>
+      {/if}
     </button>
   </div>
 </div>

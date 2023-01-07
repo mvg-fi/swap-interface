@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import QRCode from 'qrcode';
+	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 
 	let value = '';

@@ -1,7 +1,6 @@
 import { page } from '$app/stores';
 import { derived, get } from '@square/svelte-store';
 import { register } from '$lib/helpers/mvm-api';
-import { jsonPersistentEncoder, persistentWritable } from '../helpers/store/persistent';
 import type { User } from '../types/user';
 import { account } from './ethers';
 import { clearLastProvider } from './provider';
@@ -9,6 +8,7 @@ import { LANG, USER_KEY } from '$lib/helpers/constants';
 import { dedupe } from '../helpers/store/dedupe';
 import { invalidateAll } from '$app/navigation';
 import { setConnected } from './connect';
+import { jsonPersistentEncoder, persistentWritable } from '../helpers/store/persistent';
 
 const persistentUser = persistentWritable<User | undefined>(
 	USER_KEY,
@@ -56,6 +56,7 @@ export const legalUser = derived([persistentUser, account], ([$user, $account]) 
 });
 
 export const address = derived(user, ($user) => $user?.address);
+export const userKey = derived(user, ($user) => $user.key);
 
 export const shortAddress = derived(address, ($address) => {
 	if (!$address) return;

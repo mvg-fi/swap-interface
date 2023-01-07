@@ -41,7 +41,8 @@
 		"switch_network_info0":"Please switch to the",
 		"switch_network_info1":"to continue",
 		"network": "Network",
-		"confirm": "Confirm"
+		"confirm": "Confirm",
+		"address": "Address"
 	},
 	"login": {
 		"title": "Login",
