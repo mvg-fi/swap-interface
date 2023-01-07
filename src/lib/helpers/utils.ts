@@ -2,6 +2,7 @@ import type { Asset } from "$lib/types/asset"
 import type { Chain } from "$lib/types/chain";
 import type { PoolData } from "$lib/types/pool";
 import { getAddress } from "ethers/lib/utils";
+import evmMap from "$lib/constants/evmmap.json"
 import Chainlist from "$lib/constants/chainlist.json"
 
 export const toHex = (num: string | number) => {
@@ -76,8 +77,17 @@ export const sortPools = (colHeader: string, data: PoolData[], ascendingOrder: b
 	return sortByNumber(colHeader, data, ascendingOrder)
 }
 
-export const isEVMAsset = (assetID: string) => {
+export const getChainByAsset = (assetID: string) => {
 	return Object.values(Chainlist).find((chain) => {
 		return chain.mixinAssetId === assetID
-	})?.evm || false
+	})
+}
+
+export const isEVMAsset = (assetID: string) => {
+	return getChainByAsset(assetID)?.evm || false
+}
+
+export const getEVMChainId = (assetID: string) => {
+	if (!assetID) return
+	return evmMap[assetID] || null
 }

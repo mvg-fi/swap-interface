@@ -40,7 +40,8 @@
 		"switch_network": "Switch network",
 		"switch_network_info0":"Please switch to the",
 		"switch_network_info1":"to continue",
-		"network": "network"
+		"network": "Network",
+		"confirm": "Confirm"
 	},
 	"login": {
 		"title": "Login",

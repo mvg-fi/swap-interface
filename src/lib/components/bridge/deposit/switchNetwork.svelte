@@ -1,13 +1,29 @@
+<!-- 1 -->
 <script lang="ts">
   import { _ } from "svelte-i18n";
-  import { mode } from "$lib/stores/bridge/process";
+  import { chainId, library, provider } from "$lib/stores/ethers";
+  import { switchNetwork } from "$lib/helpers/web3";
+  import { mode, supposedNetwork } from "$lib/stores/bridge/process";
   import warning from "$lib/images/warning-circle.svg";
-    import { selectedFromAsset } from "$lib/stores/bridge/bridge";
+  import { selectedFromAsset } from "$lib/stores/bridge/bridge";
+  import { getChainByAsset } from "$lib/helpers/utils";
+
+  const changeNetwork = async () => {
+    if (!$library) return;
+    if (!$supposedNetwork) return;
+    const result = await switchNetwork($library, $supposedNetwork);
+    if (result === null) {
+      mode.set(3)
+    }
+  };
+
+  // $: NetworkCorrect = $supposedNetwork === $chainId;
+  // $: if(NetworkCorrect) mode.set(4)
+  // $: console.log(NetworkCorrect)
 </script>
 
-<div class="warning-icon flex items-center justify-center p-3">
-  <!-- <img src={warning} alt="" class="w-16"/> -->
-  {@html warning}
+<div class="warning-icon flex items-center justify-center p-4">
+  <img src={warning} alt="" class="w-20" />
 </div>
 
 <div class="switch-network text-center p-2">
@@ -18,24 +34,31 @@
 
 <div class="switch-network-info text-center p-2 pb-4">
   <span class="text-sm font-medium">
-    {$_("bridge.switch_network_info0")} {$selectedFromAsset.name}{$_('bridge.network')} {$_("bridge.switch_network_info1")}
+    {$_("bridge.switch_network_info0")}
+    <span class="font-semibold">
+      {getChainByAsset($selectedFromAsset.mixinChainId)?.name}
+      {$_("bridge.network")}
+    </span>
+    {$_("bridge.switch_network_info1")}
   </span>
 </div>
 
-<div class="switch-network justify-center flex p-2">
-  <button
-    on:click={() => mode.set(0)}
-    class="btn bg-base-200 border-base-200 hover:bg-base-300 hover:border-base-300 rounded-2xl"
-  >
-    <span class="text-base-content"> {$_("bridge.switch_network")} </span>
-  </button>
-</div>
+<div class="flex justify-center p-1 gap-2">
+  <div class="cancel justify-center p-2">
+    <button
+      on:click={() => mode.set(0)}
+      class="btn bg-base-100 border-2 border-base-200 hover:bg-base-300 hover:border-base-300 rounded-2xl text-opacity-80"
+    >
+      <span class="text-base-content"> {$_("bridge.back")} </span>
+    </button>
+  </div>
 
-<div class="cancel justify-center flex p-2">
-  <button
-    on:click={() => mode.set(0)}
-    class="btn bg-base-200 border-base-200 hover:bg-base-300 hover:border-base-300 rounded-2xl"
-  >
-    <span class="text-base-content"> {$_("bridge.back")} </span>
-  </button>
+  <div class="switch-network-btn justify-center p-2">
+    <button
+      on:click={() => changeNetwork()}
+      class="btn bg-blue-700 border-base-200 hover:bg-blue-800 hover:border-base-300 rounded-2xl"
+    >
+      <span class="text-base-100"> {$_("bridge.switch_network")} </span>
+    </button>
+  </div>
 </div>

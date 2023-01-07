@@ -1,19 +1,21 @@
 import { ethers, utils, type BigNumberish } from 'ethers';
 import ERC20_ABI from '$lib/constants/abis/erc20.json';
 import {
+  BSC_RPC_URL,
   ETH_ASSET_ID,
-  MAINNET_CHAIN_HEX_ID,
-  MVM_CHAIN_HEX_ID,
   MVM_RPC_URL,
-  networkParams
+  networkParams,
+  POLYGON_RPC_URL
 } from '$lib/helpers/constants';
-import { formatDecimals } from '$lib/helpers/utils';
+import { formatDecimals, toHex } from '$lib/helpers/utils';
 import type { Network } from '$lib/types/network';
 import type { Asset } from '$lib/types/asset';
 import { format } from '$lib/helpers/web3/big';
 
 export const mainnetProvider = ethers.getDefaultProvider(1);
 export const mvmProvider = ethers.getDefaultProvider(MVM_RPC_URL);
+export const bscProvider = ethers.getDefaultProvider(BSC_RPC_URL);
+export const polygonProvider = ethers.getDefaultProvider(POLYGON_RPC_URL);
 
 export const getBalance = async ({
   account,
@@ -66,14 +68,14 @@ export const getAssetBalance = async (
   return format({ n: balance, dp: 8, fixed: false });
 };
 
-export const switchNetwork = async (provider: ethers.providers.Web3Provider, network: Network) => {
+export const switchNetwork = async (provider: ethers.providers.Web3Provider, network: number) => {
   const request = provider.provider.request;
-  if (!request) throw new Error('Web3Provider.provider.request must be defined');
+  if (!request) return new Error('Web3Provider.provider.request must be defined');
 
-  const hex = network === 'mainnet' ? MAINNET_CHAIN_HEX_ID : MVM_CHAIN_HEX_ID;
+  const hex = toHex(network);
 
   try {
-    await request({
+    return await request({
       method: 'wallet_switchEthereumChain',
       params: [{ chainId: hex }]
     });
@@ -87,7 +89,7 @@ export const switchNetwork = async (provider: ethers.providers.Web3Provider, net
         switchError?.data?.orginalError?.code === -32603
       )
     )
-      return;
+      return switchError;
     await request({
       method: 'wallet_addEthereumChain',
       params: [networkParams[hex]]

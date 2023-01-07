@@ -23,10 +23,16 @@ export const INFURA_KEY = import.meta.env.VITE_INFURA_KEY
 export const WALLET_CONNECT_KEY = import.meta.env.VITE_WALLET_CONNECT_KEY
 
 // URLs
-export const ETHER_SCAN_URL = 'https://etherscan.io/'
-export const MAINNET_RPC_URL = `https://mainnet.infura.io/v3/${INFURA_KEY}`
+export const MAINNET_RPC_URL = `https://eth.llamarpc.com`
 export const MVM_RPC_URL = "https://geth.mvm.dev/";
+export const BSC_RPC_URL = "https://bscrpc.com";
+export const POLYGON_RPC_URL = "https://polygon.llamarpc.com";
+
+export const ETHER_SCAN_URL = 'https://etherscan.io/'
 export const MVM_SCAN_URL = "https://scan.mvm.dev/";
+export const BSC_SCAN_URL = "https://bscscan.com/";
+export const POLYGON_SCAN_URL = "https://polygonscan.com/";
+
 export const BRIDGE_URL = "https://bridge.mvm.app/";
 
 // Addresses
@@ -44,8 +50,16 @@ export const MOB_ASSET_ID = 'eea900a8-b327-488c-8d8d-1428702fe240';
 
 // ChainID
 export const MAINNET_CHAIN_ID = 1;
+export const BSC_CHAIN_ID = 56;
+export const POLYGON_CHAIN_ID = 137;
 export const MVM_CHAIN_ID = 73927;
+// export const OPTIMISM_CHAIN_ID = 10;
+// export const FANTOM_CHAIN_ID = 250;
+// export const ARBITRUM_CHAIN_ID = 42161;
+
 export const MAINNET_CHAIN_HEX_ID = toHex(MAINNET_CHAIN_ID);
+export const BSC_CHAIN_HEX_ID = toHex(BSC_CHAIN_ID);
+export const POLYGON_CHAIN_HEX_ID = toHex(POLYGON_CHAIN_ID);
 export const MVM_CHAIN_HEX_ID = toHex(MVM_CHAIN_ID);
 
 // Network
@@ -63,6 +77,20 @@ export const networkParams: Record<string, NetworkParam> = {
 		chainName: 'Mixin Virtual Machine',
 		nativeCurrency: { name: 'Ethereum', decimals: 18, symbol: 'ETH' },
 		blockExplorerUrls: [MVM_SCAN_URL]
+	},
+	[BSC_CHAIN_HEX_ID]: {
+		chainId: BSC_CHAIN_HEX_ID,
+		rpcUrls: [BSC_RPC_URL],
+		chainName: 'Binance Smart Chain',
+		nativeCurrency: { name: 'Binance Coin', decimals: 18, symbol: 'BNB' },
+		blockExplorerUrls: [BSC_SCAN_URL]
+	},
+	[POLYGON_CHAIN_HEX_ID]: {
+		chainId: POLYGON_CHAIN_HEX_ID,
+		rpcUrls: [POLYGON_RPC_URL],
+		chainName: 'Polygon',
+		nativeCurrency: { name: 'Matic Token', decimals: 18, symbol: 'MATIC' },
+		blockExplorerUrls: [POLYGON_SCAN_URL]
 	}
 };
 

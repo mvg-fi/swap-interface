@@ -3,10 +3,11 @@
   import { fade } from "svelte/transition";
   import SelectMethods from "./selectMethods.svelte";
   import { mode, processDialog } from "$lib/stores/bridge/process";
-    import SwitchNetwork from "./switchNetwork.svelte";
-    import ViewAddress from "./viewAddress.svelte";
-    import TransactionFailed from "./transactionFailed.svelte";
-    import LoadingDeposit from "./loadingDeposit.svelte";
+  import SwitchNetwork from "./switchNetwork.svelte";
+  import ViewAddress from "./viewAddress.svelte";
+  import TransactionFailed from "./transactionFailed.svelte";
+  import LoadingDeposit from "./loadingDeposit.svelte";
+    import TransactionConfirm from "./transactionConfirm.svelte";
 
   let content: any;
   function onClickOutside(e: any) {
@@ -38,9 +39,11 @@
       {:else if $mode === 2}
         <ViewAddress bind:this={content} />
       {:else if $mode === 3}
+        <TransactionConfirm bind:this={content} />
+      {:else if $mode === 4}
         <LoadingDeposit bind:this={content} />
       {:else if $mode === 100}
-        <TransactionFailed bind:this={content}/>
+        <TransactionFailed bind:this={content} />
       {/if}
     </div>
   </div>
