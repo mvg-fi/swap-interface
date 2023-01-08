@@ -61,4 +61,4 @@ export const provider = derived(store, ($store) => $store.provider);
 export const library = derived(store, ($store) => $store.library);
 export const chainId = derived(store, ($store) => $store.chainId);
 export const account = derived(store, ($store) => $store.account);
-export const signer = derived(store, ($store)  => $store.provider?.getSigner());
+// export const signer = derived(provider, ($provider)  => $provider?.getSigner());

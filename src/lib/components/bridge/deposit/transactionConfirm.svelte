@@ -2,17 +2,18 @@
 <script lang="ts">
   import clsx from "clsx";
   import { _ } from "svelte-i18n";
-  import { signer } from "$lib/stores/ethers";
-  import { getAddress } from "ethers/lib/utils";
+  import { chainId, provider } from "$lib/stores/ethers";
+  import { getAddress, parseEther } from "ethers/lib/utils";
   import { mode } from "$lib/stores/bridge/process";
   import Loading from "./viewAddress/loading.svelte";
-  import { formatDecimals } from "$lib/helpers/utils";
+  import { formatDecimals, toHex } from "$lib/helpers/utils";
   import { address, userKey } from "$lib/stores/user";
   import { payAmount, selectedFromAsset } from "$lib/stores/bridge/bridge";
   import {
     MixinApi,
     type DepositEntryResponse,
   } from "@mixin.dev/mixin-node-sdk";
+    import { ethers } from "ethers";
 
   let depositLoading = false;
 
@@ -35,10 +36,17 @@
     const parameters = {
       from: getAddress($address),
       to: depositEntries[0].destination,
-      value: 1,
-      
+      value: parseEther(String($payAmount)),
+      chainId: Number(toHex(String($chainId))),
     }
-    const tx = $signer?.sendTransaction(parameters);
+    const tx = new ethers.providers.Web3Provider($provider)?.getSigner().sendTransaction(parameters);
+    tx.then((v)=>{
+      console.log("tx:",tx)
+    }).catch((err)=>{
+      console.log(err.error.message)
+    }).finally(()=>{
+      depositLoading = false;
+    })
   };
 </script>
 
@@ -59,6 +67,7 @@
     <!-- 2.Transfer Info -->
     <span />
   </div>
+{/await}
 
   <div class="flex justify-center p-1 gap-2">
     <div class="cancel justify-center p-2">
@@ -84,4 +93,3 @@
       </button>
     </div>
   </div>
-{/await}
