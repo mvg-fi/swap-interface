@@ -30,7 +30,7 @@
   class:modal-open={$processDialog}
   class="modal modal-bottom sm:modal-middle text-base-content select-none"
 >
-  <div class="modal-box p-4 flex flex-col" bind:this={content}>
+  <div class="modal-box !max-w-[26rem] p-4 flex flex-col" bind:this={content}>
     <div class="base">
       {#if $mode === 0}
         <SelectMethods bind:this={content} />

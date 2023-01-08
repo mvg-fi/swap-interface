@@ -42,7 +42,12 @@
 		"switch_network_info1":"to continue",
 		"network": "Network",
 		"confirm": "Confirm",
-		"address": "Address"
+		"deposit_will": "Deposit will arrive after",
+		"confirmations": "confirmations",
+		"address": "Address",
+		"ive_transferred":"I've transferred",
+		"min_deposit": "Minium deposit",
+		"memo_required": "Memo is required, or you will lose your fund!"
 	},
 	"login": {
 		"title": "Login",

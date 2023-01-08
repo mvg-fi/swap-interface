@@ -16,7 +16,7 @@
 </script>
 
 <div class="view-address text-center p-2 pb-4">
-  <span class="text-xl font-bold">
+  <span class="text-base font-bold">
     {$_("bridge.deposit")}
     {formatDecimals(Number($payAmount), 8)}
     {$selectedFromAsset.symbol}
