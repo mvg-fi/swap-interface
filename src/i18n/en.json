@@ -47,7 +47,9 @@
 		"address": "Address",
 		"ive_transferred":"I've transferred",
 		"min_deposit": "Minium deposit",
-		"memo_required": "Memo is required, or you will lose your fund!"
+		"memo_required": "Memo is required, or you will lose your fund!",
+		"token": "Token",
+		"amount": "Amount"
 	},
 	"login": {
 		"title": "Login",

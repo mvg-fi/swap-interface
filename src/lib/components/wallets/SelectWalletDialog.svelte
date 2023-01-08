@@ -114,7 +114,7 @@
           <span class="font-normal text-xl text-base-content tracking-wide"> {$_('connect.waiting')} </span>
         </div>
         <div class="text-center mt-2">
-          <span class="font-normal text-sm opacity-20 text-base-content tracking-wide"> {$_('connect.pleaseConfirm')} </span>
+          <span class="font-normal text-sm opacity-30 text-base-content tracking-wide"> {$_('connect.pleaseConfirm')} </span>
         </div>
       </div>
     {:else}

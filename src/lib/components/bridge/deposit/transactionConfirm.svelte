@@ -1,19 +1,19 @@
 <!-- 3 -->
 <script lang="ts">
   import clsx from "clsx";
+  import { ethers } from "ethers";
   import { _ } from "svelte-i18n";
   import { chainId, provider } from "$lib/stores/ethers";
   import { getAddress, parseEther } from "ethers/lib/utils";
   import { mode } from "$lib/stores/bridge/process";
   import Loading from "./viewAddress/loading.svelte";
-  import { formatDecimals, toHex } from "$lib/helpers/utils";
+  import { formatDecimals, getChainByAsset, toHex } from "$lib/helpers/utils";
   import { address, userKey } from "$lib/stores/user";
   import { payAmount, selectedFromAsset } from "$lib/stores/bridge/bridge";
   import {
     MixinApi,
     type DepositEntryResponse,
   } from "@mixin.dev/mixin-node-sdk";
-    import { ethers } from "ethers";
 
   let depositLoading = false;
 
@@ -38,22 +38,29 @@
       to: depositEntries[0].destination,
       value: parseEther(String($payAmount)),
       chainId: Number(toHex(String($chainId))),
-    }
-    const tx = new ethers.providers.Web3Provider($provider)?.getSigner().sendTransaction(parameters);
-    tx.then((v)=>{
-      console.log("tx:",tx)
-    }).catch((err)=>{
-      console.log(err.error.message)
-    }).finally(()=>{
-      depositLoading = false;
+    };
+    const tx = new ethers.providers.Web3Provider($provider)
+      ?.getSigner()
+      .sendTransaction(parameters);
+    tx.then((v) => {
+      console.log("tx:", tx);
     })
+      .catch((err) => {
+        console.log(err.error.message);
+      })
+      .finally(() => {
+        depositLoading = false;
+      });
   };
+
+  $: chainAsset = getChainByAsset($selectedFromAsset.mixinChainId);
+  $: chainIcon = chainAsset?.logoURI;
+  $: chainName = chainAsset?.name;
 </script>
 
 <div class="view-address text-center p-2 pb-4">
   <span class="text-base font-bold">
     {$_("bridge.deposit")}
-    {formatDecimals(Number($payAmount), 8)}
     {$selectedFromAsset.symbol}
   </span>
 </div>
@@ -62,34 +69,53 @@
     <Loading />
   </div>
 {:then}
-  <div>
-    <!-- 1.Amount -->
-    <!-- 2.Transfer Info -->
-    <span />
+  <div class="flex flex-col p-3 my-2 mx-3 bg-base-200 rounded-2xl text-base-content">
+    <!-- 0.From Network -->
+    <!-- 1.Coin symbol -->
+    <!-- 2.Amount -->
+    <div class="from-network flex flex-col">
+      <span class="opacity-80 text-xs mr-3">{$_('bridge.network')}:</span>
+
+      <div class="flex flex-row items-center mt-1">
+        <img src={chainIcon} alt="" class="w-4 h-4" />
+        <span class="font-semibold ml-1"> {chainName} </span>
+      </div>
+    </div>
+    <div class="coin-info flex flex-row items-center">
+      <span class="opacity-80 text-xs mr-3">{$_('bridge.token')}:</span>
+
+      <img src={$selectedFromAsset.logoURI} alt="" class="w-4 h-4" />
+      <span class="ml-1"> {$selectedFromAsset.symbol} </span>
+    </div>
+    <div class="amount">
+      <span class="opacity-80 text-xs mr-3">{$_('bridge.amount')}:</span>
+
+      <span> {formatDecimals(Number($payAmount), 8)} </span>
+    </div>
   </div>
 {/await}
 
-  <div class="flex justify-center p-1 gap-2">
-    <div class="cancel justify-center p-2">
-      <button
-        on:click={() => mode.set(0)}
-        class="btn bg-base-200 border-2 border-base-200 hover:bg-base-300 hover:border-base-300 rounded-2xl text-opacity-80"
-      >
-        <span class="text-base-content"> {$_("bridge.back")} </span>
-      </button>
-    </div>
-
-    <div class="switch-network-btn justify-center p-2">
-      <button
-        on:click={() => deposit()}
-        class={clsx(
-          "btn bg-blue-700 border-base-200 hover:bg-blue-800 hover:border-base-300 rounded-2xl",
-          depositLoading && "loading btn-square"
-        )}
-      >
-        {#if !depositLoading}
-          <span class="text-base-100"> {$_("bridge.confirm")} </span>
-        {/if}
-      </button>
-    </div>
+<div class="flex justify-center p-1 gap-2">
+  <div class="cancel justify-center p-2">
+    <button
+      on:click={() => mode.set(0)}
+      class="btn bg-base-200 border-2 border-base-200 hover:bg-base-300 hover:border-base-300 rounded-2xl text-opacity-80"
+    >
+      <span class="text-base-content"> {$_("bridge.back")} </span>
+    </button>
   </div>
+
+  <div class="switch-network-btn justify-center p-2">
+    <button
+      on:click={() => deposit()}
+      class={clsx(
+        "btn bg-blue-700 border-base-200 hover:bg-blue-800 hover:border-base-300 rounded-2xl",
+        depositLoading && "loading btn-square"
+      )}
+    >
+      {#if !depositLoading}
+        <span class="text-base-100"> {$_("bridge.confirm")} </span>
+      {/if}
+    </button>
+  </div>
+</div>
