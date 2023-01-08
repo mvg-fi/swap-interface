@@ -2,7 +2,6 @@
 <script lang="ts">
   import clsx from "clsx";
   import { _ } from "svelte-i18n";
-
   import { userKey } from "$lib/stores/user";
   import { mode } from "$lib/stores/bridge/process";
   import { formatDecimals, getChainByAsset } from "$lib/helpers/utils";
@@ -25,6 +24,7 @@
   let confirmations: number;
   let depositEntries: DepositEntryResponse[];
   let asset = MixinClient.asset.fetch($selectedFromAsset.mixinAssetId);
+  console.log(asset)
   asset.then((v) => {
     depositEntries = v.deposit_entries;
     confirmations = v.confirmations;
@@ -42,7 +42,7 @@
   $: chainName = chainAsset?.name;
 </script>
 
-<div class="view-address text-center p-2 pb-4">
+<div class="view-address text-center pb-4 pt-0">
   <span class="text-base font-bold">
     {$_("bridge.deposit")}
     {formatDecimals(Number($payAmount), 8)}
@@ -108,7 +108,7 @@
       </div>
     {/if}
 
-    <div class="flex flex-row justify-center my-4 pl-2">
+    <div class="flex flex-row justify-center my-4">
       <div
         class="address-qr-code border-base-200 shadow border p-3 rounded-2xl relative"
       >
@@ -143,7 +143,7 @@
     </div>
 
     <div
-      class="deposit-info flex flex-col mt-2 mx-2 text-xs font-medium opacity-50"
+      class="deposit-info flex flex-col my-2 mx-2 text-xs font-medium opacity-50 tracking-wide"
     >
       {#if depositEntries[0].tag}
         <span>
@@ -166,7 +166,7 @@
   <div class="cancel justify-center flex px-2 py-2 mt-2">
     <button
       on:click={() => mode.set(0)}
-      class="btn bg-base-100 border-2 border-base-200 hover:bg-base-300 hover:border-base-300 rounded-2xl text-opacity-80"
+      class="btn bg-base-200 border-2 border-base-200 hover:bg-base-300 hover:border-base-300 rounded-2xl text-opacity-80"
     >
       <span class="text-base-content"> {$_("bridge.back")} </span>
     </button>

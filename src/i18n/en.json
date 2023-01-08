@@ -43,7 +43,7 @@
 		"network": "Network",
 		"confirm": "Confirm",
 		"deposit_will": "Deposit will arrive after",
-		"confirmations": "confirmations",
+		"confirmations": "block confirmations",
 		"address": "Address",
 		"ive_transferred":"I've transferred",
 		"min_deposit": "Minium deposit",

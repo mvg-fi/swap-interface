@@ -49,7 +49,7 @@
   <div class="cancel justify-center p-2">
     <button
       on:click={() => mode.set(0)}
-      class="btn bg-base-100 border-2 border-base-200 hover:bg-base-300 hover:border-base-300 rounded-2xl text-opacity-80"
+      class="btn bg-base-200 border-2 border-base-200 hover:bg-base-300 hover:border-base-300 rounded-2xl text-opacity-80"
     >
       <span class="text-base-content"> {$_("bridge.back")} </span>
     </button>
