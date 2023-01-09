@@ -7,7 +7,7 @@
   import { formatDecimals, getChainByAsset } from "$lib/helpers/utils";
   import {
     MixinApi,
-    type DepositEntryResponse,
+    type AssetResponse,
   } from "@mixin.dev/mixin-node-sdk";
   import { payAmount, selectedFromAsset } from "$lib/stores/bridge/bridge";
   import QrCode from "$lib/components/common/qrCode.svelte";
@@ -21,13 +21,10 @@
       session_id: $userKey.session_id,
     },
   });
-  let confirmations: number;
-  let depositEntries: DepositEntryResponse[];
+  let Asset: AssetResponse;
   let asset = MixinClient.asset.fetch($selectedFromAsset.mixinAssetId);
-  console.log(asset)
   asset.then((v) => {
-    depositEntries = v.deposit_entries;
-    confirmations = v.confirmations;
+    Asset = v
   });
 
   let confirmed = false;
@@ -74,12 +71,12 @@
       </div>
     </div>
 
-    {#if depositEntries[0].tag}
+    {#if Asset.deposit_entries[0].tag}
       <div class="flex justify-center my-4">
         <div
           class="memo-qr-code border-base-200 shadow border p-3 rounded-2xl relative"
         >
-          <QrCode value={depositEntries[0].tag} class="" size={130} />
+          <QrCode value={Asset.deposit_entries[0].tag} class="" size={130} />
           <img
             alt=""
             src={chainIcon}
@@ -97,12 +94,12 @@
             class="flex flex-row items-center text-sm font-semibold select-text mt-1"
           >
             <span class="whitespace-normal" style="overflow-wrap: break-word;">
-              {depositEntries[0].tag}
+              {Asset.deposit_entries[0].tag}
             </span>
           </div>
         </div>
         <Copy
-          copyText={depositEntries[0].tag}
+          copyText={Asset.deposit_entries[0].tag}
           class="flex px-4 justify-center items-center"
         />
       </div>
@@ -112,7 +109,7 @@
       <div
         class="address-qr-code border-base-200 shadow border p-3 rounded-2xl relative"
       >
-        <QrCode value={depositEntries[0].destination} class="" size={130} />
+        <QrCode value={Asset.deposit_entries[0].destination} class="" size={130} />
         <!-- Show Chain Asset logoURI -->
         <img
           alt=""
@@ -132,12 +129,12 @@
           class="flex flex-row items-center text-sm font-semibold select-text mt-1"
         >
           <span class="break-all">
-            {depositEntries[0].destination}
+            {Asset.deposit_entries[0].destination}
           </span>
         </div>
       </div>
       <Copy
-        copyText={depositEntries[0].destination}
+        copyText={Asset.deposit_entries[0].destination}
         class="flex px-4 justify-center items-center"
       />
     </div>
@@ -145,14 +142,14 @@
     <div
       class="deposit-info flex flex-col my-2 mx-2 text-xs font-medium opacity-50 tracking-wide"
     >
-      {#if depositEntries[0].tag}
+      {#if Asset.deposit_entries[0].tag}
         <span>
           - {$_("bridge.memo_required")}
         </span>
       {/if}
       <span>
         - {$_("bridge.deposit_will")}
-        {confirmations}
+        { Asset.confirmations }
         {$_("bridge.confirmations")}
       </span>
       <span>

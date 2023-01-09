@@ -41,10 +41,10 @@
   {#if evmCompatible}
     <button
       on:click={()=>checkDeposit()}
-      class="card flex flex-row w-full items-center p-4 border-2 border-base-200 hover:bg-base-300 hover:border-base-300 gap-4"
+      class="card flex flex-row w-full items-center p-4 bg-base-200 border border-base-200 hover:bg-base-300 hover:border-base-300 gap-4"
     >
       <div
-        class="w-14 h-14 flex items-center justify-center rounded-full bg-base-200"
+        class="w-14 h-14 flex items-center justify-center rounded-full bg-base-100"
       >
         <div class="w-8 h-8">
           <img src={$providerLogo} alt="" />
@@ -62,10 +62,10 @@
   {/if}
   <button
     on:click={()=>mode.set(2)}
-    class="card flex flex-row w-full items-center p-4 border-2 border-base-200 hover:bg-base-300 hover:border-base-300 gap-4"
+    class="card flex flex-row w-full items-center p-4 bg-base-200 border border-base-200 hover:bg-base-300 hover:border-base-300 gap-4"
   >
     <div
-      class="w-14 h-14 flex items-center justify-center rounded-full bg-base-200"
+      class="w-14 h-14 flex items-center justify-center rounded-full bg-base-100"
     >
       <div class="w-8 h-8 [[data-theme=dark]_&]:invert">
         <Image src={qr} alt="" />

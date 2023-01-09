@@ -7,7 +7,7 @@
   import ViewAddress from "./viewAddress.svelte";
   import TransactionFailed from "./transactionFailed.svelte";
   import LoadingDeposit from "./loadingDeposit.svelte";
-    import TransactionConfirm from "./transactionConfirm.svelte";
+  import TransactionConfirm from "./transactionConfirm.svelte";
 
   let content: any;
   function onClickOutside(e: any) {

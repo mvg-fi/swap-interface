@@ -3,17 +3,14 @@
   import clsx from "clsx";
   import { ethers } from "ethers";
   import { _ } from "svelte-i18n";
-  import { chainId, provider } from "$lib/stores/ethers";
+  import { chainId, library } from "$lib/stores/ethers";
   import { getAddress, parseEther } from "ethers/lib/utils";
   import { mode } from "$lib/stores/bridge/process";
   import Loading from "./viewAddress/loading.svelte";
   import { formatDecimals, getChainByAsset, toHex } from "$lib/helpers/utils";
   import { address, userKey } from "$lib/stores/user";
   import { payAmount, selectedFromAsset } from "$lib/stores/bridge/bridge";
-  import {
-    MixinApi,
-    type DepositEntryResponse,
-  } from "@mixin.dev/mixin-node-sdk";
+  import { MixinApi, type AssetResponse } from "@mixin.dev/mixin-node-sdk";
 
   let depositLoading = false;
 
@@ -24,41 +21,59 @@
       session_id: $userKey.session_id,
     },
   });
-  let depositEntries: DepositEntryResponse[];
+  let Asset: AssetResponse;
   let asset = MixinClient.asset.fetch($selectedFromAsset.mixinAssetId);
   asset.then((v) => {
-    depositEntries = v.deposit_entries;
+    Asset = v;
   });
 
   const deposit = async () => {
+    if ($library == undefined) return;
     depositLoading = true;
 
-    const parameters = {
-      from: getAddress($address),
-      to: depositEntries[0].destination,
-      value: parseEther(String($payAmount)),
-      chainId: Number(toHex(String($chainId))),
-    };
-    const tx = new ethers.providers.Web3Provider($provider)
-      ?.getSigner()
-      .sendTransaction(parameters);
-    tx.then((v) => {
-      console.log("tx:", tx);
-    })
-      .catch((err) => {
-        console.log(err.error.message);
+    // Native currency
+    if ($selectedFromAsset.mixinChainId === $selectedFromAsset.mixinAssetId) {
+      const parameters = {
+        from: getAddress($address),
+        to: Asset.deposit_entries[0].destination,
+        value: parseEther(String($payAmount)),
+        chainId: Number(toHex(String($chainId))),
+      };
+      const tx = $library.getSigner().sendTransaction(parameters);
+      tx.then((v) => {
+        console.log("tx:", tx);
       })
-      .finally(() => {
-        depositLoading = false;
-      });
-  };
+        .catch((err) => {
+          console.log(err.message);
+        })
+        .finally(() => {
+          depositLoading = false;
+        });
+      return;
+    }
 
+    // ERC20
+    
+  };
   $: chainAsset = getChainByAsset($selectedFromAsset.mixinChainId);
   $: chainIcon = chainAsset?.logoURI;
   $: chainName = chainAsset?.name;
+  $: items = [
+    { title: $_("bridge.network"), icon: chainIcon, value: chainName },
+    {
+      title: $_("bridge.token"),
+      icon: $selectedFromAsset.logoURI,
+      value: $selectedFromAsset.symbol,
+    },
+    {
+      title: $_("bridge.amount"),
+      icon: null,
+      value: formatDecimals(Number($payAmount), 8),
+    },
+  ];
 </script>
 
-<div class="view-address text-center p-2 pb-4">
+<div class="view-address text-center p-2">
   <span class="text-base font-bold">
     {$_("bridge.deposit")}
     {$selectedFromAsset.symbol}
@@ -69,29 +84,21 @@
     <Loading />
   </div>
 {:then}
-  <div class="flex flex-col p-3 my-2 mx-3 bg-base-200 rounded-2xl text-base-content">
-    <!-- 0.From Network -->
-    <!-- 1.Coin symbol -->
-    <!-- 2.Amount -->
-    <div class="from-network flex flex-col">
-      <span class="opacity-80 text-xs mr-3">{$_('bridge.network')}:</span>
+  <div class="flex flex-col p-3 py-2 mx-1 text-base-content">
+    {#each items as item}
+      <div class="from-network flex flex-col my-2">
+        <span class="opacity-60 text-xs">{item.title}</span>
 
-      <div class="flex flex-row items-center mt-1">
-        <img src={chainIcon} alt="" class="w-4 h-4" />
-        <span class="font-semibold ml-1"> {chainName} </span>
+        <div class="flex flex-row !items-center mt-1">
+          {#if item.icon}
+            <img src={item.icon} alt="" class="w-5 h-5" />
+          {/if}
+          <span class={clsx("font-semibold", item.icon && "ml-2")}>
+            {item.value}
+          </span>
+        </div>
       </div>
-    </div>
-    <div class="coin-info flex flex-row items-center">
-      <span class="opacity-80 text-xs mr-3">{$_('bridge.token')}:</span>
-
-      <img src={$selectedFromAsset.logoURI} alt="" class="w-4 h-4" />
-      <span class="ml-1"> {$selectedFromAsset.symbol} </span>
-    </div>
-    <div class="amount">
-      <span class="opacity-80 text-xs mr-3">{$_('bridge.amount')}:</span>
-
-      <span> {formatDecimals(Number($payAmount), 8)} </span>
-    </div>
+    {/each}
   </div>
 {/await}
 
