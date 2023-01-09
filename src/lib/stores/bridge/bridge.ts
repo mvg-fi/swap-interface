@@ -1,8 +1,5 @@
-import { user } from '$lib/stores/user';
 import { get, writable } from 'svelte/store'
-import { derived } from '@square/svelte-store';
 import assets from "$lib/constants/tokenlist.json";
-import { dedupe } from '$lib/helpers/store/dedupe';
 import { DEFAULT_SLIPPAGE } from "$lib/helpers/constants";
 import { setAssetDialog } from '$lib/stores/bridge/selectAsset';
 

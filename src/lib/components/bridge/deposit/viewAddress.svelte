@@ -153,7 +153,7 @@
         {$_("bridge.confirmations")}
       </span>
       <span>
-        - {$_("bridge.min_deposit")}: 0.00000001 {$selectedFromAsset.symbol}
+        - {$_("bridge.min_deposit")}: 0.00000001<span class="ml-0.5">{$selectedFromAsset.symbol}</span>
       </span>
     </div>
   </div>

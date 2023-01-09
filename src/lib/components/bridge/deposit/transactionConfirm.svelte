@@ -1,14 +1,15 @@
 <!-- 3 -->
 <script lang="ts">
   import clsx from "clsx";
-  import { ethers } from "ethers";
   import { _ } from "svelte-i18n";
-  import { chainId, library } from "$lib/stores/ethers";
-  import { getAddress, parseEther } from "ethers/lib/utils";
+  import { Contract } from "ethers";
   import { mode } from "$lib/stores/bridge/process";
   import Loading from "./viewAddress/loading.svelte";
-  import { formatDecimals, getChainByAsset, toHex } from "$lib/helpers/utils";
   import { address, userKey } from "$lib/stores/user";
+  import ERC20ABI from "$lib/constants/abis/erc20.json";
+  import { chainId, library } from "$lib/stores/ethers";
+  import { getAddress, parseEther, parseUnits } from "ethers/lib/utils";
+  import { formatDecimals, getChainByAsset, toHex } from "$lib/helpers/utils";
   import { payAmount, selectedFromAsset } from "$lib/stores/bridge/bridge";
   import { MixinApi, type AssetResponse } from "@mixin.dev/mixin-node-sdk";
 
@@ -30,16 +31,18 @@
   const deposit = async () => {
     if ($library == undefined) return;
     depositLoading = true;
+    const signer = $library.getSigner();
 
     // Native currency
     if ($selectedFromAsset.mixinChainId === $selectedFromAsset.mixinAssetId) {
+      console.log('Native:',Asset.name, Asset.asset_key)
       const parameters = {
         from: getAddress($address),
         to: Asset.deposit_entries[0].destination,
         value: parseEther(String($payAmount)),
         chainId: Number(toHex(String($chainId))),
       };
-      const tx = $library.getSigner().sendTransaction(parameters);
+      const tx = signer.sendTransaction(parameters);
       tx.then((v) => {
         console.log("tx:", tx);
       })
@@ -49,11 +52,28 @@
         .finally(() => {
           depositLoading = false;
         });
-      return;
+    } else{
+    // ERC20
+      console.log('ERC20:',Asset.name, Asset.asset_key)
+      const c = new Contract(Asset.asset_key, ERC20ABI, $library);
+      const d = await c.decimals();
+      console.log("d:",d)
+      console.log('S:',String($payAmount))
+      // TODO: fix parse error
+      const v = parseUnits(String($payAmount), d);
+      console.log("v:",v)
+      const tx = c.connect(signer).transfer(Asset.deposit_entries[0].destination, v);
+      tx.then((v) => {
+        console.log("tx:", tx);
+      })
+        .catch((err) => {
+          console.log(err.message);
+        })
+        .finally(() => {
+          depositLoading = false;
+        });
     }
 
-    // ERC20
-    
   };
   $: chainAsset = getChainByAsset($selectedFromAsset.mixinChainId);
   $: chainIcon = chainAsset?.logoURI;
@@ -85,7 +105,7 @@
   </div>
 {:then}
   <div class="flex flex-col p-3 py-2 mx-1 text-base-content">
-    {#each items as item}
+    {#each items as item, i}
       <div class="from-network flex flex-col my-2">
         <span class="opacity-60 text-xs">{item.title}</span>
 
@@ -96,6 +116,11 @@
           <span class={clsx("font-semibold", item.icon && "ml-2")}>
             {item.value}
           </span>
+          {#if i == 2}
+            <span class="ml-1 font-semibold">
+              {$selectedFromAsset.symbol}
+            </span>
+          {/if}
         </div>
       </div>
     {/each}
