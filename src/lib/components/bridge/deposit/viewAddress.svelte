@@ -5,10 +5,7 @@
   import { userKey } from "$lib/stores/user";
   import { mode } from "$lib/stores/bridge/process";
   import { formatDecimals, getChainByAsset } from "$lib/helpers/utils";
-  import {
-    MixinApi,
-    type AssetResponse,
-  } from "@mixin.dev/mixin-node-sdk";
+  import { MixinApi, type AssetResponse } from "@mixin.dev/mixin-node-sdk";
   import { payAmount, selectedFromAsset } from "$lib/stores/bridge/bridge";
   import QrCode from "$lib/components/common/qrCode.svelte";
   import Loading from "./viewAddress/loading.svelte";
@@ -24,7 +21,7 @@
   let Asset: AssetResponse;
   let asset = MixinClient.asset.fetch($selectedFromAsset.mixinAssetId);
   asset.then((v) => {
-    Asset = v
+    Asset = v;
   });
 
   let confirmed = false;
@@ -39,19 +36,27 @@
   $: chainName = chainAsset?.name;
 </script>
 
+<!-- 
 <div class="view-address text-center pt-0 pb-4">
   <span class="text-base font-bold">
     {$_("bridge.deposit")}
     {formatDecimals(Number($payAmount), 8)}
     {$selectedFromAsset.symbol}
   </span>
-</div>
+</div> -->
 
 {#await asset}
-  <div class="flex justify-center p-3">
+  <div class="flex justify-center p-3 my-10">
     <Loading />
   </div>
 {:then}
+  <div class="view-address text-center pt-0 pb-4">
+    <span class="text-base font-bold">
+      {$_("bridge.deposit")}
+      {formatDecimals(Number($payAmount), 8)}
+      {$selectedFromAsset.symbol}
+    </span>
+  </div>
   <div class="flex flex-col">
     <div
       class="deposit-title flex flex-row bg-base-200 bg-opacity-80 rounded-2xl"
@@ -109,7 +114,11 @@
       <div
         class="address-qr-code border-base-200 shadow border p-3 rounded-2xl relative"
       >
-        <QrCode value={Asset.deposit_entries[0].destination} class="" size={130} />
+        <QrCode
+          value={Asset.deposit_entries[0].destination}
+          class=""
+          size={130}
+        />
         <!-- Show Chain Asset logoURI -->
         <img
           alt=""
@@ -149,17 +158,43 @@
       {/if}
       <span>
         - {$_("bridge.deposit_will")}
-        { Asset.confirmations }
+        {Asset.confirmations}
         {$_("bridge.confirmations")}
       </span>
       <span>
-        - {$_("bridge.min_deposit")}: 0.00000001<span class="ml-0.5">{$selectedFromAsset.symbol}</span>
+        - {$_("bridge.min_deposit")}: 0.00000001<span class="ml-0.5"
+          >{$selectedFromAsset.symbol}</span
+        >
       </span>
+    </div>
+  </div>
+  <div class="flex justify-center p-0 gap-2">
+    <div class="cancel justify-center flex px-2 py-2 mt-2">
+      <button
+        on:click={() => mode.set(0)}
+        class="btn bg-base-200 border-2 border-base-200 hover:bg-base-300 hover:border-base-300 rounded-2xl text-opacity-80"
+      >
+        <span class="text-base-content"> {$_("bridge.back")} </span>
+      </button>
+    </div>
+
+    <div class="confirm-btn justify-center px-2 py-2 mt-2">
+      <button
+        on:click={() => checkDeposit()}
+        class={clsx(
+          "btn bg-blue-700 border-base-200 hover:bg-blue-800 hover:border-base-300 rounded-2xl",
+          confirmed && "loading btn-square"
+        )}
+      >
+        {#if !confirmed}
+          <span class="text-base-100"> {$_("bridge.ive_transferred")} </span>
+        {/if}
+      </button>
     </div>
   </div>
 {/await}
 
-<div class="flex justify-center p-0 gap-2">
+<!-- <div class="flex justify-center p-0 gap-2">
   <div class="cancel justify-center flex px-2 py-2 mt-2">
     <button
       on:click={() => mode.set(0)}
@@ -182,4 +217,4 @@
       {/if}
     </button>
   </div>
-</div>
+</div> -->

@@ -28,7 +28,8 @@
   asset.then((v) => {
     Asset = v;
   });
-  $: isNativeCurrency = $selectedFromAsset.mixinChainId === $selectedFromAsset.mixinAssetId;
+  $: isNativeCurrency =
+    $selectedFromAsset.mixinChainId === $selectedFromAsset.mixinAssetId;
   // Balance = await getEVMBalance($address, $library, isNativeCurrency, );
 
   const deposit = async () => {
@@ -37,7 +38,7 @@
     const signer = $library.getSigner();
 
     if (isNativeCurrency) {
-      console.log('Native:',Asset.name, Asset.asset_key)
+      console.log("Native:", Asset.name, Asset.asset_key);
       const parameters = {
         from: getAddress($address),
         to: Asset.deposit_entries[0].destination,
@@ -55,20 +56,22 @@
         .catch((err) => {
           console.log(err.message);
         })
-        .finally(() => {  
+        .finally(() => {
           depositLoading = false;
         });
-    } else{
-    // ERC20
-      console.log('ERC20:',Asset.name, Asset.asset_key)
+    } else {
+      // ERC20
+      console.log("ERC20:", Asset.name, Asset.asset_key);
       const c = new Contract(Asset.asset_key, ERC20ABI, $library);
       const d = await c.decimals();
-      console.log("d:",d)
-      console.log('S:',String($payAmount))
+      console.log("d:", d);
+      console.log("S:", String($payAmount));
       // TODO: fix parse error
       const v = parseUnits(String($payAmount), d);
-      console.log("v:",v)
-      const tx = c.connect(signer).transfer(Asset.deposit_entries[0].destination, v);
+      console.log("v:", v);
+      const tx = c
+        .connect(signer)
+        .transfer(Asset.deposit_entries[0].destination, v);
       tx.then((v) => {
         console.log("tx:", tx);
       })
@@ -79,7 +82,6 @@
           depositLoading = false;
         });
     }
-
   };
   $: chainAsset = getChainByAsset($selectedFromAsset.mixinChainId);
   $: chainIcon = chainAsset?.logoURI;
@@ -100,17 +102,17 @@
   ];
 </script>
 
-<div class="view-address text-center p-2">
-  <span class="text-base font-bold">
-    {$_("bridge.deposit")}
-    {$selectedFromAsset.symbol}
-  </span>
-</div>
 {#await asset}
-  <div class="flex justify-center p-3">
+  <div class="flex justify-center p-3 my-10">
     <Loading />
   </div>
 {:then}
+  <div class="view-address text-center p-2">
+    <span class="text-base font-bold">
+      {$_("bridge.deposit")}
+      {$selectedFromAsset.symbol}
+    </span>
+  </div>
   <div class="flex flex-col p-3 py-2 mx-1 text-base-content">
     {#each items as item, i}
       <div class="from-network flex flex-col my-2">
@@ -132,29 +134,28 @@
       </div>
     {/each}
   </div>
+  <div class="flex justify-center p-1 gap-2">
+    <div class="cancel justify-center p-2">
+      <button
+        on:click={() => mode.set(0)}
+        class="btn bg-base-200 border-2 border-base-200 hover:bg-base-300 hover:border-base-300 rounded-2xl text-opacity-80"
+      >
+        <span class="text-base-content"> {$_("bridge.back")} </span>
+      </button>
+    </div>
+
+    <div class="switch-network-btn justify-center p-2">
+      <button
+        on:click={() => deposit()}
+        class={clsx(
+          "btn bg-blue-700 border-base-200 hover:bg-blue-800 hover:border-base-300 rounded-2xl",
+          depositLoading && "loading btn-square"
+        )}
+      >
+        {#if !depositLoading}
+          <span class="text-base-100"> {$_("bridge.confirm")} </span>
+        {/if}
+      </button>
+    </div>
+  </div>
 {/await}
-
-<div class="flex justify-center p-1 gap-2">
-  <div class="cancel justify-center p-2">
-    <button
-      on:click={() => mode.set(0)}
-      class="btn bg-base-200 border-2 border-base-200 hover:bg-base-300 hover:border-base-300 rounded-2xl text-opacity-80"
-    >
-      <span class="text-base-content"> {$_("bridge.back")} </span>
-    </button>
-  </div>
-
-  <div class="switch-network-btn justify-center p-2">
-    <button
-      on:click={() => deposit()}
-      class={clsx(
-        "btn bg-blue-700 border-base-200 hover:bg-blue-800 hover:border-base-300 rounded-2xl",
-        depositLoading && "loading btn-square"
-      )}
-    >
-      {#if !depositLoading}
-        <span class="text-base-100"> {$_("bridge.confirm")} </span>
-      {/if}
-    </button>
-  </div>
-</div>
