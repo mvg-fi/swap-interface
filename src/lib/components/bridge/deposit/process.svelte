@@ -42,8 +42,33 @@
         <TransactionConfirm bind:this={content} />
       {:else if $mode === 4}
         <LoadingDeposit bind:this={content} />
+      {:else if $mode === 5}
+        <!-- DepositFound/Success -->
+      {:else if $mode === 6}
+        <!-- SwitchToMVM -->
+      {:else if $mode === 7}
+        <!-- ConfirmBridging -->
+      {:else if $mode === 8}
+        <!-- BridgingState -->
+      {:else if $mode === 9}
+        <!-- BridgingState -->
+      {:else if $mode === 10}
+        <!-- BridgingSuccess -->
+      
+      {:else if $mode === 20}
+        <!-- WaitingForConfirmation -->
+      {:else if $mode === 21}
+        <!-- Confirmed -->
+      {:else if $mode === 22}
+        <!-- Rejected -->
+
       {:else if $mode === 100}
+        <!-- DepositNotFound -->
         <TransactionFailed bind:this={content} />
+      {:else if $mode === 101}
+        <TransactionFailed bind:this={content} />
+      {:else if $mode === 102}
+        <!-- BridgingFailed -->
       {/if}
     </div>
   </div>
