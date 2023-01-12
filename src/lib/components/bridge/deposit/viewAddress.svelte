@@ -39,7 +39,7 @@
   $: chainName = chainAsset?.name;
 </script>
 
-<div class="view-address text-center pb-4 pt-0">
+<div class="view-address text-center pt-0 pb-4">
   <span class="text-base font-bold">
     {$_("bridge.deposit")}
     {formatDecimals(Number($payAmount), 8)}

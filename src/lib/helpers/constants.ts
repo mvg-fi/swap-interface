@@ -25,7 +25,7 @@ export const WALLET_CONNECT_KEY = import.meta.env.VITE_WALLET_CONNECT_KEY
 // URLs
 export const MAINNET_RPC_URL = `https://eth.llamarpc.com`
 export const MVM_RPC_URL = "https://geth.mvm.dev/";
-export const BSC_RPC_URL = "https://bscrpc.com";
+export const BSC_RPC_URL = "https://bsc-dataseed1.ninicoin.io";
 export const POLYGON_RPC_URL = "https://polygon.llamarpc.com";
 
 export const ETHER_SCAN_URL = 'https://etherscan.io/'

@@ -7,4 +7,4 @@ export interface NetworkParam {
 	iconUrls?: string[];
 }
 
-export type Network = 'mainnet' | 'mvm';
+export type Network = 'mainnet' | 'mvm' | 'bsc' | 'polygon';

@@ -37,6 +37,10 @@
       // item.mixinChainName?.toUpperCase().match($search.toUpperCase()) ||
       // item.mixinChainSymbol?.toUpperCase().match($search.toUpperCase())
     );
+  }).sort((a, b) => {
+    if (a.mixinAssetId === a.mixinChainId) return -1;
+    if (b.mixinAssetId === b.mixinChainId) return -1;
+    return 0;
   });
   $: highlighted = $inputFrom ? $selectedFromAsset : $selectedToAsset
   $: _highlighted = $inputFrom ? $selectedToAsset : $selectedFromAsset

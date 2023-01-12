@@ -12,6 +12,7 @@
   import { formatDecimals, getChainByAsset, toHex } from "$lib/helpers/utils";
   import { payAmount, selectedFromAsset } from "$lib/stores/bridge/bridge";
   import { MixinApi, type AssetResponse } from "@mixin.dev/mixin-node-sdk";
+  // import { getEVMBalance } from "$lib/helpers/web3";
 
   let depositLoading = false;
 
@@ -27,29 +28,34 @@
   asset.then((v) => {
     Asset = v;
   });
+  $: isNativeCurrency = $selectedFromAsset.mixinChainId === $selectedFromAsset.mixinAssetId;
+  // Balance = await getEVMBalance($address, $library, isNativeCurrency, );
 
   const deposit = async () => {
     if ($library == undefined) return;
     depositLoading = true;
     const signer = $library.getSigner();
 
-    // Native currency
-    if ($selectedFromAsset.mixinChainId === $selectedFromAsset.mixinAssetId) {
+    if (isNativeCurrency) {
       console.log('Native:',Asset.name, Asset.asset_key)
       const parameters = {
         from: getAddress($address),
         to: Asset.deposit_entries[0].destination,
         value: parseEther(String($payAmount)),
         chainId: Number(toHex(String($chainId))),
+        gasPrice: (await $library.getGasPrice()).mul(130).div(100),
       };
       const tx = signer.sendTransaction(parameters);
       tx.then((v) => {
-        console.log("tx:", tx);
+        console.log("tx:", v);
+        console.log(v.hash);
+        console.log(v.blockNumber);
+        // tx_hash, block_number, confirmations
       })
         .catch((err) => {
           console.log(err.message);
         })
-        .finally(() => {
+        .finally(() => {  
           depositLoading = false;
         });
     } else{
@@ -90,6 +96,7 @@
       icon: null,
       value: formatDecimals(Number($payAmount), 8),
     },
+    // { title: $_("bridge.balance"), icon: null, value: balance },
   ];
 </script>
 

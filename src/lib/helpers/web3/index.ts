@@ -17,6 +17,32 @@ export const mvmProvider = ethers.getDefaultProvider(MVM_RPC_URL);
 export const bscProvider = ethers.getDefaultProvider(BSC_RPC_URL);
 export const polygonProvider = ethers.getDefaultProvider(POLYGON_RPC_URL);
 
+const getProvider = (network: string) => {
+  switch(network) {
+    case 'mainnet': {
+      return mainnetProvider;
+      break;
+    }
+    case 'mvm': {
+      return mvmProvider;
+      break;
+    }
+    case 'bsc': {
+      return bscProvider;
+      break;
+    }
+    case 'polygon': {
+      return polygonProvider;
+      break;
+    }
+    case 'tbd': {
+      return mainnetProvider;
+      break;
+    }
+  }
+  return mainnetProvider;
+}
+
 export const getBalance = async ({
   account,
   network = 'mvm',
@@ -26,7 +52,20 @@ export const getBalance = async ({
   network: Network;
   unitName?: BigNumberish;
 }) => {
-  const provider = network === 'mainnet' ? mainnetProvider : mvmProvider;
+  const provider = getProvider(network);
+  const balance = await provider.getBalance(account);
+  return utils.formatUnits(balance, unitName);
+};
+
+export const getBalanceP = async ({
+  account,
+  provider,
+  unitName = 18
+}: {
+  account: string;
+  provider: ethers.providers.Web3Provider
+  unitName?: BigNumberish;
+}) => {
   const balance = await provider.getBalance(account);
   return utils.formatUnits(balance, unitName);
 };
@@ -40,12 +79,46 @@ export const getERC20Balance = async ({
   contractAddress: string;
   network: Network;
 }) => {
-  const provider = network === 'mainnet' ? mainnetProvider : mvmProvider;
+  const provider = getProvider(network);
   const contract = new ethers.Contract(contractAddress, ERC20_ABI, provider);
   const decimals = await contract.decimals();
   const balance = await contract.balanceOf(account);
   return utils.formatUnits(balance, decimals);
 };
+
+export const getERC20BalanceP = async ({
+  account,
+  contractAddress,
+  provider,
+}: {
+  account: string;
+  contractAddress: string;
+  provider: ethers.providers.Web3Provider
+}) => {
+  const contract = new ethers.Contract(contractAddress, ERC20_ABI, provider);
+  const decimals = await contract.decimals();
+  const balance = await contract.balanceOf(account);
+  return utils.formatUnits(balance, decimals);
+};
+
+export const getEVMBalance = async (
+  account: string,
+  provider: ethers.providers.Web3Provider,
+  native: boolean,
+  contractAddress?: string,
+  unitName: BigNumberish = 18,
+) => {
+  if (native) {
+    return formatDecimals(await getBalanceP({ account, provider, unitName }), 8);
+  }
+  if (contractAddress) return await getERC20BalanceP({
+    account,
+    contractAddress,
+    provider
+  });
+  
+  return 0;
+}
 
 export const getAssetBalance = async (
   assets: Asset[],

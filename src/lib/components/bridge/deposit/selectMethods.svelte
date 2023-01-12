@@ -29,7 +29,7 @@
   $: evmCompatible = isEVMAsset($selectedFromAsset.mixinChainId);
 </script>
 
-<div class="deposit-text text-center p-2 pb-4">
+<div class="deposit-text text-center p-2 pt-0">
   <span class="text-base font-bold">
     {$_("bridge.deposit")}
     {formatDecimals(Number($payAmount), 8)}

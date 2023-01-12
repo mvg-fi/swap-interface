@@ -47,6 +47,30 @@
     "stable": false,
     "symbol": "BTC"
    },
+   "0xE968257b324264858c0704fcd260D6673D7fE5cF": {
+    "chainId": 73927,
+    "contract": "0xE968257b324264858c0704fcd260D6673D7fE5cF",
+    "decimals": 8,
+    "evm": false,
+    "logoURI": "https://mixin-images.zeromesh.net/OTwqLjEwc6v0JutJc-1sYkh_juFOvVbFz26WvvwfLGdKq6ZtwAT-wKhX0k-5PsgOK_Pd9rCQjZfwMJmiNXCBzpHnjapBtkCqAVCTCg=s128",
+    "mixinAssetId": "6cfe566e-4aad-470b-8c9a-2fd35b49c68d",
+    "mixinChainId": "6cfe566e-4aad-470b-8c9a-2fd35b49c68d",
+    "name": "EOS",
+    "stable": false,
+    "symbol": "EOS"
+   },
+   "0xE3cb8a2b08A760d4FC04d9C1f609d1c82fB75f60": {
+    "chainId": 73927,
+    "contract": "0xE3cb8a2b08A760d4FC04d9C1f609d1c82fB75f60",
+    "decimals": 8,
+    "evm": false,
+    "logoURI": "https://mixin-images.zeromesh.net/eckqDQi50ZUCoye5mR7y6BvlbXX6CBzkP89BfGNNH6TMNuyXYcCUd7knuIDpV_0W7nT1q3Oo9ooVnMDGjl8-oiENuA5UVREheUu2=s128",
+    "mixinAssetId": "eea900a8-b327-488c-8d8d-1428702fe240",
+    "mixinChainId": "eea900a8-b327-488c-8d8d-1428702fe240",
+    "name": "MobileCoin",
+    "stable": false,
+    "symbol": "MOB"
+   },
   "0x27AD0c8e919bc6163Fdf564DE6Bbd9F2fe9cD1f0": {
    "chainId": 73927,
    "contract": "0x27AD0c8e919bc6163Fdf564DE6Bbd9F2fe9cD1f0",
@@ -83,30 +107,6 @@
     "stable": false,
     "symbol": "DOT"
    },
-   "0xE968257b324264858c0704fcd260D6673D7fE5cF": {
-    "chainId": 73927,
-    "contract": "0xE968257b324264858c0704fcd260D6673D7fE5cF",
-    "decimals": 8,
-    "evm": false,
-    "logoURI": "https://mixin-images.zeromesh.net/OTwqLjEwc6v0JutJc-1sYkh_juFOvVbFz26WvvwfLGdKq6ZtwAT-wKhX0k-5PsgOK_Pd9rCQjZfwMJmiNXCBzpHnjapBtkCqAVCTCg=s128",
-    "mixinAssetId": "6cfe566e-4aad-470b-8c9a-2fd35b49c68d",
-    "mixinChainId": "6cfe566e-4aad-470b-8c9a-2fd35b49c68d",
-    "name": "EOS",
-    "stable": false,
-    "symbol": "EOS"
-   },
-   "0xE3cb8a2b08A760d4FC04d9C1f609d1c82fB75f60": {
-    "chainId": 73927,
-    "contract": "0xE3cb8a2b08A760d4FC04d9C1f609d1c82fB75f60",
-    "decimals": 8,
-    "evm": false,
-    "logoURI": "https://mixin-images.zeromesh.net/eckqDQi50ZUCoye5mR7y6BvlbXX6CBzkP89BfGNNH6TMNuyXYcCUd7knuIDpV_0W7nT1q3Oo9ooVnMDGjl8-oiENuA5UVREheUu2=s128",
-    "mixinAssetId": "eea900a8-b327-488c-8d8d-1428702fe240",
-    "mixinChainId": "eea900a8-b327-488c-8d8d-1428702fe240",
-    "name": "MobileCoin",
-    "stable": false,
-    "symbol": "MOB"
-   },
   "0x4C29a2Ae22453CbFab915083eA9bCbFF424CeA4D": {
    "chainId": 73927,
    "contract": "0x4C29a2Ae22453CbFab915083eA9bCbFF424CeA4D",
@@ -130,18 +130,6 @@
    "name": "Arweave",
    "stable": false,
    "symbol": "AR"
-  },
-  "0x5bAB2E09E7c67A5803D08CF312A407B1d9f223f4": {
-   "chainId": 73927,
-   "contract": "0x5bAB2E09E7c67A5803D08CF312A407B1d9f223f4",
-   "decimals": 8,
-   "evm": false,
-   "logoURI": "https://mixin-images.zeromesh.net/HCjLu6VM0XA7ouRcZJGDTOzE7zoXaA8LgESw075VW5teZ27AGUgyGrc4jnzuK5LtgT5HJQDSNSOImnU3IcUsBLoF=s128",
-   "mixinAssetId": "17f78d7c-ed96-40ff-980c-5dc62fecbc85",
-   "mixinChainId": "17f78d7c-ed96-40ff-980c-5dc62fecbc85",
-   "name": "Binance Chain Native Token",
-   "stable": false,
-   "symbol": "BNB"
   },
   "0x5dD39A30f3DeB4E7eCeAAA88DcB1F283b02426F5": {
    "chainId": 73927,
@@ -214,5 +202,17 @@
    "name": "TRON",
    "stable": false,
    "symbol": "TRX"
-  }
+  },
+  "0x5bAB2E09E7c67A5803D08CF312A407B1d9f223f4": {
+    "chainId": 73927,
+    "contract": "0x5bAB2E09E7c67A5803D08CF312A407B1d9f223f4",
+    "decimals": 8,
+    "evm": false,
+    "logoURI": "https://mixin-images.zeromesh.net/HCjLu6VM0XA7ouRcZJGDTOzE7zoXaA8LgESw075VW5teZ27AGUgyGrc4jnzuK5LtgT5HJQDSNSOImnU3IcUsBLoF=s128",
+    "mixinAssetId": "17f78d7c-ed96-40ff-980c-5dc62fecbc85",
+    "mixinChainId": "17f78d7c-ed96-40ff-980c-5dc62fecbc85",
+    "name": "Binance Chain Native Token",
+    "stable": false,
+    "symbol": "BNB"
+   }
  }

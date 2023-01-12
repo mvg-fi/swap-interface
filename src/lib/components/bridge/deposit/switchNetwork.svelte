@@ -2,7 +2,7 @@
 <script lang="ts">
   import clsx from "clsx";
   import { _ } from "svelte-i18n";
-  import { chainId, library, provider } from "$lib/stores/ethers";
+  import { library } from "$lib/stores/ethers";
   import { switchNetwork } from "$lib/helpers/web3";
   import { mode, supposedNetwork } from "$lib/stores/bridge/process";
   import warning from "$lib/images/warning-circle.svg";
