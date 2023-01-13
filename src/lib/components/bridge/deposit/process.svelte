@@ -1,12 +1,13 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
+  import { onDestroy } from "svelte";
   import { fade } from "svelte/transition";
   import SelectMethods from "./selectMethods.svelte";
   import { mode, processDialog } from "$lib/stores/bridge/process";
   import SwitchNetwork from "./switchNetwork.svelte";
   import ViewAddress from "./viewAddress.svelte";
   import TransactionFailed from "./transactionFailed.svelte";
-  import LoadingDeposit from "./loadingDeposit.svelte";
+  import DepositLoading from "./depositLoading.svelte";
   import TransactionConfirm from "./transactionConfirm.svelte";
 
   let content: any;
@@ -20,6 +21,7 @@
       processDialog.set(false);
     }
   }
+  onDestroy(()=>processDialog.set(false))
 </script>
 
 <svelte:window on:keydown={onKeyDown} />
@@ -32,6 +34,7 @@
 >
   <div class="modal-box !max-w-[26rem] p-4 flex flex-col" bind:this={content}>
     <div class="base">
+      <!-- Actions -->
       {#if $mode === 0}
         <SelectMethods bind:this={content} />
       {:else if $mode === 1}
@@ -41,20 +44,15 @@
       {:else if $mode === 3}
         <TransactionConfirm bind:this={content} />
       {:else if $mode === 4}
-        <LoadingDeposit bind:this={content} />
+        <DepositLoading bind:this={content} />
       {:else if $mode === 5}
-        <!-- DepositFound/Success -->
-      {:else if $mode === 6}
         <!-- SwitchToMVM -->
-      {:else if $mode === 7}
+      {:else if $mode === 6}
         <!-- ConfirmBridging -->
-      {:else if $mode === 8}
+      {:else if $mode === 7}
         <!-- BridgingState -->
-      {:else if $mode === 9}
-        <!-- BridgingState -->
-      {:else if $mode === 10}
-        <!-- BridgingSuccess -->
-      
+
+      <!-- Common -->
       {:else if $mode === 20}
         <!-- WaitingForConfirmation -->
       {:else if $mode === 21}
@@ -62,6 +60,7 @@
       {:else if $mode === 22}
         <!-- Rejected -->
 
+      <!-- Errors -->
       {:else if $mode === 100}
         <!-- DepositNotFound -->
         <TransactionFailed bind:this={content} />

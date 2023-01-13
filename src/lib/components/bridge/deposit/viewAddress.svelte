@@ -10,6 +10,7 @@
   import QrCode from "$lib/components/common/qrCode.svelte";
   import Loading from "./viewAddress/loading.svelte";
   import Copy from "./viewAddress/copy.svelte";
+  import { depositAsset } from "$lib/stores/bridge/deposit";
 
   const MixinClient = MixinApi({
     keystore: {
@@ -22,28 +23,18 @@
   let asset = MixinClient.asset.fetch($selectedFromAsset.mixinAssetId);
   asset.then((v) => {
     Asset = v;
+    depositAsset.set(v);
   });
 
   let confirmed = false;
   const checkDeposit = async () => {
-    confirmed = true;
-    console.log("confirmed");
-    // depositLoading = false;
+    mode.set(4);
   };
 
   $: chainAsset = getChainByAsset($selectedFromAsset.mixinChainId);
   $: chainIcon = chainAsset?.logoURI;
   $: chainName = chainAsset?.name;
 </script>
-
-<!-- 
-<div class="view-address text-center pt-0 pb-4">
-  <span class="text-base font-bold">
-    {$_("bridge.deposit")}
-    {formatDecimals(Number($payAmount), 8)}
-    {$selectedFromAsset.symbol}
-  </span>
-</div> -->
 
 {#await asset}
   <div class="flex justify-center p-3 my-10">
@@ -193,28 +184,3 @@
     </div>
   </div>
 {/await}
-
-<!-- <div class="flex justify-center p-0 gap-2">
-  <div class="cancel justify-center flex px-2 py-2 mt-2">
-    <button
-      on:click={() => mode.set(0)}
-      class="btn bg-base-200 border-2 border-base-200 hover:bg-base-300 hover:border-base-300 rounded-2xl text-opacity-80"
-    >
-      <span class="text-base-content"> {$_("bridge.back")} </span>
-    </button>
-  </div>
-
-  <div class="confirm-btn justify-center px-2 py-2 mt-2">
-    <button
-      on:click={() => checkDeposit()}
-      class={clsx(
-        "btn bg-blue-700 border-base-200 hover:bg-blue-800 hover:border-base-300 rounded-2xl",
-        confirmed && "loading btn-square"
-      )}
-    >
-      {#if !confirmed}
-        <span class="text-base-100"> {$_("bridge.ive_transferred")} </span>
-      {/if}
-    </button>
-  </div>
-</div> -->

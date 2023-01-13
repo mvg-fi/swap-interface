@@ -12,6 +12,7 @@
   import { formatDecimals, getChainByAsset, toHex } from "$lib/helpers/utils";
   import { payAmount, selectedFromAsset } from "$lib/stores/bridge/bridge";
   import { MixinApi, type AssetResponse } from "@mixin.dev/mixin-node-sdk";
+  import { depositAsset } from "$lib/stores/bridge/deposit";
   // import { getEVMBalance } from "$lib/helpers/web3";
 
   let depositLoading = false;
@@ -27,6 +28,7 @@
   let asset = MixinClient.asset.fetch($selectedFromAsset.mixinAssetId);
   asset.then((v) => {
     Asset = v;
+    depositAsset.set(v);
   });
   $: isNativeCurrency =
     $selectedFromAsset.mixinChainId === $selectedFromAsset.mixinAssetId;
@@ -107,7 +109,7 @@
     <Loading />
   </div>
 {:then}
-  <div class="view-address text-center p-2">
+  <div class="view-address text-center p-1">
     <span class="text-base font-bold">
       {$_("bridge.deposit")}
       {$selectedFromAsset.symbol}

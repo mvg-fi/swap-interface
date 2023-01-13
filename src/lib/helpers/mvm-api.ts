@@ -111,8 +111,6 @@ export const fetchAssets = async (user: User | undefined) => {
 	return finalList;
 };
 
-export const fetchExchangeRates = ExternalClient().exchangeRates;
-
 export const fetchMvmTokens = async (address: `0x${string}`) => {
 	const response = await fetch(
 		`https://scan.mvm.dev/api?module=account&action=tokenlist&address=${address}`
@@ -123,11 +121,5 @@ export const fetchMvmTokens = async (address: `0x${string}`) => {
 	return result;
 };
 
-// export const fetchTokenList = async () => {
-// 	const response = await fetch(
-// 		`https://raw.githubusercontent.com/zed-wong/mvm-tokenlist/main/pure-tokenlist.json`
-// 	)
-// 	const result = await response.json();
-// 	console.log("result:",result);
-// 	return result as TokenList[]
-// }
+// export const fetchExchangeRates = ExternalClient().exchangeRates;
+export const fetchPendingDeposit = ExternalClient().deposits;

@@ -40,7 +40,8 @@
 		"switch_network": "Switch network",
 		"switch_network_info0":"Please switch to the",
 		"switch_network_info1":"to continue",
-		"network": "Mainnet",
+		"network": "Network",
+		"mainnet": "Mainnet",
 		"confirm": "Confirm",
 		"deposit_will": "Deposit will arrive after",
 		"confirmations": "block confirmations",
@@ -50,7 +51,11 @@
 		"memo_required": "Memo is required, or you will lose your fund!",
 		"token": "Token",
 		"amount": "Amount",
-		"balance": "Balance"
+		"balance": "Balance",
+		"loading_deposit": "Loading deposit",
+		"loading_deposit_text": "Your deposit will be shown here soon",
+		"deposit_success": "Deposit success",
+		"ongoing_deposits":"Ongoing deposits"
 	},
 	"login": {
 		"title": "Login",

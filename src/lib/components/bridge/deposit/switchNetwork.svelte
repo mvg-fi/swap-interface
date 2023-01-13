@@ -39,7 +39,7 @@
     {$_("bridge.switch_network_info0")}
     <span class="font-semibold">
       {getChainByAsset($selectedFromAsset.mixinChainId)?.name}
-      {$_("bridge.network")}
+      {$_("bridge.mainnet")}
     </span>
     {$_("bridge.switch_network_info1")}
   </span>
