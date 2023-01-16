@@ -3,17 +3,17 @@
   import clsx from "clsx";
   import { _ } from "svelte-i18n";
   import { Contract } from "ethers";
+  import { get } from "svelte/store";
   import { mode } from "$lib/stores/bridge/process";
   import Loading from "./viewAddress/loading.svelte";
   import { address, userKey } from "$lib/stores/user";
   import ERC20ABI from "$lib/constants/abis/erc20.json";
   import { chainId, library } from "$lib/stores/ethers";
   import { getAddress, parseEther, parseUnits } from "ethers/lib/utils";
-  import { formatDecimals, getChainByAsset, toHex } from "$lib/helpers/utils";
-  import { payAmount, selectedFromAsset } from "$lib/stores/bridge/bridge";
+  import { getChainByAsset, toHex } from "$lib/helpers/utils";
+  import { selectedFromAsset, _payAmount } from "$lib/stores/bridge/bridge";
   import { MixinApi, type AssetResponse } from "@mixin.dev/mixin-node-sdk";
-  import { depositAsset } from "$lib/stores/bridge/deposit";
-  // import { getEVMBalance } from "$lib/helpers/web3";
+  import { depositAsset, errorLastMode, errorMessage } from "$lib/stores/bridge/deposit";
 
   let depositLoading = false;
 
@@ -38,13 +38,15 @@
     if ($library == undefined) return;
     depositLoading = true;
     const signer = $library.getSigner();
-
+    
+    errorLastMode.set(get(mode));
+    mode.set(20); // Waiting confirmation
     if (isNativeCurrency) {
       console.log("Native:", Asset.name, Asset.asset_key);
       const parameters = {
         from: getAddress($address),
         to: Asset.deposit_entries[0].destination,
-        value: parseEther(String($payAmount)),
+        value: parseEther($_payAmount.toFixed()),
         chainId: Number(toHex(String($chainId))),
         gasPrice: (await $library.getGasPrice()).mul(130).div(100),
       };
@@ -53,10 +55,14 @@
         console.log("tx:", v);
         console.log(v.hash);
         console.log(v.blockNumber);
+        mode.set(21);
         // tx_hash, block_number, confirmations
       })
         .catch((err) => {
-          console.log(err.message);
+          console.log('code:', err.code)
+          console.log('message:',err.message);
+          errorMessage.set(err.message);
+          mode.set(22);
         })
         .finally(() => {
           depositLoading = false;
@@ -67,18 +73,22 @@
       const c = new Contract(Asset.asset_key, ERC20ABI, $library);
       const d = await c.decimals();
       console.log("d:", d);
-      console.log("S:", String($payAmount));
+      console.log("S:", $_payAmount);
       // TODO: fix parse error
-      const v = parseUnits(String($payAmount), d);
+      const v = parseUnits($_payAmount.toFixed(), d);
       console.log("v:", v);
       const tx = c
         .connect(signer)
         .transfer(Asset.deposit_entries[0].destination, v);
       tx.then((v) => {
         console.log("tx:", tx);
+        mode.set(21);
       })
         .catch((err) => {
-          console.log(err.message);
+          console.log('code:', err.code)
+          console.log('message:',err.message);
+          errorMessage.set(err.message);
+          mode.set(22);
         })
         .finally(() => {
           depositLoading = false;
@@ -98,9 +108,8 @@
     {
       title: $_("bridge.amount"),
       icon: null,
-      value: formatDecimals(Number($payAmount), 8),
+      value: $_payAmount.toFixed(),
     },
-    // { title: $_("bridge.balance"), icon: null, value: balance },
   ];
 </script>
 

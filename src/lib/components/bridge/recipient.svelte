@@ -41,7 +41,7 @@
       class={clsx(
         "input bg-base-200 w-full outline-none input-md px-5 transition-none focus:outline-none",
         !haveMemo && "!rounded-l-3xl",
-        haveMemo && "!rounded-tl-3xl !rounded-b-none"
+        // haveMemo && "!rounded-tl-3xl !rounded-b-none"
       )}
       on:change={()=>validation()}
       placeholder={$_("bridge.enter_recipient_address")}
@@ -63,7 +63,7 @@
     <!-- Autofill -->
     {#if $connected && autofill && ($receiverAddr == null || $receiverAddr == "")}
       <button
-        class="btn bg-base-200 border-none px-1 hover:bg-base-200"
+        class="btn bg-base-200 border-none px-1 hover:bg-base-200 !rounded-r-3xl pr-4"
         on:click={() => receiverAddr.set($address)}
       >
         <div class="tooltip" data-tip={$_("bridge.autofill")}>
@@ -72,8 +72,8 @@
       </button>
     {:else if $connected && $receiverAddr != ""}
       <button
-        class="btn bg-base-200 border-none px-1 hover:bg-base-200"
-        on:click={() => receiverAddr.set(null)}
+        class="btn bg-base-200 border-none px-1 hover:bg-base-200 !rounded-r-3xl pr-4"
+        on:click={() => receiverAddr.set('')}
       >
         <div class="tooltip" data-tip={$_("bridge.delete")}>
           <img
@@ -86,7 +86,7 @@
     {/if}
 
     <!-- Drop down -->
-    <button
+    <!-- <button
       class={clsx(
         "btn bg-base-200 border-none btn-md pl-2 hover:bg-base-200",
         !haveMemo && "!rounded-r-3xl",
@@ -101,7 +101,7 @@
           class="w-4 [[data-theme=dark]_&]:invert"
         />
       </div>
-    </button>
+    </button> -->
   </div>
 
   {#if haveMemo}

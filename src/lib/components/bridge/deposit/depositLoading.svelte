@@ -1,7 +1,6 @@
 <!-- 4 -->
 <script lang="ts">
   import { _ } from "svelte-i18n";
-  import { onDestroy } from "svelte";
   import { mode } from "$lib/stores/bridge/process";
   import loadingHuge from "$lib/images/loading-huge.svg";
   import { depositAsset } from "$lib/stores/bridge/deposit";
@@ -54,7 +53,6 @@
       created_at: "2023-01-12T13:14:48.226106622Z",
     },
   ];
-  onDestroy(() => clearInterval(timer));
 </script>
 
 {#if !found && !succeed}

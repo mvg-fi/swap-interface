@@ -42,7 +42,9 @@
   $: network = from ? $assets.find((obj)=>obj.mixinAssetId==$selectedFromAsset.mixinChainId)?.name : $assets.find((obj)=>obj.mixinAssetId==$selectedToAsset.mixinChainId)?.name
   $: usd_store = from ? derived(balance, fetchFromUSD) : derived(balance, fetchToUSD);
   $: balance = from ? getCachedAssetBalance($selectedFromAsset.mixinAssetId) : getCachedAssetBalance($selectedToAsset.mixinAssetId)
-  $: usd_value = derived(usd_store, () => {return formatUSMoney((Number($usd_store) * Number(input_value)).toFixed(2)) || 0;})
+  $: usd_value = derived(usd_store, () => {
+    return formatUSMoney((Number($usd_store) * Number(input_value)).toFixed(2)) || 0;
+  })
 
   $: input_value = from ? $payAmount : $receiveAmount
   $: if (from) {payAmount.set(input_value)} else {receiveAmount.set(input_value)}
@@ -86,7 +88,7 @@
     {#if $connected}
       <div class="flex flex-row mx-1 mt-3 opacity-75 text-xs">
         <div class="flex-1 ml-1">
-          {#if $usd_store}
+          {#if $usd_store && $usd_value != 0}
             <span>{$usd_value}</span>
           {/if}
         </div>

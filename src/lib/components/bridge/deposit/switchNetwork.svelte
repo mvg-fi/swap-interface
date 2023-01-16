@@ -25,7 +25,7 @@
 </script>
 
 <div class="warning-icon flex items-center justify-center p-4">
-  <img src={warning} alt="" class="w-20" />
+  <svg class="w-24 fill-blue-500 stroke-base-100" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 7v6M12 17.01l.01-.011M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
 </div>
 
 <div class="switch-network text-center p-2">
@@ -46,7 +46,7 @@
 </div>
 
 <div class="flex justify-center p-1 gap-2">
-  <div class="cancel justify-center p-2">
+  <div class="back justify-center p-2">
     <button
       on:click={() => mode.set(0)}
       class="btn bg-base-200 border-2 border-base-200 hover:bg-base-300 hover:border-base-300 rounded-2xl text-opacity-80"

@@ -9,6 +9,8 @@
   import TransactionFailed from "./transactionFailed.svelte";
   import DepositLoading from "./depositLoading.svelte";
   import TransactionConfirm from "./transactionConfirm.svelte";
+    import WaitingConfirmation from "./waitingConfirmation.svelte";
+    import TransactionSuccess from "./transactionSuccess.svelte";
 
   let content: any;
   function onClickOutside(e: any) {
@@ -54,11 +56,11 @@
 
       <!-- Common -->
       {:else if $mode === 20}
-        <!-- WaitingForConfirmation -->
+        <WaitingConfirmation />
       {:else if $mode === 21}
-        <!-- Confirmed -->
+        <TransactionSuccess />
       {:else if $mode === 22}
-        <!-- Rejected -->
+        <TransactionFailed />
 
       <!-- Errors -->
       {:else if $mode === 100}

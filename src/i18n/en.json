@@ -36,6 +36,8 @@
 		"view_address": "View address",
 		"deposit": "Deposit",
 		"cancel": "Cancel",
+		"close": "Close",
+		"retry": "Retry",
 		"back": "Back",
 		"switch_network": "Switch network",
 		"switch_network_info0":"Please switch to the",
@@ -55,7 +57,11 @@
 		"loading_deposit": "Loading deposit",
 		"loading_deposit_text": "Your deposit will be shown here soon",
 		"deposit_success": "Deposit success",
-		"ongoing_deposits":"Ongoing deposits"
+		"ongoing_deposits":"Ongoing deposits",
+		"waiting_confirmation": "Waiting for confirmation",
+		"transaction_rejected": "Transaction rejected",
+		"transaction_success": "Transaction success",
+		"an_error_occurred": "An error occurred"
 	},
 	"login": {
 		"title": "Login",

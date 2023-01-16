@@ -1,5 +1,4 @@
 import type { Asset } from "$lib/types/asset"
-import type { Chain } from "$lib/types/chain";
 import type { PoolData } from "$lib/types/pool";
 import { getAddress } from "ethers/lib/utils";
 import evmMap from "$lib/constants/evmmap.json"
@@ -90,4 +89,12 @@ export const isEVMAsset = (assetID: string) => {
 export const getEVMChainId = (assetID: string) => {
 	if (!assetID) return
 	return evmMap[assetID] || null
+}
+
+export const catchPaymentError = (err: unknown) => {
+	const errorMap = {
+		"ACTION_REJECTED":"user rejected transaction",		// Native Currency rejected
+		"-32000": "invalid opcode: INVALID",							// ERC20 XIN,MANA (no balance)
+		"UNPREDICTABLE_GAS_LIMIT": "cannot estimate gas; transaction may fail or may require manual gas limit", // ERC20 pUSD (no balance)
+	}
 }

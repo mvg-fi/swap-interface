@@ -1,6 +1,5 @@
 <!-- 0 -->
 <script lang="ts">
-  import clsx from "clsx";
   import { _ } from "svelte-i18n";
   import qr from "$lib/images/qr.svg";
   import { chainId, provider } from "$lib/stores/ethers";
@@ -85,9 +84,8 @@
 <div class="cancel justify-center flex px-4 py-2">
   <button
     on:click={() => processDialog.set(false)}
-    class="btn bg-base-100 border-2 border-base-200 hover:bg-base-300 hover:border-base-300 rounded-2xl text-opacity-80"
+    class="btn bg-base-200 border-2 border-base-200 hover:bg-base-300 hover:border-base-300 rounded-2xl text-opacity-80"
   >
-  <!-- bg-base-200 -->
     <span class="text-base-content"> {$_("bridge.cancel")} </span>
   </button>
 </div>
