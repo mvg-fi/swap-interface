@@ -34,6 +34,8 @@
 		"invalid_address": "Invalid Address",
 		"pay_with": "Pay with",
 		"view_address": "View address",
+		"pay_with_info": "Pay with the wallet connected",
+		"view_address_info": "Pay by make a transfer to the address",
 		"deposit": "Deposit",
 		"cancel": "Cancel",
 		"close": "Close",

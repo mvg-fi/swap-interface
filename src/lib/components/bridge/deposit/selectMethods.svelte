@@ -36,7 +36,7 @@
   </span>
 </div>
 
-<div class="payment-methods py-3 px-2 flex flex-col gap-2">
+<div class="payment-methods py-3 px-2 flex flex-col gap-3">
   {#if evmCompatible}
     <button
       on:click={()=>checkDeposit()}
