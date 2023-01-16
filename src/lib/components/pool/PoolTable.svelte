@@ -13,7 +13,7 @@
   //   clearTimeout(timeout);
   //   timeout = setTimeout(function () {}, 1000);
   // };
-  $: visiablePools =
+  $: visiblePools =
     $search == ""
       ? Object.values(pools)
       : Object.values(pools).filter((pool) => {
@@ -41,7 +41,7 @@
   ];
   let selectedField = keys[0];
   let asc = true;
-  $: sortedPools = sortPools(selectedField, visiablePools, asc);
+  $: sortedPools = sortPools(selectedField, visiblePools, asc);
 </script>
 
 <div>

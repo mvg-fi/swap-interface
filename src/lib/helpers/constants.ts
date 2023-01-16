@@ -2,7 +2,7 @@ import type { NetworkParam } from '../types/network';
 import { toHex } from '$lib/helpers/utils';
 
 // Infos
-export const APP_NAME = 'MVG Swap'
+export const APP_NAME = 'MVG Finance'
 export const NATIVE_TOKEN_SYMBOL = 'ETH'
 
 // Icons

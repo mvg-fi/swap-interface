@@ -4,13 +4,15 @@
   import { _ } from "svelte-i18n";
   import { userKey } from "$lib/stores/user";
   import { mode } from "$lib/stores/bridge/process";
+  import { depositAsset } from "$lib/stores/bridge/deposit";
   import { formatDecimals, getChainByAsset } from "$lib/helpers/utils";
   import { MixinApi, type AssetResponse } from "@mixin.dev/mixin-node-sdk";
   import { payAmount, selectedFromAsset } from "$lib/stores/bridge/bridge";
+  
   import QrCode from "$lib/components/common/qrCode.svelte";
-  import Loading from "./viewAddress/loading.svelte";
-  import Copy from "./viewAddress/copy.svelte";
-  import { depositAsset } from "$lib/stores/bridge/deposit";
+  import Copy from "$lib/components/bridge/deposit/viewAddress/copy.svelte";
+  import Error from "$lib/components/bridge/deposit/viewAddress/error.svelte";
+  import Loading from "$lib/components/bridge/deposit/viewAddress/loading.svelte";
 
   const MixinClient = MixinApi({
     keystore: {
@@ -183,4 +185,6 @@
       </button>
     </div>
   </div>
+{:catch error}
+  <Error {error}/>
 {/await}
