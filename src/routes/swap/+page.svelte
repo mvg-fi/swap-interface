@@ -8,6 +8,6 @@
   <meta name="description" content="" />
 </svelte:head>
 
-<div class="flex justify-center pt-16">
+<div class="flex justify-center pt-12">
   <SwapCard />
 </div>

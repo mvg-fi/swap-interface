@@ -6,9 +6,9 @@ import BigNumber from 'bignumber.js';
 
 export let selectedFromAsset = writable(Object.values(assets).find((obj) => { return obj.symbol === 'ETH' }))
 export let selectedToAsset = writable(Object.values(assets).find((obj) => { return obj.symbol === 'BTC' }))
-export let payAmount: Writable<string> = writable()
-export let _payAmount = derived(payAmount, ($payAmount) => {return BigNumber($payAmount)})
-export let receiveAmount: Writable<string> = writable()
+export let payAmount: Writable<string | null> = writable(null)
+export let _payAmount = derived(payAmount, ($payAmount) => {return BigNumber(String($payAmount))})
+export let receiveAmount: Writable<string | null> = writable(null)
 export let receiverAddr: Writable<string> = writable()
 export let receiverMemo: Writable<string> = writable()
 export let slippage = writable(DEFAULT_SLIPPAGE)

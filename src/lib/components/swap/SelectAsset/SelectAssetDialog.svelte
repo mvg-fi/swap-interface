@@ -1,4 +1,5 @@
 <script lang="ts">
+  import clsx from "clsx";
   import { _ } from "svelte-i18n";
   import Close from "$lib/images/close.svg";
   import { search } from "$lib/stores/swap/searchAsset";
@@ -6,7 +7,7 @@
   import SingleAsset from "$lib/components/swap/SelectAsset/SingleAsset.svelte";
   import SearchAsset from "$lib/components/swap/SelectAsset/SearchAsset.svelte";
   import { fade } from "svelte/transition";
-  import { setFromAsset } from "$lib/stores/swap/swap";
+  import { setFromAsset, selectedFromAsset, selectedToAsset } from "$lib/stores/swap/swap";
   import {
     selectAssetDialog,
     setAssetDialog,
@@ -62,8 +63,12 @@
                 setFromAsset(asset);
                 search.set("");
               }}
+            class={clsx(
+              $selectedFromAsset.mixinAssetId == asset.mixinAssetId && "bg-base-300 opacity-40 text-base-content btn-disabled current",
+              $selectedToAsset.mixinAssetId == asset.mixinAssetId && "bg-base-300 opacity-40 text-base-content btn-disabled")
+            }
             >
-              <SingleAsset {asset} />
+              <SingleAsset {asset} selected={$selectedFromAsset.mixinAssetId == asset.mixinAssetId}/>
             </li>
           {/each}
         </ul>

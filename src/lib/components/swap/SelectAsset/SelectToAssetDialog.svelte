@@ -1,4 +1,5 @@
 <script lang="ts">
+  import clsx from "clsx";
   import { _ } from "svelte-i18n";
   import Close from "$lib/images/close.svg";
   import { search } from "$lib/stores/swap/searchAsset";
@@ -6,7 +7,7 @@
   import SingleAsset from "$lib/components/swap/SelectAsset/SingleAsset.svelte";
   import SearchAsset from "$lib/components/swap/SelectAsset/SearchAsset.svelte";
   import { fade } from "svelte/transition";
-  import { setToAsset } from "$lib/stores/swap/swap";
+  import { selectedFromAsset, selectedToAsset, setToAsset } from "$lib/stores/swap/swap";
   import {
     selectToAssetDialog,
     setToAssetDialog,
@@ -15,8 +16,8 @@
 
   $: filteredItems = $assets.filter((item) => {
     return (
-      item.symbol.toLowerCase().match($search) ||
-      item.name.toLowerCase().match($search)
+      item.symbol.toUpperCase().match($search.toUpperCase()) ||
+      item.name.toUpperCase().match($search.toUpperCase())
     );
   });
 
@@ -62,8 +63,12 @@
                 setToAsset(asset)
                 search.set("");
               }}
+              class={clsx(
+                $selectedToAsset.mixinAssetId == asset.mixinAssetId && "bg-base-300 opacity-40 text-base-content btn-disabled current",
+                $selectedFromAsset.mixinAssetId == asset.mixinAssetId && "bg-base-300 opacity-40 text-base-content btn-disabled"
+              )}
             >
-              <SingleAsset {asset} />
+              <SingleAsset {asset} selected={$selectedToAsset.mixinAssetId == asset.mixinAssetId} />
             </li>
           {/each}
         </ul>

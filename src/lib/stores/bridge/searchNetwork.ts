@@ -1,4 +1,5 @@
-import { writable } from "svelte/store";
+import type { Asset } from "$lib/types/asset";
+import { writable, type Writable } from "svelte/store";
 
 export let search = writable('')
-export let selectedNetwork = writable(null)
+export let selectedNetwork: Writable<Asset> = writable()

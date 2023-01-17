@@ -39,7 +39,7 @@
     <input
       bind:value={$receiverAddr}
       class={clsx(
-        "input bg-base-200 w-full outline-none input-md px-5 transition-none focus:outline-none",
+        "input bg-base-200 w-full outline-none input-md pl-5 transition-none focus:outline-none",
         !haveMemo && "!rounded-l-3xl",
         // haveMemo && "!rounded-tl-3xl !rounded-b-none"
       )}
@@ -63,7 +63,7 @@
     <!-- Autofill -->
     {#if $connected && autofill && ($receiverAddr == null || $receiverAddr == "")}
       <button
-        class="btn bg-base-200 border-none px-1 hover:bg-base-200 !rounded-r-3xl pr-4"
+        class="btn bg-base-200 border-none px-1 hover:bg-base-200 !rounded-r-3xl pr-5"
         on:click={() => receiverAddr.set($address)}
       >
         <div class="tooltip" data-tip={$_("bridge.autofill")}>
@@ -72,7 +72,7 @@
       </button>
     {:else if $connected && $receiverAddr != ""}
       <button
-        class="btn bg-base-200 border-none px-1 hover:bg-base-200 !rounded-r-3xl pr-4"
+        class="btn bg-base-200 border-none px-1 hover:bg-base-200 !rounded-r-3xl pr-5"
         on:click={() => receiverAddr.set('')}
       >
         <div class="tooltip" data-tip={$_("bridge.delete")}>

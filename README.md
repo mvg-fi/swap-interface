@@ -1,3 +1,3 @@
-# Unknown-interface
+# MVG Finance Interface
 
-AMM implementation
+An ultimate bridge for the blockchain world. Which helps MVM to connect all chains.

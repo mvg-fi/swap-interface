@@ -21,6 +21,7 @@
   import { assets } from "$lib/stores/asset";
   import NetworkSelector from "./selector/networkSelector.svelte";
   import { selectedNetwork } from "$lib/stores/bridge/searchNetwork";
+    import { MixinAssetID } from "@mixin.dev/mixin-node-sdk";
 
   $: initFiltered = $assets.filter((item) => {
     if ($selectedNetwork != null) {
@@ -108,11 +109,11 @@
                 search.set("");
               }}
               class={clsx(
-                highlighted.mixinAssetId == asset.mixinAssetId && "bg-base-300 opacity-40 text-base-content btn-disabled current",
+                highlighted.mixinAssetId == asset.mixinAssetId && "bg-base-300 opacity-40 text-base-content btn-disabled",
                 _highlighted.mixinAssetId == asset.mixinAssetId && "bg-base-300 opacity-40 text-base-content btn-disabled")
               }
             >
-              <SingleAsset {asset} />
+              <SingleAsset {asset} selected={highlighted.mixinAssetId == asset.mixinAssetId}/>
             </li>
           {/each}
         </ul>
@@ -140,8 +141,5 @@
   }
   .modal-bottom {
     max-width: none;
-  }
-  .current {
-    box-shadow: inset 4px 0em skyblue;
   }
 </style>
