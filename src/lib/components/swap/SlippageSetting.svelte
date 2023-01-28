@@ -1,4 +1,5 @@
 <script lang="ts">
+  import clsx from "clsx";
   import { _ } from "svelte-i18n";
   import { onDestroy } from "svelte";
   import Close from "$lib/images/close.svg";
@@ -27,19 +28,16 @@
       <div class="my-5 btn-group grid grid-cols-4 [[data-theme=dark]_&]:invert">
         {#each ranges as r}
           <button
-            class="btn btn-sm border-none text-base-content bg-color font-medium text-xs {slipValue ===
-            r
-              ? 'bg-neutral text-neutral-content'
-              : ''}"
+            class={clsx("btn btn-sm border-none text-base-content bg-color font-medium text-xs", 
+              slipValue === r && '!bg-black/70 text-base-100'
+            )}
             on:click={() => setSlippage(r)}>{r}%</button
           >
         {/each}
         <button
-          class="btn btn-sm border-none text-base-content bg-color font-medium text-xs {!ranges.includes(
-            slipValue
-          )
-            ? 'bg-neutral text-neutral-content'
-            : ''}"
+          class={clsx("btn btn-sm border-none text-base-content bg-color font-medium text-xs", 
+            !ranges.includes(slipValue) && '!bg-black/70 text-base-100'
+          )}
           on:click={() => setSlippage(0)}>{$_("slippage.custom")}</button
         >
       </div>
