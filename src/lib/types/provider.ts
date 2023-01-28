@@ -2,8 +2,7 @@ import type { ethers } from 'ethers';
 
 export type ProviderKey = 'injected' | 'walletlink' | 'walletconnect' | 'venly' | 'mixinmessenger' | 'fennec';
 
-export type Provider = (ethers.providers.ExternalProvider | ethers.providers.JsonRpcFetchFunc) &
-	ethers.providers.Web3Provider;
+export type Provider = (ethers.providers.ExternalProvider | ethers.providers.JsonRpcFetchFunc) & ethers.providers.Web3Provider;
 
 export interface IProvider {
   key: ProviderKey;

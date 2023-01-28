@@ -3,7 +3,7 @@
   import ChevronDown from "$lib/images/chevron-down.svg";
   import IconAsset from "$lib/components/common/iconAsset.svelte";
   import SelectAssetDialog from "./SelectAsset/SelectAssetDialog.svelte";
-
+  
   import {
     selectedFromAsset,
     selectedToAsset,
@@ -17,14 +17,13 @@
   import { formatUSMoney } from "$lib/helpers/utils";
   import { maskOption } from "$lib/helpers/constants";
   import { getCachedAssetBalance } from "$lib/stores/asset";
-  import { fetchDyFromContract } from "$lib/helpers/web3/swap";
   import { setAssetDialog } from "$lib/stores/swap/selectAsset";
 
   let timeout: any = null;
   const delayInput = () => {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
-      fetchDyFromContract($selectedFromAsset, $selectedToAsset, $payAmount);
+      ($selectedFromAsset.contract, $selectedToAsset.contract, $payAmount);
     }, 1000);
   };
   const validateInput = (s: string): [boolean, string] => {

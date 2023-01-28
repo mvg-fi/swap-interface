@@ -8,6 +8,5 @@ export const load: LayoutServerLoad = async ({ locals, cookies }) => {
 		cookies.delete(USER_KEY);
 		cookies.delete(PROVIDER_KEY);
 	}
-
 	return { assets: await fetchAssets(user) };
 };

@@ -14,8 +14,7 @@ export const shortenAddress = (addr: string, start: number, end: number) => {
 }
 
 export const findAssetFromTokenList = (tokenList: Asset[], tokenAddress: string): Asset | undefined => {
-	tokenAddress = getAddress(tokenAddress)
-	return tokenList.find((obj) => { return obj.contract === tokenAddress })
+	return tokenList.find((obj) => { return obj.contract === getAddress(tokenAddress) })
 }
 
 export const findAssetsFromTokenList = (tokenList: Asset[], tokenAddresses: string[]): (Asset | undefined)[] => {
@@ -44,6 +43,7 @@ export const getToday = (sub: number = 0) => {
 }
 
 export const formatDecimals = (s: string | number, n: number) => {
+	if (Number(s) == undefined || Number(s) == null ) return 0
 	return Math.floor(Number(s) * 10 ** n) / 10 ** n
 }
 

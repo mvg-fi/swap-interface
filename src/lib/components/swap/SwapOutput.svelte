@@ -14,7 +14,6 @@
   import { formatUSMoney } from "$lib/helpers/utils";
   import { maskOption } from "$lib/helpers/constants";
   import { getCachedAssetBalance } from "$lib/stores/asset";
-  import { fetchDyFromContract } from "$lib/helpers/web3/swap";
 
   const fetchUSD = () => { return $assets.find((obj)=>obj.mixinAssetId==$selectedToAsset.mixinAssetId)?.priceUsd || 0};
   
@@ -27,7 +26,7 @@
   // function delayOutput() {
   //   clearTimeout(timeout);
   //   timeout = setTimeout(function () {
-  //     fetchDyFromContract($selectedFromAsset, $selectedToAsset, $receiveAmount);
+  //     console.log($selectedFromAsset, $selectedToAsset, $receiveAmount);
   //   }, 1000);
   // }
 </script>

@@ -18,7 +18,6 @@
   import { formatUSMoney } from "$lib/helpers/utils";
   import { maskOption } from "$lib/helpers/constants";
   import { getCachedAssetBalance } from "$lib/stores/asset";
-  import { fetchDyFromContract } from "$lib/helpers/web3/swap";
   import { setAssetDialog } from "$lib/stores/bridge/selectAsset";
 
   export let from: boolean = true;
@@ -27,7 +26,7 @@
   const delayInput = () => {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
-      fetchDyFromContract($selectedFromAsset, $selectedToAsset, $payAmount);
+      console.log($selectedFromAsset, $selectedToAsset, $payAmount);
     }, 1000);
   };
   // TODO: validate input

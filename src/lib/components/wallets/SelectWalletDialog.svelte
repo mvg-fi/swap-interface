@@ -4,11 +4,11 @@
   import loadingHuge from "$lib/images/loading-huge.svg";
   import mixinMessenger from "$lib/images/logo/mixin.svg";
   import walletConnect from "$lib/images/logo/walletconnect.svg";
-
   import { showToast } from "$lib/components/toast/container.svelte";
 
-  import clsx from 'clsx';
+  import clsx from "clsx";
   import { _ } from "svelte-i18n";
+  import curve from "@zed-wong/mvgswap";
   import type { IProvider } from "$lib/types/provider";
   import type { ProviderKey } from "$lib/types/provider";
   import { createWeb3Client } from "$lib/helpers/clients/index";
@@ -21,6 +21,7 @@
   } from "$lib/stores/selectWallet";
   import { providerKey as cacheProvider } from "$lib/stores/provider";
   import { updateAssets } from "$lib/stores/asset";
+    import { MVM_RPC_URL } from "$lib/helpers/constants";
 
   let content: any;
   let loading = false;
@@ -63,6 +64,8 @@
       const web3Client = await createWeb3Client(provider);
       const p = await web3Client.connect();
       await setProvider(p);
+      
+      curve.init("JsonRpc", { url: MVM_RPC_URL }, { chainId: 73927 });
 
       if (!$account) throw new Error("No account found");
       if (!$cacheProvider) throw new Error("No cached provider found");
@@ -74,26 +77,29 @@
       console.log(e);
       switch (true) {
         case String(e.message).includes("No Web3 Provider found"):
-          showToast("common", $_('error.NoProvider'));
+          showToast("common", $_("error.NoProvider"));
           console.log("No Web3 Provider found");
           break;
         case String(e.message).includes("User closed modal"):
-          showToast("common", $_('error.userClosedModal'));
+          showToast("common", $_("error.userClosedModal"));
           console.log("User closed modal");
           break;
         case String(e.message).includes("User Rejected"):
-          showToast("common", $_('error.userRejected'));
+          showToast("common", $_("error.userRejected"));
           console.log("User Rejected");
           break;
       }
     } finally {
-      setTimeout(()=>{
+      setTimeout(() => {
         loading = false;
-      }, 1000)
+      }, 1000);
     }
   };
 
-  $: modalbox = clsx(loading ? "h-[33%] !max-w-[26rem]" : "grid grid-cols-2 min-h-[25%] h-[45%]", "modal-box relative w-full p-2")
+  $: modalbox = clsx(
+    loading ? "h-[33%] !max-w-[26rem]" : "grid grid-cols-2 min-h-[25%] h-[45%]",
+    "modal-box relative w-full p-2"
+  );
 </script>
 
 <div
@@ -102,19 +108,26 @@
   on:keypress={onClickOutside}
   on:click={onClickOutside}
 >
-  <div
-    class={modalbox}
-    bind:this={content}
-  >
+  <div class={modalbox} bind:this={content}>
     {#if loading}
       <!-- TODO loading svg is too thin -->
       <div class="flex flex-col justify-center items-center w-full h-full">
-        <img src={loadingHuge} alt="" class="w-full h-40 [[data-theme=dark]_&]:invert"/>
+        <img
+          src={loadingHuge}
+          alt=""
+          class="w-full h-40 [[data-theme=dark]_&]:invert"
+        />
         <div class="text-center">
-          <span class="font-normal text-xl text-base-content tracking-wide"> {$_('connect.waiting')} </span>
+          <span class="font-normal text-xl text-base-content tracking-wide">
+            {$_("connect.waiting")}
+          </span>
         </div>
         <div class="text-center mt-2">
-          <span class="font-normal text-sm opacity-30 text-base-content tracking-wide"> {$_('connect.pleaseConfirm')} </span>
+          <span
+            class="font-normal text-sm opacity-30 text-base-content tracking-wide"
+          >
+            {$_("connect.pleaseConfirm")}
+          </span>
         </div>
       </div>
     {:else}

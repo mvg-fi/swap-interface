@@ -3,8 +3,8 @@
   import Switch from "$lib/images/switch.svg";
   import { formatDecimals } from "$lib/helpers/utils";
   import {
-    payAmount,
-    receiveAmount,
+    _payAmount,
+    _receiveAmount,
     selectedFromAsset,
     selectedToAsset,
   } from "$lib/stores/swap/swap";
@@ -13,42 +13,51 @@
   let rotate = false;
   let infos = {
     excepted_output: {
-      key: $_('technical.excepted_output'),
+      key: $_("technical.excepted_output"),
       value: 0,
-      info: $_('technical.excepted_output_info'),
+      info: $_("technical.excepted_output_info"),
     },
     min_receive: {
-      key: $_('technical.min_receive'),
+      key: $_("technical.min_receive"),
       value: 0,
-      info: $_('technical.min_receive_info'),
+      info: $_("technical.min_receive_info"),
     },
     trade_through: {
-      key: $_('technical.trade_through'),
-      value: '3pool',
-      info: $_('technical.trade_through_info'),
+      key: $_("technical.trade_through"),
+      value: "3pool",
+      info: $_("technical.trade_through_info"),
     },
     price_impact: {
-      key: $_('technical.price_impact'),
+      key: $_("technical.price_impact"),
       value: 0,
-      info: $_('technical.price_impact_info'),
+      info: $_("technical.price_impact_info"),
     },
   };
+
+  $: fromSymbol = rotate ? $selectedToAsset.symbol : $selectedFromAsset.symbol;
+  $: toSymbol = rotate ? $selectedFromAsset.symbol : $selectedToAsset.symbol;
+  $: exchangeRate = rotate
+    ? formatDecimals($_payAmount.div($_receiveAmount, 10).toNumber(), 6)
+    : formatDecimals($_receiveAmount.div($_payAmount, 10).toNumber(), 6);
+  // Decimal error
 </script>
 
 <div class="collapse collapse-arrow border-base-300 rounded-2xl">
   <input type="checkbox" bind:checked />
-  <div class="collapse-title text-sm font-medium flex flex-col justify-center items-start py-3">
+  <div
+    class="collapse-title text-sm font-medium flex flex-col justify-center items-start py-3"
+  >
     <!-- TODO (fetch and loading) -->
-    {#if $payAmount && $receiveAmount && $selectedFromAsset && $selectedToAsset}
-      <button on:click={()=>rotate=!rotate}>
+    {#if $_payAmount != null && $_receiveAmount != null && $selectedFromAsset && $selectedToAsset}
+      <button on:click={() => (rotate = !rotate)}>
         <div class="flex flex-row align-middle">
-          <div class="dropdown dropdown-top dropdown-hover flex items-center mr-2 z-20 [[data-theme=dark]_&]:invert">
-            <img src={Switch} alt="" class="w-4 opacity-40 shake"/>
+          <div
+            class="dropdown dropdown-top dropdown-hover flex items-center mr-2 z-20 [[data-theme=dark]_&]:invert"
+          >
+            <img src={Switch} alt="" class="w-4 opacity-40 shake" />
           </div>
           <span class="font-medium text-base-content z-20">
-            {`1 ${rotate ? $selectedToAsset.symbol : $selectedFromAsset.symbol}
-              = ${rotate ? formatDecimals($payAmount / $receiveAmount, 6) : formatDecimals($receiveAmount / $payAmount, 6)}
-                ${rotate ? $selectedFromAsset.symbol : $selectedToAsset.symbol}`}
+            {`1 ${fromSymbol} = ${exchangeRate} ${toSymbol}`}
           </span>
         </div>
       </button>
@@ -60,11 +69,17 @@
         <div>
           <div class="my-2 mr-1 flex justify-between">
             <!-- TODO: fix dropdown got cut, and top only -->
-            <div class="dropdown dropdown-hover" class:dropdown-bottom={i==0||i==1} class:dropdown-top={i==2||i==3}>
+            <div
+              class="dropdown dropdown-hover"
+              class:dropdown-bottom={i == 0 || i == 1}
+              class:dropdown-top={i == 2 || i == 3}
+            >
               <button tabindex="0">
                 <span class="select-none">{info.key}:</span>
               </button>
-              <div class="card dropdown-content bg-base-100 p-1 px-4 w-52 border-2 flex items-center text-start">
+              <div
+                class="card dropdown-content bg-base-100 p-1 px-4 w-52 border-2 flex items-center text-start"
+              >
                 <span>{info.info}</span>
               </div>
             </div>
@@ -80,10 +95,11 @@
   .collapse {
     visibility: visible !important;
   }
-  .collapse-title, :where(.collapse > input[type="checkbox"]) {
+  .collapse-title,
+  :where(.collapse > input[type="checkbox"]) {
     min-height: 2.5rem;
   }
-  .collapse-arrow .collapse-title::after{
+  .collapse-arrow .collapse-title::after {
     height: 0.4rem;
     width: 0.4rem;
     opacity: 0.5;

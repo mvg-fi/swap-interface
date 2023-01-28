@@ -8,6 +8,6 @@
   <meta name="description" content="" />
 </svelte:head>
 
-<div class="flex items-center justify-center">
+<div class="flex items-center justify-center pt-8">
   <Bridge />
 </div>
