@@ -2,7 +2,6 @@
   import { MVM_SCAN_URL } from "$lib/helpers/constants";
   import { shortenAddress } from "$lib/helpers/utils";
   import Link from "$lib/images/arrow-top-right.svg";
-  import { fade } from "svelte/transition";
   import { _ } from "svelte-i18n";
 
   const coins = ["eth", "xin", "BTC", "SBF"];
@@ -13,7 +12,7 @@
   var addr_link = `${MVM_SCAN_URL}address/${poolAddress}`;
 </script>
 
-<div in:fade> 
+<div> 
   <div class="flex flex-row my-2 text-sm px-6">
     <div class="flex items-center mt-0.5 flex-1">
       <span class="font-semibold capitalize">

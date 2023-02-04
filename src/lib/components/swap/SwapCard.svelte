@@ -31,6 +31,8 @@
   <div class="w-full my-3 mt-2">
     <SwapOutput />
   </div>
+  
+<!-- TODO: getBestRoutesAndOutput -->
 
   {#if $connected && $swapFetched}
     <div class="w-full">

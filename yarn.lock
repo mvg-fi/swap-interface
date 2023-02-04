@@ -1333,14 +1333,15 @@
   dependencies:
     "@walletconnect/window-getters" "^1.0.0"
 
-"@zed-wong/mvgswap@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.npmjs.org/@zed-wong/mvgswap/-/mvgswap-1.0.6.tgz#14ae23e7242208ce10032f3fd0427bc82f5a195d"
-  integrity sha512-kZ9KJXhvjBTV98bnrujDfIObjft2NBmR4/Ahn/qeTjPJWHDLi6ROZ2jQtYcUXgC+Fj+mknZBtnUZAxBWbWLing==
+"@zed-wong/mvgswap@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.npmjs.org/@zed-wong/mvgswap/-/mvgswap-1.0.8.tgz#13506076f7e93ba6cdd20cbab4fa9c3fb862422e"
+  integrity sha512-pxKVMAiz2A3FBCLisSG5Wth0r0bY3MwKAMBZTfFfAiXYIK8kCCCTMY+OvNCzG6uFvcK3yfOwdW7xv2Tp/CZ/KA==
   dependencies:
     "@ethersproject/networks" "^5.5.0"
     axios "^0.21.1"
     bignumber.js "^9.0.1"
+    dotenv "^16.0.3"
     ethcall "^4.8.9"
     ethers "^5.4.6"
     memoizee "^0.4.15"
@@ -1401,7 +1402,12 @@ acorn@^7.0.0:
   resolved "https://registry.npmmirror.com/acorn/-/acorn-7.4.1.tgz#feaed255973d2e77555b83dbc08851a6c63520fa"
   integrity sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==
 
-acorn@^8.4.1, acorn@^8.5.0:
+acorn@^8.4.1:
+  version "8.8.2"
+  resolved "https://registry.npmjs.org/acorn/-/acorn-8.8.2.tgz#1b2f25db02af965399b9776b0c2c391276d37c4a"
+  integrity sha512-xjIYgE8HBrkpd/sJqOGNspf8uHG+NOHGOw6a/Urj8taM2EXfdNAH2oFcPeIFfsv3+kz/mJrS5VuMqbNLjCa2vw==
+
+acorn@^8.5.0:
   version "8.8.1"
   resolved "https://registry.npmmirror.com/acorn/-/acorn-8.8.1.tgz#0a3f9cbecc4ec3bea6f0a80b66ae8dd2da250b73"
   integrity sha512-7zFpHzhnqYKrkYdUjF1HI1bzd0VygEGX8lFk4k5zVMqHEoES+P+7TKI+EvLO9WVMJ8eekdO0aDEK044xTXwPPA==
@@ -2356,6 +2362,11 @@ dot-case@^3.0.4:
   dependencies:
     no-case "^3.0.4"
     tslib "^2.0.3"
+
+dotenv@^16.0.3:
+  version "16.0.3"
+  resolved "https://registry.npmjs.org/dotenv/-/dotenv-16.0.3.tgz#115aec42bac5053db3c456db30cc243a5a836a07"
+  integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"

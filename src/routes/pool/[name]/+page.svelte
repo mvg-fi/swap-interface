@@ -1,7 +1,6 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import { page } from "$app/stores";
-  import { fade } from "svelte/transition";
   import { depositMode as deposit } from "$lib/stores/pool/mode";
   import Deposit from "../elements/Deposit.svelte";
   import PoolInfo from "../elements/PoolInfo.svelte";
@@ -17,10 +16,10 @@
 </svelte:head>
 
 <!-- Name -->
-<div class="w-full flex items-center justify-center pb-1  text-base-content" in:fade>
+<div class="w-full flex items-center justify-center pb-1 text-base-content">
   <Title name={poolName} />
 </div>
-<div class="mx-0 flex flex-row mt-3 text-base-content" in:fade>
+<div class="mx-0 flex flex-row mt-3 text-base-content">
   <div class="mr-12">
     <PoolInfo name={$page.params.name} />
   </div>
@@ -32,3 +31,5 @@
     {/if}
   </div>
 </div>
+
+<!-- TODO: getPoolId -->

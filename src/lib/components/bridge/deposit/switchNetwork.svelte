@@ -22,6 +22,7 @@
     }
     switchLoading = false;
   };
+  $: networkName = getChainByAsset($selectedFromAsset.mixinChainId)?.name
 </script>
 
 <div class="warning-icon flex items-center justify-center p-4">
@@ -38,7 +39,7 @@
   <span class="text-sm font-medium">
     {$_("bridge.switch_network_info0")}
     <span class="font-semibold">
-      {getChainByAsset($selectedFromAsset.mixinChainId)?.name}
+      {networkName}
       {$_("bridge.mainnet")}
     </span>
     {$_("bridge.switch_network_info1")}
