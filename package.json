@@ -42,7 +42,7 @@
     "@rollup/plugin-json": "^5.0.1",
     "@square/svelte-store": "^1.0.1",
     "@walletconnect/web3-provider": "^1.8.0",
-    "@zed-wong/mvgswap": "^1.0.8",
+    "@zed-wong/mvgswap": "^1.0.10",
     "bignumber.js": "^9.1.1",
     "daisyui": "^2.46.1",
     "ethers": "^5.7.2",

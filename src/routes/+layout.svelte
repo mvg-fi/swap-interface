@@ -7,20 +7,31 @@
   import Toast from "$lib/components/toast/container.svelte";
   import { setWalletDialog } from "$lib/stores/selectWallet";
   import { setSlippageDialog } from "$lib/stores/swap/slippage";
+  import SlippageSetting from "$lib/components/swap/SlippageSetting.svelte";
+  import SelectWalletDialog from "$lib/components/wallets/SelectWalletDialog.svelte";
   import {
     setAssetDialog,
     setToAssetDialog,
   } from "$lib/stores/swap/selectAsset";
-  import SelectWalletDialog from "$lib/components/wallets/SelectWalletDialog.svelte";
 
-  import { initi18n } from "../i18n/i18n";
   import "../app.postcss";
   import "./styles.css";
-  import SlippageSetting from "$lib/components/swap/SlippageSetting.svelte";
+  import { initi18n } from "../i18n/i18n";
+  import curve from "@zed-wong/mvgswap";
+  import { MVM_RPC_URL } from "$lib/helpers/constants";
 
   let a: Asset[] | undefined = $page.data.assets;
   a?.length && !$assets.length && assets.set(a);
   $: a?.length && !$assets.length && assets.set(a);
+
+  (async () => { 
+    await curve.init("JsonRpc", { url: MVM_RPC_URL }) 
+    // await curve.fetchFactoryPools()
+    // await curve.fetchCryptoFactoryPools()
+    // console.log('pools:', curve.getPoolList())
+    // console.log('factoryPools:', curve.getFactoryPoolList())
+  })();
+
 
   const setupI18n = initi18n();
   const escQuitDialogs = (e: any) => {

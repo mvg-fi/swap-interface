@@ -21,7 +21,7 @@
   } from "$lib/stores/selectWallet";
   import { providerKey as cacheProvider } from "$lib/stores/provider";
   import { updateAssets } from "$lib/stores/asset";
-    import { MVM_RPC_URL } from "$lib/helpers/constants";
+  import { MVM_RPC_URL } from "$lib/helpers/constants";
 
   let content: any;
   let loading = false;
@@ -64,8 +64,8 @@
       const web3Client = await createWeb3Client(provider);
       const p = await web3Client.connect();
       await setProvider(p);
-      
-      curve.init("JsonRpc", { url: MVM_RPC_URL }, { chainId: 73927 });
+
+      // await curve.init("JsonRpc", { url: MVM_RPC_URL });
 
       if (!$account) throw new Error("No account found");
       if (!$cacheProvider) throw new Error("No cached provider found");

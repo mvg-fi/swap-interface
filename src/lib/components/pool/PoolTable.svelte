@@ -49,26 +49,24 @@
     <table class="table w-full">
       {#if sortedPools.length != 0}
         <thead>
-          <tr>
+          <tr class="">
             {#each tableHeaders as th, i}
               <th
-                class="cursor-pointer"
+                class="cursor-pointer pb-2 first:pl-7 last:pr-7"
                 on:click={() => {
                   selectedField = keys[i];
                 }}
               >
-                <div class="flex flex-row items-center text-base-content">
+                <button class="flex items-center" on:click={()=>asc = !asc}>
                   <span>{th}</span>
                   {#if keys[i] === selectedField}
-                    <button class="w-5" on:click={()=>asc = !asc}>
-                      {#if asc}
-                        <img src={caretDown} alt="" class="[[data-theme=dark]_&]:invert"/>
-                      {:else}
-                        <img src={caretUp} alt="" class="[[data-theme=dark]_&]:invert"/>
-                      {/if}
-                    </button>
+                    {#if asc}
+                      <img src={caretDown} alt="" class="[[data-theme=dark]_&]:invert"/>
+                    {:else}
+                      <img src={caretUp} alt="" class="[[data-theme=dark]_&]:invert"/>
+                    {/if}
                   {/if}
-                </div>
+                </button>
               </th>
             {/each}
           </tr>

@@ -28,7 +28,7 @@
   }}
 >
   <!-- svelte-ignore a11y-invalid-attribute -->
-  <td>
+  <td class="first:pl-7 last:pr-7">
     <div class="flex items-center space-x-4">
       <button class="min-w-[2rem] inline-grid grid-cols-2">
         <PoolIcon {assets} />
