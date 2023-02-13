@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
 
-export let selectWalletDialog: any = writable(undefined)
+export let ConnectWalletDialog: any = writable(undefined)
 
 export const setWalletDialog = (open:any) => {
-  selectWalletDialog.set(open)
+  ConnectWalletDialog.set(open)
 }

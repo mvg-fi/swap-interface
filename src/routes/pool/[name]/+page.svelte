@@ -2,10 +2,10 @@
   import { _ } from "svelte-i18n";
   import { page } from "$app/stores";
   import { depositMode as deposit } from "$lib/stores/pool/mode";
-  import Deposit from "../elements/Deposit.svelte";
-  import PoolInfo from "../elements/PoolInfo.svelte";
-  import Withdrawal from "../elements/Withdrawal.svelte";
-  import Title from "../elements/poolInfo/title.svelte";
+  import Deposit from "$lib/components/pool/elements/Deposit.svelte";
+  import PoolInfo from "$lib/components/pool/elements/PoolInfo.svelte";
+  import Withdrawal from "$lib/components/pool/elements/Withdrawal.svelte";
+  import Title from "$lib/components/pool/elements/poolInfo/title.svelte";
 
   $: poolName = $page.params.name;
 </script>

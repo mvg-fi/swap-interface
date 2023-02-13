@@ -1,18 +1,18 @@
 export interface TokenList {
-	chainId: string,
+	chainId: number,
 	contract: string,
-	decimals: string,
+	decimals: number,
 	logoURI: string,
 	mixinAssetId: string,
 	mixinChainId: string,
 	name: string,
-	stable: string,
+	stable: boolean,
 	symbol: string,
 }
 
 export interface Asset extends TokenList {
-	balance?: string | Number | undefined,
-	priceUsd?: string | Number | undefined,
+	balance?: string | number | undefined,
+	priceUsd?: string | number | undefined,
 	mixinChainName?: string,
 	mixinChainSymbol?: string,
 	mixinChainIconUrl?: string,

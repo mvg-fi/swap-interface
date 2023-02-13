@@ -68,7 +68,7 @@
         on:click={() => {setAssetDialog(true); inputFrom.set(from)}}
       >
         <div class="avatar ml-2 w-8 rounded-full mz-box">
-          <IconAsset asset={selected_asset} assetClass="h-10 w-10"/>
+          <IconAsset asset={selected_asset}/>
         </div>
         <div class="flex flex-col itmes-center">
           <span class="text-sm font-semibold uppercase">

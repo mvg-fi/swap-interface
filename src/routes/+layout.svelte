@@ -8,7 +8,7 @@
   import { setWalletDialog } from "$lib/stores/selectWallet";
   import { setSlippageDialog } from "$lib/stores/swap/slippage";
   import SlippageSetting from "$lib/components/swap/SlippageSetting.svelte";
-  import SelectWalletDialog from "$lib/components/wallets/SelectWalletDialog.svelte";
+  import ConnectWalletDialog from "$lib/components/wallets/ConnectWalletDialog.svelte";
   import {
     setAssetDialog,
     setToAssetDialog,
@@ -25,7 +25,7 @@
   $: a?.length && !$assets.length && assets.set(a);
 
   (async () => { 
-    await curve.init("JsonRpc", { url: MVM_RPC_URL }) 
+    // await curve.init("JsonRpc", { url: MVM_RPC_URL }) 
     // await curve.fetchFactoryPools()
     // await curve.fetchCryptoFactoryPools()
     // console.log('pools:', curve.getPoolList())
@@ -59,7 +59,7 @@
     <footer />
   </div>
   <SlippageSetting />
-  <SelectWalletDialog />
+  <ConnectWalletDialog />
   <Toast />
 {/await}
 <svelte:window on:keydown={escQuitDialogs} />

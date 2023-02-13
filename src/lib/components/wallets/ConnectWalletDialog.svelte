@@ -17,7 +17,7 @@
   import { setConnected } from "$lib/stores/connect";
   import {
     setWalletDialog,
-    selectWalletDialog,
+    ConnectWalletDialog,
   } from "$lib/stores/selectWallet";
   import { providerKey as cacheProvider } from "$lib/stores/provider";
   import { updateAssets } from "$lib/stores/asset";
@@ -65,7 +65,9 @@
       const p = await web3Client.connect();
       await setProvider(p);
 
-      // await curve.init("JsonRpc", { url: MVM_RPC_URL });
+      await curve.init("Web3", { externalProvider: p });
+      await curve.fetchCryptoFactoryPools()
+      console.log(curve.getCryptoFactoryPoolList())
 
       if (!$account) throw new Error("No account found");
       if (!$cacheProvider) throw new Error("No cached provider found");
@@ -104,7 +106,7 @@
 
 <div
   class="modal modal-middle text-base-content"
-  class:modal-open={$selectWalletDialog}
+  class:modal-open={$ConnectWalletDialog}
   on:keypress={onClickOutside}
   on:click={onClickOutside}
 >

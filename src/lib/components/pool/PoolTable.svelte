@@ -45,7 +45,7 @@
 </script>
 
 <div>
-  <div class="overflow-x-auto w-full select-none">
+  <div class="overflow-x-auto w-full select-none text-base-content">
     <table class="table w-full">
       {#if sortedPools.length != 0}
         <thead>

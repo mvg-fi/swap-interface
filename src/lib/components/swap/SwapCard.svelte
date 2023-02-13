@@ -6,7 +6,7 @@
   import ArrowDown from "./ArrowDown.svelte";
   import SwapButton from "./SwapButton.svelte";
   import SwapInput from "./SwapInput.svelte";
-  import ConnectWallet from "./ConnectWallet.svelte";
+  import ConnectWalletBtn from "./ConnectWalletBtn.svelte";
   import ApproveButton from "./ApproveButton.svelte";
   import SwapOutput from "./SwapOutput.svelte";
   import SwapInfo from "./SwapInfo.svelte";
@@ -31,8 +31,6 @@
   <div class="w-full my-3 mt-2">
     <SwapOutput />
   </div>
-  
-<!-- TODO: getBestRoutesAndOutput -->
 
   {#if $connected && $swapFetched}
     <div class="w-full">
@@ -61,7 +59,7 @@
         <ApproveButton />
       {/if}
     {:else}
-      <ConnectWallet />
+      <ConnectWalletBtn />
     {/if}
   </div>
 </div>
