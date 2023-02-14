@@ -7,7 +7,7 @@
   <div class="px-4">
     <SearchPool />
   </div>
-  <div class="p-3 pb-0 px-0">
+  <div class="p-3 px-0">
     <PoolTable />
   </div>
 </div>

@@ -2,6 +2,7 @@ import { ethers } from 'ethers';
 import { derived, get } from '@square/svelte-store';
 import { deepWritable } from '$lib/helpers/store/deep';
 import { clearLastProvider } from './provider';
+import { setSwitchNeeded } from './connect';
 
 interface EtherStore {
 	library?: ethers.providers.Web3Provider;
@@ -26,6 +27,11 @@ export const setProvider = async (
 			...get(store),
 			chainId: chainId
 		});
+		if (chainId != Number(73927)) {
+			setSwitchNeeded(true)
+		} else {
+			setSwitchNeeded(false)
+		}
 	};
 
 	const handleDisconnect = () => {

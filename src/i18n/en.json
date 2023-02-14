@@ -13,7 +13,10 @@
 		"title": "Swap",
 		"connect_wallet": "Connect Wallet",
 		"loading": "Fetching best price...",
-		"not_available": "Swap is not available"
+		"not_available": "Swap is not available",
+		"switch": "Switch",
+		"network_incorrect": "Network incorrect!",
+		"please_switch_to_mvm": "Please switch your wallet's network to MVM to continue"
 	},
 	"pool": {
     "title": "Pool",

@@ -25,13 +25,14 @@
   $: a?.length && !$assets.length && assets.set(a);
 
   (async () => { 
-    // await curve.init("JsonRpc", { url: MVM_RPC_URL }) 
-    // await curve.fetchFactoryPools()
-    // await curve.fetchCryptoFactoryPools()
+    // await curve.init("JsonRpc", { url: MVM_RPC_URL }, { chainId: 73927 })
+    // curve.fetchFactoryPools()
+    // curve.fetchCryptoFactoryPools()
+
     // console.log('pools:', curve.getPoolList())
     // console.log('factoryPools:', curve.getFactoryPoolList())
+    // console.log('cryptoPools:', curve.getCryptoFactoryPoolList())
   })();
-
 
   const setupI18n = initi18n();
   const escQuitDialogs = (e: any) => {

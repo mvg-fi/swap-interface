@@ -12,9 +12,9 @@
   import type { IProvider } from "$lib/types/provider";
   import type { ProviderKey } from "$lib/types/provider";
   import { createWeb3Client } from "$lib/helpers/clients/index";
-  import { account, setProvider } from "$lib/stores/ethers";
+  import { account, chainId, setProvider } from "$lib/stores/ethers";
   import { registerAndSave } from "$lib/stores/user";
-  import { setConnected } from "$lib/stores/connect";
+  import { setConnected, setSwitchNeeded } from "$lib/stores/connect";
   import {
     setWalletDialog,
     ConnectWalletDialog,
@@ -64,17 +64,24 @@
       const web3Client = await createWeb3Client(provider);
       const p = await web3Client.connect();
       await setProvider(p);
-
-      await curve.init("Web3", { externalProvider: p });
-      await curve.fetchCryptoFactoryPools()
-      console.log(curve.getCryptoFactoryPoolList())
-
       if (!$account) throw new Error("No account found");
       if (!$cacheProvider) throw new Error("No cached provider found");
       await registerAndSave($account);
       await updateAssets();
       setWalletDialog(false);
       setConnected(true);
+
+      console.log('chainId:',$chainId)
+      if ($chainId === 73927) {
+        await curve.init("Web3", { externalProvider: p }, { chainId: 73927 });
+        await curve.fetchFactoryPools();
+        await curve.fetchCryptoFactoryPools();
+        console.log('Factory:',curve.getFactoryPoolList());
+        console.log('cryptoFactory:',curve.getCryptoFactoryPoolList());
+        return
+      }
+      setSwitchNeeded(true);
+      
     } catch (e: any) {
       console.log(e);
       switch (true) {
