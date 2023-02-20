@@ -2,7 +2,12 @@ import type { Asset } from "$lib/types/asset"
 import type { PoolData } from "$lib/types/pool";
 import { getAddress } from "ethers/lib/utils";
 import evmMap from "$lib/constants/evmmap.json"
+import Tokenlist from "$lib/constants/tokenlist.json"
 import Chainlist from "$lib/constants/chainlist.json"
+import BigNumber from "bignumber.js";
+import type { IRouteStep } from "@zed-wong/mvgswap/lib/interfaces";
+
+export const BN = BigNumber.clone({DECIMAL_PLACES:8})
 
 export const toHex = (num: string | number) => {
 	const val = Number(num);
@@ -40,6 +45,12 @@ export const getToday = (sub: number = 0) => {
 	const d = new Date()
 	d.setDate(d.getDate() - sub)
 	return d.toJSON().slice(0, 10).replace(/-/g, '/');
+}
+
+export const getRouteStr = (steps: IRouteStep[]) => {
+	steps.forEach((s, index, steps)=>{
+		findAssetFromTokenList(Tokenlist, s.inputCoinAddress)
+	})
 }
 
 export const formatDecimals = (s: string | number, n: number) => {

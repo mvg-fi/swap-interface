@@ -1,7 +1,4 @@
 <script lang="ts">
-  import { connected } from "$lib/stores/connect";
-  import { approved, swapFetched, swapNotAvail } from "$lib/stores/swap/swap";
-
   import Top from "./Top.svelte";
   import ArrowDown from "./ArrowDown.svelte";
   import SwapButton from "./SwapButton.svelte";
@@ -13,6 +10,15 @@
   import SlippageWarning from "./SlippageWarning.svelte";
   import SwapInfoLoading from "./SwapInfo/SwapInfoLoading.svelte";
   import SwapNotAvailable from "./SwapInfo/SwapNotAvailable.svelte";
+
+  import { connected } from "$lib/stores/connect";
+  import {
+    approved,
+    swapInfoLoading,
+    swapNotAvail,
+    _payAmount,
+    _receiveAmount,
+  } from "$lib/stores/swap/swap";
 </script>
 
 <div class="card bg-base-100 shadow-xl p-2 max-w-[480px]">
@@ -32,26 +38,23 @@
     <SwapOutput />
   </div>
 
-  {#if $connected && $swapFetched}
-    <div class="w-full">
-      <SwapInfo />
-    </div>
-  {:else if $connected && !$swapFetched}
+  {#if $swapInfoLoading}
     <div class="px-2">
       <SwapInfoLoading />
     </div>
-  {:else if $connected && $swapFetched && $swapNotAvail}
-    <div>
+  {:else if $swapNotAvail}
+    <div class="my-3">
       <SwapNotAvailable />
+    </div>
+  {:else}
+    <div class="w-full">
+      <SwapInfo />
     </div>
   {/if}
 
   <SlippageWarning />
 
-  <!-- TODO: FetchInfoLoading -->
-  <!-- TODO: SwapIsNotAvailable -->
-
-  <div class="w-full pt-3">
+  <div class="w-full pt-2">
     {#if $connected}
       {#if $approved}
         <SwapButton />

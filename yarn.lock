@@ -1107,9 +1107,9 @@
   integrity sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==
 
 "@types/node@^18.6.3":
-  version "18.13.0"
-  resolved "https://registry.npmjs.org/@types/node/-/node-18.13.0.tgz#0400d1e6ce87e9d3032c19eb6c58205b0d3f7850"
-  integrity sha512-gC3TazRzGoOnoKAhUx+Q0t8S9Tzs74z7m0ipwGpSqQrleP14hKxP4/JUeEQcD3W1/aIpnWl8pHowI7WokuZpXg==
+  version "18.14.0"
+  resolved "https://registry.npmjs.org/@types/node/-/node-18.14.0.tgz#94c47b9217bbac49d4a67a967fdcdeed89ebb7d0"
+  integrity sha512-5EWrvLmglK+imbCJY0+INViFWUHg1AHel1sq4ZVSfdcNqGy9Edv3UB9IIzzg+xPaUcAgZYcfVs2fBcwDeZzU0A==
 
 "@types/pbkdf2@^3.0.0":
   version "3.1.0"
@@ -1338,10 +1338,10 @@
   dependencies:
     "@walletconnect/window-getters" "^1.0.0"
 
-"@zed-wong/mvgswap@^1.0.19":
-  version "1.0.19"
-  resolved "https://registry.npmjs.org/@zed-wong/mvgswap/-/mvgswap-1.0.19.tgz#d92506335e5113432832f4fcc37bd34d21bc3043"
-  integrity sha512-c/vNJc0r/GDVIo8yVec/NfRkIUKAit5bDzojPByNE+BxZYgPOChmmzGQr3FSqYyu3lDirSvJsKn4szjNotTO3w==
+"@zed-wong/mvgswap@^1.0.21":
+  version "1.0.21"
+  resolved "https://registry.npmjs.org/@zed-wong/mvgswap/-/mvgswap-1.0.21.tgz#238bc46f44924bbe3f6a1286122ae0f1cd7dc09b"
+  integrity sha512-pZYiviGxKFikhYQYmX1D1q4ZpcWML+LGmwEStgSuUAr0ArGE6By6LNJqOV6hxLR2gapxluEzWKzpAQr6krhQag==
   dependencies:
     "@ethersproject/networks" "^5.5.0"
     axios "^0.21.1"

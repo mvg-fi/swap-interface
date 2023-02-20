@@ -21,7 +21,6 @@
   } from "$lib/stores/selectWallet";
   import { providerKey as cacheProvider } from "$lib/stores/provider";
   import { updateAssets } from "$lib/stores/asset";
-  import { MVM_RPC_URL } from "$lib/helpers/constants";
 
   let content: any;
   let loading = false;
@@ -71,13 +70,10 @@
       setWalletDialog(false);
       setConnected(true);
 
-      console.log('chainId:',$chainId)
       if ($chainId === 73927) {
         await curve.init("Web3", { externalProvider: p }, { chainId: 73927 });
         await curve.fetchFactoryPools();
         await curve.fetchCryptoFactoryPools();
-        console.log('Factory:',curve.getFactoryPoolList());
-        console.log('cryptoFactory:',curve.getCryptoFactoryPoolList());
         return
       }
       setSwitchNeeded(true);

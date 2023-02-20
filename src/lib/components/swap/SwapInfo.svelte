@@ -1,30 +1,40 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import Switch from "$lib/images/switch.svg";
-  import { formatDecimals } from "$lib/helpers/utils";
+  import { BN, formatDecimals, getRouteStr } from "$lib/helpers/utils";
   import {
     _payAmount,
     _receiveAmount,
     selectedFromAsset,
     selectedToAsset,
+    receiveAmount,
+    slippage,
+    swapInfo,
   } from "$lib/stores/swap/swap";
+
+  $: fromSymbol = rotate ? $selectedToAsset.symbol : $selectedFromAsset.symbol;
+  $: toSymbol = rotate ? $selectedFromAsset.symbol : $selectedToAsset.symbol;
+  $: exchangeRate = rotate
+    ? formatDecimals($_payAmount.div($_receiveAmount, 10).toNumber(), 6)
+    : formatDecimals($_receiveAmount.div($_payAmount, 10).toNumber(), 6);
+  $: route = getRouteStr($swapInfo.route, $selectedFromAsset.contract, $selectedToAsset.contract)
 
   let checked = false;
   let rotate = false;
   let infos = {
     excepted_output: {
       key: $_("technical.excepted_output"),
-      value: 0,
+      value: $receiveAmount,
       info: $_("technical.excepted_output_info"),
     },
     min_receive: {
       key: $_("technical.min_receive"),
-      value: 0,
+      value: $_receiveAmount.multipliedBy(BN($slippage).multipliedBy(100)),
       info: $_("technical.min_receive_info"),
     },
     trade_through: {
       key: $_("technical.trade_through"),
-      value: "3pool",
+      value: route,
       info: $_("technical.trade_through_info"),
     },
     price_impact: {
@@ -33,13 +43,6 @@
       info: $_("technical.price_impact_info"),
     },
   };
-
-  $: fromSymbol = rotate ? $selectedToAsset.symbol : $selectedFromAsset.symbol;
-  $: toSymbol = rotate ? $selectedFromAsset.symbol : $selectedToAsset.symbol;
-  $: exchangeRate = rotate
-    ? formatDecimals($_payAmount.div($_receiveAmount, 10).toNumber(), 6)
-    : formatDecimals($_receiveAmount.div($_payAmount, 10).toNumber(), 6);
-  // Decimal error
 </script>
 
 <div class="collapse collapse-arrow border-base-300 rounded-2xl">
@@ -47,7 +50,6 @@
   <div
     class="collapse-title text-sm font-medium flex flex-col justify-center items-start py-3"
   >
-    <!-- TODO (fetch and loading) -->
     {#if $_payAmount != null && $_receiveAmount != null && $selectedFromAsset && $selectedToAsset}
       <button on:click={() => (rotate = !rotate)}>
         <div class="flex flex-row align-middle">

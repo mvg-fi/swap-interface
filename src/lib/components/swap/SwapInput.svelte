@@ -4,10 +4,17 @@
   import IconAsset from "$lib/components/common/iconAsset.svelte";
   import SelectAssetDialog from "./SelectAsset/SelectAssetDialog.svelte";
   
+  import curve from "@zed-wong/mvgswap";
   import {
     selectedFromAsset,
     selectedToAsset,
     payAmount,
+    _payAmount,
+    swapInfoLoading,
+    swapNotAvail,
+    swapInfo,
+    receiveAmount,
+    _receiveAmount,
   } from "$lib/stores/swap/swap";
   import { _ } from "svelte-i18n";
   import { cleave } from "svelte-cleavejs";
@@ -19,13 +26,42 @@
   import { getCachedAssetBalance } from "$lib/stores/asset";
   import { setAssetDialog } from "$lib/stores/swap/selectAsset";
 
+  const fetchRoute = async () => {
+    console.log('change detected')
+    if ($_payAmount.isNaN()) return
+    swapInfoLoading.set(true)
+    try {
+      const info = await curve.router.getBestRouteAndOutput($selectedFromAsset.contract, $selectedToAsset.contract, $_payAmount.toString())
+      console.log(info)
+      if (info.route.length == 0 || Number(info.output) == 0) {
+        swapNotAvail.set(true)
+        return;
+      }
+      swapInfo.set(info)
+      swapNotAvail.set(false)
+      receiveAmount.set(info.output)
+    } catch (e) {
+      console.log(e)
+      if ($_payAmount.isNaN() || $_receiveAmount.isNaN()) return
+      swapNotAvail.set(true)
+    } finally {
+      swapInfoLoading.set(false)
+    }
+  }
+
   let timeout: any = null;
   const delayInput = () => {
     clearTimeout(timeout);
-    timeout = setTimeout(function () {
-      ($selectedFromAsset.contract, $selectedToAsset.contract, $payAmount);
+    swapInfoLoading.set(true)
+    receiveAmount.set('')
+    timeout = setTimeout(async function () {
+      receiveAmount.set('')
+      await fetchRoute()
     }, 1000);
   };
+  
+  $: $selectedFromAsset, $selectedToAsset, fetchRoute()
+
   const validateInput = (s: string): [boolean, string] => {
     if (Number(s) <= 0) return [false, $_("input.input_number")];
     return [false, "Invalid Input"];

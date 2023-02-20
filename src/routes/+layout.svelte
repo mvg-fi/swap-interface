@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import Loading from "./loading.svelte";
-  import { assets } from "$lib/stores/asset";
+  import { assets, updateAssets } from "$lib/stores/asset";
   import type { Asset } from "$lib/types/asset";
   import Navbar from "$lib/components/navbar/navbar.svelte";
   import Toast from "$lib/components/toast/container.svelte";
@@ -19,19 +19,28 @@
   import { initi18n } from "../i18n/i18n";
   import curve from "@zed-wong/mvgswap";
   import { MVM_RPC_URL } from "$lib/helpers/constants";
+  import { createWeb3Client } from "$lib/helpers/clients";
+  import { setProvider } from "$lib/stores/ethers";
 
   let a: Asset[] | undefined = $page.data.assets;
   a?.length && !$assets.length && assets.set(a);
   $: a?.length && !$assets.length && assets.set(a);
 
-  (async () => { 
-    // await curve.init("JsonRpc", { url: MVM_RPC_URL }, { chainId: 73927 })
-    // curve.fetchFactoryPools()
-    // curve.fetchCryptoFactoryPools()
+  (async () => {
+    await curve.init("JsonRpc", { url: MVM_RPC_URL }, { chainId: 73927 })
+    await curve.fetchFactoryPools()
+    await curve.fetchCryptoFactoryPools()
+  })();
 
-    // console.log('pools:', curve.getPoolList())
-    // console.log('factoryPools:', curve.getFactoryPoolList())
-    // console.log('cryptoPools:', curve.getCryptoFactoryPoolList())
+  (async () => {
+    try {
+      // const web3Client = await createWeb3Client();
+      // const p = await web3Client.cacheConnect();
+      // if (p) await setProvider(p);
+      // await updateAssets();
+    } catch (e: unknown) {
+      console.error(e);
+    }
   })();
 
   const setupI18n = initi18n();

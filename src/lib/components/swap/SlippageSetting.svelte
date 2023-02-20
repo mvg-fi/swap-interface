@@ -28,14 +28,14 @@
       <div class="my-5 btn-group grid grid-cols-4 [[data-theme=dark]_&]:invert">
         {#each ranges as r}
           <button
-            class={clsx("btn btn-sm border-none text-base-content bg-color font-medium text-xs", 
+            class={clsx("btn btn-sm border-none text-base-content hover:text-base-content bg-color hover:bg-color font-medium text-xs",
               slipValue === r && '!bg-black/70 text-base-100'
             )}
             on:click={() => setSlippage(r)}>{r}%</button
           >
         {/each}
         <button
-          class={clsx("btn btn-sm border-none text-base-content bg-color font-medium text-xs", 
+          class={clsx("btn btn-sm border-none text-base-content hover:text-base-content bg-color hover:bg-color font-medium text-xs", 
             !ranges.includes(slipValue) && '!bg-black/70 text-base-100'
           )}
           on:click={() => setSlippage(0)}>{$_("slippage.custom")}</button
@@ -46,9 +46,9 @@
         <div class="input-group [[data-theme=dark]_&]:invert">
           <input
             type="text"
-            placeholder="Type here"
+            placeholder={$_('swap.type_here')}
             bind:value={$slippage}
-            class="input input-bordered w-full bg-color outline-0 border-none"
+            class="input input-bordered w-full bg-color focus:outline-0 border-none"
           />
           <button class="btn btn-square border-none text-base-content btn-disabled bg-color">
             %

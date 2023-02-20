@@ -7,14 +7,15 @@ import { setAssetDialog, setToAssetDialog } from './selectAsset';
 BigNumber.config({DECIMAL_PLACES:8})
 export let selectedFromAsset = writable(Object.values(assets).find((obj)=>{return obj.symbol==='ETH'}))
 export let selectedToAsset = writable(Object.values(assets).find((obj)=>{return obj.symbol==='BTC'}))
-export let payAmount = writable(null)
+export let payAmount = writable('')
 export let _payAmount = derived(payAmount, ($payAmount) => {return BigNumber(String($payAmount), 8)})
-export let receiveAmount = writable(null)
+export let receiveAmount = writable('')
 export let _receiveAmount = derived(receiveAmount, ($receiveAmount) => {return BigNumber(String($receiveAmount))})
 export let slippage = writable(DEFAULT_SLIPPAGE)
 export let activeSlippage = writable(null)
 export let approved = writable(false)
-export let swapFetched = writable(true)
+export let swapInfo = writable({})
+export let swapInfoLoading = writable(true)
 export let swapNotAvail = writable(true)
 
 export const setFromAsset = (asset: any) => {
@@ -31,13 +32,10 @@ export const setSlippage = (number: number) => {
 export const setApproved = (yes: boolean) => {
   approved.set(yes)
 }
-export const setSwapFetched = (yes: boolean) => {
-  swapFetched.set(yes)
-}
 
 export const switchAsset = () => {
   const s = get(selectedFromAsset)
   selectedFromAsset.set(get(selectedToAsset))
   selectedToAsset.set(s)
-  payAmount.set(get(receiveAmount) || null)
+  receiveAmount.set('')
 }

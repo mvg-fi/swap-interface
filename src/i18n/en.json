@@ -11,10 +11,13 @@
 	},
 	"swap": {
 		"title": "Swap",
+		"approve": "Approve",
+		"swap": "Swap",
 		"connect_wallet": "Connect Wallet",
 		"loading": "Fetching best price...",
 		"not_available": "Swap is not available",
 		"switch": "Switch",
+		"type_here": "Type here",
 		"network_incorrect": "Network incorrect!",
 		"please_switch_to_mvm": "Please switch your wallet's network to MVM to continue"
 	},

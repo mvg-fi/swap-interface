@@ -1,12 +1,15 @@
 <script lang="ts">
-  const id = "open-approve";
+  import clsx from "clsx";
+  import { _ } from "svelte-i18n";
+  import { swapNotAvail } from "$lib/stores/swap/swap";
+
 </script>
 
-<label
-  for={id}
-  class="btn modal-button block flex content-center justify-center btn-lg rounded-2xl"
+<button
+  class={clsx("w-full btn btn-lg rounded-2xl text-neutral-content border-none", $swapNotAvail && "btn-disabled")}
+  on:click={() => {
+    
+  }}
 >
-  Approve
-</label>
-
-<input type="checkbox" id={id} class="modal-toggle" />
+  {$_("swap.approve")}
+</button>
