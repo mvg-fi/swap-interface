@@ -7,7 +7,7 @@
   import ApproveButton from "./ApproveButton.svelte";
   import SwapOutput from "./SwapOutput.svelte";
   import SwapInfo from "./SwapInfo.svelte";
-  import SlippageWarning from "./SlippageWarning.svelte";
+  import PriceImpactWarning from "./PriceImpactWarning.svelte";
   import SwapInfoLoading from "./SwapInfo/SwapInfoLoading.svelte";
   import SwapNotAvailable from "./SwapInfo/SwapNotAvailable.svelte";
 
@@ -72,7 +72,7 @@
     </div>
   {/if}
 
-  <SlippageWarning />
+  <PriceImpactWarning />
 
   <div class="w-full pt-2">
     {#if $connected}

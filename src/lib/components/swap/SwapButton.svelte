@@ -16,7 +16,9 @@
   on:click={async () => {
     loading = true
     try {
-      await curve.router.swap($selectedFromAsset.contract, $selectedToAsset.contract, $_payAmount.toString(), $slippage)
+      const tx = await curve.router.swap($selectedFromAsset.contract, $selectedToAsset.contract, $_payAmount.toString(), $slippage)
+      console.log('$_payAmount.toString():',$_payAmount.toString(), '$slippage:',$slippage)
+      console.log('swap tx:',tx)
     } catch (e) {
       console.log(e)
     } finally {

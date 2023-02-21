@@ -14,6 +14,7 @@ export const GAS_PRICE = 10000000
 // Swap
 export const DEFAULT_SLIPPAGE = 0.5;  // 0.5%
 export const RELOAD_PERIOD = 60*1000;
+export const PRICE_IMPACT_WARNING_LINE = 15  // 15%
 
 // Keys
 export const USER_KEY = 'USER';

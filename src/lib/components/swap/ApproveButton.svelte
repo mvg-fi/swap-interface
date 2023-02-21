@@ -2,6 +2,7 @@
   import clsx from "clsx";
   import { _ } from "svelte-i18n";
   import {
+    approved,
     selectedFromAsset,
     swapNotAvail,
     _payAmount,
@@ -20,7 +21,9 @@
   on:click={ async () => {
     loading = true
     try {
-      await curve.router.approve($selectedFromAsset.contract, $_payAmount.toString());
+      const tx = await curve.router.approve($selectedFromAsset.contract, $_payAmount.toString());
+      console.log('approve tx:', tx)
+      approved.set(true)
     } catch (e) {
       console.log(e)
     } finally {

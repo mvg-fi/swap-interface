@@ -30,6 +30,7 @@ export const setProvider = async (
 		if (chainId != Number(73927)) {
 			setSwitchNeeded(true)
 		} else {
+			// TODO: curve.init after chain change
 			setSwitchNeeded(false)
 		}
 	};
