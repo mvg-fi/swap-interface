@@ -23,7 +23,7 @@
 
   let checked = false;
   let rotate = false;
-  let infos = {
+  $: infos = {
     excepted_output: {
       key: $_("technical.excepted_output"),
       value: $receiveAmount,
