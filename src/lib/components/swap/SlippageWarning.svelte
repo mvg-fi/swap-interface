@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { activeSlippage } from "$lib/stores/swap/swap";
+  import { slippage } from "$lib/stores/swap/swap";
 
 </script>
 
 <div>
-  {#if $activeSlippage > 10 && $activeSlippage < 30}
+  {#if $slippage > 10 && $slippage < 30}
     <div/>
-  {:else if $activeSlippage >= 30 && $activeSlippage <= 50}
+  {:else if $slippage >= 30 && $slippage <= 50}
     <div/>
-  {:else if $activeSlippage >= 50 && $activeSlippage <= 100}
+  {:else if $slippage >= 50 && $slippage <= 100}
     <div/>
   {/if}
 </div>

@@ -14,11 +14,31 @@
   import { connected } from "$lib/stores/connect";
   import {
     approved,
+    selectedFromAsset,
     swapInfoLoading,
     swapNotAvail,
     _payAmount,
     _receiveAmount,
   } from "$lib/stores/swap/swap";
+  import curve from "@zed-wong/mvgswap";
+
+  let timeout: any = null;
+  const delayInput = () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(async function () {
+      await checkApproval()
+    }, 1000);
+  };
+
+  const checkApproval = async () => {
+    if ($connected && !$_payAmount.isNaN() && !$_payAmount.isZero()) {
+      const approvedd = await curve.router.isApproved($selectedFromAsset.contract, $_payAmount.toString())
+      console.log('approvedd:',approvedd)
+      approved.set(approvedd)
+    }
+  }
+
+  $: $_payAmount, delayInput()
 </script>
 
 <div class="card bg-base-100 shadow-xl p-2 max-w-[480px]">

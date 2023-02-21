@@ -1,7 +1,7 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import Switch from "$lib/images/switch.svg";
-  import { BN, formatDecimals, getRouteStr } from "$lib/helpers/utils";
+  import { BN, formatDecimals } from "$lib/helpers/utils";
   import {
     _payAmount,
     _receiveAmount,
@@ -10,14 +10,16 @@
     receiveAmount,
     slippage,
     swapInfo,
+    priceImpact,
   } from "$lib/stores/swap/swap";
+  import curve from "@zed-wong/mvgswap";
 
   $: fromSymbol = rotate ? $selectedToAsset.symbol : $selectedFromAsset.symbol;
   $: toSymbol = rotate ? $selectedFromAsset.symbol : $selectedToAsset.symbol;
   $: exchangeRate = rotate
     ? formatDecimals($_payAmount.div($_receiveAmount, 10).toNumber(), 6)
     : formatDecimals($_receiveAmount.div($_payAmount, 10).toNumber(), 6);
-  $: route = getRouteStr($swapInfo.route, $selectedFromAsset.contract, $selectedToAsset.contract)
+  $: route = ''
 
   let checked = false;
   let rotate = false;
@@ -29,18 +31,23 @@
     },
     min_receive: {
       key: $_("technical.min_receive"),
-      value: $_receiveAmount.multipliedBy(BN($slippage).multipliedBy(100)),
+      value: $_receiveAmount.minus($_receiveAmount.multipliedBy(BN($slippage).div(100))).toFixed(8),
       info: $_("technical.min_receive_info"),
+    },
+    price_impact: {
+      key: $_("technical.price_impact"),
+      value: `${$priceImpact}%`,
+      info: $_("technical.price_impact_info"),
+    },
+    slippage: {
+      key: $_("technical.slippage"),
+      value: `${$slippage}%`,
+      info: $_("technical.slippage_info"),
     },
     trade_through: {
       key: $_("technical.trade_through"),
       value: route,
       info: $_("technical.trade_through_info"),
-    },
-    price_impact: {
-      key: $_("technical.price_impact"),
-      value: 0,
-      info: $_("technical.price_impact_info"),
     },
   };
 </script>

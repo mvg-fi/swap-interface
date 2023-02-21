@@ -12,9 +12,9 @@ export let _payAmount = derived(payAmount, ($payAmount) => {return BigNumber(Str
 export let receiveAmount = writable('')
 export let _receiveAmount = derived(receiveAmount, ($receiveAmount) => {return BigNumber(String($receiveAmount))})
 export let slippage = writable(DEFAULT_SLIPPAGE)
-export let activeSlippage = writable(null)
+export let priceImpact = writable(0)
 export let approved = writable(false)
-export let swapInfo = writable({})
+export let swapInfo = writable({})  // curve.router.getBestRouteAndOutput
 export let swapInfoLoading = writable(true)
 export let swapNotAvail = writable(true)
 

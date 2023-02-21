@@ -47,11 +47,21 @@ export const getToday = (sub: number = 0) => {
 	return d.toJSON().slice(0, 10).replace(/-/g, '/');
 }
 
-export const getRouteStr = (steps: IRouteStep[]) => {
-	steps.forEach((s, index, steps)=>{
-		findAssetFromTokenList(Tokenlist, s.inputCoinAddress)
-	})
-}
+// export const getRouteList = (steps: IRouteStep[], first: string): string[] => {
+// 	let l = [findAssetFromTokenList(Tokenlist, first)?.symbol || '']
+// 	steps.forEach((e)=>{
+// 		l.push(findAssetFromTokenList(Tokenlist,e.outputCoinAddress)?.symbol || '')
+// 	})
+// 	return l
+// }
+
+// export const formatRouteStr = (routes: string[]) => {
+// 	let r = "";
+// 	routes.forEach((e, index, routes)=>{
+// 		if (index != routes.length-1) r+e+"->"
+// 		else r+e
+// 	})
+// }
 
 export const formatDecimals = (s: string | number, n: number) => {
 	if (Number(s) == undefined || Number(s) == null ) return 0

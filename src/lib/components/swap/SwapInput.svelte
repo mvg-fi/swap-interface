@@ -15,6 +15,7 @@
     swapInfo,
     receiveAmount,
     _receiveAmount,
+    priceImpact,
   } from "$lib/stores/swap/swap";
   import { _ } from "svelte-i18n";
   import { cleave } from "svelte-cleavejs";
@@ -33,10 +34,13 @@
     try {
       const info = await curve.router.getBestRouteAndOutput($selectedFromAsset.contract, $selectedToAsset.contract, $_payAmount.toString())
       console.log(info)
+      
       if (info.route.length == 0 || Number(info.output) == 0) {
         swapNotAvail.set(true)
         return;
       }
+      const pi = await curve.router.priceImpact($selectedFromAsset.contract, $selectedToAsset.contract, $_payAmount.toString())
+      priceImpact.set(pi)
       swapInfo.set(info)
       swapNotAvail.set(false)
       receiveAmount.set(info.output)
@@ -62,12 +66,7 @@
   
   $: $selectedFromAsset, $selectedToAsset, fetchRoute()
 
-  const validateInput = (s: string): [boolean, string] => {
-    if (Number(s) <= 0) return [false, $_("input.input_number")];
-    return [false, "Invalid Input"];
-  };
-  const fetchUSD = () => { return $assets.find((obj)=>obj.mixinAssetId==$selectedFromAsset.mixinAssetId)?.priceUsd || 0};
-  
+  const fetchUSD = () => { return $assets.find((obj)=>obj.mixinAssetId==$selectedFromAsset.mixinAssetId)?.priceUsd || 0};  
   $: symbol = $selectedFromAsset.symbol;
   $: usd_store = derived(balance, fetchUSD);
   $: balance = getCachedAssetBalance($selectedFromAsset.mixinAssetId)

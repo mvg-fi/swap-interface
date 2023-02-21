@@ -12,7 +12,7 @@ export const MVM_ICON = 'https://mvm.dev/logo.svg'
 export const GAS_PRICE = 10000000
 
 // Swap
-export const DEFAULT_SLIPPAGE = 0.5
+export const DEFAULT_SLIPPAGE = 0.5;  // 0.5%
 export const RELOAD_PERIOD = 60*1000;
 
 // Keys
