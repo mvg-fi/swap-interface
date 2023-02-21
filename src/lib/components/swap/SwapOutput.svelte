@@ -36,11 +36,12 @@
     <div class="items-center justfiy-center flex">
       <div class="flex-1 flex flex-col mx-3">
         <input
+          disabled
           type="tel"
           placeholder="0"
           use:cleave={maskOption}
           bind:value={$receiveAmount}
-          class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-3xl transition-none text-base-content"
+          class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-3xl transition-none !text-base-content !bg-base-100"
         />
       </div>
       <button

@@ -7,7 +7,7 @@
 <div class="form-control">
   <div class="input-group">
     <button
-      class="btn btn-square btn-bordered btn-disabled search-btn border !border-r-0 focus:outline-none bg-base-100 !rounded-l-2xl !h-10 !min-h-8"
+    class="btn btn-square btn-disabled focus:outline-none bg-base-200 !rounded-l-xl !h-10 !min-h-8"
     >
       <img src={searchIcon} alt="search" class="w-6 opacity-40 [[data-theme=dark]_&]:invert" />
     </button>
@@ -15,7 +15,7 @@
       type="text"
       bind:value={$search}
       placeholder={$_("search.pool")}
-      class="input block input-bordered text-base-content w-full border-l-0 pl-0 transition-none focus:outline-none !rounded-r-2xl !h-10 !min-h-8"
+      class="input block w-full bg-base-200 border-l-0 pl-0 focus:outline-none !rounded-r-xl !h-10 !min-h-8"
     />
   </div>
 </div>

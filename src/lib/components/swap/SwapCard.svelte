@@ -21,6 +21,8 @@
     _receiveAmount,
   } from "$lib/stores/swap/swap";
   import curve from "@zed-wong/mvgswap";
+    import { getCachedAssetBalance } from "$lib/stores/asset";
+    import InsufficientBalance from "./InsufficientBalance.svelte";
 
   let timeout: any = null;
   const delayInput = () => {
@@ -39,6 +41,8 @@
   }
 
   $: $_payAmount, delayInput()
+  $: balance = getCachedAssetBalance($selectedFromAsset.mixinAssetId)
+  $: balanceEnough = Number($balance) > $_payAmount.toNumber()
 </script>
 
 <div class="card bg-base-100 shadow-xl p-2 max-w-[480px]">
@@ -74,9 +78,11 @@
 
   <PriceImpactWarning />
 
-  <div class="w-full pt-2">
+  <div class="w-full pt-2 z-0">
     {#if $connected}
-      {#if $approved}
+      {#if !balanceEnough}
+        <InsufficientBalance /> 
+      {:else if $approved}
         <SwapButton />
       {:else}
         <ApproveButton />

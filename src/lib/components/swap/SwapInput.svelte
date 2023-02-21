@@ -29,7 +29,7 @@
 
   const fetchRoute = async () => {
     console.log('change detected')
-    if ($_payAmount.isNaN()) return
+    if ($_payAmount.isNaN() || $_payAmount.isZero()) return
     swapInfoLoading.set(true)
     try {
       const info = await curve.router.getBestRouteAndOutput($selectedFromAsset.contract, $selectedToAsset.contract, $_payAmount.toString())
@@ -46,7 +46,6 @@
       receiveAmount.set(info.output)
     } catch (e) {
       console.log(e)
-      if ($_payAmount.isNaN() || $_receiveAmount.isNaN()) return
       swapNotAvail.set(true)
     } finally {
       swapInfoLoading.set(false)
@@ -56,7 +55,6 @@
   let timeout: any = null;
   const delayInput = () => {
     clearTimeout(timeout);
-    swapInfoLoading.set(true)
     receiveAmount.set('')
     timeout = setTimeout(async function () {
       receiveAmount.set('')

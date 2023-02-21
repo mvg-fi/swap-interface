@@ -3,7 +3,7 @@
   import SearchPool from "./SearchPool.svelte";
 </script>
 
-<div class="card w-full flex flex-col pt-4 px-0 rounded-2xl bg-base-100">
+<div class="card w-full flex flex-col pt-4 px-0 rounded-xl bg-base-100">
   <div class="px-4">
     <SearchPool />
   </div>

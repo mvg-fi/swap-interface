@@ -5,7 +5,7 @@
 </script>
 
 {#if $priceImpact > PRICE_IMPACT_WARNING_LINE}
-  <div class="alert border border-red-200 bg-base-100 p-3 my-1 items-center flex tooltip" data-tip={$_('swap.price_impact_warning_info')}>
+  <div class="alert border border-red-200 bg-base-100 p-3 my-1 items-center z-10 flex tooltip" data-tip={$_('swap.price_impact_warning_info')}>
     <div class="flex-1">
       <svg
         xmlns="http://www.w3.org/2000/svg"

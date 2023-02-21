@@ -66,13 +66,13 @@
             <img src={Switch} alt="" class="w-4 opacity-40 shake" />
           </div>
           <span class="font-medium text-base-content z-20">
-            {`1 ${fromSymbol} = ${exchangeRate} ${toSymbol}`}
+            {`1 ${fromSymbol} = ${exchangeRate || '...'} ${toSymbol}`}
           </span>
         </div>
       </button>
     {/if}
   </div>
-  <div class="collapse-content py-0">
+  <div class="collapse-content py-0 z-10">
     <div class="h-full w-full text-c">
       {#each Object.values(infos) as info, i}
         <div>
@@ -87,7 +87,7 @@
                 <span class="select-none">{info.key}:</span>
               </button>
               <div
-                class="card dropdown-content bg-base-100 p-1 px-4 w-52 border-2 flex items-center text-start"
+                class="card dropdown-content bg-base-100 p-1 px-4 w-52 border-2 flex items-center text-start z-20"
               >
                 <span>{info.info}</span>
               </div>

@@ -15,8 +15,8 @@ export let slippage = writable(DEFAULT_SLIPPAGE)
 export let priceImpact = writable(0)
 export let approved = writable(false)
 export let swapInfo = writable({})  // curve.router.getBestRouteAndOutput
-export let swapInfoLoading = writable(true)
-export let swapNotAvail = writable(true)
+export let swapInfoLoading = writable(false)
+export let swapNotAvail = writable(false)
 
 export const setFromAsset = (asset: any) => {
   selectedFromAsset.set(asset)

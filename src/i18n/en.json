@@ -21,6 +21,7 @@
 		"price_impact_warning": "Price impact warning",
 		"price_impact_warning_info": "A swap of this size may have a massive price impact. There may be a huge difference between the input amount and the output amount, this may cause capital losses, please pay attention.",
 		"network_incorrect": "Network incorrect!",
+		"insufficient_balance":"Insufficient Balance",
 		"please_switch_to_mvm": "Please switch your wallet's network to MVM to continue"
 	},
 	"pool": {
@@ -160,6 +161,7 @@
 		"price_impact":"Price impact",
 		"price_impact_info":"Percentage of token price will change",
 		"trade_through":"Trade through",
-		"trade_through_info":"Pools the transaction will go through"
+		"trade_through_info":"Pools the transaction will go through",
+		"slippage_info": "The slippage"
 	}
 }
