@@ -6,7 +6,7 @@
   import ArrowRight from "$lib/images/chevron-right.svg";
 </script>
 
-<div class="w-full card bg-base-100 h-12 rounded-2xl">
+<div class="w-full card bg-base-100 h-12 rounded-xl">
   <button class="flex flex-row items-center h-full px-6 gap-x-4" on:click={()=>goto('/dashboard')}>
     <div class="w-5 [[data-theme=dark]_&]:invert">
       <Svg src={Vault} alt="" />

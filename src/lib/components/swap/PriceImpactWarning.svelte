@@ -1,10 +1,10 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
-  import { priceImpact } from "$lib/stores/swap/swap";
+  import { priceImpact, swapInfoLoading, swapNotAvail } from "$lib/stores/swap/swap";
   import { PRICE_IMPACT_WARNING_LINE } from "$lib/helpers/constants";
 </script>
 
-{#if $priceImpact > PRICE_IMPACT_WARNING_LINE}
+{#if ($priceImpact > PRICE_IMPACT_WARNING_LINE) && !$swapNotAvail && !$swapInfoLoading}
   <div class="alert border border-red-200 bg-base-100 p-3 my-1 items-center z-10 flex tooltip" data-tip={$_('swap.price_impact_warning_info')}>
     <div class="flex-1">
       <svg
