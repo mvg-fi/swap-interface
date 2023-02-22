@@ -21,6 +21,7 @@
   import { MVM_RPC_URL } from "$lib/helpers/constants";
   import { createWeb3Client } from "$lib/helpers/clients";
   import { setProvider } from "$lib/stores/ethers";
+  import { mainPools, factoryPools, cryptoFactoryPools } from "$lib/stores/pool/pools";
 
   let a: Asset[] | undefined = $page.data.assets;
   a?.length && !$assets.length && assets.set(a);
@@ -30,6 +31,10 @@
     await curve.init("JsonRpc", { url: MVM_RPC_URL }, { chainId: 73927 })
     await curve.fetchFactoryPools()
     await curve.fetchCryptoFactoryPools()
+
+    mainPools.set(curve.getPoolList())
+    factoryPools.set(curve.getFactoryPoolList())
+    cryptoFactoryPools.set(curve.getCryptoFactoryPoolList())
   })();
 
   (async () => {

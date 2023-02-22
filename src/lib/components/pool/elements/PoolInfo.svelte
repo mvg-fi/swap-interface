@@ -1,9 +1,9 @@
 <script lang="ts">
+  import { currentPool } from "$lib/stores/pool/pools";
   import Apy from "./poolInfo/apy.svelte";
   import Balances from "./poolInfo/balances.svelte";
   import TechDetails from "./TechDetails.svelte";
-  export let name: string | undefined = '';
-  console.log('poolName:',name)
+  $currentPool;
 </script>
 
 <div class="card min-w-[32rem] h-auto bg-base-100 shadow-lg mb-2">

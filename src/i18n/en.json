@@ -94,7 +94,8 @@
 	"error": {
 		"NoProvider": "No Web3 Provider found",
 		"userClosedModal": "User closed modal",
-		"userRejected": "User rejceted"
+		"userRejected": "User rejceted",
+		"poolNotFound": "Pool not found"
 	},
 	"search": {
 		"pool": "Search by pool name, pool address, token name or token address",

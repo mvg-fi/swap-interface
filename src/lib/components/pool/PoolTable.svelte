@@ -1,5 +1,6 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
+  import curve from "@zed-wong/mvgswap";
   import { pools } from "$lib/constants/pools";
   import { sortPools } from "$lib/helpers/utils";
   import caretUp from "$lib/images/caret-up.svg";
@@ -7,12 +8,16 @@
   import caretDown from "$lib/images/caret-down.svg";
   import SinglePool from "$lib/components/pool/SinglePool.svelte";
   import NoResult from "$lib/components/swap/SelectAsset/NoResult.svelte";
+    import { cryptoFactoryPools, factoryPools, mainPools } from "$lib/stores/pool/pools";
   
   // let timeout: any = null;
   // const delayOutput = () => {
   //   clearTimeout(timeout);
   //   timeout = setTimeout(function () {}, 1000);
   // };
+  $: $mainPools, $factoryPools, $cryptoFactoryPools, console.log($mainPools, $factoryPools, $cryptoFactoryPools)
+  // $: pools = $mainPools.concat($factoryPools).concat($cryptoFactoryPools)
+
   $: visiblePools =
     $search == ""
       ? Object.values(pools)

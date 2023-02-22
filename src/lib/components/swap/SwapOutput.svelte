@@ -36,7 +36,6 @@
     <div class="items-center justfiy-center flex">
       <div class="flex-1 flex flex-col mx-3">
         <input
-          disabled
           type="tel"
           placeholder="0"
           use:cleave={maskOption}
