@@ -27,7 +27,8 @@
 	"pool": {
     "title": "Pool",
 		"myLiquidity": "My Liquidity",
-		"loading_pools": "Loading Pools..."
+		"loading_pools": "Loading Pools...",
+		"create_factory_pool":"Create factory pools"
 	},
 	"bridge": {
 		"title": "Bridge",
