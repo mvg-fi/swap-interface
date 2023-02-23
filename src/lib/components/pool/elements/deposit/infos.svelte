@@ -10,7 +10,6 @@
   const lp_token_name = "SBFSB";
   const tx_fee = 0.000001;
   $: slip = formatPercentage($slippage)
-  $: console.log("slip:",slip)
 
   $: items = [
     {

@@ -1,41 +1,34 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import curve from "@zed-wong/mvgswap";
-  // import { pools } from "$lib/constants/pools";
   import { sortPools } from "$lib/helpers/utils";
   import caretUp from "$lib/images/caret-up.svg";
   import { search } from "$lib/stores/searchPool";
   import caretDown from "$lib/images/caret-down.svg";
   import SinglePool from "$lib/components/pool/SinglePool.svelte";
+  import LoadingPools from "$lib/components/pool/LoadingPools.svelte";
   import NoResult from "$lib/components/swap/SelectAsset/NoResult.svelte";
   import { cryptoFactoryPools, factoryPools, mainPools } from "$lib/stores/pool/pools";
-    import Loading from "./Loading.svelte";
-  
-  // let timeout: any = null;
-  // const delayOutput = () => {
-  //   clearTimeout(timeout);
-  //   timeout = setTimeout(function () {}, 1000);
-  // };
-  $: $mainPools, $factoryPools, $cryptoFactoryPools, console.log($mainPools, $factoryPools, $cryptoFactoryPools)
+
   $: pools = {
-    ...$mainPools,
-    ...$factoryPools,
-    ...$cryptoFactoryPools,
-  }
+      ...$mainPools,
+      ...$factoryPools,
+      ...$cryptoFactoryPools,
+    }
 
   $: visiblePools =
     $search == ""
-      ? Object.values(pools)
-      : Object.values(pools).filter((pool) => {
+      ? Object.entries(pools)
+      : Object.entries(pools).filter((pool) => {
           return (
-            pool.name.match($search) ||
-            pool.swap_address.match($search) ||
-            pool.swap_address.match($search) ||
-            pool.underlying_coins.find((element) => {
+            pool[1].name.match($search) ||
+            pool[1].swap_address.match($search) ||
+            pool[1].swap_address.match($search) ||
+            pool[1].underlying_coins.find((element) => {
               if (element.toLowerCase().includes($search.toLowerCase()))
                 return true;
             }) ||
-            pool.underlying_coin_addresses.find((element) => {
+            pool[1].underlying_coin_addresses.find((element) => {
               if (element.toLowerCase().includes($search.toLowerCase()))
                 return true;
             })
@@ -58,7 +51,7 @@
   <div class="overflow-x-auto w-full select-none text-base-content">
     <table class="table w-full">
       {#if Object.values(pools).length == 0}
-        <Loading />
+        <LoadingPools />
       {:else if Object.values(pools).length != 0 && sortedPools.length != 0}
         <thead>
           <tr class="">
@@ -84,8 +77,8 @@
           </tr>
         </thead>
         <tbody class="cursor-pointer text-base-content">
-          {#each sortedPools as pool}
-            <SinglePool {pool} />
+          {#each sortedPools as [id,pool]}
+            <SinglePool {id} {pool} />
           {/each}
         </tbody>
       {:else}
