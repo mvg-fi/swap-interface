@@ -32,13 +32,14 @@
     await curve.fetchFactoryPools()
     await curve.fetchCryptoFactoryPools()
 
-    mainPools.set(curve.getPoolList())
-    factoryPools.set(curve.getFactoryPoolList())
-    cryptoFactoryPools.set(curve.getCryptoFactoryPoolList())
+    mainPools.set(curve.getAllMainPools())
+    factoryPools.set(curve.getAllFactoryPools())
+    cryptoFactoryPools.set(curve.getAllCryptoFactoryPools())
   })();
 
   (async () => {
     try {
+      // TODO: Auto connect to last connected provider
       // const web3Client = await createWeb3Client();
       // const p = await web3Client.cacheConnect();
       // if (p) await setProvider(p);

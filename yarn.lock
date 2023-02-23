@@ -1338,10 +1338,10 @@
   dependencies:
     "@walletconnect/window-getters" "^1.0.0"
 
-"@zed-wong/mvgswap@^1.0.21":
-  version "1.0.21"
-  resolved "https://registry.npmjs.org/@zed-wong/mvgswap/-/mvgswap-1.0.21.tgz#238bc46f44924bbe3f6a1286122ae0f1cd7dc09b"
-  integrity sha512-pZYiviGxKFikhYQYmX1D1q4ZpcWML+LGmwEStgSuUAr0ArGE6By6LNJqOV6hxLR2gapxluEzWKzpAQr6krhQag==
+"@zed-wong/mvgswap@^1.0.22":
+  version "1.0.22"
+  resolved "https://registry.npmjs.org/@zed-wong/mvgswap/-/mvgswap-1.0.22.tgz#9762de64705d1341c524c503b800b371fc26a5c0"
+  integrity sha512-R/NGDNeaC/YHuC3PvOjE58y39w85Wm2RlhKeaM2Y9YcCPUs2eZjM5koiEmDaupxNdR2xIbBUoWnluNINRHlyoA==
   dependencies:
     "@ethersproject/networks" "^5.5.0"
     axios "^0.21.1"

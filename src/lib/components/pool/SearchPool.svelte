@@ -21,8 +21,5 @@
 </div>
 
 <style>
-  .search-btn {
-    border: 1px solid;
-    border-color: hsl(215 28% 17%) / 0.2;
-  }
+  
 </style>

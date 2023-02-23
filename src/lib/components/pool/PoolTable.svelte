@@ -1,14 +1,15 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import curve from "@zed-wong/mvgswap";
-  import { pools } from "$lib/constants/pools";
+  // import { pools } from "$lib/constants/pools";
   import { sortPools } from "$lib/helpers/utils";
   import caretUp from "$lib/images/caret-up.svg";
   import { search } from "$lib/stores/searchPool";
   import caretDown from "$lib/images/caret-down.svg";
   import SinglePool from "$lib/components/pool/SinglePool.svelte";
   import NoResult from "$lib/components/swap/SelectAsset/NoResult.svelte";
-    import { cryptoFactoryPools, factoryPools, mainPools } from "$lib/stores/pool/pools";
+  import { cryptoFactoryPools, factoryPools, mainPools } from "$lib/stores/pool/pools";
+    import Loading from "./Loading.svelte";
   
   // let timeout: any = null;
   // const delayOutput = () => {
@@ -16,7 +17,11 @@
   //   timeout = setTimeout(function () {}, 1000);
   // };
   $: $mainPools, $factoryPools, $cryptoFactoryPools, console.log($mainPools, $factoryPools, $cryptoFactoryPools)
-  // $: pools = $mainPools.concat($factoryPools).concat($cryptoFactoryPools)
+  $: pools = {
+    ...$mainPools,
+    ...$factoryPools,
+    ...$cryptoFactoryPools,
+  }
 
   $: visiblePools =
     $search == ""
@@ -52,7 +57,9 @@
 <div>
   <div class="overflow-x-auto w-full select-none text-base-content">
     <table class="table w-full">
-      {#if sortedPools.length != 0}
+      {#if Object.values(pools).length == 0}
+        <Loading />
+      {:else if Object.values(pools).length != 0 && sortedPools.length != 0}
         <thead>
           <tr class="">
             {#each tableHeaders as th, i}
@@ -83,7 +90,7 @@
         </tbody>
       {:else}
         <div
-          class="flex grow flex-col space-y-3 py-12 h-full w-full items-center justify-center"
+          class="flex grow flex-col space-y-3 py-8 h-full w-full items-center justify-center"
         >
           <NoResult />
         </div>

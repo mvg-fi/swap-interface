@@ -1,11 +1,10 @@
+import BigNumber from "bignumber.js";
 import type { Asset } from "$lib/types/asset"
-import type { PoolData } from "$lib/types/pool";
 import { getAddress } from "ethers/lib/utils";
 import evmMap from "$lib/constants/evmmap.json"
 import Tokenlist from "$lib/constants/tokenlist.json"
 import Chainlist from "$lib/constants/chainlist.json"
-import BigNumber from "bignumber.js";
-import type { IRouteStep } from "@zed-wong/mvgswap/lib/interfaces";
+import type { IPoolData, IRouteStep } from "@zed-wong/mvgswap/lib/interfaces";
 
 export const BN = BigNumber.clone({DECIMAL_PLACES:8})
 
@@ -68,7 +67,7 @@ export const formatDecimals = (s: string | number, n: number) => {
 	return Math.floor(Number(s) * 10 ** n) / 10 ** n
 }
 
-export const sortByString = (colHeader: string, data: PoolData[], ascendingOrder: boolean) => {
+export const sortByString = (colHeader: string, data: IPoolData[], ascendingOrder: boolean) => {
 	data = data.sort((obj1, obj2) => {
 		if (obj1[colHeader] < obj2[colHeader]) {
 			return -1;
@@ -83,14 +82,14 @@ export const sortByString = (colHeader: string, data: PoolData[], ascendingOrder
 	return data
 }
 
-export const sortByNumber = (colHeader: string, data: PoolData[], ascendingOrder: boolean) => {
+export const sortByNumber = (colHeader: string, data: IPoolData[], ascendingOrder: boolean) => {
 	return data.sort((obj1, obj2) => {
 		return ascendingOrder ? Number(obj2[colHeader]) - Number(obj1[colHeader])
 			: Number(obj1[colHeader]) - Number(obj2[colHeader])
 	});
 }
 
-export const sortPools = (colHeader: string, data: PoolData[], ascendingOrder: boolean) => {
+export const sortPools = (colHeader: string, data: IPoolData[], ascendingOrder: boolean) => {
 	if (colHeader === 'name') {
 		return sortByString(colHeader, data, ascendingOrder)
 	}
