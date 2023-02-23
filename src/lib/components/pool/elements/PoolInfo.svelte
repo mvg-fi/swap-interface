@@ -3,7 +3,7 @@
   import Apy from "./poolInfo/apy.svelte";
   import Balances from "./poolInfo/balances.svelte";
   import TechDetails from "./TechDetails.svelte";
-  $currentPool;
+  
 </script>
 
 <div class="card min-w-[32rem] h-auto bg-base-100 shadow-lg mb-2">

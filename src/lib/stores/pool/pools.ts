@@ -5,5 +5,6 @@ import { writable, type Writable } from "svelte/store";
 export let mainPools: Writable<IDict<IPoolData>> = writable()
 export let factoryPools: Writable<IDict<IPoolData>> = writable()
 export let cryptoFactoryPools: Writable<IDict<IPoolData>> = writable()
+export let poolsLoaded: Writable<boolean> = writable(false)
 
 export let currentPool: Writable<PoolTemplate> = writable()

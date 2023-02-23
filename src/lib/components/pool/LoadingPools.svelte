@@ -5,10 +5,10 @@
 
 <div class="w-full py-8 flex flex-col items-center justify-center cursor-wait">
   <div>
-    <img src={loadingDark} alt="loading" class="w-20 h-20 loading" />
+    <img src={loadingDark} alt="loading" class="w-20 h-20 opacity-60 loading" />
   </div>
 
-  <span class="text-base-content">
+  <span class="text-base-content/60">
     {$_('pool.loading_pools')}
   </span>
 </div>

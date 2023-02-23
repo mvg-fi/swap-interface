@@ -1,8 +1,9 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
+  import { page } from "$app/stores";
   import curve from "@zed-wong/mvgswap";
   import { goto } from "$app/navigation";
-  import { currentPool } from "$lib/stores/pool/pools";
+  import { currentPool, poolsLoaded } from "$lib/stores/pool/pools";
   import { depositMode as deposit } from "$lib/stores/pool/mode";
   import { showToast } from "$lib/components/toast/container.svelte";
   import Deposit from "$lib/components/pool/elements/Deposit.svelte";
@@ -10,14 +11,20 @@
   import Withdrawal from "$lib/components/pool/elements/Withdrawal.svelte";
   import Title from "$lib/components/pool/elements/poolInfo/title.svelte";
 
-  
-  try {
-    
-  } catch (e) {
-    goto("/pool")
-    showToast("common", $_('error.poolNotFound'))
-    console.log(e)
-  }
+  (async () => {
+    try {
+      // TODO: loading pool by id. Need to deal with fetchPoolList with init
+      if (!$poolsLoaded){
+        await curve.fetchFactoryPools()
+        await curve.fetchCryptoFactoryPools()
+        currentPool.set(curve.getPool($page.params.name))
+      }
+    } catch (e) {
+      goto("/pool")
+      showToast("common", $_('error.poolNotFound'))
+      console.log(e)
+    }
+  })()
 </script>
 
 <svelte:head>

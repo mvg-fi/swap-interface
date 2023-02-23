@@ -21,7 +21,7 @@
   import { MVM_RPC_URL } from "$lib/helpers/constants";
   import { createWeb3Client } from "$lib/helpers/clients";
   import { setProvider } from "$lib/stores/ethers";
-  import { mainPools, factoryPools, cryptoFactoryPools } from "$lib/stores/pool/pools";
+  import { mainPools, factoryPools, cryptoFactoryPools, poolsLoaded } from "$lib/stores/pool/pools";
 
   let a: Asset[] | undefined = $page.data.assets;
   a?.length && !$assets.length && assets.set(a);
@@ -35,6 +35,7 @@
     mainPools.set(curve.getAllMainPools())
     factoryPools.set(curve.getAllFactoryPools())
     cryptoFactoryPools.set(curve.getAllCryptoFactoryPools())
+    poolsLoaded.set(true)
   })();
 
   (async () => {

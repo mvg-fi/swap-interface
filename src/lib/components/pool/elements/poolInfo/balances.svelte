@@ -1,12 +1,18 @@
 <script lang="ts">
-  import Image from "$lib/components/common/image.svelte";
-  import { formatUSMoney } from "$lib/helpers/utils";
   import { _ } from "svelte-i18n";
+  import _tokenList from "$lib/constants/tokenlist.json";
+  import { currentPool } from "$lib/stores/pool/pools";
+  import Image from "$lib/components/common/image.svelte";
+  import { findAssetsFromTokenList, formatUSMoney } from "$lib/helpers/utils";
+    import Loading from "./loading.svelte";
 
-  const poolBalance = [10000, 233.23432, 35121, 241224.123];
-  const sum = poolBalance.reduce((a, b) => a + b, 0);
+  $: assets = findAssetsFromTokenList(Object.values(_tokenList), $currentPool.underlyingCoinAddresses)
+
+  const coins = $currentPool.underlyingCoins;
+  let poolBalance = $currentPool.stats.underlyingBalances();
+  // const sum = poolBalance.reduce((a, b) => a + b, 0);
+
   const usdTotal = 154324.12;
-  const coins = ["eth", "xin", "BTC", "SBF"];
   const icons = [
     "https://mixin-images.zeromesh.net/zVDjOxNTQvVsA8h2B4ZVxuHoCF3DJszufYKWpd9duXUSbSapoZadC7_13cnWBqg0EmwmRcKGbJaUpA8wFfpgZA=s128",
     "https://mixin-images.zeromesh.net/UasWtBZO0TZyLTLCFQjvE_UYekjC7eHCuT_9_52ZpzmCC-X-NPioVegng7Hfx0XmIUavZgz5UL-HIgPCBECc-Ws=s128",
@@ -30,11 +36,15 @@
         <span class="font-semibold uppercase"> {coins[i]} </span>
       </div>
       <div class="flex items-center mt-0.5">
-        <span class="font-semibold text-base"> {formatUSMoney(poolBalance[i])} </span>
-        <span class="font-semibold opacity-80 ml-1 text-xs">
-          <!-- Percentage on fiat -->
-          ({"25%"})
-        </span>
+        {#await poolBalance}
+          <Loading/>
+        {:then poolBalance}
+          <span class="font-semibold text-base"> {poolBalance[i]} </span>
+          <span class="font-semibold opacity-80 ml-1 text-xs">
+            <!-- Percentage on fiat -->
+            <!-- ({"25%"}) -->
+          </span>
+        {/await}
       </div>
     </div>
   {/each}

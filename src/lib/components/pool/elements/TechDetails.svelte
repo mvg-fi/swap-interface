@@ -11,6 +11,7 @@
   const switchWidget = () => {
     widget = !widget;
   };
+  
 </script>
 
 <div class="">

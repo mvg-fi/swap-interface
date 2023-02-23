@@ -1,13 +1,12 @@
 <script lang="ts">
+  import { _ } from "svelte-i18n";
   import { MVM_SCAN_URL } from "$lib/helpers/constants";
   import { shortenAddress } from "$lib/helpers/utils";
   import Link from "$lib/images/arrow-top-right.svg";
-  import { _ } from "svelte-i18n";
+  import { currentPool } from "$lib/stores/pool/pools";
 
-  const coins = ["eth", "xin", "BTC", "SBF"];
-  const poolBalance = [10000, 233.23432, 35121, 241224.123];
-  const poolAddress = "0xA868A0342A94C354C4aC853F2957Bbd40d4b3e37";
-  const tokenAddress = "0xA868A0342A94C354C4aC853F2957Bbd40d4b3e37";
+  const poolAddress = $currentPool.address;
+  const tokenAddress = $currentPool.lpToken;
 
   var addr_link = `${MVM_SCAN_URL}address/${poolAddress}`;
 </script>
@@ -46,7 +45,7 @@
         <span
           class="font-semibold text-base uppercase text-inherit"
         >
-          {shortenAddress(poolAddress, 6, 4)}
+          {shortenAddress(tokenAddress, 6, 4)}
         </span>
         <img
           src={Link}
