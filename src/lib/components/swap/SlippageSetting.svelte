@@ -29,14 +29,14 @@
         {#each ranges as r}
           <button
             class={clsx("btn btn-sm border-none text-base-content hover:text-base-content bg-color hover:bg-base-200 font-medium text-xs",
-              slipValue === r && '!bg-black/70 hover:bg-black/70 text-base-100 hover:text-base-100'
+              slipValue === r && '!bg-black hover:bg-black text-base-100 hover:text-base-100'
             )}
             on:click={() => setSlippage(r)}>{r}%</button
           >
         {/each}
         <button
           class={clsx("btn btn-sm border-none text-base-content hover:text-base-content bg-color hover:bg-base-200 font-medium text-xs", 
-            !ranges.includes(slipValue) && '!bg-black/70 hover:bg-black/70 text-base-100 hover:text-base-100'
+            !ranges.includes(slipValue) && '!bg-black hover:bg-black text-base-100 hover:text-base-100'
           )}
           on:click={() => setSlippage(0)}>{$_("slippage.custom")}</button
         >
@@ -59,7 +59,7 @@
 
     <div class="w-full flex justify-center content-center pt-5">
       <button
-        class="btn rounded-3xl {valid ? 'bg-neutual-focus' : 'btn-disabled'}" 
+        class="btn rounded-3xl {valid ? 'bg-black' : 'btn-disabled'}" 
         on:click={()=>slippageDialog.set(false)}
         >{$_("slippage.save")}</button
       >

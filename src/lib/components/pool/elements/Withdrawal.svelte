@@ -1,9 +1,15 @@
 <script>
+  import { onDestroy } from "svelte";
   import Button from "./withdrawal/button.svelte";
   import Infos from "./withdrawal/infos.svelte";
   import Input from "./withdrawal/input.svelte";
   import Selector from "./withdrawal/selector.svelte";
   import Title from "./withdrawal/title.svelte";
+  import { depositMode } from "$lib/stores/pool/mode";
+
+  onDestroy(()=>{
+    depositMode.set(true)
+  })
 </script>
 
 <div class="card max-w-sm min-w-[23rem] w-96 bg-base-100 shadow-2xl p-3">

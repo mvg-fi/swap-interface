@@ -4,10 +4,10 @@
 </script>
 
 <button
-  class="border-none rounded-2xl h-12 min-h-12 btn modal-button mx-2 bg-neutral"
+  class="border-none rounded-2xl h-12 min-h-12 btn modal-button mx-2 bg-base-300 hover:bg-base-300/50"
   on:click={() => {
     setWalletDialog(true);
   }}
 >
-  {$_("connect.title")}
+  <span class="text-base-content">{$_("connect.title")}</span>
 </button>

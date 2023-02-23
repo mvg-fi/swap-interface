@@ -133,6 +133,7 @@
     --tw-bg-opacity: 0.6;
   }
   .modal-box {
+    transition-duration: 100ms;
     scrollbar-width: none;
     max-width: 28rem;
   }
