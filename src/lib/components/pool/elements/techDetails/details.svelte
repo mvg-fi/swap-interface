@@ -3,9 +3,9 @@
   import { currentPool } from "$lib/stores/pool/pools";
   import Loading from "$lib/components/pool/elements/poolInfo/loading.svelte";
   
-  let b: string[];
+  // let b: string[];
   let p = $currentPool.stats.parameters().then((e)=>{
-    b = [e.fee, e.adminFee, e.virtualPrice, e.A]
+    return [e.fee, e.adminFee, e.virtualPrice, e.A]
   })
   
   // TODO: fix error
@@ -19,7 +19,7 @@
       {#await p}
         <Loading />
       {:then p} 
-        <span> {b[i]} </span>
+        <span> {p[i]} </span>
       {/await}      
     </div>
   {/each}

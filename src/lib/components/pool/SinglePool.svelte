@@ -17,10 +17,10 @@
     const path = `/pool/${id}`
     goto(path);
   };
-
+  
   // TODO: Deploy subgraph to get all these
+  // $: tvl = 
   // $: apy = pool.apy ? formatPercentage(Number(pool.apy)) : '-'
-  // $: tvl = pool.tvl ? formatCompactUSD(Number(pool.tvl)) : '-'
   // $: volume = pool.volume ? formatCompactUSD(Number(pool.volume)) : '-'
 </script>
 

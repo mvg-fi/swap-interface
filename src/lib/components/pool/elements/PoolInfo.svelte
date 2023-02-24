@@ -1,10 +1,18 @@
 <script lang="ts">
-  import { currentPool } from "$lib/stores/pool/pools";
   import Apy from "./poolInfo/apy.svelte";
   import Balances from "./poolInfo/balances.svelte";
   import TechDetails from "./TechDetails.svelte";
   
 </script>
+
+<!-- 
+  TBD:
+  1. APY (subgraph)
+  2. Liquidity Utilization (subgraph)
+  3. 24h volume (subgraph)
+  4. TVL 
+ -->
+
 
 <div class="card min-w-[32rem] h-auto bg-base-100 shadow-lg mb-2">
   <Apy />

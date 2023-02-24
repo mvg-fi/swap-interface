@@ -136,7 +136,7 @@ export const getPercentage = (strings: string[], element: string) => {
 	// calculate the percentage
 	const percentage = new BigNumber(element).dividedBy(sum).times(100);
 
-	return percentage.toString();
+	return percentage.toFixed(2);
 };
 
 export const isEVMAsset = (assetID: string) => {
