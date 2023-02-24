@@ -127,6 +127,7 @@ export const getUsdTotal = (prices: string[], amounts: string[]) => {
 };
 
 export const getPercentage = (strings: string[], element: string) => {
+	if (element == '') return 0;
 	// calculate the sum of the array
 	const sum = strings.reduce((acc, curr) => {
 			return acc.plus(new BigNumber(curr));

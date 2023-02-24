@@ -32,7 +32,7 @@
 </script>
 
 <div class="w-full">
-  <div class="p-1 py-2 border-solid bd rounded-2xl">
+  <div class="p-1 py-2 bg-base-200 rounded-2xl">
     <div class="items-center justfiy-center flex">
       <div class="flex-1 flex flex-col mx-3">
         <input
@@ -40,11 +40,11 @@
           placeholder="0"
           use:cleave={maskOption}
           bind:value={$receiveAmount}
-          class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-3xl transition-none !text-base-content !bg-base-100"
+          class="input bg-base-200 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-3xl transition-none !text-base-content"
         />
       </div>
       <button
-        class="flex flex-row items-center content-center mz-box"
+        class="flex flex-row items-center content-center mz-box tbd p-2 rounded-2xl"
         on:click={() => setToAssetDialog(true)}
       >
         <div class="avatar mx-1 mr-0 w-7 rounded-full mz-box">
@@ -90,7 +90,5 @@
 </div>
 
 <style>
-  .bd {
-    border-width: 1.25px;
-  }
+  
 </style>

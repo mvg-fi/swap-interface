@@ -16,6 +16,7 @@
   const coins = $currentPool.underlyingCoins;
   let poolBalance = $currentPool.stats.underlyingBalances();
     
+  // BUG: Fix can't find
   const fetchUSD = (contract: string) => { return String($assets.find((obj)=>obj.contract==contract)?.priceUsd) || ''}
   $: usds = staticAssets.map((e)=>{
     if (e?.contract == undefined) return ''
@@ -41,7 +42,7 @@
         {#await poolBalance}
           <Loading/>
         {:then poolBalance}
-        <div class="tooltip" data-tip={`${$_('technical.usd')}:${formatUSMoney(multiply(usds[i], poolBalance[i]))}`}>
+        <div class="tooltip" data-tip={`${$_('technical.usd')}:${formatUSMoney(multiply(usds[i], poolBalance[i])) || ''}`}>
           <span class="font-semibold text-base"> {poolBalance[i]} </span>
         </div>
           <span class="font-semibold opacity-80 ml-1 text-xs">

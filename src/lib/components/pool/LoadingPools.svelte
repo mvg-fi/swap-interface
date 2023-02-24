@@ -8,7 +8,7 @@
     <img src={loadingDark} alt="loading" class="w-20 h-20 opacity-60 loading" />
   </div>
 
-  <span class="text-base-content/60">
+  <span class="text-base-content/50">
     {$_('pool.loading_pools')}
   </span>
 </div>
