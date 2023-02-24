@@ -14,8 +14,8 @@ import { format } from '$lib/helpers/web3/big';
 
 export const mainnetProvider = ethers.getDefaultProvider(1);
 export const mvmProvider = ethers.getDefaultProvider(MVM_RPC_URL);
-export const bscProvider = ethers.getDefaultProvider(BSC_RPC_URL);
-export const polygonProvider = ethers.getDefaultProvider(POLYGON_RPC_URL);
+// export const bscProvider = ethers.getDefaultProvider(BSC_RPC_URL);
+// export const polygonProvider = ethers.getDefaultProvider(POLYGON_RPC_URL);
 
 const getProvider = (network: string) => {
   switch(network) {
@@ -27,14 +27,14 @@ const getProvider = (network: string) => {
       return mvmProvider;
       break;
     }
-    case 'bsc': {
-      return bscProvider;
-      break;
-    }
-    case 'polygon': {
-      return polygonProvider;
-      break;
-    }
+    // case 'bsc': {
+    //   return bscProvider;
+    //   break;
+    // }
+    // case 'polygon': {
+    //   return polygonProvider;
+    //   break;
+    // }
     case 'tbd': {
       return mainnetProvider;
       break;

@@ -119,3 +119,15 @@ export const catchPaymentError = (err: unknown) => {
 		"UNPREDICTABLE_GAS_LIMIT": "cannot estimate gas; transaction may fail or may require manual gas limit", // ERC20 pUSD (no balance)
 	}
 }
+
+// Filter bind:keyup input events
+// If event code valid, return true
+// If event code invalid, return false
+export const filterInputEvents = (event: KeyboardEvent): boolean => {
+	if (
+		!event.code.includes('Digit') || 
+		!event.code.includes('Escape') ||
+		!event.code.includes('Period')
+	) return true
+	return false
+}

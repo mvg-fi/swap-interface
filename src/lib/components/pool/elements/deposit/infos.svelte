@@ -2,12 +2,13 @@
   import { _ } from "svelte-i18n";
   import Setting from "$lib/images/setting.svg";
   import { slippage } from "$lib/stores/swap/swap";
+  import { currentPool } from "$lib/stores/pool/pools";
   import { formatPercentage } from "$lib/helpers/utils";
   import { slippageDialog } from "$lib/stores/swap/slippage";
   import { NATIVE_TOKEN_SYMBOL } from "$lib/helpers/constants";
 
   const min_receive = 0.01;
-  const lp_token_name = "SBFSB";
+  const lp_token_name = $currentPool.name;
   const tx_fee = 0.000001;
   $: slip = formatPercentage($slippage)
 

@@ -8,6 +8,6 @@
   <span class="px-2"> / </span>
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <button on:click={()=>setDepositMode(false)}>
-    <span class="cursor-pointer"> {$_("add_liquidity.withdraw")} </span>
+    <span class="cursor-pointer text-sm"> {$_("add_liquidity.withdraw")} </span>
   </button>
 </div>

@@ -5,7 +5,7 @@
 
 <div class="flex text-center justify-center mx-3">
   <button on:click={()=>setDepositMode(true)}>
-    <span class="cursor-pointer"> {$_("add_liquidity.deposit")} </span>
+    <span class="cursor-pointer text-sm"> {$_("add_liquidity.deposit")} </span>
   </button>
   <span class="px-2"> / </span>
   <span class="font-bold text-base -translate-y-[0.5px]"> {$_("add_liquidity.withdraw")} </span>

@@ -27,19 +27,20 @@
   a?.length && !$assets.length && assets.set(a);
   $: a?.length && !$assets.length && assets.set(a);
 
-  (async () => {
-    await curve.init("JsonRpc", { url: MVM_RPC_URL }, { chainId: 73927 })
-    await curve.fetchFactoryPools()
-    await curve.fetchCryptoFactoryPools()
-
-    mainPools.set(curve.getAllMainPools())
-    factoryPools.set(curve.getAllFactoryPools())
-    cryptoFactoryPools.set(curve.getAllCryptoFactoryPools())
-    poolsLoaded.set(true)
-  })();
+  const setupFn = async () => {
+    await initi18n();
+  }
 
   (async () => {
     try {
+      await curve.init("JsonRpc", { url: MVM_RPC_URL }, { chainId: 73927 })
+      await curve.fetchFactoryPools()
+      await curve.fetchCryptoFactoryPools()
+
+      mainPools.set(curve.getAllMainPools())
+      factoryPools.set(curve.getAllFactoryPools())
+      cryptoFactoryPools.set(curve.getAllCryptoFactoryPools())
+      poolsLoaded.set(true)
       // TODO: Auto connect to last connected provider
       // const web3Client = await createWeb3Client();
       // const p = await web3Client.cacheConnect();
@@ -50,7 +51,8 @@
     }
   })();
 
-  const setupI18n = initi18n();
+  const setup = setupFn()
+
   const escQuitDialogs = (e: any) => {
     if (e.keyCode === 27) {
       setAssetDialog(false);
@@ -61,7 +63,7 @@
   };
 </script>
 
-{#await setupI18n}
+{#await setup}
   <Loading />
 {:then}
   <div class="app">

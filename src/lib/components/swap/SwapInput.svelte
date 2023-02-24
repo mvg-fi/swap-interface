@@ -22,7 +22,7 @@
   import { assets } from "$lib/stores/asset";
   import { derived } from "@square/svelte-store";
   import { connected } from "$lib/stores/connect";
-  import { formatUSMoney } from "$lib/helpers/utils";
+  import { filterInputEvents, formatUSMoney } from "$lib/helpers/utils";
   import { maskOption } from "$lib/helpers/constants";
   import { getCachedAssetBalance } from "$lib/stores/asset";
   import { setAssetDialog } from "$lib/stores/swap/selectAsset";
@@ -53,7 +53,8 @@
   }
 
   let timeout: any = null;
-  const delayInput = () => {
+  const delayInput = (event: KeyboardEvent) => {
+    if (!filterInputEvents(event)) return
     clearTimeout(timeout);
     receiveAmount.set('')
     timeout = setTimeout(async function () {
@@ -63,7 +64,7 @@
   };
   
   $: $selectedFromAsset, $selectedToAsset, fetchRoute()
-
+ 
   const fetchUSD = () => { return $assets.find((obj)=>obj.mixinAssetId==$selectedFromAsset.mixinAssetId)?.priceUsd || 0};  
   $: symbol = $selectedFromAsset.symbol;
   $: usd_store = derived(balance, fetchUSD);

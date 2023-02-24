@@ -9,6 +9,7 @@ export let cryptoFactoryPools: Writable<IDict<IPoolData>> = writable()
 export let poolsLoaded: Writable<boolean> = writable(false)
 
 export let currentPool: Writable<PoolTemplate> = writable()
+export let currentPoolBalances: Writable<string[]> = writable()
 
 export let receiveAmount = writable('')
 export let _receiveAmount = derived(receiveAmount, ($receiveAmount) => {return BN($receiveAmount)})

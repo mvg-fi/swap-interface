@@ -2,17 +2,18 @@
   import { _ } from "svelte-i18n";
   import { cleave } from "svelte-cleavejs";
   import { maskOption } from "$lib/helpers/constants";
+  import { currentPool } from "$lib/stores/pool/pools";
   import _tokenList from "$lib/constants/tokenlist.json";
   import Image from "$lib/components/common/image.svelte";
+  import { findAssetsFromTokenList } from "$lib/helpers/utils";
   import { assets as assss, getCachedAssetBalance } from "$lib/stores/asset";
   import { derived } from "@square/svelte-store";
-    import { findAssetsFromTokenList } from "$lib/helpers/utils";
-    import { currentPool } from "$lib/stores/pool/pools";
 
   $: assets = findAssetsFromTokenList(Object.values(_tokenList), $currentPool.underlyingCoinAddresses)
   $: icons = assets.map((e)=>{
     return e?.logoURI || ''
   });
+  // $: balance = 
   const coins = $currentPool.underlyingCoins;
   const price = [1.24, 5.3, 64, 324];
   const balance = [0.01, 0.01, 0.01, 0.01];
