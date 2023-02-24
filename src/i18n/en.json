@@ -165,6 +165,7 @@
 		"price_impact_info":"Percentage of token price will change",
 		"trade_through":"Trade through",
 		"trade_through_info":"Pools the transaction will go through",
-		"slippage_info": "The slippage"
+		"slippage_info": "The slippage",
+		"usd": "USD"
 	}
 }

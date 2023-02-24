@@ -102,6 +102,41 @@ export const getChainByAsset = (assetID: string) => {
 		return chain.mixinAssetId === assetID
 	})
 }
+export const multiply = (a: string, b: string) => {
+	return new BigNumber(a).times(new BigNumber(b)).toString();
+};
+
+export const getSum = (strings: string[]) => {
+    return strings.reduce((acc: BigNumber, curr: string) => {
+        return acc.plus(new BigNumber(curr));
+    }, new BigNumber(0));
+};
+
+export const getUsdTotal = (prices: string[], amounts: string[]) => {
+	// multiply each element in the two arrays
+	const multiplied = prices.map((price, index) => {
+			return new BigNumber(price).times(new BigNumber(amounts[index]));
+	});
+
+	// calculate the sum
+	const sum = multiplied.reduce((acc, curr) => {
+			return acc.plus(curr);
+	}, new BigNumber(0));
+
+	return sum.toString();
+};
+
+export const getPercentage = (strings: string[], element: string) => {
+	// calculate the sum of the array
+	const sum = strings.reduce((acc, curr) => {
+			return acc.plus(new BigNumber(curr));
+	}, new BigNumber(0));
+
+	// calculate the percentage
+	const percentage = new BigNumber(element).dividedBy(sum).times(100);
+
+	return percentage.toString();
+};
 
 export const isEVMAsset = (assetID: string) => {
 	return getChainByAsset(assetID)?.evm || false

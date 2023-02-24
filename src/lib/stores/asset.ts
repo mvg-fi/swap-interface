@@ -35,6 +35,6 @@ export const getCachedAssetBalance = (assetId: string) => {
 		const ass = $assets.find((ass) => { return ass.mixinAssetId === assetId || ass.contract === assetId })
 		return ass?.symbol === 'ETH' 
 		? formatDecimals(String(ass.balance), 8) || 0 
-		: $assets.find((ass) => { return ass.mixinAssetId === assetId })?.balance || 0
+		: $assets.find((ass) => { return ass.mixinAssetId === assetId || ass.contract === assetId})?.balance || 0
 	})
 }

@@ -1,23 +1,26 @@
 <script lang="ts">
+  import clsx from "clsx";
   import { _ } from "svelte-i18n";
+  import { assets } from "$lib/stores/asset";
   import _tokenList from "$lib/constants/tokenlist.json";
   import { currentPool } from "$lib/stores/pool/pools";
   import Image from "$lib/components/common/image.svelte";
-  import { findAssetsFromTokenList, formatUSMoney } from "$lib/helpers/utils";
   import Loading from "$lib/components/pool/elements/poolInfo/loading.svelte";
+  import { findAssetsFromTokenList, formatUSMoney, getPercentage, getSum, getUsdTotal, multiply } from "$lib/helpers/utils";
 
-
-  $: assets = findAssetsFromTokenList(Object.values(_tokenList), $currentPool.underlyingCoinAddresses)
-  $: icons = assets.map((e)=>{
+  $: staticAssets = findAssetsFromTokenList(Object.values(_tokenList), $currentPool.underlyingCoinAddresses)
+  $: icons = staticAssets.map((e)=>{
     return e?.logoURI || ''
   });
 
   const coins = $currentPool.underlyingCoins;
   let poolBalance = $currentPool.stats.underlyingBalances();
-  
-  // TODO: calc percentage, get asset icons
-  // const sum = poolBalance.reduce((a, b) => a + b, 0);
-  const usdTotal = 154324.12;
+    
+  const fetchUSD = (contract: string) => { return String($assets.find((obj)=>obj.contract==contract)?.priceUsd) || ''}
+  $: usds = staticAssets.map((e)=>{
+    if (e?.contract == undefined) return ''
+    return fetchUSD(e?.contract)
+  })
 </script>
 
 <div class="flex flex-col">
@@ -38,16 +41,22 @@
         {#await poolBalance}
           <Loading/>
         {:then poolBalance}
+        <div class="tooltip" data-tip={`${$_('technical.usd')}:${formatUSMoney(multiply(usds[i], poolBalance[i]))}`}>
           <span class="font-semibold text-base"> {poolBalance[i]} </span>
+        </div>
           <span class="font-semibold opacity-80 ml-1 text-xs">
-            <!-- ({"25%"}) -->
+            ({getPercentage(poolBalance, poolBalance[i])}%)
           </span>
         {/await}
       </div>
     </div>
   {/each}
 </div>
-<div class="px-6 my-1 flex text-sm">
+<div class="px-6 my-1 mt-1.5 flex text-sm">
   <span class="font-semibold flex-1"> {$_('add_liquidity.total')} </span>
-  <span class="font-semibold"> {formatUSMoney(usdTotal)} </span>
+  {#await poolBalance}
+    <Loading/>
+  {:then poolBalance}
+    <span class="font-semibold"> { formatUSMoney(getUsdTotal(usds, poolBalance)) } </span>
+  {/await}
 </div>

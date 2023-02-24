@@ -16,7 +16,7 @@
   // $: balance = 
   const coins = $currentPool.underlyingCoins;
   const price = [1.24, 5.3, 64, 324];
-  const balance = [0.01, 0.01, 0.01, 0.01];
+  // const balance = [0.01, 0.01, 0.01, 0.01];
   $: value = new Array(coins.length).fill(null);
 
   const setMax = (x: number, i: number) => {
@@ -25,7 +25,9 @@
 
   // const fetchUSD = () => { return $assets.find((obj)=>obj.mixinAssetId==coin.mixinAssetId)?.priceUsd || 0};
   // $: usd_store = derived(balance, fetchUSD);
-  // $: balance = getCachedAssetBalance(coin.mixinAssetId);
+  $: balance = []
+
+  $: console.log('balance:',balance)
 </script>
 
 {#each coins as coin, i}

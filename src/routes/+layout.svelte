@@ -53,7 +53,7 @@
 
   const setup = setupFn()
 
-  const escQuitDialogs = (e: any) => {
+  const escQuitDialogs = (e: KeyboardEvent) => {
     if (e.keyCode === 27) {
       setAssetDialog(false);
       setToAssetDialog(false);
