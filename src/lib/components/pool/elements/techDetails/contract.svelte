@@ -21,7 +21,7 @@
     <a href={addr_link} target="_blank" rel="noreferrer" class="text-inherit">
       <div class="flex items-center mt-0.5 cursor-pointer">
         <span
-          class="font-semibold text-base uppercase text-inherit hover:text-indigo-500"
+          class="font-semibold text-base uppercase text-inherit hover:text-indigo-600"
         >
           {shortenAddress(poolAddress, 6, 4)}
         </span>
@@ -40,7 +40,7 @@
         {$_("technical.token_address")}
       </span>
     </div>
-    <a href={addr_link} target="_blank" rel="noreferrer" class="text-inherit hover:text-indigo-500">
+    <a href={addr_link} target="_blank" rel="noreferrer" class="text-inherit hover:text-indigo-600">
       <div class="flex items-center mt-0.5 cursor-pointer">
         <span
           class="font-semibold text-base uppercase text-inherit"
