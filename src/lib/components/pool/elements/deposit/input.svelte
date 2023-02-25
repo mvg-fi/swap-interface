@@ -3,41 +3,66 @@
   import { cleave } from "svelte-cleavejs";
   import { assets as assss } from "$lib/stores/asset";
   import { maskOption } from "$lib/helpers/constants";
-  import { currentPool } from "$lib/stores/pool/pools";
   import _tokenList from "$lib/constants/tokenlist.json";
   import Image from "$lib/components/common/image.svelte";
-  import { findAssetsFromTokenList, formatUSMoney } from "$lib/helpers/utils";
+  import { coins, currentPool, exceptedLoading, inputValues, invalidAmount, receiveAmount } from "$lib/stores/pool/pools";
+  import { filterInputEvents, findAssetsFromTokenList, formatUSMoney } from "$lib/helpers/utils";
+
+  const fetchBalance = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.balance || 0};
+  const fetchUSD = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.priceUsd || 0};
+  const setMax = (x: number, i: number) => { $inputValues[i] = x; };
 
   $: assets = findAssetsFromTokenList(Object.values(_tokenList), $currentPool.underlyingCoinAddresses)
   $: icons = assets.map((e)=>{
     return e?.logoURI || ''
   });
-  const coins = $currentPool.underlyingCoins;
-  $: value = new Array(coins.length).fill(null);
-
-  const setMax = (x: number, i: number) => {
-    value[i] = x;
-  };
-
-  const fetchBalance = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.balance || 0};
-  const fetchUSD = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.priceUsd || 0};
   $: balance = assets.map((e)=>{
     return fetchBalance(e?.contract || '0')
   })
   $: price = assets.map((e)=>{
     return fetchUSD(e?.contract || '0')
   })
+
+  inputValues.set(new Array($coins.length).fill(null));
+
+  const fetchReceive = async () => {
+    exceptedLoading.set(true)
+    inputValues.set($inputValues.map((element) => element == null ? 0 : element));
+    if ($inputValues.every((e)=>e==null||e==0||e==undefined)) {
+      receiveAmount.set('0')
+      exceptedLoading.set(false)
+      return
+    }
+    try {
+      receiveAmount.set(await $currentPool.depositExpected($inputValues))
+    } catch (e) {
+      invalidAmount.set(true)
+      console.log(e)
+    } finally {
+      exceptedLoading.set(false)
+    }
+  }
+  let timeout: any = null;
+  const delayInput = (event: KeyboardEvent) => {
+    if (!filterInputEvents(event)) return
+    
+    clearTimeout(timeout);
+    timeout = setTimeout(async function () {
+      await fetchReceive()
+    }, 1000);
+  };
 </script>
 
-{#each coins as coin, i}
+{#each $coins as coin, i}
   <div class="p-1 m-1 border-solid rounded-2xl bd">
     <div class="items-center justfiy-center flex">
       <div class="flex-1 flex flex-col mx-3">
         <input
           type="tel"
           placeholder="0"
-          bind:value={value[i]}
+          on:keyup={delayInput}
           use:cleave={maskOption}
+          bind:value={$inputValues[i]}
           class="input border-0 p-0 w-full max-w-xs input-md outline-none on-focus font-bold text-2xl transition-none"
         />
       </div>
@@ -54,13 +79,13 @@
     <div class="flex flex-row mx-2 my-1 opacity-75 text-xs">
       <div class="flex-1 ml-1">
         {#if true}
-          <span>{formatUSMoney((price[i] * value[i]))}</span>
+          <span>{formatUSMoney((price[i] * $inputValues[i]))}</span>
         {/if}
       </div>
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div
         on:click={() => {
-          setMax(balance[i], i);
+          setMax(Number(balance[i]), i);
         }}
         class="tooltip tooltip-left"
         data-tip={$_("add_liquidity.max")}

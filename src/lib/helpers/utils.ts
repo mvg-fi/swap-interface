@@ -168,3 +168,5 @@ export const filterInputEvents = (event: KeyboardEvent): boolean => {
 	) return true
 	return false
 }
+
+export const arrayAreAllNull = (values: number[]) => { return values.every((e) => e == null || e == 0 || e == undefined);}

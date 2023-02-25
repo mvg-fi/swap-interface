@@ -41,7 +41,7 @@
 </script>
 
 <div class="flex flex-col">
-  <span class="font-bold text-xl mb-1 px-6">
+  <span class="font-bold text-xl mb-2 px-6">
     {$_("add_liquidity.pool_balance")}
   </span>
   {#each coins as coin, i}

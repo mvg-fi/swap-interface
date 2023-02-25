@@ -12,7 +12,6 @@
     swapInfo,
     priceImpact,
   } from "$lib/stores/swap/swap";
-  import curve from "@zed-wong/mvgswap";
 
   $: fromSymbol = rotate ? $selectedToAsset.symbol : $selectedFromAsset.symbol;
   $: toSymbol = rotate ? $selectedFromAsset.symbol : $selectedToAsset.symbol;
