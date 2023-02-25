@@ -18,10 +18,10 @@
         {$_("technical.pool_address")}
       </span>
     </div>
-    <a href={addr_link} target="_blank" rel="noreferrer" class="text-inherit">
+    <a href={addr_link} target="_blank" rel="noreferrer" class="text-inherit hover:text-indigo-600">
       <div class="flex items-center mt-0.5 cursor-pointer">
         <span
-          class="font-semibold text-base uppercase text-inherit hover:text-indigo-600"
+          class="font-semibold text-base uppercase text-inherit"
         >
           {shortenAddress(poolAddress, 6, 4)}
         </span>

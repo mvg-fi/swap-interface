@@ -65,7 +65,7 @@ export const getToday = (sub: number = 0) => {
 // }
 
 export const formatDecimals = (s: string | number, n: number) => {
-	if (Number(s) == undefined || Number(s) == null ) return 0
+	if (Number(s) == undefined || Number(s) == null || Number(s) == 0) return 0
 	return Math.floor(Number(s) * 10 ** n) / 10 ** n
 }
 
@@ -160,11 +160,12 @@ export const catchPaymentError = (err: unknown) => {
 // Filter bind:keyup input events
 // If event code valid, return true
 // If event code invalid, return false
+// 0-9, Backspace, .
 export const filterInputEvents = (event: KeyboardEvent): boolean => {
 	if (
-		!event.code.includes('Digit') || 
-		!event.code.includes('Escape') ||
-		!event.code.includes('Period')
+		event.code.includes('Digit') || 
+		event.code.includes('Backspace') ||
+		event.code.includes('Period')
 	) return true
 	return false
 }

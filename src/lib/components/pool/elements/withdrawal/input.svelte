@@ -1,17 +1,18 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
+  import curve from "@zed-wong/mvgswap";
   import { cleave } from "svelte-cleavejs";
+  import { connected } from "$lib/stores/connect";
   import { maskOption } from "$lib/helpers/constants";
   import Image from "$lib/components/common/image.svelte";
   import { currentPool } from "$lib/stores/pool/pools";
-    import curve from "@zed-wong/mvgswap";
   
-  $: coin = $currentPool.name
-  $: balance = '';
   // const icon = "https://mixin-images.zeromesh.net/MZhG5lLirhrfLHpDf16NCmSrUUWY9rO4FX7BqMQPbvzTrCDNAxqO6ovERoDIU7puvXatQ9suZglFw_GiBO_26lg3A1LdbLV6Fj7h=s128"
   
   const price = 1224;
   $: value = null;
+
+  const balance = $connected ? $currentPool.wallet.lpTokenBalances() : 0
 
   const setMax = (x: number) => {
     value = x;
@@ -35,7 +36,7 @@
       </div>
     </div> -->
     <div class="mt-0.5 mx-2">
-      <span class="uppercase font-bold"> {coin} </span>
+      <span class="uppercase font-bold"> {$currentPool.name} </span>
     </div>
   </div>
 

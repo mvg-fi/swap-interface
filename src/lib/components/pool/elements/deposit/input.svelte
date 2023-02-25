@@ -1,16 +1,20 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import { cleave } from "svelte-cleavejs";
+  import { connected } from "$lib/stores/connect";
   import { assets as assss } from "$lib/stores/asset";
   import { maskOption } from "$lib/helpers/constants";
   import _tokenList from "$lib/constants/tokenlist.json";
   import Image from "$lib/components/common/image.svelte";
-  import { coins, currentPool, exceptedLoading, inputValues, invalidAmount, receiveAmount } from "$lib/stores/pool/pools";
+  import { coins, currentPool, exceptedError, exceptedErrorMsg, exceptedLoading, inputValues, receiveAmount, transactionFee } from "$lib/stores/pool/pools";
   import { filterInputEvents, findAssetsFromTokenList, formatUSMoney } from "$lib/helpers/utils";
 
   const fetchBalance = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.balance || 0};
   const fetchUSD = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.priceUsd || 0};
   const setMax = (x: number, i: number) => { $inputValues[i] = x; };
+  const getExcepted = async () => { return $currentPool.depositExpected($inputValues) }
+  const getTxFee = async () => { return await $currentPool.estimateGas.deposit($inputValues) }
+  // const getPriceImpact =async () => { return await $currentPool. }
 
   $: assets = findAssetsFromTokenList(Object.values(_tokenList), $currentPool.underlyingCoinAddresses)
   $: icons = assets.map((e)=>{
@@ -26,6 +30,7 @@
   inputValues.set(new Array($coins.length).fill(null));
 
   const fetchReceive = async () => {
+    exceptedError.set(false)
     exceptedLoading.set(true)
     inputValues.set($inputValues.map((element) => element == null ? 0 : element));
     if ($inputValues.every((e)=>e==null||e==0||e==undefined)) {
@@ -34,10 +39,11 @@
       return
     }
     try {
-      receiveAmount.set(await $currentPool.depositExpected($inputValues))
+      receiveAmount.set(await getExcepted())
+      if ($connected) transactionFee.set(await getTxFee())
     } catch (e) {
-      invalidAmount.set(true)
-      console.log(e)
+      exceptedError.set(true)
+      exceptedErrorMsg.set(e.message)
     } finally {
       exceptedLoading.set(false)
     }
@@ -45,7 +51,7 @@
   let timeout: any = null;
   const delayInput = (event: KeyboardEvent) => {
     if (!filterInputEvents(event)) return
-    
+    console.log(event.code)
     clearTimeout(timeout);
     timeout = setTimeout(async function () {
       await fetchReceive()

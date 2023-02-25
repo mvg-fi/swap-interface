@@ -1,16 +1,26 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import { onDestroy } from "svelte";
+  import { BN } from "$lib/helpers/utils";
   import Setting from "$lib/images/setting.svg";
   import { slippage } from "$lib/stores/swap/swap";
-  import { BN, formatPercentage } from "$lib/helpers/utils";
   import { slippageDialog } from "$lib/stores/swap/slippage";
   import { NATIVE_TOKEN_SYMBOL } from "$lib/helpers/constants";
+  import Errors from "$lib/components/pool/elements/deposit/errors.svelte";
   import Loading from "$lib/components/pool/elements/deposit/loading.svelte";
-  import { currentPool, exceptedLoading, inputValues, invalidAmount, receiveAmount, _receiveAmount } from "$lib/stores/pool/pools";
+  import {
+    currentPool,
+    inputValues,
+    exceptedError,
+    exceptedLoading,
+    receiveAmount,
+    _receiveAmount,
+    exceptedErrorMsg,
+  } from "$lib/stores/pool/pools";
 
-  const tx_fee = 0.000001;
-  $: min_receive = $_receiveAmount.minus($_receiveAmount.multipliedBy(BN($slippage).div(100))).toFixed(8);
+  $: min_receive = $_receiveAmount
+    .minus($_receiveAmount.multipliedBy(BN($slippage).div(100)))
+    .toFixed(8);
   $: items = [
     {
       key: $_("technical.excepted_output") + ":",
@@ -21,42 +31,50 @@
       value: `${min_receive} ${$currentPool.name}`,
     },
     {
-      key: $_("technical.slippage") + ":",
+      key: $_("technical.price_impact") + ":",
       value: `${0}`,
     },
     {
       key: $_("technical.tx_fee") + ":",
-      value: `${tx_fee} ${NATIVE_TOKEN_SYMBOL}`,
+      value: `${0} ${NATIVE_TOKEN_SYMBOL}`,
     },
   ];
 
-  onDestroy(()=>{
-    receiveAmount.set('0')
-  })
+  onDestroy(() => {
+    receiveAmount.set("0");
+    exceptedError.set(false);
+    exceptedErrorMsg.set('');
+  });
 </script>
 
-{#each items as item, i}
-  <div class="py-2 flex">
-    <span class="text-sm flex-1"> {item.key} </span>
-    {#if $exceptedLoading && i in [0,1]}
-      <div>
-        <Loading />
-      </div>
-    {:else}
-      <span class="text-sm"> {item.value} </span>
-    {/if}
-
-    {#if i === 2}
-      <button on:click={() => slippageDialog.set(true)}>
-        <img
-          src={Setting}
-          alt=""
-          class="w-3 opacity-70 ml-1 cursor-pointer setting [[data-theme=dark]_&]:invert"
-        />
-      </button>
-    {/if}
+{#if $exceptedError}
+  <div class="mt-2">
+    <Errors />
   </div>
-{/each}
+{:else}
+  {#each items as item, i}
+    <div class="py-2 flex">
+      <span class="text-sm flex-1"> {item.key} </span>
+      {#if $exceptedLoading}
+        <div>
+          <Loading />
+        </div>
+      {:else}
+        <span class="text-sm"> {item.value} </span>
+      {/if}
+
+      {#if i === 2}
+        <button on:click={() => slippageDialog.set(true)}>
+          <img
+            src={Setting}
+            alt=""
+            class="w-3 opacity-70 ml-1 cursor-pointer setting [[data-theme=dark]_&]:invert"
+          />
+        </button>
+      {/if}
+    </div>
+  {/each}
+{/if}
 
 <style>
   .setting:hover {

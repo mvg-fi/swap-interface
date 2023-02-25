@@ -32,8 +32,7 @@
   <meta name="description" content="" />
 </svelte:head>
 
-<!-- Name -->
-<div class="w-full flex items-center justify-center pb-1 text-base-content">
+<div class="w-full flex items-center justify-center pb-2 text-base-content">
   <Title name={$currentPool.name} />
 </div>
 <div class="mx-0 flex flex-row mt-3 text-base-content">
