@@ -73,7 +73,7 @@
 </script>
 
 <div class="w-full">
-  <div class="p-1 py-2 bg-base-200 rounded-2xl">
+  <div class="p-1 py-2 bg-base-200 border rounded-2xl">
     <div class="items-center justfiy-center flex space-x-0">
       <div class="flex flex-col mx-3">
         <input

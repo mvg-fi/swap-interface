@@ -147,7 +147,7 @@
 		"fee": "Trading Fee",
 		"fee_info": "Trading fees collected for each swap",
 		"admin_fee":  "Admin Fee",
-		"admin_fee_info": "Protocol income",
+		"admin_fee_info": "Protocol revenue",
 		"min_receive": "Min receive",
 		"min_receive_info": "Minium amount of token you will receive",
 		"slippage": "Slippage",

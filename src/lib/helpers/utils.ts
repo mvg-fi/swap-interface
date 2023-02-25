@@ -33,6 +33,7 @@ export const formatUSMoney = (x: string | number) => {
 	return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(x))
 }
 
+// has units like $300M, $1B
 export const formatCompactUSD = (x: number, places: number = 2) => {
 	return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: places, notation: "compact", compactDisplay: "short" }).format(x)
 }

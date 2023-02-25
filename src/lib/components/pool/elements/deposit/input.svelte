@@ -1,33 +1,32 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import { cleave } from "svelte-cleavejs";
+  import { assets as assss } from "$lib/stores/asset";
   import { maskOption } from "$lib/helpers/constants";
   import { currentPool } from "$lib/stores/pool/pools";
   import _tokenList from "$lib/constants/tokenlist.json";
   import Image from "$lib/components/common/image.svelte";
-  import { findAssetsFromTokenList } from "$lib/helpers/utils";
-  import { assets as assss, getCachedAssetBalance } from "$lib/stores/asset";
-  import { derived } from "@square/svelte-store";
+  import { findAssetsFromTokenList, formatUSMoney } from "$lib/helpers/utils";
 
   $: assets = findAssetsFromTokenList(Object.values(_tokenList), $currentPool.underlyingCoinAddresses)
   $: icons = assets.map((e)=>{
     return e?.logoURI || ''
   });
-  // $: balance = 
   const coins = $currentPool.underlyingCoins;
-  const price = [1.24, 5.3, 64, 324];
-  // const balance = [0.01, 0.01, 0.01, 0.01];
   $: value = new Array(coins.length).fill(null);
 
   const setMax = (x: number, i: number) => {
     value[i] = x;
   };
 
-  // const fetchUSD = () => { return $assets.find((obj)=>obj.mixinAssetId==coin.mixinAssetId)?.priceUsd || 0};
-  // $: usd_store = derived(balance, fetchUSD);
-  $: balance = []
-
-  $: console.log('balance:',balance)
+  const fetchBalance = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.balance || 0};
+  const fetchUSD = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.priceUsd || 0};
+  $: balance = assets.map((e)=>{
+    return fetchBalance(e?.contract || '0')
+  })
+  $: price = assets.map((e)=>{
+    return fetchUSD(e?.contract || '0')
+  })
 </script>
 
 {#each coins as coin, i}
@@ -55,8 +54,7 @@
     <div class="flex flex-row mx-2 my-1 opacity-75 text-xs">
       <div class="flex-1 ml-1">
         {#if true}
-          <!-- if usd price loaded -->
-          <span>${(price[i] * value[i]).toFixed(2)}</span>
+          <span>{formatUSMoney((price[i] * value[i]))}</span>
         {/if}
       </div>
       <!-- svelte-ignore a11y-click-events-have-key-events -->

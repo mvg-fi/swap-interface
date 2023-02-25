@@ -86,7 +86,7 @@
     </div>
   {/each}
 </div>
-<div class="px-6 my-1 mt-1.5 flex text-sm">
+<div class="px-6 pr-5 my-1 mt-1.5 flex text-sm">
   <span class="font-semibold flex-1"> {$_("add_liquidity.total")} </span>
   {#await poolBalance}
     <Loading />
