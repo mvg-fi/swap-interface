@@ -18,7 +18,7 @@
   $: exchangeRate = rotate
     ? formatDecimals($_payAmount.div($_receiveAmount, 10).toNumber(), 6)
     : formatDecimals($_receiveAmount.div($_payAmount, 10).toNumber(), 6);
-  $: route = ''
+  $: route = $swapInfo ? $swapInfo.route.map(e=>e.poolId).join('->') : '-'
 
   let checked = false;
   let rotate = false;

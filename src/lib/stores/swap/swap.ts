@@ -1,8 +1,9 @@
 import BigNumber from 'bignumber.js';
-import { derived, get, writable } from 'svelte/store'
+import { derived, get, writable, type Writable } from 'svelte/store'
 import assets from "$lib/constants/tokenlist.json";
 import { DEFAULT_SLIPPAGE } from "$lib/helpers/constants";
 import { setAssetDialog, setToAssetDialog } from './selectAsset';
+import type { IRouteStep } from '@zed-wong/mvgswap/lib/interfaces';
 
 BigNumber.config({DECIMAL_PLACES:8})
 export let selectedFromAsset = writable(Object.values(assets).find((obj)=>{return obj.symbol==='ETH'}))
@@ -14,7 +15,7 @@ export let _receiveAmount = derived(receiveAmount, ($receiveAmount) => {return B
 export let slippage = writable(DEFAULT_SLIPPAGE)
 export let priceImpact = writable(0)
 export let approved = writable(false)
-export let swapInfo = writable({})  // curve.router.getBestRouteAndOutput
+export let swapInfo: Writable<{route: IRouteStep[], output: string}> = writable()  // curve.router.getBestRouteAndOutput
 export let swapInfoLoading = writable(false)
 export let swapNotAvail = writable(false)
 

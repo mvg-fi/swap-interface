@@ -21,6 +21,7 @@ export let priceImpact: Writable<number> = writable()
 export let exceptedError: Writable<boolean> = writable(false)
 export let exceptedErrorMsg: Writable<string> = writable('')
 export let exceptedLoading: Writable<boolean> = writable(false)
+export let depositApproved: Writable<boolean> = writable()
 
 export let inputWValues: Writable<number[]> = writable()
 export let receiveWAmount: Writable<string> = writable('0')

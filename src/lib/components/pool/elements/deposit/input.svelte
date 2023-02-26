@@ -6,14 +6,13 @@
   import { maskOption } from "$lib/helpers/constants";
   import _tokenList from "$lib/constants/tokenlist.json";
   import Image from "$lib/components/common/image.svelte";
-  import { coins, currentPool, exceptedError, exceptedErrorMsg, exceptedLoading, inputValues, receiveAmount, transactionFee } from "$lib/stores/pool/pools";
+  import { coins, currentPool, depositApproved, exceptedError, exceptedErrorMsg, exceptedLoading, inputValues, receiveAmount, transactionFee } from "$lib/stores/pool/pools";
   import { filterInputEvents, findAssetsFromTokenList, formatUSMoney } from "$lib/helpers/utils";
 
   const fetchBalance = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.balance || 0};
   const fetchUSD = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.priceUsd || 0};
   const setMax = (x: number, i: number) => { $inputValues[i] = x; };
   const getExcepted = async () => { return $currentPool.depositExpected($inputValues) }
-  const getTxFee = async () => { return await $currentPool.estimateGas.deposit($inputValues) }
   // const getPriceImpact =async () => { return await $currentPool. }
 
   $: assets = findAssetsFromTokenList(Object.values(_tokenList), $currentPool.underlyingCoinAddresses)
@@ -26,8 +25,17 @@
   $: price = assets.map((e)=>{
     return fetchUSD(e?.contract || '0')
   })
-
   inputValues.set(new Array($coins.length).fill(null));
+  
+  const checkApprove = async () => {
+    let yes: boolean[] = [];
+    $inputValues.forEach(async (e, i) => {
+      if (e == 0 || e == null || e == undefined) return
+      if (await $currentPool.swapIsApproved($currentPool.underlyingCoinAddresses[i], e)) yes.push(true)
+    })
+    if (yes.includes(false)) return false
+    return true
+  }
 
   const fetchReceive = async () => {
     exceptedError.set(false)
@@ -40,7 +48,9 @@
     }
     try {
       receiveAmount.set(await getExcepted())
-      if ($connected) transactionFee.set(await getTxFee())
+      if ($connected) {
+        depositApproved.set(await checkApprove())
+      }
     } catch (e) {
       exceptedError.set(true)
       exceptedErrorMsg.set(e.message)
@@ -74,7 +84,7 @@
       </div>
       <div class="avatar mx-1 mr-0">
         <div class="w-7 rounded-full">
-          <Image src={icons[i]} alt="" />
+          <Image src={icons[i]} alt="" class="w-7 h-7" />
         </div>
       </div>
       <div class="mt-0.5 mx-2">

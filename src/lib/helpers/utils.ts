@@ -56,14 +56,6 @@ export const getToday = (sub: number = 0) => {
 // 	return l
 // }
 
-// export const formatRouteStr = (routes: string[]) => {
-// 	let r = "";
-// 	routes.forEach((e, index, routes)=>{
-// 		if (index != routes.length-1) r+e+"->"
-// 		else r+e
-// 	})
-// }
-
 export const formatDecimals = (s: string | number, n: number) => {
 	if (Number(s) == undefined || Number(s) == null || Number(s) == 0) return 0
 	return Math.floor(Number(s) * 10 ** n) / 10 ** n

@@ -60,7 +60,7 @@
     timeout = setTimeout(async function () {
       receiveAmount.set('')
       await fetchRoute()
-    }, 1000);
+    }, 500);
   };
   
   $: $selectedFromAsset, $selectedToAsset, fetchRoute()
@@ -111,8 +111,6 @@
           {/if}
         </div>
 
-        <!-- TODO; fix fetch route -->
-        <!-- TODO; fix get input by output -->
         {#if $balance}
           <button
             on:click={() => {
