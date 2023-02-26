@@ -48,7 +48,7 @@
     <div class="flex flex-row my-1 text-sm px-5">
       <div class="avatar w-6 m-1">
         <div class="rounded-full">
-          <Image src={icons[i]} alt={coin} />
+          <Image src={icons[i]} alt={coin} class={"w-6 h-6"}/>
         </div>
       </div>
       <a
