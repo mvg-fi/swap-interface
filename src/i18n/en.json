@@ -11,7 +11,7 @@
 	},
 	"swap": {
 		"title": "Swap",
-		"approve": "Approve",
+		"approve": "Approve Spending",
 		"swap": "Swap",
 		"connect_wallet": "Connect Wallet",
 		"loading": "Fetching best price...",
@@ -22,7 +22,8 @@
 		"price_impact_warning_info": "A swap of this size may have a massive price impact. There may be a huge difference between the input amount and the output amount, this may cause capital losses, please pay attention.",
 		"network_incorrect": "Network incorrect!",
 		"insufficient_balance":"Insufficient Balance",
-		"please_switch_to_mvm": "Please switch your wallet's network to MVM to continue"
+		"please_switch_to_mvm": "Please switch your wallet's network to MVM to continue",
+		"swap_submitted": "Swap submitted"
 	},
 	"pool": {
     "title": "Pool",
@@ -131,14 +132,20 @@
 		"max": "Max",
 		"deposit": "Deposit",
 		"withdraw": "Withdraw",
-		"approve": "Approve",
+		"approve": "Approve Spending",
+		"approve_in_your_wallet": "Approve in your wallet",
 		"pool_balance": "Pool balances",
 		"total": "Total",
 		"daily": "Daily",
 		"weekly": "Weekly",
 		"apy": "APY",
 		"technical": "Technical details",
-		"connect_wallet": "Connect Wallet"
+		"connect_wallet": "Connect Wallet",
+		"approve_success": "Approve success",
+		"deposit_submitted": "Deposit submitted"
+	},
+	"remove_liquidity":{
+		"withdraw_success": "Withdraw success"
 	},
 	"technical": {
 		"pool_address": "Pool Address",

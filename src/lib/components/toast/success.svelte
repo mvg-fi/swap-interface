@@ -8,4 +8,4 @@
 	<img loading="lazy" src={SuccessIcon} alt="success-icon" />
 </div>
 
-<div class="inline-block font-semibold leading-10">{message}</div>
+<div class="inline-block font-semibold break-words leading-10">{message.length <= 100 ? message : `${message.substring(0, 200)}...`}</div>

@@ -2,29 +2,23 @@
   import { _ } from "svelte-i18n";
   import { cleave } from "svelte-cleavejs";
   import { connected } from "$lib/stores/connect";
-  import { assets as assss } from "$lib/stores/asset";
   import { maskOption } from "$lib/helpers/constants";
   import _tokenList from "$lib/constants/tokenlist.json";
   import Image from "$lib/components/common/image.svelte";
+  import { assets as assss, getCachedAssetBalance } from "$lib/stores/asset";
   import { coins, currentPool, depositApproved, depositError, depositErrorMsg, exceptedLoading, inputValues, receiveAmount, transactionFee } from "$lib/stores/pool/pools";
   import { filterInputEvents, findAssetsFromTokenList, formatUSMoney } from "$lib/helpers/utils";
 
-  const fetchBalance = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.balance || 0};
+  // const fetchBalance = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.balance || 0};
   const fetchUSD = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.priceUsd || 0};
   const setMax = (x: number, i: number) => { $inputValues[i] = x; };
   const getExcepted = async () => { return $currentPool.depositExpected($inputValues) }
   // const getPriceImpact =async () => { return await $currentPool. }
 
   $: assets = findAssetsFromTokenList(Object.values(_tokenList), $currentPool.underlyingCoinAddresses)
-  $: icons = assets.map((e)=>{
-    return e?.logoURI || ''
-  });
-  $: balance = assets.map((e)=>{
-    return fetchBalance(e?.contract || '0')
-  })
-  $: price = assets.map((e)=>{
-    return fetchUSD(e?.contract || '0')
-  })
+  $: icons = assets.map((e)=>{ return e?.logoURI || '' });
+  $: balances = (async ()=>{await $currentPool.wallet.underlyingCoinBalances()})()
+  $: price = assets.map((e)=>{ return fetchUSD(e?.contract || '0') })
   inputValues.set(new Array($coins.length).fill(null));
 
   const fetchReceive = async () => {
@@ -92,13 +86,13 @@
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div
           on:click={() => {
-            setMax(Number(balance[i]), i);
+            setMax(Number(balances[i]), i);
           }}
           class="tooltip tooltip-left"
           data-tip={$_("add_liquidity.max")}
         >
           <span class="cursor-pointer"
-            >{$_("add_liquidity.balance")}: {balance[i]}</span
+            >{$_("add_liquidity.balance")}: {balances[i]}</span
           >
         </div>
       {/if}
