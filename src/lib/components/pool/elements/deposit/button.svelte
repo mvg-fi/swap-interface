@@ -8,8 +8,8 @@
     depositApproved,
     exceptedLoading,
   } from "$lib/stores/pool/pools";
+  import ConnectBtn from "$lib/components/pool/elements/connectBtn.svelte";
   import UnableBtn from "$lib/components/pool/elements/deposit/unableBtn.svelte";
-  import ConnectBtn from "$lib/components/pool/elements/deposit/connectBtn.svelte";
   import ApproveBtn from "$lib/components/pool/elements/deposit/approveBtn.svelte";
   import DepositBtn from "$lib/components/pool/elements/deposit/depositBtn.svelte";
 

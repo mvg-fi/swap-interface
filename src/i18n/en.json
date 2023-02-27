@@ -145,7 +145,7 @@
 		"deposit_submitted": "Deposit submitted"
 	},
 	"remove_liquidity":{
-		"withdraw_success": "Withdraw success"
+		"withdraw_submitted": "Withdraw submitted"
 	},
 	"technical": {
 		"pool_address": "Pool Address",

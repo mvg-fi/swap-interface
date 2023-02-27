@@ -1,26 +1,25 @@
 <script lang="ts">
+  import clsx from "clsx";
   import { _ } from "svelte-i18n";
-  const approved = false;
-  const approve = async () => {
-    console.log("Approve spending");
-  };
+  import { connected } from "$lib/stores/connect";
+  import {
+    poolsLoaded,
+    withdrawError,
+    withdrawApproved,
+    exceptedLoading,
+  } from "$lib/stores/pool/pools";
+  import ConnectBtn from "$lib/components/pool/elements/connectBtn.svelte";
+  import UnableBtn from "$lib/components/pool/elements/withdrawal/unableBtn.svelte";
+  import ApproveBtn from "$lib/components/pool/elements/withdrawal/approveBtn.svelte";
+  import WithdrawBtn from "$lib/components/pool/elements/withdrawal/withdrawBtn.svelte";
 </script>
 
-{#if approved}
-  <div>
-    <button
-      class="btn btn-lg btn-block text-black bg-gray-200 hover:bg-gray-300 border-none rounded-2xl"
-    >
-      <span> {$_("add_liquidity.withdrawal")} </span>
-    </button>
-  </div>
-{:else if !approved}
-  <div>
-    <button
-      on:click={approve}
-      class="btn btn-lg btn-block text-black bg-gray-200 hover:bg-gray-300 border-none rounded-2xl"
-    >
-      <span> {$_("add_liquidity.approve")} </span>
-    </button>
-  </div>
+{#if !$connected}
+  <ConnectBtn />
+{:else if $exceptedLoading || $withdrawError || !$poolsLoaded}
+  <UnableBtn />
+{:else if $withdrawApproved}
+  <WithdrawBtn />
+{:else}
+  <ApproveBtn />
 {/if}
