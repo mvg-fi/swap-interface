@@ -4,7 +4,7 @@
   import {
     currentPool,
     withdrawApproved,
-    inputWValues,
+    inputLpAmount,
   } from "$lib/stores/pool/pools";
   import { showToast } from "$lib/components/toast/container.svelte";
 
@@ -13,7 +13,7 @@
   const approve = async () => {
     approveLoading = true;
     try {
-      const approvedTxs = await $currentPool.withdrawApprove($inputWValues);
+      const approvedTxs = await $currentPool.withdrawApprove($inputLpAmount);
       console.log("Approved:", approvedTxs);
       if (approvedTxs.length != 0) withdrawApproved.set(true);
       showToast("success", $_("add_liquidity.approve_success"));

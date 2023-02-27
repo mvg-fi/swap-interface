@@ -2,7 +2,7 @@
   import clsx from "clsx";
   import { _ } from "svelte-i18n";
   import { slippage } from "$lib/stores/swap/swap";
-  import { currentPool, inputWValues } from "$lib/stores/pool/pools";
+  import { currentPool, inputLpAmount } from "$lib/stores/pool/pools";
   import { showToast } from "$lib/components/toast/container.svelte";
 
   let withdrawLoading = false;
@@ -10,7 +10,7 @@
   const withdraw = async () => {
     withdrawLoading = true;
     try {
-      const tx = await $currentPool.withdraw($inputWValues, $slippage);
+      const tx = await $currentPool.withdraw($inputLpAmount, $slippage);
       console.log("withdrawed:", tx);
       showToast("success", $_("remove_liquidity.withdraw_submitted"));
     } catch (e) {

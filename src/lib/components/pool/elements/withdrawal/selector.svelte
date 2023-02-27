@@ -1,29 +1,63 @@
 <script lang="ts">
-  import { _ } from "svelte-i18n"
+  import { _ } from "svelte-i18n";
   import { cleave } from "svelte-cleavejs";
   import { maskOption } from "$lib/helpers/constants";
-  import { currentPool } from "$lib/stores/pool/pools";
+  import {
+    currentPool,
+    inputLpAmount,
+    receiveWAmount,
+    withdrawImbalanceAmount,
+  } from "$lib/stores/pool/pools";
   import _tokenList from "$lib/constants/tokenlist.json";
   import Image from "$lib/components/common/image.svelte";
   import { findAssetsFromTokenList } from "$lib/helpers/utils";
 
-  const ranges = [$_('technical.single'), $_('technical.balanced'), $_('technical.custom')];
+  const ranges = [
+    $_("technical.single"),
+    $_("technical.balanced"),
+    $_("technical.custom"),
+  ];
   const tooltips = [
-    $_('technical.withdraw_single'),
-    $_('technical.withdraw_balanced'),
-    $_('technical.withdraw_custom'),
+    $_("technical.withdraw_single"),
+    $_("technical.withdraw_balanced"),
+    $_("technical.withdraw_custom"),
   ];
   let focus = -1;
   let m1focus = 0;
-  $: assets = findAssetsFromTokenList(Object.values(_tokenList), $currentPool.underlyingCoinAddresses)
-  $: icons = assets.map((e)=>{
-    return e?.logoURI || ''
+  $: assets = findAssetsFromTokenList(
+    Object.values(_tokenList),
+    $currentPool.underlyingCoinAddresses
+  );
+  $: icons = assets.map((e) => {
+    return e?.logoURI || "";
   });
-  $: coins = assets.map((e)=>{
-    return e?.symbol || ''
+  $: coins = assets.map((e) => {
+    return e?.symbol || "";
   });
   let avgAmounts = [1.53, 1.43];
-  let customAmounts = [null,null,null,null];
+  let customAmounts = [0, 0, 0, 0];
+
+  const fetchRecvAmount = async () => {
+    const f = async () => {
+      switch (focus) {
+        case 0:
+          //single
+          return await $currentPool.withdrawOneCoinExpected(
+            $inputLpAmount,
+            coins[m1focus]
+          );
+        case 1:
+          //balanced
+          return await $currentPool.withdrawExpected($inputLpAmount);
+        case 2:
+          //custom
+          return await $currentPool.withdrawImbalanceExpected(
+            $withdrawImbalanceAmount
+          );
+      }
+    };
+    receiveWAmount.set(await f());
+  };
 </script>
 
 <div class="m-1 my-3">
@@ -44,7 +78,7 @@
           on:click={() => {
             focus = i;
           }}
-        > 
+        >
           <span>{ranges[i]}</span>
         </button>
       {/each}
@@ -59,7 +93,9 @@
               class="flex flex-row items-center justify-center h-16 gap-1 hover:bg-base-200
               border border-base-200 hover:border-x border-x-0 border-t-0 hover:border-base-300
               first:rounded-bl-2xl first:border-l last:rounded-br-2xl last:border-r
-              {m1focus === i ? 'bg-base-200 border-base-200 hover:bg-base-200' : ''}"
+              {m1focus === i
+                ? 'bg-base-200 border-base-200 hover:bg-base-200'
+                : ''}"
               on:click={() => {
                 m1focus = i;
               }}
@@ -107,7 +143,11 @@
                 </div>
               </div>
               <span class="text-sm font-semibold ml-1 flex-1"> {coin} </span>
-              <input class="input input-sm bg-base-200 transition-none" use:cleave={maskOption} bind:value={customAmounts[i]} />
+              <input
+                class="input input-sm bg-base-200 transition-none"
+                use:cleave={maskOption}
+                bind:value={$withdrawImbalanceAmount[i]}
+              />
             </div>
           {/each}
         </div>

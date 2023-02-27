@@ -7,7 +7,7 @@
   import { connected } from "$lib/stores/connect";
   import { maskOption } from "$lib/helpers/constants";
   import Image from "$lib/components/common/image.svelte";
-  import { currentPool, inputWValues } from "$lib/stores/pool/pools";
+  import { currentPool, inputLpAmount } from "$lib/stores/pool/pools";
   import Loading from "$lib/components/swap/SwapInfo/Loading.svelte";
 
   const price = 1224;
@@ -30,7 +30,7 @@
         type="tel"
         placeholder="0"
         use:cleave={maskOption}
-        bind:value={$inputWValues}
+        bind:value={$inputLpAmount}
         class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-2xl transition-none"
       />
     </div>
