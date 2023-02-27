@@ -3,26 +3,16 @@
   import { _ } from "svelte-i18n";
   import { fade } from "svelte/transition";
   import Close from "$lib/images/close.svg";
+  import { assets } from "$lib/stores/asset";
   import { search } from "$lib/stores/bridge/searchAsset";
-  import {
-    setFromAsset,
-    setToAsset,
-    inputFrom,
-    selectedFromAsset,
-    selectedToAsset,
-  } from "$lib/stores/bridge/bridge";
+  import { selectedNetwork } from "$lib/stores/bridge/searchNetwork";
   import NoResult from "$lib/components/swap/SelectAsset/NoResult.svelte";
   import SingleAsset from "$lib/components/bridge/selector/singleAsset.svelte";
   import SearchAsset from "$lib/components/bridge/selector/searchAsset.svelte";
-  import {
-    selectAssetDialog,
-    setAssetDialog,
-  } from "$lib/stores/bridge/selectAsset";
-  import { assets } from "$lib/stores/asset";
-  import NetworkSelector from "./selector/networkSelector.svelte";
-  import { selectedNetwork } from "$lib/stores/bridge/searchNetwork";
-    import { MixinAssetID } from "@mixin.dev/mixin-node-sdk";
-
+  import NetworkSelector from "$lib/components/bridge/selector/networkSelector.svelte";
+  import { selectAssetDialog, setAssetDialog } from "$lib/stores/bridge/selectAsset";
+  import { setFromAsset, setToAsset, inputFrom, selectedFromAsset, selectedToAsset } from "$lib/stores/bridge/bridge";
+  
   $: initFiltered = $assets.filter((item) => {
     if ($selectedNetwork != null) {
       return item.mixinChainId
@@ -53,7 +43,7 @@
   }
 
   function onKeyDown(e: any) {
-    if (e.keyCode === 27) {
+    if (e.code === 'Escape') {
       setAssetDialog(false);
     }
   }

@@ -6,13 +6,15 @@
   import { maskOption } from "$lib/helpers/constants";
   import Image from "$lib/components/common/image.svelte";
   import { currentPool } from "$lib/stores/pool/pools";
+    import Loading from "$lib/components/swap/SwapInfo/Loading.svelte";
+    import { address } from "$lib/stores/user";
   
   // const icon = "https://mixin-images.zeromesh.net/MZhG5lLirhrfLHpDf16NCmSrUUWY9rO4FX7BqMQPbvzTrCDNAxqO6ovERoDIU7puvXatQ9suZglFw_GiBO_26lg3A1LdbLV6Fj7h=s128"
   
   const price = 1224;
   $: value = null;
 
-  const balance = $connected ? $currentPool.wallet.lpTokenBalances() : 0
+  const balance = (async () => $connected ? await $currentPool.wallet.lpTokenBalances($address).lpToken || 0 : 0)()
 
   const setMax = (x: number) => {
     value = x;
@@ -55,9 +57,13 @@
       class="tooltip tooltip-left"
       data-tip={$_("add_liquidity.max")}
     >
-      <span class="cursor-pointer"
-        >{$_("add_liquidity.balance")}: {balance}</span
-      >
+      {#await balance}
+        <Loading/>
+      {:then balance}
+        <span class="cursor-pointer"
+          >{$_("add_liquidity.balance")}: {balance}</span
+        >
+      {/await}
     </div>
   </div>
 </div>

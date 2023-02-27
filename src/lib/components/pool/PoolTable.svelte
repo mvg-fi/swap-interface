@@ -8,7 +8,7 @@
   import SinglePool from "$lib/components/pool/SinglePool.svelte";
   import LoadingPools from "$lib/components/pool/LoadingPools.svelte";
   import NoResult from "$lib/components/swap/SelectAsset/NoResult.svelte";
-  import { cryptoFactoryPools, factoryPools, mainPools } from "$lib/stores/pool/pools";
+  import { cryptoFactoryPools, factoryPools, mainPools, poolsLoaded } from "$lib/stores/pool/pools";
 
   $: pools = {
       ...$mainPools,
@@ -50,7 +50,7 @@
 <div>
   <div class="overflow-x-auto w-full select-none text-base-content">
     <table class="table w-full">
-      {#if Object.values(pools).length == 0}
+      {#if Object.values(pools).length == 0 && !$poolsLoaded}
         <LoadingPools />
       {:else if Object.values(pools).length != 0 && sortedPools.length != 0}
         <thead>

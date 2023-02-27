@@ -54,7 +54,7 @@
   const setup = setupFn()
 
   const escQuitDialogs = (e: KeyboardEvent) => {
-    if (e.keyCode === 27) {
+    if (e.code === 'Escape') {
       setAssetDialog(false);
       setToAssetDialog(false);
       setWalletDialog(false);

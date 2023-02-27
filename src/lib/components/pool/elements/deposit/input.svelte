@@ -6,7 +6,7 @@
   import { maskOption } from "$lib/helpers/constants";
   import _tokenList from "$lib/constants/tokenlist.json";
   import Image from "$lib/components/common/image.svelte";
-  import { coins, currentPool, depositApproved, exceptedError, exceptedErrorMsg, exceptedLoading, inputValues, receiveAmount, transactionFee } from "$lib/stores/pool/pools";
+  import { coins, currentPool, depositApproved, depositError, depositErrorMsg, exceptedLoading, inputValues, receiveAmount, transactionFee } from "$lib/stores/pool/pools";
   import { filterInputEvents, findAssetsFromTokenList, formatUSMoney } from "$lib/helpers/utils";
 
   const fetchBalance = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.balance || 0};
@@ -26,19 +26,9 @@
     return fetchUSD(e?.contract || '0')
   })
   inputValues.set(new Array($coins.length).fill(null));
-  
-  const checkApprove = async () => {
-    let yes: boolean[] = [];
-    $inputValues.forEach(async (e, i) => {
-      if (e == 0 || e == null || e == undefined) return
-      if (await $currentPool.swapIsApproved($currentPool.underlyingCoinAddresses[i], e)) yes.push(true)
-    })
-    if (yes.includes(false)) return false
-    return true
-  }
 
   const fetchReceive = async () => {
-    exceptedError.set(false)
+    depositError.set(false)
     exceptedLoading.set(true)
     inputValues.set($inputValues.map((element) => element == null ? 0 : element));
     if ($inputValues.every((e)=>e==null||e==0||e==undefined)) {
@@ -49,11 +39,11 @@
     try {
       receiveAmount.set(await getExcepted())
       if ($connected) {
-        depositApproved.set(await checkApprove())
+        depositApproved.set(await $currentPool.depositIsApproved($inputValues))
       }
     } catch (e) {
-      exceptedError.set(true)
-      exceptedErrorMsg.set(e.message)
+      depositError.set(true)
+      depositErrorMsg.set(e.message)
     } finally {
       exceptedLoading.set(false)
     }
@@ -61,7 +51,7 @@
   let timeout: any = null;
   const delayInput = (event: KeyboardEvent) => {
     if (!filterInputEvents(event)) return
-    console.log(event.code)
+    
     clearTimeout(timeout);
     timeout = setTimeout(async function () {
       await fetchReceive()
@@ -98,18 +88,20 @@
           <span>{formatUSMoney((price[i] * $inputValues[i]))}</span>
         {/if}
       </div>
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <div
-        on:click={() => {
-          setMax(Number(balance[i]), i);
-        }}
-        class="tooltip tooltip-left"
-        data-tip={$_("add_liquidity.max")}
-      >
-        <span class="cursor-pointer"
-          >{$_("add_liquidity.balance")}: {balance[i]}</span
+      {#if $connected}
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <div
+          on:click={() => {
+            setMax(Number(balance[i]), i);
+          }}
+          class="tooltip tooltip-left"
+          data-tip={$_("add_liquidity.max")}
         >
-      </div>
+          <span class="cursor-pointer"
+            >{$_("add_liquidity.balance")}: {balance[i]}</span
+          >
+        </div>
+      {/if}
     </div>
   </div>
 {/each}

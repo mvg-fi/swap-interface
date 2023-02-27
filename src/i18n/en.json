@@ -137,7 +137,8 @@
 		"daily": "Daily",
 		"weekly": "Weekly",
 		"apy": "APY",
-		"technical": "Technical details"
+		"technical": "Technical details",
+		"connect_wallet": "Connect Wallet"
 	},
 	"technical": {
 		"pool_address": "Pool Address",

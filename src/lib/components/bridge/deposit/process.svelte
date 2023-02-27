@@ -19,7 +19,7 @@
   }
 
   function onKeyDown(e: any) {
-    if (e.keyCode === 27) {
+    if (e.code === 'Escape') {
       processDialog.set(false);
     }
   }

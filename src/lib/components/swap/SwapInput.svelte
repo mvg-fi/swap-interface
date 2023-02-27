@@ -21,14 +21,13 @@
   import { cleave } from "svelte-cleavejs";
   import { assets } from "$lib/stores/asset";
   import { derived } from "@square/svelte-store";
-  import { connected } from "$lib/stores/connect";
+  import { connected, switchNeeded } from "$lib/stores/connect";
   import { filterInputEvents, formatUSMoney } from "$lib/helpers/utils";
   import { maskOption } from "$lib/helpers/constants";
   import { getCachedAssetBalance } from "$lib/stores/asset";
   import { setAssetDialog } from "$lib/stores/swap/selectAsset";
 
   const fetchRoute = async () => {
-    console.log('change detected')
     if ($_payAmount.isNaN() || $_payAmount.isZero()) return
     swapInfoLoading.set(true)
     try {
@@ -70,6 +69,12 @@
   $: usd_store = derived(balance, fetchUSD);
   $: balance = getCachedAssetBalance($selectedFromAsset.mixinAssetId)
   $: usd_value = derived(usd_store, () => {return formatUSMoney((Number($usd_store) * Number($payAmount)).toFixed(2)) || 0;});
+
+  $: if ($switchNeeded) { 
+    payAmount.set('')
+    receiveAmount.set('')
+    swapNotAvail.set(false)
+  }
 </script>
 
 <div class="w-full">

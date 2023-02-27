@@ -11,11 +11,12 @@
   import {
     currentPool,
     inputValues,
-    exceptedError,
+    depositError,
     exceptedLoading,
     receiveAmount,
     _receiveAmount,
-    exceptedErrorMsg,
+    depositErrorMsg,
+    transactionFee,
   } from "$lib/stores/pool/pools";
 
   $: min_receive = $_receiveAmount
@@ -32,7 +33,7 @@
     },
     {
       key: $_("technical.price_impact") + ":",
-      value: `${0}`,
+      value: `${$transactionFee}`,
     },
     {
       key: $_("technical.tx_fee") + ":",
@@ -42,12 +43,12 @@
 
   onDestroy(() => {
     receiveAmount.set("0");
-    exceptedError.set(false);
-    exceptedErrorMsg.set('');
+    depositError.set(false);
+    depositErrorMsg.set('');
   });
 </script>
 
-{#if $exceptedError}
+{#if $depositError}
   <div class="mt-2">
     <Errors />
   </div>
@@ -63,7 +64,7 @@
         <span class="text-sm"> {item.value} </span>
       {/if}
 
-      {#if i === 2}
+      {#if i === 2 && !$exceptedLoading}
         <button on:click={() => slippageDialog.set(true)}>
           <img
             src={Setting}

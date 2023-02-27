@@ -1,6 +1,6 @@
 <script>
   import clsx from "clsx";
-  import { exceptedError } from "$lib/stores/pool/pools";
+  import { depositError } from "$lib/stores/pool/pools";
   import Button from "$lib/components/pool/elements/deposit/button.svelte";
   import Infos from "$lib/components/pool/elements/deposit/infos.svelte";
   import Input from "$lib/components/pool/elements/deposit/input.svelte";
@@ -17,7 +17,7 @@
     <div class="mx-1 select-none">
       <Input />
     </div>
-    <div class={clsx("mx-2", !$exceptedError&&"mx-3","my-2")}>
+    <div class={clsx("mx-2", !$depositError&&"mx-3","my-2")}>
       <Infos />
     </div>
     <div class="my-2 mx-2 select-none">
