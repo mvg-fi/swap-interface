@@ -79,16 +79,14 @@
   <PriceImpactWarning />
 
   <div class="w-full pt-2 z-0">
-    {#if $connected}
-      {#if !balanceEnough}
-        <InsufficientBalance /> 
-      {:else if $approved}
-        <SwapButton />
-      {:else}
-        <ApproveButton />
-      {/if}
-    {:else}
+    {#if !$connected}
       <ConnectWalletBtn />
+    {:else if !balanceEnough}
+      <InsufficientBalance /> 
+    {:else if $approved}
+      <SwapButton />
+    {:else}
+      <ApproveButton />
     {/if}
   </div>
 </div>

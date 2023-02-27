@@ -1,6 +1,7 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import { cleave } from "svelte-cleavejs";
+  import Empty from "$lib/images/empty-token.svg";
   import { connected } from "$lib/stores/connect";
   import { maskOption } from "$lib/helpers/constants";
   import _tokenList from "$lib/constants/tokenlist.json";
@@ -9,15 +10,15 @@
   import { coins, currentPool, depositApproved, depositError, depositErrorMsg, exceptedLoading, inputValues, receiveAmount, transactionFee } from "$lib/stores/pool/pools";
   import { filterInputEvents, findAssetsFromTokenList, formatUSMoney } from "$lib/helpers/utils";
 
-  // const fetchBalance = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.balance || 0};
+  const fetchBalance = async () => { await $currentPool.wallet.underlyingCoinBalances() };
   const fetchUSD = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.priceUsd || 0};
   const setMax = (x: number, i: number) => { $inputValues[i] = x; };
   const getExcepted = async () => { return $currentPool.depositExpected($inputValues) }
   // const getPriceImpact =async () => { return await $currentPool. }
 
   $: assets = findAssetsFromTokenList(Object.values(_tokenList), $currentPool.underlyingCoinAddresses)
-  $: icons = assets.map((e)=>{ return e?.logoURI || '' });
-  $: balances = (async ()=>{await $currentPool.wallet.underlyingCoinBalances()})()
+  $: icons = assets.map((e)=>{ return e?.logoURI || Empty });
+  $: balances = fetchBalance();
   $: price = assets.map((e)=>{ return fetchUSD(e?.contract || '0') })
   inputValues.set(new Array($coins.length).fill(null));
 

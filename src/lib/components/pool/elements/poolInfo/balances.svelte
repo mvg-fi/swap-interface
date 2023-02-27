@@ -2,6 +2,7 @@
   import clsx from "clsx";
   import { _ } from "svelte-i18n";
   import { assets } from "$lib/stores/asset";
+  import Empty from "$lib/images/empty-token.svg";
   import Link from "$lib/images/arrow-top-right.svg";
   import { currentPool } from "$lib/stores/pool/pools";
   import { MVM_SCAN_URL } from "$lib/helpers/constants";
@@ -22,7 +23,7 @@
     $currentPool.underlyingCoinAddresses
   );
   $: icons = staticAssets.map((e) => {
-    return e?.logoURI || "";
+    return e?.logoURI || Empty;
   });
 
   const coins = $currentPool.underlyingCoins;
@@ -36,7 +37,7 @@
   };
   $: usds = staticAssets.map((e) => {
     if (e?.contract == undefined) return "";
-    return fetchUSD(e?.contract);
+    return fetchUSD(e?.contract) || '';
   });
 </script>
 
@@ -73,7 +74,7 @@
           <div
             class="tooltip"
             data-tip={`${$_("technical.usd")}:${
-              formatUSMoney(multiply(usds[i], poolBalance[i])) || ""
+              formatUSMoney(multiply(usds[i], poolBalance[i]))
             }`}
           >
             <span class="font-semibold text-base"> {poolBalance[i]} </span>

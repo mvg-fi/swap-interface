@@ -108,6 +108,7 @@ export const getSum = (strings: string[]) => {
 export const getUsdTotal = (prices: string[], amounts: string[]) => {
 	// multiply each element in the two arrays
 	const multiplied = prices.map((price, index) => {
+		if (price == '' || price == undefined || price == null) return 0
 			return new BigNumber(price).times(new BigNumber(amounts[index]));
 	});
 
