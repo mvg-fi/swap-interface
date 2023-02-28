@@ -7,8 +7,6 @@
 
   const poolAddress = $currentPool.address;
   const tokenAddress = $currentPool.lpToken;
-
-  var addr_link = `${MVM_SCAN_URL}address/${poolAddress}`;
 </script>
 
 <div> 
@@ -18,7 +16,7 @@
         {$_("technical.pool_address")}
       </span>
     </div>
-    <a href={addr_link} target="_blank" rel="noreferrer" class="text-inherit hover:text-indigo-600">
+    <a href={`${MVM_SCAN_URL}address/${poolAddress}`} target="_blank" rel="noreferrer" class="text-inherit hover:text-indigo-600">
       <div class="flex items-center mt-0.5 cursor-pointer">
         <span
           class="font-semibold text-base uppercase text-inherit"
@@ -40,7 +38,7 @@
         {$_("technical.token_address")}
       </span>
     </div>
-    <a href={addr_link} target="_blank" rel="noreferrer" class="text-inherit hover:text-indigo-600">
+    <a href={`${MVM_SCAN_URL}address/${tokenAddress}`} target="_blank" rel="noreferrer" class="text-inherit hover:text-indigo-600">
       <div class="flex items-center mt-0.5 cursor-pointer">
         <span
           class="font-semibold text-base uppercase text-inherit"

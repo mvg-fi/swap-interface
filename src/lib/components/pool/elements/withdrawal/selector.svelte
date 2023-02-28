@@ -4,9 +4,14 @@
   import { maskOption } from "$lib/helpers/constants";
   import {
     currentPool,
+    withdrawMode,
+    mode1Options,
     inputLpAmount,
     receiveWAmount,
+    receiveWAmounts,
     withdrawImbalanceAmount,
+    withdrawError,
+    exceptedWLoading,
   } from "$lib/stores/pool/pools";
   import _tokenList from "$lib/constants/tokenlist.json";
   import Image from "$lib/components/common/image.svelte";
@@ -22,8 +27,6 @@
     $_("technical.withdraw_balanced"),
     $_("technical.withdraw_custom"),
   ];
-  let focus = -1;
-  let m1focus = 0;
   $: assets = findAssetsFromTokenList(
     Object.values(_tokenList),
     $currentPool.underlyingCoinAddresses
@@ -34,29 +37,34 @@
   $: coins = assets.map((e) => {
     return e?.symbol || "";
   });
-  let avgAmounts = [1.53, 1.43];
-  let customAmounts = [0, 0, 0, 0];
 
   const fetchRecvAmount = async () => {
-    const f = async () => {
-      switch (focus) {
+    if($withdrawMode == -1) return
+    withdrawError.set(false)
+    exceptedWLoading.set(true)
+    receiveWAmount.set('')
+    receiveWAmounts.set([])
+    await (async () => {
+      switch ($withdrawMode) {
         case 0:
           //single
-          return await $currentPool.withdrawOneCoinExpected(
+          receiveWAmount.set(await $currentPool.withdrawOneCoinExpected(
             $inputLpAmount,
-            coins[m1focus]
-          );
+            coins[$mode1Options]
+          ))
+          break;
         case 1:
           //balanced
-          return await $currentPool.withdrawExpected($inputLpAmount);
+          receiveWAmounts.set(await $currentPool.withdrawExpected($inputLpAmount));
+          break
         case 2:
           //custom
-          return await $currentPool.withdrawImbalanceExpected(
+          receiveWAmount.set(await $currentPool.withdrawImbalanceExpected(
             $withdrawImbalanceAmount
-          );
+          ))
+          break;
       }
-    };
-    receiveWAmount.set(await f());
+    })()
   };
 </script>
 
@@ -70,13 +78,14 @@
           border border-base-300 hover:border-base-300
           font-medium text-xs text-base-content tooltip m-0
           first:border-r-0 last:border-l-0
-          {focus != -1 ? (i === 0 ? 'bl' : i === 2 ? 'br' : '') : ''}
-          {focus === i
+          {$withdrawMode != -1 ? (i === 0 ? 'bl' : i === 2 ? 'br' : '') : ''}
+          {$withdrawMode === i
             ? 'bg-base-300 border-base-200 hover:bg-base-200 hover:border-bsae-100'
             : ''}"
           data-tip={tooltips[i]}
           on:click={() => {
-            focus = i;
+            withdrawMode.set(i);
+            fetchRecvAmount()
           }}
         >
           <span>{ranges[i]}</span>
@@ -85,7 +94,7 @@
     </div>
 
     <!-- Input -->
-    {#if focus === 0}
+    {#if $withdrawMode === 0}
       <div class="bg-base-100 w-full h-auto">
         <div class="grid grid-cols-{coins.length}">
           {#each coins as coin, i}
@@ -93,11 +102,11 @@
               class="flex flex-row items-center justify-center h-16 gap-1 hover:bg-base-200
               border border-base-200 hover:border-x border-x-0 border-t-0 hover:border-base-300
               first:rounded-bl-2xl first:border-l last:rounded-br-2xl last:border-r
-              {m1focus === i
+              {$mode1Options === i
                 ? 'bg-base-200 border-base-200 hover:bg-base-200'
                 : ''}"
               on:click={() => {
-                m1focus = i;
+                mode1Options.set(i);
               }}
             >
               <div class="avatar w-6 mb-0.5">
@@ -110,7 +119,7 @@
           {/each}
         </div>
       </div>
-    {:else if focus === 1}
+    {:else if $withdrawMode === 1}
       <div class="bg-base-100 w-full h-auto">
         <div>
           {#each coins as coin, i}
@@ -124,12 +133,12 @@
                 </div>
               </div>
               <span class="text-sm font-semibold ml-1 flex-1"> {coin} </span>
-              <span> {avgAmounts[i]} </span>
+              <span> {[i]} </span>
             </div>
           {/each}
         </div>
       </div>
-    {:else if focus === 2}
+    {:else if $withdrawMode === 2}
       <div class="bg-base-100 w-full h-auto">
         <div>
           {#each coins as coin, i}
@@ -144,9 +153,9 @@
               </div>
               <span class="text-sm font-semibold ml-1 flex-1"> {coin} </span>
               <input
-                class="input input-sm bg-base-200 transition-none"
                 use:cleave={maskOption}
                 bind:value={$withdrawImbalanceAmount[i]}
+                class="input input-sm bg-base-200 transition-none"
               />
             </div>
           {/each}

@@ -2,29 +2,41 @@
   import { _ } from "svelte-i18n";
   import Setting from "$lib/images/setting.svg";
   import { slippage } from "$lib/stores/swap/swap";
-  import { formatPercentage } from "$lib/helpers/utils";
+  import { BN, formatPercentage } from "$lib/helpers/utils";
   import { slippageDialog } from "$lib/stores/swap/slippage";
   import { NATIVE_TOKEN_SYMBOL } from "$lib/helpers/constants";
+  import { currentPool, transactionWFee, withdrawMode, _receiveWAmount } from "$lib/stores/pool/pools";
 
-  const min_receive = 0.01;
-  const lp_token_name = "SBFSB";
-  const tx_fee = 0.000001;
-
-  $: slip = formatPercentage($slippage)
-  $: items = [
+  $: min_receive = $_receiveWAmount
+    .minus($_receiveWAmount.multipliedBy(BN($slippage).div(100)))
+    .toFixed(8);
+  $: items = $withdrawMode != 1 ? [
+    {
+      key: $_("technical.excepted_output") + ":",
+      value: `${''} ${$currentPool.name}`,
+    },
     {
       key: $_("technical.min_receive") + ":",
-      value: `${min_receive} ${lp_token_name}`,
+      value: `${min_receive} ${$currentPool.name}`,
     },
     {
       key: $_("technical.slippage") + ":",
-      value: `${slip}`,
+      value: `${formatPercentage($slippage)}`,
     },
     {
       key: $_("technical.tx_fee") + ":",
-      value: `${tx_fee} ${NATIVE_TOKEN_SYMBOL}`,
+      value: `${$transactionWFee} ${NATIVE_TOKEN_SYMBOL}`,
     },
-  ];
+  ] : [
+    {
+      key: $_("technical.slippage") + ":",
+      value: `${formatPercentage($slippage)}`,
+    },
+    {
+      key: $_("technical.tx_fee") + ":",
+      value: `${$transactionWFee} ${NATIVE_TOKEN_SYMBOL}`,
+    },
+  ]
 </script>
 
 {#each items as item, i}

@@ -1,6 +1,6 @@
 import { BN } from "$lib/helpers/utils";
 import type { PoolTemplate } from "@zed-wong/mvgswap/lib/pools";
-import { derived, writable, type Readable, type Writable } from "svelte/store";
+import { derived, get, writable, type Readable, type Writable } from "svelte/store";
 import type { IDict, IPoolData } from "@zed-wong/mvgswap/lib/interfaces";
 
 export let mainPools: Writable<IDict<IPoolData>> = writable()
@@ -26,10 +26,19 @@ export let depositApproved: Writable<boolean> = writable()
 export let inputLpAmount: Writable<number> = writable()
 export let receiveWAmount: Writable<string> = writable('0')
 export let _receiveWAmount = derived(receiveAmount, ($receiveAmount) => {return BN($receiveAmount)})
+export let receiveWAmounts: Writable<string[]> = writable()
+export let _receiveWAmounts = derived(receiveWAmounts, ($receiveWAmounts) => {
+    $receiveWAmounts.map(
+      (e)=>BN(e)
+    )
+  }
+)
 export let transactionWFee: Writable<number> = writable(0)
 export let priceWImpact: Writable<number> = writable()
 export let exceptedWLoading: Writable<boolean> = writable(false)
 export let withdrawError: Writable<boolean> = writable(false)
 export let withdrawErrorMsg: Writable<string> = writable('')
 export let withdrawApproved: Writable<boolean> = writable()
-export let withdrawImbalanceAmount: Writable<number[]> = writable()
+export let withdrawImbalanceAmount: Writable<number[]> = writable(new Array<number>(4))
+export let withdrawMode: Writable<number> = writable(-1)
+export let mode1Options: Writable<number> = writable(0)

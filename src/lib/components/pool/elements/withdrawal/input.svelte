@@ -6,20 +6,49 @@
   import Empty from "$lib/images/empty-token.svg";
   import { connected } from "$lib/stores/connect";
   import { maskOption } from "$lib/helpers/constants";
+  import { filterInputEvents } from "$lib/helpers/utils";
   import Image from "$lib/components/common/image.svelte";
-  import { currentPool, inputLpAmount } from "$lib/stores/pool/pools";
   import Loading from "$lib/components/swap/SwapInfo/Loading.svelte";
+  import { currentPool, exceptedWLoading, inputLpAmount, receiveWAmount, withdrawError, withdrawErrorMsg, withdrawMode } from "$lib/stores/pool/pools";
 
   const price = 1224;
   $: value = null;
 
+  const fetchRecvAmount = async () => {
+    if($withdrawMode == -1) return
+    withdrawError.set(false)
+    exceptedWLoading.set(true)
+    if ($inputLpAmount==null||$inputLpAmount==0||$inputLpAmount==undefined){
+      receiveWAmount.set('0')
+      exceptedWLoading.set(false)
+    }
+    try {
+      // receiveWAmount.set(await $currentPool.withdrawExpected($inputLpAmount))
+    } catch (e) {
+      withdrawError.set(true)
+      withdrawErrorMsg.set(e.message)
+    } finally {
+      exceptedWLoading.set(false)
+    }
+  }
+
   const balance = (async () =>
     $connected
-      ? $currentPool.wallet.lpTokenBalances()
+      ? await $currentPool.wallet.lpTokenBalances()
       : 0)();
 
   const setMax = (x: number) => {
     value = x;
+  };
+
+  let timeout: any = null;
+  const delayInput = (event: KeyboardEvent) => {
+    if (!filterInputEvents(event)) return
+    
+    clearTimeout(timeout);
+    timeout = setTimeout(async function () {
+      await fetchRecvAmount()
+    }, 1000); 
   };
 </script>
 
@@ -29,6 +58,7 @@
       <input
         type="tel"
         placeholder="0"
+        on:keyup={delayInput}
         use:cleave={maskOption}
         bind:value={$inputLpAmount}
         class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-2xl transition-none"

@@ -1,16 +1,80 @@
 {
 	"appName": "MVG",
+	"appIntro": "基于MVM网络的AMM协议和跨链桥",
 	"navbar": {
 		"swap": "交易",
 		"pool": "流动池",
-		"dashboard": "控制台"
+		"dashboard": "控制台",
+		"bridge": 跨链桥
+		"view_doc": "查看文档",
+		"help_center": "帮助中心"
 	},
 	"swap": {
 		"title": "交易",
-		"connect_wallet": "连接钱包"
+		"approve": "授权给合约",
+		"connect_wallet": "连接钱包",
+		"loading": "加载最优价格中...",
+		"not_available": "交易无法进行",
+		"switch": "切换",
+		"type_here": "在此输入",
+		"price_impact_warning": "价格影响警告",
+		"price_impact_warning_info": "当前量级的交易可能产生巨大的价格影响，支付币种的数量可能远多于得到币种的数量，可能导致资金损失，请务必注意。",
+		"network_incorrect": "网络不正确！",
+		"insufficient_balance":"余额不足",
+		"please_switch_to_mvm": "请将您的网络切换至MVM以继续",
+		"swap_submitted": "交易已发出"
 	},
 	"pool": {
-    "title": "流动池"
+    "title": "流动池",
+		"myLiquidity": "我的流动性",
+		"loading_pools": "加载流动池中...",
+		"create_factory_pool":"创建工厂流动池"
+	},
+	"bridge": {
+		"title": "跨链桥",
+		"from": "从",
+		"to": "到",
+		"memo": "备注",
+		"enter_recipient_address":"请输入接收地址",
+		"enter_memo": "请输入备注",
+		"autofill": "自动补全",
+		"delete": "删除",
+		"bridge": "跨链",
+		"approve": "授权",
+		"search_network": "查找区块链网络",
+		"invalid_address": "无效地址",
+		"pay_with": "使用",
+		"view_address": "查看地址",
+		"pay_with_info": "使用已连接的钱包支付",
+		"view_address_info": "转账至地址已完成支付",
+		"deposit": "充值",
+		"cancel": "取消",
+		"close": "关闭",
+		"retry": "重试",
+		"back": "返回",
+		"switch_network": "切换网络",
+		"switch_network_info0":"请切换至",
+		"switch_network_info1":"以继续",
+		"network": "网络",
+		"mainnet": "主网",
+		"confirm": "确定",
+		"deposit_will": "充值将会在",
+		"confirmations": "个区块同步数后到账",
+		"address": "地址",
+		"ive_transferred":"我已转账",
+		"min_deposit": "最少充值",
+		"memo_required": "必须包含备注，否则您将丢失您的资产！",
+		"token": "代币",
+		"amount": "数量",
+		"balance": "余额",
+		"loading_deposit": "加载充值中",
+		"loading_deposit_text": "您的充值将会很快显示在这里",
+		"deposit_success": "充值成功",
+		"ongoing_deposits":"进行中的充值",
+		"waiting_confirmation": "等待确认中",
+		"transaction_rejected": "支付已被拒绝",
+		"transaction_success": "支付成功",
+		"an_error_occurred": "有错误发生"
 	},
 	"login": {
 		"title": "登录",
@@ -26,9 +90,11 @@
 	},
 	"connect": {
 		"title": "连接",
-		"waiting": "等待连接中"
+		"waiting": "等待连接中",
+		"pleaseConfirm": "请在您的钱包中确认"
 	},
 	"error": {
+		"NoProvider": "未找到Web3钱包",
 		"userClosedModal": "您已取消连接",
 		"userRejected": "您已拒绝交易"
 	},
@@ -70,7 +136,13 @@
 		"daily": "每日",
 		"weekly": "每周",
 		"apy": "年化收益",
-		"technical": "技术细节"
+		"technical": "技术细节",
+		"connect_wallet": "连接钱包",
+		"approve_success": "授权成功",
+		"deposit_submitted": "已发起充值"
+	},
+	"remove_liquidity":{
+		"withdraw_submitted": "已发起提现"
 	},
 	"technical": {
 		"pool_address": "合约地址",
@@ -78,18 +150,31 @@
 		"utilization": "流动性利用率",
 		"volume": "24小时交易量",
 		"fee": "交易手续费",
+		"fee_info": "每笔交易收取的交易手续费",
 		"admin_fee":  "管理费",
+		"admin_fee_info": "协议手续费收入",
 		"min_receive": "最少可获得",
+		"min_receive_info": "您最少可能获得的数量",
 		"slippage": "滑点",
 		"tx_fee": "预估燃料费用",
 		"virtual_price": "虚拟价格",
+		"virtual_price_info": "流动池LP Token对流动池资产的价格，非美元价格",
 		"a":  "A",
+		"a_info":  "决定流动池对资产数量不平衡的忍耐度，更高的A意味着交易会更晚导致滑点变化。",
 		"price_oracle":"预言机价格",
 		"single": "单币",
 		"balanced": "平均",
 		"custom": "自定义",
 		"withdraw_single": "提现为单一币种",
 		"withdraw_balanced": "平均提现为所有币种",
-		"withdraw_custom": "设置自定义值"
+		"withdraw_custom": "设置自定义值",
+		"excepted_output":"预估数量",
+		"excepted_output_info": "您将收到的代币数量",
+		"price_impact":"价格影响",
+		"price_impact_info":"代币价格将改变的百分比",
+		"trade_through":"交易经过",
+		"trade_through_info":"交易将经过的流动池",
+		"slippage_info": "滑点",
+		"usd": "美元"
 	}
 }
