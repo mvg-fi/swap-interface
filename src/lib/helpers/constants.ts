@@ -5,6 +5,9 @@ import { toHex } from '$lib/helpers/utils';
 export const APP_NAME = 'MVG Finance'
 export const NATIVE_TOKEN_SYMBOL = 'ETH'
 
+// PATHS
+export const APP_PATHS = ['/swap', '/pool', 'bridge']
+
 // Icons
 export const MVM_ICON = 'https://mvm.dev/logo.svg'
 

@@ -1,6 +1,10 @@
 <script lang="ts">
-  import { MVM_ICON } from "$lib/helpers/constants";
+  import { page } from "$app/stores";
+  import { APP_PATHS, MVM_ICON } from "$lib/helpers/constants";
   const network = "MVM";
+  
+  if ([APP_PATHS[0],APP_PATHS[1]].includes($page.url.pathname)){ }
+  // TODO: check network after connected, in /swap and /pool
 </script>
 
 <div class="network btn btn-ghost modal-button mx-2">

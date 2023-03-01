@@ -5,7 +5,7 @@
 		"swap": "交易",
 		"pool": "流动池",
 		"dashboard": "控制台",
-		"bridge": 跨链桥
+		"bridge": "跨链桥",
 		"view_doc": "查看文档",
 		"help_center": "帮助中心"
 	},
@@ -96,7 +96,7 @@
 	"error": {
 		"NoProvider": "未找到Web3钱包",
 		"userClosedModal": "您已取消连接",
-		"userRejected": "您已拒绝交易"
+		"userRejected": "您已取消交易"
 	},
 	"search": {
 		"pool": "搜索流动池名称，流动池地址，代币名称或代币地址",
@@ -158,7 +158,7 @@
 		"slippage": "滑点",
 		"tx_fee": "预估燃料费用",
 		"virtual_price": "虚拟价格",
-		"virtual_price_info": "流动池LP Token对流动池资产的价格，非美元价格",
+		"virtual_price_info": "流动池 LP Token 对流动池资产的价格，非美元价格",
 		"a":  "A",
 		"a_info":  "决定流动池对资产数量不平衡的忍耐度，更高的A意味着交易会更晚导致滑点变化。",
 		"price_oracle":"预言机价格",

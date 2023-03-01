@@ -108,7 +108,7 @@
   };
 
   $: modalbox = clsx(
-    loading ? "h-[33%] !max-w-[26rem]" : "grid grid-cols-2 min-h-[25%] h-[45%]",
+    loading ? "h-[285px] !max-w-[26rem]" : "grid grid-cols-2 min-h-[25%] h-[45%]",
     "modal-box relative w-full p-2"
   );
 </script>
@@ -121,7 +121,6 @@
 >
   <div class={modalbox} bind:this={content}>
     {#if loading}
-      <!-- TODO loading svg is too thin -->
       <div class="flex flex-col justify-center items-center w-full h-full">
         <img
           src={loadingHuge}
