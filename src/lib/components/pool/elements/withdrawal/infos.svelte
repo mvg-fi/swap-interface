@@ -5,19 +5,19 @@
   import { BN, formatPercentage } from "$lib/helpers/utils";
   import { slippageDialog } from "$lib/stores/swap/slippage";
   import { NATIVE_TOKEN_SYMBOL } from "$lib/helpers/constants";
-  import { currentPool, transactionWFee, withdrawMode, _receiveWAmount } from "$lib/stores/pool/pools";
+  import { currentPool, mode1Options, transactionWFee, withdrawMode, _receiveWAmount } from "$lib/stores/pool/pools";
 
   $: min_receive = $_receiveWAmount
     .minus($_receiveWAmount.multipliedBy(BN($slippage).div(100)))
     .toFixed(8);
-  $: items = $withdrawMode != 1 ? [
+  $: items = $withdrawMode == 0 ? [
     {
       key: $_("technical.excepted_output") + ":",
-      value: `${''} ${$currentPool.name}`,
+      value: `${$_receiveWAmount} ${$currentPool.underlyingCoins[$mode1Options]}`,
     },
     {
       key: $_("technical.min_receive") + ":",
-      value: `${min_receive} ${$currentPool.name}`,
+      value: `${min_receive} ${$currentPool.underlyingCoins[$mode1Options]}`,
     },
     {
       key: $_("technical.slippage") + ":",
@@ -44,7 +44,7 @@
     <span class="text-sm flex-1"> {item.key} </span>
     <span class="text-sm"> {item.value} </span>
 
-    {#if i === 1}
+    {#if item.key === $_("technical.slippage") + ":"}
       <button on:click={() => slippageDialog.set(true)}>
         <img
           src={Setting}

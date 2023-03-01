@@ -17,6 +17,7 @@
     <div class="mx-1 select-none">
       <Input />
     </div>
+    <!-- TODO: add deposit balanced amount -->
     <div class={clsx("mx-2", !$depositError&&"mx-3","my-2")}>
       <Infos />
     </div>

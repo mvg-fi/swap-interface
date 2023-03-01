@@ -13,10 +13,13 @@
   const approve = async () => {
     approveLoading = true;
     try {
+      console.log('withdrawApprove:', $inputLpAmount)
       const approvedTxs = await $currentPool.withdrawApprove($inputLpAmount);
       console.log("Approved:", approvedTxs);
-      if (approvedTxs.length != 0) withdrawApproved.set(true);
-      showToast("success", $_("add_liquidity.approve_success"));
+      if (approvedTxs.length != 0) {
+        withdrawApproved.set(true);
+        showToast("success", $_("add_liquidity.approve_success"));
+      }
     } catch (e) {
       console.log("Approve error:", e);
       showToast("common", e.message)

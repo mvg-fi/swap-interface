@@ -25,7 +25,7 @@ export let depositApproved: Writable<boolean> = writable()
 
 export let inputLpAmount: Writable<number> = writable()
 export let receiveWAmount: Writable<string> = writable('0')
-export let _receiveWAmount = derived(receiveAmount, ($receiveAmount) => {return BN($receiveAmount)})
+export let _receiveWAmount = derived(receiveWAmount, ($receiveWAmount) => {return BN($receiveWAmount)})
 export let receiveWAmounts: Writable<string[]> = writable()
 export let _receiveWAmounts = derived(receiveWAmounts, ($receiveWAmounts) => {
     $receiveWAmounts.map(

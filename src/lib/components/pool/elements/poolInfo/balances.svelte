@@ -10,12 +10,12 @@
   import Image from "$lib/components/common/image.svelte";
   import Loading from "$lib/components/pool/elements/poolInfo/loading.svelte";
   import {
-    findAssetsFromTokenList,
-    formatUSMoney,
-    getPercentage,
     getSum,
-    getUsdTotal,
     multiply,
+    getUsdTotal,
+    getPercentage,
+    formatUSMoney,
+    findAssetsFromTokenList,
   } from "$lib/helpers/utils";
 
   $: staticAssets = findAssetsFromTokenList(

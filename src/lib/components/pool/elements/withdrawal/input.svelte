@@ -9,21 +9,44 @@
   import { filterInputEvents } from "$lib/helpers/utils";
   import Image from "$lib/components/common/image.svelte";
   import Loading from "$lib/components/swap/SwapInfo/Loading.svelte";
-  import { currentPool, exceptedWLoading, inputLpAmount, receiveWAmount, withdrawError, withdrawErrorMsg, withdrawMode } from "$lib/stores/pool/pools";
+  import { currentPool, exceptedWLoading, inputLpAmount, mode1Options, receiveWAmount, receiveWAmounts, withdrawError, withdrawErrorMsg, withdrawMode } from "$lib/stores/pool/pools";
 
   const price = 1224;
   $: value = null;
 
   const fetchRecvAmount = async () => {
-    if($withdrawMode == -1) return
+    if ($withdrawMode == -1) {
+      withdrawMode.set(0)
+      mode1Options.set(0)
+    }
     withdrawError.set(false)
     exceptedWLoading.set(true)
     if ($inputLpAmount==null||$inputLpAmount==0||$inputLpAmount==undefined){
       receiveWAmount.set('0')
+      receiveWAmounts.set([])
       exceptedWLoading.set(false)
     }
     try {
-      // receiveWAmount.set(await $currentPool.withdrawExpected($inputLpAmount))
+      await (async () => {
+        switch ($withdrawMode) {
+          case 0:
+            //single
+            console.log('single')
+            console.log('$currentPool.underlyingCoinAddresses[$mode1Options]:',$currentPool.underlyingCoinAddresses[$mode1Options])
+            // BUG: This function would revert
+            const r = await $currentPool.withdrawOneCoinExpected(
+              $inputLpAmount,
+              $currentPool.underlyingCoinAddresses[$mode1Options]
+            )
+            receiveWAmount.set(r)
+            break;
+          case 1:
+            //balanced
+            console.log('balanced')
+            receiveWAmounts.set(await $currentPool.withdrawExpected($inputLpAmount));
+            break;
+        }
+      })()
     } catch (e) {
       withdrawError.set(true)
       withdrawErrorMsg.set(e.message)
