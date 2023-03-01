@@ -21,28 +21,31 @@
     _receiveAmount,
   } from "$lib/stores/swap/swap";
   import curve from "@zed-wong/mvgswap";
-    import { getCachedAssetBalance } from "$lib/stores/asset";
-    import InsufficientBalance from "./InsufficientBalance.svelte";
+  import { getCachedAssetBalance } from "$lib/stores/asset";
+  import InsufficientBalance from "./InsufficientBalance.svelte";
 
   let timeout: any = null;
   const delayInput = () => {
     clearTimeout(timeout);
     timeout = setTimeout(async function () {
-      await checkApproval()
+      await checkApproval();
     }, 1000);
   };
 
   const checkApproval = async () => {
     if ($connected && !$_payAmount.isNaN() && !$_payAmount.isZero()) {
-      const approvedd = await curve.router.isApproved($selectedFromAsset.contract, $_payAmount.toString())
-      console.log('approvedd:',approvedd)
-      approved.set(approvedd)
+      const approvedd = await curve.router.isApproved(
+        $selectedFromAsset.contract,
+        $_payAmount.toString()
+      );
+      console.log("approvedd:", approvedd);
+      approved.set(approvedd);
     }
-  }
+  };
 
-  $: $_payAmount, delayInput()
-  $: balance = getCachedAssetBalance($selectedFromAsset.mixinAssetId)
-  $: balanceEnough = Number($balance) > $_payAmount.toNumber()
+  $: $_payAmount, delayInput();
+  $: balance = getCachedAssetBalance($selectedFromAsset.mixinAssetId);
+  $: balanceEnough = Number($balance) > $_payAmount.toNumber();
 </script>
 
 <div class="card bg-base-100 shadow-xl p-2 max-w-[480px]">
@@ -82,7 +85,7 @@
     {#if !$connected}
       <ConnectWalletBtn />
     {:else if !balanceEnough}
-      <InsufficientBalance /> 
+      <InsufficientBalance />
     {:else if $approved}
       <SwapButton />
     {:else}

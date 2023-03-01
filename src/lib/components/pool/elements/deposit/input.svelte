@@ -4,9 +4,9 @@
   import Empty from "$lib/images/empty-token.svg";
   import { connected } from "$lib/stores/connect";
   import { maskOption } from "$lib/helpers/constants";
+  import { assets as assss } from "$lib/stores/asset";
   import _tokenList from "$lib/constants/tokenlist.json";
   import Image from "$lib/components/common/image.svelte";
-  import { assets as assss, getCachedAssetBalance } from "$lib/stores/asset";
   import { filterInputEvents, findAssetsFromTokenList, formatUSMoney } from "$lib/helpers/utils";
   import { coins, currentPool, depositApproved, depositError, depositErrorMsg, exceptedLoading, inputValues, poolsLoaded, receiveAmount, transactionFee } from "$lib/stores/pool/pools";
 
@@ -18,7 +18,7 @@
 
   $: assets = findAssetsFromTokenList(Object.values(_tokenList), $currentPool.underlyingCoinAddresses)
   $: icons = assets.map((e)=>{ return e?.logoURI || Empty });
-  $: balances = fetchBalance();
+  $: balances = assets.map(e=>{ return e?.balance || 0 });
   $: price = assets.map((e)=>{ return fetchUSD(e?.contract || '0') })
   inputValues.set(new Array($coins.length).fill(null));
 

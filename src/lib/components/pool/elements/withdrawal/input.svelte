@@ -4,76 +4,94 @@
   import curve from "@zed-wong/mvgswap";
   import { cleave } from "svelte-cleavejs";
   import { address } from "$lib/stores/user";
+  import loading from '$lib/images/loading.svg'
   import Empty from "$lib/images/empty-token.svg";
   import { connected } from "$lib/stores/connect";
   import { maskOption } from "$lib/helpers/constants";
-  import { filterInputEvents } from "$lib/helpers/utils";
   import Image from "$lib/components/common/image.svelte";
-  import Loading from "$lib/components/swap/SwapInfo/Loading.svelte";
-  import { currentPool, exceptedWLoading, inputLpAmount, mode1Options, poolsLoaded, receiveWAmount, receiveWAmounts, withdrawError, withdrawErrorMsg, withdrawMode } from "$lib/stores/pool/pools";
+  import { BN, filterInputEvents } from "$lib/helpers/utils";
+  import {
+    currentPool,
+    exceptedWLoading,
+    inputLpAmount,
+    mode1Options,
+    poolsLoaded,
+    receiveWAmount,
+    receiveWAmounts,
+    withdrawApproved,
+    withdrawError,
+    withdrawErrorMsg,
+    withdrawMode,
+  } from "$lib/stores/pool/pools";
 
-  const price = 1224;
-  $: value = null;
+  let value = null;
 
   const fetchRecvAmount = async () => {
+    // if selector wasn't selected
     if ($withdrawMode == -1) {
-      withdrawMode.set(0)
-      mode1Options.set(0)
+      withdrawMode.set(0);
+      mode1Options.set(0);
     }
-    withdrawError.set(false)
-    exceptedWLoading.set(true)
-    if ($inputLpAmount==null||$inputLpAmount==0||$inputLpAmount==undefined){
-      receiveWAmount.set('0')
-      receiveWAmounts.set([])
-      exceptedWLoading.set(false)
+    withdrawError.set(false);
+    exceptedWLoading.set(true);
+    // if input amount is null
+    if (
+      $inputLpAmount == null ||
+      $inputLpAmount == 0 ||
+      $inputLpAmount == undefined
+    ) {
+      receiveWAmount.set("0");
+      receiveWAmounts.set([]);
+      exceptedWLoading.set(false);
       return;
     }
     try {
-      await (async () => {
-        switch ($withdrawMode) {
-          case 0:
-            //single
-            console.log('single')
-            console.log('$currentPool.underlyingCoinAddresses[$mode1Options]:',$currentPool.underlyingCoinAddresses[$mode1Options])
-            // BUG: This function would revert
-            const r = await $currentPool.withdrawOneCoinExpected(
-              $inputLpAmount,
-              $currentPool.underlyingCoinAddresses[$mode1Options]
-            )
-            receiveWAmount.set(r)
-            break;
-          case 1:
-            //balanced
-            console.log('balanced')
-            receiveWAmounts.set(await $currentPool.withdrawExpected($inputLpAmount));
-            break;
-        }
-      })()
+      switch ($withdrawMode) {
+        case 0:
+          //single
+          receiveWAmount.set(await $currentPool.withdrawOneCoinExpected(
+            $inputLpAmount,
+            $currentPool.underlyingCoinAddresses[$mode1Options]
+          ));
+          break;
+        case 1:
+          //balanced
+          receiveWAmounts.set(
+            await $currentPool.withdrawExpected($inputLpAmount)
+          );
+          break;
+      }
+      if ($connected) {
+        withdrawApproved.set(await $currentPool.withdrawIsApproved($inputLpAmount))
+      }
     } catch (e) {
-      withdrawError.set(true)
-      withdrawErrorMsg.set(e.message)
+      withdrawError.set(true);
+      withdrawErrorMsg.set(e.message);
     } finally {
-      exceptedWLoading.set(false)
+      exceptedWLoading.set(false);
     }
-  }
+  };
 
-  const balance = (async () =>
-    $connected
-      ? await $currentPool.wallet.lpTokenBalances()
-      : 0)();
+  const balance = (async () => {
+    if ($connected) {
+      const x = await $currentPool.wallet.lpTokenBalances();
+      return BN(x.lpToken).toFixed(8);
+    }
+    return 0;
+  })();
 
   const setMax = (x: number) => {
-    value = x;
+    inputLpAmount.set(x);
   };
 
   let timeout: any = null;
   const delayInput = (event: KeyboardEvent) => {
-    if (!filterInputEvents(event)) return
-    
+    if (!filterInputEvents(event)) return;
+
     clearTimeout(timeout);
     timeout = setTimeout(async function () {
-      await fetchRecvAmount()
-    }, 1000); 
+      await fetchRecvAmount();
+    }, 1000);
   };
 </script>
 
@@ -102,26 +120,23 @@
 
   <div class="flex flex-row mx-2 my-1 opacity-75 text-xs">
     <div class="flex-1 ml-1">
-      {#if true}
-        <!-- if usd price loaded -->
-        <span>${(price * value).toFixed(2)}</span>
-      {/if}
+      <!-- LP Token can't have USD Price -->
     </div>
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div
-      on:click={() => {
-        setMax(balance);
-      }}
-      class="tooltip tooltip-left"
-      data-tip={$_("add_liquidity.max")}
-    >
-      {#await balance}
-        <Loading />
-      {:then balance}
-        <span class="cursor-pointer"
-          >{$_("add_liquidity.balance")}: {balance}</span
-        >
-      {/await}
+    <div class="tooltip tooltip-left" data-tip={$_("add_liquidity.max")}>
+      {#if $connected}
+        {#await balance}
+        <div class="flex">
+          <span class="cursor-pointer"
+            >{$_("add_liquidity.balance")}: </span
+          >
+          <img src={loading} alt="loading" class="w-5 h-5 loading" color='black'/>
+        </div>
+        {:then balance}
+          <span class="cursor-pointer"
+            >{$_("add_liquidity.balance")}: {balance}</span
+          >
+        {/await}
+      {/if}
     </div>
   </div>
 </div>
