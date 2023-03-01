@@ -2,7 +2,6 @@
   import { _ } from "svelte-i18n";
   import { page } from "$app/stores";
   import curve from "@zed-wong/mvgswap";
-  import { goto } from "$app/navigation";
   import { currentPool, poolsLoaded } from "$lib/stores/pool/pools";
   import { depositMode as deposit } from "$lib/stores/pool/mode";
   import { showToast } from "$lib/components/toast/container.svelte";

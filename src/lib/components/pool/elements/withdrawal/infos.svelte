@@ -5,7 +5,9 @@
   import { BN, formatPercentage } from "$lib/helpers/utils";
   import { slippageDialog } from "$lib/stores/swap/slippage";
   import { NATIVE_TOKEN_SYMBOL } from "$lib/helpers/constants";
-  import { currentPool, mode1Options, transactionWFee, withdrawMode, _receiveWAmount } from "$lib/stores/pool/pools";
+  import Loading from "$lib/components/pool/elements/deposit/loading.svelte";
+  import { currentPool, exceptedWLoading, inputLpAmount, mode1Options, receiveWAmount, receiveWAmounts, transactionWFee, withdrawError, withdrawErrorMsg, withdrawMode, _receiveWAmount } from "$lib/stores/pool/pools";
+    import { onDestroy } from "svelte";
 
   $: min_receive = $_receiveWAmount
     .minus($_receiveWAmount.multipliedBy(BN($slippage).div(100)))
@@ -13,7 +15,7 @@
   $: items = $withdrawMode == 0 ? [
     {
       key: $_("technical.excepted_output") + ":",
-      value: `${$_receiveWAmount} ${$currentPool.underlyingCoins[$mode1Options]}`,
+      value: `${$_receiveWAmount.toFixed(8)} ${$currentPool.underlyingCoins[$mode1Options]}`,
     },
     {
       key: $_("technical.min_receive") + ":",
@@ -37,14 +39,26 @@
       value: `${$transactionWFee} ${NATIVE_TOKEN_SYMBOL}`,
     },
   ]
+
+  onDestroy(() => {
+    inputLpAmount.set(0);
+    receiveWAmount.set("0");
+    receiveWAmounts.set([]);
+    withdrawError.set(false);
+    withdrawErrorMsg.set('');
+  });
 </script>
 
 {#each items as item, i}
   <div class="py-2 flex">
     <span class="text-sm flex-1"> {item.key} </span>
-    <span class="text-sm"> {item.value} </span>
+    {#if $exceptedWLoading}
+      <Loading />
+    {:else}
+      <span class="text-sm"> {item.value} </span>
+    {/if}
 
-    {#if item.key === $_("technical.slippage") + ":"}
+    {#if item.key === $_("technical.slippage") + ":" && !$exceptedWLoading}
       <button on:click={() => slippageDialog.set(true)}>
         <img
           src={Setting}

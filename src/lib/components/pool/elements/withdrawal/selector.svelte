@@ -1,9 +1,7 @@
 <script lang="ts">
   import clsx from "clsx";
   import { _ } from "svelte-i18n";
-  import { cleave } from "svelte-cleavejs";
   import Empty from "$lib/images/empty-token.svg";
-  import { maskOption } from "$lib/helpers/constants";
   import {
     currentPool,
     withdrawMode,
@@ -14,7 +12,6 @@
     withdrawError,
     exceptedWLoading,
     withdrawErrorMsg,
-    // withdrawImbalanceAmount,
   } from "$lib/stores/pool/pools";
   import _tokenList from "$lib/constants/tokenlist.json";
   import Image from "$lib/components/common/image.svelte";
@@ -52,7 +49,6 @@
           case 0:
             //single
             console.log('single')
-            console.log('$currentPool.underlyingCoinAddresses[$mode1Options]:',$currentPool.underlyingCoinAddresses[$mode1Options])
             const r = await $currentPool.withdrawOneCoinExpected(
               $inputLpAmount,
               $currentPool.underlyingCoinAddresses[$mode1Options]
@@ -63,10 +59,8 @@
           case 1:
             //balanced
             console.log('balanced')
-            const r2 = await $currentPool.withdrawExpected($inputLpAmount)
-            console.log('r2:', r2)
-            receiveWAmounts.set(r2);
-            console.log('receiveWAmounts:',receiveWAmounts)
+            receiveWAmounts.set(await $currentPool.withdrawExpected($inputLpAmount));
+            console.log('receiveWAmounts:',$receiveWAmounts)
             break;
         }
       })()
@@ -103,7 +97,7 @@
       {/each}
     </div>
 
-    <!-- Input -->
+    <!-- Buttons -->
     {#if $withdrawMode === 0}
       <div class="bg-base-100 w-full h-auto">
         <div class="">
@@ -123,9 +117,9 @@
               </div>
               <span class="text-sm font-semibold ml-2 flex-1"> {coin} </span>
               {#if $mode1Options == i}
-                <svg width="28" height="24" class="stroke-grey-500" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke-width="2"></circle><circle cx="12" cy="12" r="6" class="fill-blue-400 stroke-blue-400" stroke-width="2"></circle></svg>
+                <button><svg width="28" height="24" class="stroke-grey-500" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke-width="2"></circle><circle cx="12" cy="12" r="6" class="fill-blue-400 stroke-blue-400" stroke-width="2"></circle></svg></button>
               {:else}
-                <svg width="28" height="24" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke-width="2" class="stroke-grey-500"></circle><circle cx="12" cy="12" r="6" class="fill-white stroke-white" stroke-width="2"></circle></svg>
+                <button><svg width="28" height="24" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke-width="2" class="stroke-grey-500"></circle><circle cx="12" cy="12" r="6" class="fill-white stroke-white" stroke-width="2"></circle></svg></button>
               {/if}
             </div>
           {/each}
@@ -182,16 +176,5 @@
 </div>
 
 <style>
-  .bl {
-    border-bottom-left-radius: 0 !important;
-  }
-  .br {
-    border-bottom-right-radius: 0 !important;
-  }
-  .no-margin {
-    margin: 0 !important;
-  }
-  .bd {
-    border-width: 1.25px;
-  }
+  
 </style>
