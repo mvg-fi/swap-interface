@@ -1,4 +1,5 @@
 <script lang="ts">
+  import clsx from "clsx";
   import { _ } from "svelte-i18n";
   import curve from "@zed-wong/mvgswap";
   import { cleave } from "svelte-cleavejs";
@@ -9,7 +10,7 @@
   import { filterInputEvents } from "$lib/helpers/utils";
   import Image from "$lib/components/common/image.svelte";
   import Loading from "$lib/components/swap/SwapInfo/Loading.svelte";
-  import { currentPool, exceptedWLoading, inputLpAmount, mode1Options, receiveWAmount, receiveWAmounts, withdrawError, withdrawErrorMsg, withdrawMode } from "$lib/stores/pool/pools";
+  import { currentPool, exceptedWLoading, inputLpAmount, mode1Options, poolsLoaded, receiveWAmount, receiveWAmounts, withdrawError, withdrawErrorMsg, withdrawMode } from "$lib/stores/pool/pools";
 
   const price = 1224;
   $: value = null;
@@ -25,6 +26,7 @@
       receiveWAmount.set('0')
       receiveWAmounts.set([])
       exceptedWLoading.set(false)
+      return;
     }
     try {
       await (async () => {
@@ -84,6 +86,7 @@
         on:keyup={delayInput}
         use:cleave={maskOption}
         bind:value={$inputLpAmount}
+        disabled={!$poolsLoaded}
         class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-2xl transition-none"
       />
     </div>

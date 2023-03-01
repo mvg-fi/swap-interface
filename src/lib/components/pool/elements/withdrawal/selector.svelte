@@ -43,6 +43,12 @@
     exceptedWLoading.set(true)
     receiveWAmount.set('0')
     receiveWAmounts.set([])
+    if ($inputLpAmount==null||$inputLpAmount==0||$inputLpAmount==undefined){
+      receiveWAmount.set('0')
+      receiveWAmounts.set([])
+      exceptedWLoading.set(false)
+      return;
+    }
     try {
       await (async () => {
         switch ($withdrawMode) {

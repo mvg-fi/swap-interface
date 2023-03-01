@@ -7,8 +7,8 @@
   import _tokenList from "$lib/constants/tokenlist.json";
   import Image from "$lib/components/common/image.svelte";
   import { assets as assss, getCachedAssetBalance } from "$lib/stores/asset";
-  import { coins, currentPool, depositApproved, depositError, depositErrorMsg, exceptedLoading, inputValues, receiveAmount, transactionFee } from "$lib/stores/pool/pools";
   import { filterInputEvents, findAssetsFromTokenList, formatUSMoney } from "$lib/helpers/utils";
+  import { coins, currentPool, depositApproved, depositError, depositErrorMsg, exceptedLoading, inputValues, poolsLoaded, receiveAmount, transactionFee } from "$lib/stores/pool/pools";
 
   const fetchBalance = async () => { await $currentPool.wallet.underlyingCoinBalances() };
   const fetchUSD = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.priceUsd || 0};
@@ -63,6 +63,7 @@
           placeholder="0"
           on:keyup={delayInput}
           use:cleave={maskOption}
+          disabled={!$poolsLoaded}
           bind:value={$inputValues[i]}
           class="input border-0 p-0 w-full max-w-xs input-md outline-none on-focus font-bold text-2xl transition-none"
         />

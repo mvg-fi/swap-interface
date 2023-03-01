@@ -30,6 +30,6 @@
       depositLoading && "loading"
     )}
   >
-    <span> {$_("add_liquidity.deposit")} </span>
+    <span class="text-base-content"> {$_("add_liquidity.deposit")} </span>
   </button>
 </div>
