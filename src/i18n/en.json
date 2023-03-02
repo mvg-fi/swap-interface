@@ -7,7 +7,10 @@
 		"dashboard": "Dashboard",
 		"bridge": "Bridge",
 		"view_doc": "View Documentation",
-		"help_center": "Help Center"
+		"help_center": "Help Center",
+		"unsupported_network": "Unsupported",
+		"confirm_in_wallet": "Confirm in wallet",
+		"click_to_switch_network": "Click to switch network"
 	},
 	"swap": {
 		"title": "Swap",

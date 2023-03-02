@@ -2,6 +2,7 @@ import BigNumber from "bignumber.js";
 import type { Asset } from "$lib/types/asset"
 import { getAddress } from "ethers/lib/utils";
 import evmMap from "$lib/constants/evmmap.json"
+import evmMapr from "$lib/constants/evmmapr.json"
 import Tokenlist from "$lib/constants/tokenlist.json"
 import Chainlist from "$lib/constants/chainlist.json"
 import type { IPoolData, IRouteStep } from "@zed-wong/mvgswap/lib/interfaces";
@@ -18,7 +19,11 @@ export const shortenAddress = (addr: string, start: number, end: number) => {
 	return addr.substring(0, start).toLowerCase() + "..." + addr.substring(addr.length - end).toLowerCase();
 }
 
-export const findAssetFromTokenList = (tokenList: Asset[], tokenAddress: string): Asset | undefined => {
+export const findAssetFromTokenListById = (tokenList: Asset[] = Object.values(Tokenlist), assetID: string): Asset | undefined => {
+	return tokenList.find((obj) => { return obj.mixinAssetId === assetID })
+}
+
+export const findAssetFromTokenList = (tokenList: Asset[] = Object.values(Tokenlist), tokenAddress: string): Asset | undefined => {
 	return tokenList.find((obj) => { return obj.contract === getAddress(tokenAddress) })
 }
 
@@ -95,6 +100,13 @@ export const getChainByAsset = (assetID: string) => {
 		return chain.mixinAssetId === assetID
 	})
 }
+
+export const getChainByContract = (contract: string) => {
+	return Object.values(Chainlist).find((chain) => {
+		return chain.contract === contract
+	})
+} 
+
 export const multiply = (a: string, b: string) => {
 	return new BigNumber(a).times(new BigNumber(b)).toString();
 };
@@ -138,8 +150,13 @@ export const isEVMAsset = (assetID: string) => {
 }
 
 export const getEVMChainId = (assetID: string) => {
-	if (!assetID) return
+	if (!assetID || Number(assetID) == 0) return null
 	return evmMap[assetID] || null
+}
+
+export const getEVMChainByAssetId = (chainID: string | number) => {
+	if (!chainID || Number(chainID) == 0) return null
+	return evmMapr[String(chainID)] || null
 }
 
 export const catchPaymentError = (err: unknown) => {

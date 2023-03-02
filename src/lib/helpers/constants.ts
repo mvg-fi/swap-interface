@@ -1,5 +1,6 @@
-import type { NetworkParam } from '../types/network';
 import { toHex } from '$lib/helpers/utils';
+import mvmIcon from "$lib/images/logo/mvm.svg";
+import type { NetworkParam } from '../types/network';
 
 // Infos
 export const APP_NAME = 'MVG Finance'
@@ -9,7 +10,7 @@ export const NATIVE_TOKEN_SYMBOL = 'ETH'
 export const APP_PATHS = ['/swap', '/pool', 'bridge']
 
 // Icons
-export const MVM_ICON = 'https://mvm.dev/logo.svg'
+export const MVM_ICON = mvmIcon;
 
 // Contract
 export const GAS_PRICE = 10000000
