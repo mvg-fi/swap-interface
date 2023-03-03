@@ -153,7 +153,7 @@
 	"technical": {
 		"pool_address": "Pool Address",
 		"token_address": "Token Address",
-		"utilization": "Liquidity utilization",
+		"24fees": "24h fees",
 		"volume": "24h Volume",
 		"fee": "Trading Fee",
 		"fee_info": "Trading fees collected for each swap",

@@ -5,7 +5,6 @@
   import { library } from "$lib/stores/ethers";
   import { switchNetwork } from "$lib/helpers/web3";
   import { mode, supposedNetwork } from "$lib/stores/bridge/process";
-  import warning from "$lib/images/warning-circle.svg";
   import { selectedFromAsset } from "$lib/stores/bridge/bridge";
   import { getChainByAsset } from "$lib/helpers/utils";
 

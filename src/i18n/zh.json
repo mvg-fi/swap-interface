@@ -7,7 +7,10 @@
 		"dashboard": "控制台",
 		"bridge": "跨链桥",
 		"view_doc": "查看文档",
-		"help_center": "帮助中心"
+		"help_center": "帮助中心",
+		"unsupported_network": "不支持的网络",
+		"confirm_in_wallet": "在钱包中确认",
+		"click_to_switch_network": "点击以切换网络"
 	},
 	"swap": {
 		"title": "交易",
