@@ -59,12 +59,10 @@
     
     {:else if icon == undefined || network == undefined }
       <button class="btn btn-ghost">
-        <div class="rounded-full mr-2 mb-0.5">
-          <img src={icon} alt="mvm" class="h-[20px]" />
-        </div>
-        <span class="font-semibold">
-          {network}
-        </span>
+        <!-- <div class="rounded-full mr-2 mb-0.5">
+          <img src={icon} alt="none" class="h-[20px]" />
+        </div> -->
+        <span class="text-base-content"> {$_("navbar.unsupported_network")} </span>
       </button>
     {:else}
       <button class="btn btn-ghost">

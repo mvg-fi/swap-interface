@@ -2,7 +2,7 @@
   import { _ } from "svelte-i18n";
 </script>
 
-<div class="alert bg-red-400 border border-red-300 p-3 py-2 items-center">
+<div class="alert rounded-2xl bg-red-400 border border-red-300 p-3 py-2 items-center">
   <div>
     <svg
       xmlns="http://www.w3.org/2000/svg"

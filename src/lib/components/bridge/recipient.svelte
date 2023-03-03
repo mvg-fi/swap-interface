@@ -39,8 +39,7 @@
     <input
       bind:value={$receiverAddr}
       class={clsx(
-        "input bg-base-200 w-full outline-none input-md pl-5 transition-none focus:outline-none",
-        !haveMemo && "!rounded-l-3xl !rounded-r-3xl",
+        "input bg-base-200 w-full outline-none input-md pl-5 transition-none focus:outline-none !rounded-l-3xl",
       )}
       on:change={()=>validation()}
       placeholder={$_("bridge.enter_recipient_address")}

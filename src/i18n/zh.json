@@ -150,7 +150,7 @@
 	"technical": {
 		"pool_address": "合约地址",
 		"token_address": "代币地址",
-		"utilization": "流动性利用率",
+		"24fees": "24小时手续费",
 		"volume": "24小时交易量",
 		"fee": "交易手续费",
 		"fee_info": "每笔交易收取的交易手续费",

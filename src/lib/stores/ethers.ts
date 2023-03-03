@@ -40,6 +40,7 @@ export const setProvider = async (
 	};
 
 	const handleAccountsChanged = (accounts: `0x${string}`[] | undefined) => {
+		// TODO: account change must re-init curve
 		if (!accounts || !accounts.length) {
 			handleDisconnect();
 			return;

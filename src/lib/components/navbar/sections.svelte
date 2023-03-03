@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import clsx from "clsx"
   import { _ } from "svelte-i18n";
+  import { page } from "$app/stores";
 
   const items = [
     { key: "/swap", value: $_("navbar.swap"), info: "Swap within MVM" },
@@ -14,8 +15,10 @@
     <li>
       <a
         href={item.key}
-        class="btn btn-ghost animate-none sub"
-        class:selected={$page.url.pathname === item.key}
+        class={clsx("btn btn-ghost animate-none font-medium rounded-lg text-[15px]",
+          $page.url.pathname === item.key && "text-base-content",
+          !($page.url.pathname === item.key) && "text-gray-500/70"
+        )}
       >
         {item.value}
       </a>
