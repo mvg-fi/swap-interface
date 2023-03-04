@@ -5,8 +5,9 @@ import evmMap from "$lib/constants/evmmap.json"
 import evmMapr from "$lib/constants/evmmapr.json"
 import Tokenlist from "$lib/constants/tokenlist.json"
 import Chainlist from "$lib/constants/chainlist.json"
-import type { IPoolData, IRouteStep } from "@zed-wong/mvgswap/lib/interfaces";
 import type { ColHeaders } from "$lib/types/pool";
+import type { IPoolData } from "@zed-wong/mvgswap/lib/interfaces";
+import { BSC_SCAN_URL, ETHER_SCAN_URL, POLYGON_SCAN_URL } from "./constants";
 
 export const BN = BigNumber.clone({DECIMAL_PLACES:8})
 
@@ -52,14 +53,6 @@ export const getToday = (sub: number = 0) => {
 	d.setDate(d.getDate() - sub)
 	return d.toJSON().slice(0, 10).replace(/-/g, '/');
 }
-
-// export const getRouteList = (steps: IRouteStep[], first: string): string[] => {
-// 	let l = [findAssetFromTokenList(Tokenlist, first)?.symbol || '']
-// 	steps.forEach((e)=>{
-// 		l.push(findAssetFromTokenList(Tokenlist,e.outputCoinAddress)?.symbol || '')
-// 	})
-// 	return l
-// }
 
 export const formatDecimals = (s: string | number, n: number) => {
 	if (Number(s) == undefined || Number(s) == null || Number(s) == 0) return 0
@@ -149,14 +142,30 @@ export const isEVMAsset = (assetID: string) => {
 	return getChainByAsset(assetID)?.evm || false
 }
 
-export const getEVMChainId = (assetID: string) => {
-	if (!assetID || Number(assetID) == 0) return null
-	return evmMap[assetID] || null
+export const getEVMChainId = (assetID: string): string => {
+	if (!assetID || Number(assetID) == 0) return ''
+	return evmMap[assetID] || ''
 }
 
-export const getEVMChainByAssetId = (chainID: string | number) => {
-	if (!chainID || Number(chainID) == 0) return null
-	return evmMapr[String(chainID)] || null
+export const getEVMChainByAssetId = (chainID: string | number): string => {
+	if (!chainID || Number(chainID) == 0) return ''
+	return evmMapr[String(chainID)] || ''
+}
+
+export const getEVMScanByAssetId = (assetID: string) => {
+	const chain = getEVMChainId(assetID)
+	switch(chain) {
+	case "1":
+		// Mainnet
+		return ETHER_SCAN_URL
+	case "56":
+		// BSC
+		return BSC_SCAN_URL
+	case "137":
+		// Polygon
+		return POLYGON_SCAN_URL
+	}
+	return ETHER_SCAN_URL
 }
 
 export const catchPaymentError = (err: unknown) => {

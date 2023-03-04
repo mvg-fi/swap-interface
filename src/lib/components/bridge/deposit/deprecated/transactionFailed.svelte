@@ -2,7 +2,11 @@
   import { _ } from "svelte-i18n";
   import { get } from "svelte/store";
   import { mode, processDialog } from "$lib/stores/bridge/process";
-  import { errorMessage, errorLastMode } from "$lib/stores/bridge/deposit";    
+  import { getParsedEthersError } from "@enzoferey/ethers-error-parser";
+  import { errorMessage, errorLastMode } from "$lib/stores/bridge/deposit";
+  // TODO: use @enzoferey/ethers-error-parser to handle ethers errors
+
+  // const e = getParsedEthersError($errorMessage)
 </script>
 
 <div class="flex flex-col p-2">

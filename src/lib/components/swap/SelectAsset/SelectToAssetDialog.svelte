@@ -30,10 +30,9 @@
 
 <div
   in:fade
-  class="modal modal-bottom sm:modal-middle text-base-content"
-  class:modal-open={$selectToAssetDialog}
   on:click={onClickOutside}
   on:keypress={onClickOutside}
+  class={clsx("modal modal-bottom sm:modal-middle text-base-content", $selectToAssetDialog && "backdrop-blur-sm modal-open")}
 >
   <div class="modal-box h-4/5 p-0 flex flex-col" bind:this={content}>
     <div class="sticky top-0 z-10 bg-tranparent">

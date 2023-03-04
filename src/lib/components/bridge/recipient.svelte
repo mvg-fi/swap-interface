@@ -32,6 +32,7 @@
     }
     console.log('validated:',validated)
   }
+  $: showAutoFill = $connected && autofill && ($receiverAddr == null || $receiverAddr == "")
 </script>
 
 <div class="form-control text-base-content">
@@ -39,7 +40,8 @@
     <input
       bind:value={$receiverAddr}
       class={clsx(
-        "input bg-base-200 w-full outline-none input-md pl-5 transition-none focus:outline-none !rounded-l-3xl",
+        "input bg-base-200 w-full outline-none input-md pl-5 transition-none focus:outline-none",
+        showAutoFill ? "!rounded-l-3xl" : "!rounded-3xl"
       )}
       on:change={()=>validation()}
       placeholder={$_("bridge.enter_recipient_address")}
@@ -59,7 +61,7 @@
     {/if}
 
     <!-- Autofill -->
-    {#if $connected && autofill && ($receiverAddr == null || $receiverAddr == "")}
+    {#if showAutoFill}
       <button
         class="btn bg-base-200 border-none px-1 hover:bg-base-200 !rounded-r-3xl pr-5"
         on:click={() => receiverAddr.set($address)}

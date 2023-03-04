@@ -114,10 +114,9 @@
 </script>
 
 <div
-  class="modal modal-middle text-base-content"
-  class:modal-open={$ConnectWalletDialog}
-  on:keypress={onClickOutside}
   on:click={onClickOutside}
+  on:keypress={onClickOutside}
+  class={clsx("modal modal-middle text-base-content", $ConnectWalletDialog && "modal-open")}
 >
   <div class={modalbox} bind:this={content}>
     {#if loading}

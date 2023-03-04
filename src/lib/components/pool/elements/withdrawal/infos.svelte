@@ -47,6 +47,8 @@
     receiveWAmounts.set([]);
     withdrawError.set(false);
     withdrawErrorMsg.set('');
+    withdrawMode.set(-1)
+    mode1Options.set(0)
   });
 </script>
 

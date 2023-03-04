@@ -11,7 +11,7 @@
 </script>
 
 {#if asset}
-  <button class="btn-ghost h-14 asset-btn-bg flex flex-row">
+  <button class="btn-ghost h-14 asset-btn-bg flex flex-row font-sans">
     {#if asset.logoURI}
       <div class="avatar px-1">
         <div class="w-10 h-10">

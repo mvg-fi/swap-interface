@@ -1,8 +1,8 @@
-import { derived, get, writable, type Writable } from 'svelte/store'
+import BigNumber from 'bignumber.js';
 import assets from "$lib/constants/tokenlist.json";
 import { DEFAULT_SLIPPAGE } from "$lib/helpers/constants";
 import { setAssetDialog } from '$lib/stores/bridge/selectAsset';
-import BigNumber from 'bignumber.js';
+import { derived, get, writable, type Writable } from 'svelte/store'
 
 export let selectedFromAsset = writable(Object.values(assets).find((obj) => { return obj.symbol === 'ETH' }))
 export let selectedToAsset = writable(Object.values(assets).find((obj) => { return obj.symbol === 'BTC' }))

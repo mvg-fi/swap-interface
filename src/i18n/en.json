@@ -36,6 +36,7 @@
 	},
 	"bridge": {
 		"title": "Bridge",
+		"send": "Send",
 		"from": "From",
 		"to": "To",
 		"memo": "Memo",
@@ -100,7 +101,7 @@
 	"error": {
 		"NoProvider": "No Web3 Provider found",
 		"userClosedModal": "User closed modal",
-		"userRejected": "User rejceted",
+		"userRejected": "User rejected",
 		"poolNotFound": "Pool not found"
 	},
 	"search": {
@@ -166,7 +167,7 @@
 		"virtual_price": "Virtual Price",
 		"virtual_price_info": "The current price of the pool LP token relative to the underlying pool assets, this is not a dollar value",
 		"a":  "A",
-		"a_info":  "Determines a pool’s tolerance for imbalance. A higher value means that trades will incur slippage sooner",
+		"a_info":  "Determines a pool's tolerance for imbalance. A higher value means that trades will incur slippage sooner",
 		"price_oracle":"Price Oracle",
 		"single": "Single",
 		"balanced": "Balanced",

@@ -1,8 +1,11 @@
 import { ethers } from 'ethers';
+import curve from '@zed-wong/mvgswap';
+import { setSwitchNeeded } from './connect';
+import { clearLastProvider } from './provider';
+import { MVM_RPC_URL } from '$lib/helpers/constants';
 import { derived, get } from '@square/svelte-store';
 import { deepWritable } from '$lib/helpers/store/deep';
-import { clearLastProvider } from './provider';
-import { setSwitchNeeded } from './connect';
+import { mainPools, factoryPools, cryptoFactoryPools, poolsLoaded } from "$lib/stores/pool/pools";
 
 interface EtherStore {
 	library?: ethers.providers.Web3Provider;
@@ -39,7 +42,7 @@ export const setProvider = async (
 		store.set({});
 	};
 
-	const handleAccountsChanged = (accounts: `0x${string}`[] | undefined) => {
+	const handleAccountsChanged = async (accounts: `0x${string}`[] | undefined) => {
 		// TODO: account change must re-init curve
 		if (!accounts || !accounts.length) {
 			handleDisconnect();
@@ -49,6 +52,14 @@ export const setProvider = async (
 			...get(store),
 			account: accounts[0]
 		});
+		await curve.init("JsonRpc", { url: MVM_RPC_URL }, { chainId: 73927 })
+		await curve.fetchFactoryPools()
+		await curve.fetchCryptoFactoryPools()
+
+		mainPools.set(curve.getAllMainPools())
+		factoryPools.set(curve.getAllFactoryPools())
+		cryptoFactoryPools.set(curve.getAllCryptoFactoryPools())
+		poolsLoaded.set(true)
 	};
 
 	get(store).provider?.removeAllListeners();

@@ -5,14 +5,15 @@
   import { Contract } from "ethers";
   import { get } from "svelte/store";
   import { mode } from "$lib/stores/bridge/process";
-  import Loading from "./viewAddress/loading.svelte";
+  import Link from "$lib/images/arrow-top-right.svg";
+  import Loading from "../viewAddress/loading.svelte";
   import { address, userKey } from "$lib/stores/user";
   import ERC20ABI from "$lib/constants/abis/erc20.json";
   import { chainId, library } from "$lib/stores/ethers";
   import { getAddress, parseEther, parseUnits } from "ethers/lib/utils";
-  import { getChainByAsset, toHex } from "$lib/helpers/utils";
-  import { selectedFromAsset, _payAmount } from "$lib/stores/bridge/bridge";
   import { MixinApi, type AssetResponse } from "@mixin.dev/mixin-node-sdk";
+  import { selectedFromAsset, _payAmount } from "$lib/stores/bridge/bridge";
+  import { getChainByAsset, getEVMScanByAssetId, toHex } from "$lib/helpers/utils";
   import { depositAsset, errorLastMode, errorMessage } from "$lib/stores/bridge/deposit";
 
   let depositLoading = false;
@@ -24,15 +25,17 @@
       session_id: $userKey.session_id,
     },
   });
+  let assetAddr: string;
   let Asset: AssetResponse;
   let asset = MixinClient.asset.fetch($selectedFromAsset.mixinAssetId);
   asset.then((v) => {
     Asset = v;
     depositAsset.set(v);
+    assetAddr = isNative ? 
+      `${getEVMScanByAssetId($selectedFromAsset.mixinChainId)}address/${$address}` :
+      `${getEVMScanByAssetId($selectedFromAsset.mixinChainId)}address/${Asset.asset_key}`
   });
-  $: isNativeCurrency =
-    $selectedFromAsset.mixinChainId === $selectedFromAsset.mixinAssetId;
-  // Balance = await getEVMBalance($address, $library, isNativeCurrency, );
+  $: isNative = $selectedFromAsset.mixinChainId === $selectedFromAsset.mixinAssetId
 
   const deposit = async () => {
     if ($library == undefined) return;
@@ -41,7 +44,7 @@
     
     errorLastMode.set(get(mode));
     mode.set(20); // Waiting confirmation
-    if (isNativeCurrency) {
+    if (isNative) {
       console.log("Native:", Asset.name, Asset.asset_key);
       const parameters = {
         from: getAddress($address),
@@ -108,7 +111,7 @@
     {
       title: $_("bridge.amount"),
       icon: null,
-      value: $_payAmount.toFixed(),
+      value: $_payAmount.toFixed() || 0,
     },
   ];
 </script>
@@ -133,9 +136,27 @@
           {#if item.icon}
             <img src={item.icon} alt="" class="w-5 h-5" />
           {/if}
-          <span class={clsx("font-semibold", item.icon && "ml-2")}>
-            {item.value}
-          </span>
+          {#if i == 1}
+            <a
+              href={assetAddr}
+              target="_blank"
+              rel="noreferrer"
+              class="text-inherit flex flex-row items-center ml-2"
+            >
+              <span class="font-semibold flex-grow-0 flex-shrink-0 hover:text-indigo-600">
+                {item.value}
+              </span>
+              <img
+                src={Link}
+                alt=""
+                class="w-2.5 ml-1 [[data-theme=dark]_&]:invert flex-grow-0 flex-shrink-0"
+              />
+            </a>
+          {:else}
+            <span class={clsx("font-semibold", item.icon && "ml-2")}>
+              {item.value}
+            </span>
+          {/if}
           {#if i == 2}
             <span class="ml-1 font-semibold">
               {$selectedFromAsset.symbol}

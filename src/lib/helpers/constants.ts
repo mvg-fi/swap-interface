@@ -7,7 +7,7 @@ export const APP_NAME = 'MVG Finance'
 export const NATIVE_TOKEN_SYMBOL = 'ETH'
 
 // PATHS
-export const APP_PATHS = ['/swap', '/pool', 'bridge']
+export const APP_PATHS = ['/swap', '/pool', '/bridge']
 
 // Icons
 export const MVM_ICON = mvmIcon;
@@ -32,11 +32,17 @@ export const MAINNET_RPC_URL = `https://eth-rpc.gateway.pokt.network`
 export const MVM_RPC_URL = "https://geth.mvm.dev/";
 export const BSC_RPC_URL = "https://bsc-dataseed1.ninicoin.io";
 export const POLYGON_RPC_URL = "https://polygon.llamarpc.com";
+export const OPTIMISIM_RPC_URL = "https://mainnet.optimism.io";
+export const ARBITRUM_RPC_URL = "https://arb1.arbitrum.io/rpc";
+export const FANTOM_RPC_URL = "https://rpc3.fantom.network";
 
 export const ETHER_SCAN_URL = 'https://etherscan.io/'
 export const MVM_SCAN_URL = "https://scan.mvm.dev/";
 export const BSC_SCAN_URL = "https://bscscan.com/";
 export const POLYGON_SCAN_URL = "https://polygonscan.com/";
+export const OPTIMISM_SCAN_URL = "https://optimistic.etherscan.io/";
+export const ARBITRUM_SCAN_URL = "https://arbiscan.io/";
+export const FANTOM_SCAN_URL = "https://ftmscan.com/";
 
 export const BRIDGE_URL = "https://bridge.mvm.app/";
 
@@ -58,9 +64,9 @@ export const MAINNET_CHAIN_ID = 1;
 export const BSC_CHAIN_ID = 56;
 export const POLYGON_CHAIN_ID = 137;
 export const MVM_CHAIN_ID = 73927;
-// export const OPTIMISM_CHAIN_ID = 10;
-// export const FANTOM_CHAIN_ID = 250;
-// export const ARBITRUM_CHAIN_ID = 42161;
+export const OPTIMISM_CHAIN_ID = 10;
+export const FANTOM_CHAIN_ID = 250;
+export const ARBITRUM_CHAIN_ID = 42161;
 
 export const MAINNET_CHAIN_HEX_ID = toHex(MAINNET_CHAIN_ID);
 export const BSC_CHAIN_HEX_ID = toHex(BSC_CHAIN_ID);
