@@ -7,7 +7,7 @@ import Tokenlist from "$lib/constants/tokenlist.json"
 import Chainlist from "$lib/constants/chainlist.json"
 import type { ColHeaders } from "$lib/types/pool";
 import type { IPoolData } from "@zed-wong/mvgswap/lib/interfaces";
-import { BSC_SCAN_URL, ETHER_SCAN_URL, POLYGON_SCAN_URL } from "./constants";
+import { BSC_SCAN_URL, ETHER_SCAN_URL, POLYGON_SCAN_URL } from "$lib/helpers/constants";
 
 export const BN = BigNumber.clone({DECIMAL_PLACES:8})
 

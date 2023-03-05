@@ -77,7 +77,11 @@
 		"waiting_confirmation": "等待确认中",
 		"transaction_rejected": "支付已被拒绝",
 		"transaction_success": "支付成功",
-		"an_error_occurred": "有错误发生"
+		"an_error_occurred": "有错误发生",
+		"estimated_received": "预计收到",
+		"fees":"手续费",
+		"withdrawal_fee": "提现手续费",
+		"gas_fee": "矿工费"
 	},
 	"login": {
 		"title": "登录",

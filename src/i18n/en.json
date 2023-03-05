@@ -37,6 +37,7 @@
 	"bridge": {
 		"title": "Bridge",
 		"send": "Send",
+		"sending": "Sending",
 		"from": "From",
 		"to": "To",
 		"memo": "Memo",
@@ -58,6 +59,7 @@
 		"retry": "Retry",
 		"back": "Back",
 		"switch_network": "Switch network",
+		"switching_network": "Switching network",
 		"switch_network_info0":"Please switch to the",
 		"switch_network_info1":"to continue",
 		"network": "Network",
@@ -79,7 +81,15 @@
 		"waiting_confirmation": "Waiting for confirmation",
 		"transaction_rejected": "Transaction rejected",
 		"transaction_success": "Transaction success",
-		"an_error_occurred": "An error occurred"
+		"an_error_occurred": "An error occurred",
+		"estimated_received": "Estimated received",
+		"pay_amount": "Pay amount",
+		"fees":"Fees",
+		"withdrawal_fee": "Withdrawal Fee",
+		"gas_fee": "Gas fee",
+		"make_sure_network": "Please make sure your wallet is connected to",
+		"network_is_not_evm_compatible": "Network is not evm compatible, please pay by transfer to address.",
+		"this_value_may_change": "This value may change with price fluctuations."
 	},
 	"login": {
 		"title": "Login",
@@ -102,7 +112,8 @@
 		"NoProvider": "No Web3 Provider found",
 		"userClosedModal": "User closed modal",
 		"userRejected": "User rejected",
-		"poolNotFound": "Pool not found"
+		"poolNotFound": "Pool not found",
+		"must_switch_network_to_continue": "You must switch network to continue"
 	},
 	"search": {
 		"pool": "Search by pool name, pool address, token name or token address",

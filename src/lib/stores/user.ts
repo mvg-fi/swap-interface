@@ -9,6 +9,7 @@ import { dedupe } from '../helpers/store/dedupe';
 import { invalidateAll } from '$app/navigation';
 import { setConnected } from './connect';
 import { jsonPersistentEncoder, persistentWritable } from '../helpers/store/persistent';
+import { MixinApi } from '@mixin.dev/mixin-node-sdk';
 
 const persistentUser = persistentWritable<User | undefined>(
 	USER_KEY,
@@ -56,7 +57,7 @@ export const legalUser = derived([persistentUser, account], ([$user, $account]) 
 });
 
 export const address = derived(user, ($user) => $user?.address);
-export const userKey = derived(user, ($user) => $user.key);
+export const userKey = derived(user, ($user) => $user?.key);
 
 export const shortAddress = derived(address, ($address) => {
 	if (!$address) return;

@@ -3,35 +3,49 @@
   import { _ } from "svelte-i18n";
   import { onDestroy } from "svelte";
   import { fade } from "svelte/transition";
-  import { processDialog } from "$lib/stores/bridge/process";
+  import { mode, processDialog } from "$lib/stores/bridge/process";
   import Send from "$lib/components/bridge/deposit/actions/send.svelte";
+  import View from "$lib/components/bridge/deposit/actions/view.svelte";
+  import Load from "$lib/components/bridge/deposit/actions/load.svelte";
 
-  let content: any;
-  function onClickOutside(e: any) {
-    if (content == e.target || content.contains(e.target)) return;
-    processDialog.set(false);
-  }
+  onDestroy(() => processDialog.set(false));
+
   function onKeyDown(e: any) {
     if (e.code === "Escape") {
       processDialog.set(false);
     }
   }
-  onDestroy(() => processDialog.set(false));
 </script>
 
 <svelte:window on:keydown={onKeyDown} />
-<div
-  in:fade
+<!-- 
   on:click={onClickOutside}
   on:keypress={onClickOutside}
+  
+  bind:this={content}
+ -->
+<div
+  in:fade
   class={clsx("modal max-w-none sm:modal-middle text-base-content select-none", 
     $processDialog && "backdrop-blur-sm modal-open")}
 >
-  <div class="modal-box !max-w-[32rem] p-4 flex flex-col" bind:this={content}>
-    <!-- Actions -->
-    <div>
-      <Send />
-    </div>
+  <div class={clsx("modal-box p-3 flex flex-col", $mode == 1 ? "!max-w-[26rem]" : "!max-w-[32rem]")}>
+    {#if $mode == 0}
+    <!-- Pay with connected wallet -->
+      <div>
+        <Send />
+      </div>
+    {:else if $mode == 1}
+    <!-- Pay by transfer to address -->
+      <div>
+        <View />
+      </div>
+    {:else if $mode == 2}
+    <!-- Load after payment -->
+      <div>
+        <Load />
+      </div>
+    {/if}
   </div>
 </div>
 

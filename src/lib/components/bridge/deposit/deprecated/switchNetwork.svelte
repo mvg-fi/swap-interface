@@ -4,9 +4,9 @@
   import { _ } from "svelte-i18n";
   import { library } from "$lib/stores/ethers";
   import { switchNetwork } from "$lib/helpers/web3";
-  import { mode, supposedNetwork } from "$lib/stores/bridge/process";
-  import { selectedFromAsset } from "$lib/stores/bridge/bridge";
   import { getChainByAsset } from "$lib/helpers/utils";
+  import { selectedFromAsset } from "$lib/stores/bridge/bridge";
+  import { mode, supposedNetwork } from "$lib/stores/bridge/process";
 
   let switchLoading = false;
 
