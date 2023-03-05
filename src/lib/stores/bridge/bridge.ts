@@ -1,6 +1,8 @@
 import BigNumber from 'bignumber.js';
+import { isEVMAsset } from '$lib/helpers/utils';
 import assets from "$lib/constants/tokenlist.json";
 import { DEFAULT_SLIPPAGE } from "$lib/helpers/constants";
+import type { AssetResponse } from "@mixin.dev/mixin-node-sdk";
 import { setAssetDialog } from '$lib/stores/bridge/selectAsset';
 import { derived, get, writable, type Writable } from 'svelte/store'
 
@@ -16,6 +18,9 @@ export let approved = writable(false)
 export let swapFetched = writable(true)
 export let swapNotAvail = writable(true)
 export let inputFrom = writable(false)
+export let evmCompatible = derived(selectedFromAsset, ($selectedFromAsset)=> isEVMAsset($selectedFromAsset.mixinChainId))
+export let toEvmCompatible = derived(selectedToAsset, ($selectedToAsset)=> isEVMAsset($selectedToAsset.mixinChainId))
+export let forceRecipient = writable(false)
 
 export const setFromAsset = (asset: any) => {
   selectedFromAsset.set(asset)

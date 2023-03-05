@@ -13,7 +13,7 @@
   import { getAddress, parseEther, parseUnits } from "ethers/lib/utils";
   import { MixinApi, type AssetResponse } from "@mixin.dev/mixin-node-sdk";
   import { depositAsset, errorLastMode, errorMessage } from "$lib/stores/bridge/deposit";
-  import { receiveAmount, selectedFromAsset, selectedToAsset, _payAmount } from "$lib/stores/bridge/bridge";
+  import { evmCompatible, receiveAmount, selectedFromAsset, selectedToAsset, _payAmount } from "$lib/stores/bridge/bridge";
   import { getChainByAsset,isEVMAsset, getEVMScanByAssetId, toHex, getEVMChainId } from "$lib/helpers/utils";
   
   let sendLoading = false
@@ -28,9 +28,12 @@
         session_id: $userKey.session_id,
       },
     })
-    MixinClient.asset.fetch($selectedFromAsset.mixinAssetId).then(v=>Asset=v);
+    MixinClient.asset.fetch($selectedFromAsset.mixinAssetId).then(v => {
+        Asset=v
+        depositAsset.set(v)
+      }
+    );
   }
-  $: evmCompatible = isEVMAsset($selectedFromAsset.mixinChainId);
   $: network = getChainByAsset($selectedFromAsset.mixinChainId)?.name;
   $: toNetwork = getChainByAsset($selectedToAsset.mixinChainId)?.name;
   $: isNative = $selectedFromAsset.mixinChainId === $selectedFromAsset.mixinAssetId;
@@ -164,7 +167,7 @@
   </div>
 
   <!-- Make sure network -->
-  {#if evmCompatible}
+  {#if $evmCompatible}
     <div class="flex justify-center text-center mt-1 opacity-60">
       <div class="text-xs w-48 break-words">
         <span>
@@ -194,7 +197,7 @@
       {$_('bridge.view_address')}
     </button>
 
-    {#if evmCompatible}
+    {#if $evmCompatible}
     <!-- SwitchNetwork -->
     <!-- Deposit -->
       <button class={clsx("btn btn-ghost bg-base-100 btn-xl rounded-3xl shadow-xl", switchLoading && "loading", sendLoading && "loading")} on:click={() => start()}>

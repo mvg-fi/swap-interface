@@ -7,6 +7,7 @@
   import Recipient from "$lib/components/bridge/recipient.svelte";
   import Process from "$lib/components/bridge/deposit/process.svelte";
   import SelectAssetDialog from "$lib/components/bridge/selectAsset.svelte";
+  import { toEvmCompatible, forceRecipient } from "$lib/stores/bridge/bridge";
 </script>
 
 <div class="card bg-base-100 shadow-xl p-5 max-w-[480px]">
@@ -23,9 +24,11 @@
     <Input from={false} />
   </div>
 
-  <div class="py-3">
-    <Recipient />
-  </div>
+  {#if !$toEvmCompatible || $forceRecipient}
+    <div class="py-3">
+      <Recipient />
+    </div>
+  {/if}
 
   <div class="py-3">
     <Info />

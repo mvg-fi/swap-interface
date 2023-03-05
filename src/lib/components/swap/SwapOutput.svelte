@@ -32,7 +32,7 @@
 </script>
 
 <div class="w-full">
-  <div class="p-1 py-2 bg-base-200 border rounded-2xl">
+  <div class="p-1 py-2 bg-base-200 border [[data-theme=dark]_&]:border-none rounded-2xl">
     <div class="items-center justfiy-center flex">
       <div class="flex-1 flex flex-col mx-3">
         <input

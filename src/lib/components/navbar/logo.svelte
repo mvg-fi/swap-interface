@@ -4,12 +4,11 @@ import MVG from "$lib/images/logo/mvg.svg"
 
 <a href="/swap" class="btn btn-ghost no-animation flex">
   <img src={MVG} alt="" class="w-6"/>
-  <span class="title ml-2"> MVG </span>
+  <span class="title text-base-content ml-2"> MVG </span>
 </a>
 
 <style>
   .title {
-    color: black;
     font-size: 22px;
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
       Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
