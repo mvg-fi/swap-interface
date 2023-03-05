@@ -25,7 +25,7 @@
 <div class="dropdown dropdown-end" on:focusout={handleDropdownFocusLost}>
   <button
     tabindex="0"
-    class="btn btn-square btn-ghost"
+    class="btn btn-square btn-ghost [[data-theme=dark]_&]:invert"
     on:click={handleDropdownClick}
   >
     <img src={menu} alt="menu" />
