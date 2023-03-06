@@ -58,6 +58,7 @@ export const XIN_ASSET_ID = 'c94ac88f-4671-3976-b60a-09064f1811e8';
 export const TRX_ASSET_ID = '25dabac5-056a-48ff-b9f9-f67395dc407c';
 export const EOS_ASSET_ID = '6cfe566e-4aad-470b-8c9a-2fd35b49c68d';
 export const MOB_ASSET_ID = 'eea900a8-b327-488c-8d8d-1428702fe240';
+export const BTC_ASSET_ID = 'c6d0c728-2624-429b-8e0d-d9d19b6592fa';
 
 // ChainID
 export const MAINNET_CHAIN_ID = 1;

@@ -4,11 +4,11 @@
   import curve from "@zed-wong/mvgswap";
   import { cleave } from "svelte-cleavejs";
   import { address } from "$lib/stores/user";
-  import loading from '$lib/images/loading.svg'
   import Empty from "$lib/images/empty-token.svg";
   import { connected } from "$lib/stores/connect";
   import { maskOption } from "$lib/helpers/constants";
   import Image from "$lib/components/common/image.svelte";
+  import loading from '$lib/images/loading-rounded-dark.svg'
   import { BN, filterInputEvents } from "$lib/helpers/utils";
   import {
     currentPool,
@@ -125,7 +125,7 @@
     <div class="tooltip tooltip-left" data-tip={$_("add_liquidity.max")}>
       {#if $connected}
         {#await balance}
-        <div class="flex">
+        <div class="flex items-center">
           <span class="cursor-pointer"
             >{$_("add_liquidity.balance")}: </span
           >

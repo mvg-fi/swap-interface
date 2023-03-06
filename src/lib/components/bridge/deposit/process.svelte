@@ -18,33 +18,28 @@
 </script>
 
 <svelte:window on:keydown={onKeyDown} />
-<!-- 
-  on:click={onClickOutside}
-  on:keypress={onClickOutside}
-  
-  bind:this={content}
- -->
 <div
   in:fade
-  class={clsx("modal max-w-none sm:modal-middle text-base-content select-none", 
-    $processDialog && "backdrop-blur-sm modal-open")}
+  class={clsx(
+    "modal max-w-none sm:modal-middle text-base-content select-none",
+    $processDialog && "backdrop-blur-sm modal-open"
+  )}
 >
-  <div class={clsx("modal-box p-3 flex flex-col", $mode == 1 ? "!max-w-[26rem]" : "!max-w-[32rem]")}>
+  <div
+    class={clsx(
+      "modal-box p-3 flex flex-col",
+      $mode == 1 ? "!max-w-[26rem]" : "!max-w-[32rem]"
+    )}
+  >
     {#if $mode == 0}
-    <!-- Pay with connected wallet -->
-      <div>
-        <Send />
-      </div>
+      <!-- Pay with connected wallet -->
+      <Send />
     {:else if $mode == 1}
-    <!-- Pay by transfer to address -->
-      <div>
-        <View />
-      </div>
+      <!-- Pay by transfer to address -->
+      <View />
     {:else if $mode == 2}
-    <!-- Load after payment -->
-      <div>
-        <Load />
-      </div>
+      <!-- Load after payment -->
+      <Load />
     {/if}
   </div>
 </div>

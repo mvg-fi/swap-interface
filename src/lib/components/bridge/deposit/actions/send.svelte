@@ -12,9 +12,9 @@
   // import { mode, supposedNetwork } from "$lib/stores/bridge/process";
   import { getAddress, parseEther, parseUnits } from "ethers/lib/utils";
   import { MixinApi, type AssetResponse } from "@mixin.dev/mixin-node-sdk";
-  import { depositAsset, errorLastMode, errorMessage } from "$lib/stores/bridge/deposit";
+  import { depositAsset, errorMessage } from "$lib/stores/bridge/deposit";
+  import { getChainByAsset, toHex, getEVMChainId } from "$lib/helpers/utils";
   import { evmCompatible, receiveAmount, selectedFromAsset, selectedToAsset, _payAmount } from "$lib/stores/bridge/bridge";
-  import { getChainByAsset,isEVMAsset, getEVMScanByAssetId, toHex, getEVMChainId } from "$lib/helpers/utils";
   
   let sendLoading = false
   let switchLoading = false
@@ -82,12 +82,14 @@
         const tx = await c
           .connect(signer)
           .transfer(Asset.deposit_entries[0].destination, v);
-        console.log("tx:", tx); 
+        console.log("tx:", tx);
       }
-    } catch (e){
+      // TODO: if success, switch to load mode
+    } catch (e) {
       console.log('code:', e.code)
       console.log('message:',e.message);
       errorMessage.set(e.message);
+      // TODO: close dialog and show error
     } finally {
       sendLoading = false;
     }

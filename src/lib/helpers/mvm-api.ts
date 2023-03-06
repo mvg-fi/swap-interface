@@ -122,4 +122,5 @@ export const fetchMvmTokens = async (address: `0x${string}`) => {
 };
 
 // export const fetchExchangeRates = ExternalClient().exchangeRates;
+// https://api.mixin.one/external/transactions?asset=b7938396-3f94-4e0a-9179-d3440718156f&destination=0xB14F5F5483E37E80243cEf6291D4c0DE1E3738e0
 export const fetchPendingDeposit = ExternalClient().deposits;

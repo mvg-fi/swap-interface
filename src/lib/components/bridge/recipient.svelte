@@ -9,7 +9,7 @@
   import CircleWarning from "$lib/images/circle-warning.svg";
   import {
     receiverAddr,
-    receiverMemo,
+    // receiverMemo,
     selectedToAsset,
   } from "$lib/stores/bridge/bridge";
   import { connected } from "$lib/stores/connect";
@@ -105,7 +105,7 @@
     </button> -->
   </div>
 
-  {#if haveMemo}
+  <!-- {#if haveMemo}
     <div>
       <input
         bind:value={$receiverMemo}
@@ -113,7 +113,7 @@
         placeholder={$_("bridge.enter_memo")}
       />
     </div>
-  {/if}
+  {/if} -->
 </div>
 
 <style>

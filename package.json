@@ -51,6 +51,7 @@
     "lodash-es": "^4.17.21",
     "multicoin-address-validator": "^0.5.12",
     "rollup-plugin-polyfill-node": "^0.11.0",
+    "rxjs": "^7.8.0",
     "sass": "^1.55.0",
     "svelte-cleavejs": "^1.0.3",
     "svelte-i18n": "^3.4.0",

@@ -5,7 +5,7 @@
   import { fetchPendingDeposit } from "$lib/helpers/mvm-api";
   import { selectedFromAsset } from "$lib/stores/bridge/bridge";
   import type { ExternalTransactionResponse } from "@mixin.dev/mixin-node-sdk";
-  import WaitingDeposit from "$lib/components/bridge/deposit/pendingDeposit/waitingDeposit.svelte";
+  // import WaitingDeposit from "$lib/components/bridge/deposit/pendingDeposit/waitingDeposit.svelte";
 
   let found = true;
   let succeed = false;
@@ -56,7 +56,7 @@
 </script>
 
 {#if !found && !succeed}
-  <WaitingDeposit />
+  <!-- <WaitingDeposit /> -->
 {:else if found && !succeed}
   <div
     class="deposit-pending flex flex-col w-full h-full"
