@@ -15,6 +15,9 @@ export const MVM_ICON = mvmIcon;
 // Contract
 export const GAS_PRICE = 10000000
 
+// Fetch deposit pending Interval (3s)
+export const FETCH_INTERVAL = 3000
+
 // Swap
 export const DEFAULT_SLIPPAGE = 0.5;  // 0.5%
 export const RELOAD_PERIOD = 60*1000;

@@ -149,7 +149,7 @@
     <button
       on:click={() => mode.set(2)}
       class={clsx(
-        "btn bg-blue-700 border-base-200 hover:bg-blue-800 hover:border-base-300 rounded-2xl",
+        "btn bg-blue-700 [[data-theme=dark]_&]:bg-blue-500 border-base-200 hover:bg-blue-800 hover:border-base-300 rounded-2xl",
         confirmed && "loading btn-square"
       )}
     >

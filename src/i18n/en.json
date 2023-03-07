@@ -68,6 +68,7 @@
 		"network": "Network",
 		"mainnet": "Mainnet",
 		"confirm": "Confirm",
+		"confirm_bridging": "Confirm bridging",
 		"deposit_will": "Deposit will arrive after",
 		"confirmations": "Confirmations",
 		"block_confirmations": "block confirmations",
@@ -93,9 +94,13 @@
 		"gas_fee": "Gas fee",
 		"pending": "Pending",
 		"deposit_pending": "Deposit pending",
-
+		"waiting": "Waiting",
+		"fetching_result": "Fetching result",
 		"completed": "Completed",
+		"reverted": "Reverted",
 		"make_sure_network": "Please make sure your wallet is connected to",
+		"please_wait_x_minutes":"Please wait around {min} minutes until the deposit is completed",
+		"then_confirm": "then confirm bridging to complete the process.",
 		"network_is_not_evm_compatible": "Network is not evm compatible, please pay by transfer to address.",
 		"this_value_may_change": "This value may change with price fluctuations."
 	},

@@ -1,67 +1,148 @@
 <script lang="ts">
+  import clsx from "clsx"
   import { _ } from "svelte-i18n";
-  import { getChainByAsset } from "$lib/helpers/utils";
+  import { getChainByAsset, getEVMChainId } from "$lib/helpers/utils";
+  import { chainId, library } from "$lib/stores/ethers";
+  import { FETCH_INTERVAL } from "$lib/helpers/constants";
   import { processDialog } from "$lib/stores/bridge/process";
   import { fetchPendingDeposit } from "$lib/helpers/mvm-api";
+  import { mvmProvider, switchNetwork } from "$lib/helpers/web3";
+  import CheckMark from "$lib/components/common/checkMark.svelte";
   import SmLoading from "$lib/components/common/smLoading.svelte";
-  import { selectedFromAsset, selectedToAsset } from "$lib/stores/bridge/bridge";
-  import { bridgingMode, depositAsset, destination, m1, m2, m3 } from "$lib/stores/bridge/deposit";
+  import type { ExternalTransactionResponse } from "@mixin.dev/mixin-node-sdk";
+  import {
+    selectedFromAsset,
+    selectedToAsset,
+  } from "$lib/stores/bridge/bridge";
+  import {
+    bridgingMode,
+    depositAsset,
+    destination,
+    m1,
+    m2,
+    m3,
+  } from "$lib/stores/bridge/deposit";
+    import ErrorMark from "$lib/components/common/errorMark.svelte";
 
   $: network = getChainByAsset($selectedFromAsset.mixinChainId)?.name;
   $: toNetwork = getChainByAsset($selectedToAsset.mixinChainId)?.name;
+  let fetched: ExternalTransactionResponse[], switchLoading: boolean;
 
-  let emptyCount = 0;
+  const changeNetwork = async (supposedNetwork: number) => {
+    if (!$library) return false;
+    switchLoading = true;
+    const result = await switchNetwork($library, supposedNetwork);
+    if (result === null) {
+      switchLoading = false;
+      console.log("changeNetwork success");
+      return true;
+    }
+    switchLoading = false;
+  };
+
   const rm1 = async () => {
     // 1. fetch pending deposit
     // 2. once found, fetch and update states
     // 3. after pending deposit returns empty array, check 3 times the balance to complete
-    while (true) {
-      console.log('run rm1')
-      const result = await fetchPendingDeposit({
-        asset:$selectedFromAsset.mixinAssetId, 
-        destination: $destination
-      });
-
-      if (result.length > 0) {
-        result
-        m1.set(1)
-        continue
-      } 
-      emptyCount++;
-      if ($m1 == 1 && emptyCount >= 3) {
-        m1.set(2);
-        bridgingMode.set(2);
-        break;
+    console.log("run rm1");
+    fetched = await fetchPendingDeposit({
+      asset: $selectedFromAsset.mixinAssetId,
+      destination: $destination,
+    });
+    if (fetched.length > 0) {
+      // found
+      m1.set(1);
+    }
+    let i = 0;
+    if ($m1 == 1 && fetched.length == 0) {
+      while (i < 3) {
+        fetched = await fetchPendingDeposit({
+          asset: $selectedFromAsset.mixinAssetId,
+          destination: $destination,
+        });
+        if (fetched.length == 0) i++;
+        else return;
       }
-      await new Promise((resolve) => setTimeout(resolve, 3000));
-    };
-  }
+      m1.set(2);
+      m2.set(1);
+      bridgingMode.set(2);
+    }
+  };
 
   const rm2 = async () => {
-    // 1. check network
-    // 2. check approve
+    // 1. check network is mvm
+    if (Number($chainId) != 73927) {
+      m2.set(1.1);
+    }
+
+    // TODO: add all these after deployed the utils contract
+    // 2. check approval
     // 3. check confirmation, then complete
-  }
+    if (false) {
+      bridgingMode.set(2);
+    }
+  };
 
   const rm3 = async () => {
     // 1. check tx state
-    // 2. if success, completed, or reverted.
-  }
+    m3.set(1);
+    const recipient = await mvmProvider.getTransactionReceipt("tx");
+    if (recipient.status === 1) {
+      // success
+      m3.set(2);
+      bridgingMode.set(3);
+    } else {
+      // reverted
+      m3.set(-1);
+    }
+  };
 
-  // const loader = 
-  (async () => {
-    // clearInterval(timer)
+  const statusChecker = async () => {
     switch ($bridgingMode) {
       case 1:
-        await rm1()
+        // await rm1()
         break;
       case 2:
+        // await rm2()
         break;
       case 3:
+        // await rm3()
         break;
     }
-  })()
-  // const timer = setInterval(loader, 3000);
+    if ($bridgingMode == 3) clearInterval(timer);
+  };
+  const timer = setInterval(statusChecker, FETCH_INTERVAL);
+
+  const ConfirmBridging = async () => {
+    if (!$chainId) return;
+    const checkNetwork = async () => {
+      if ($chainId != Number(73927)) {
+        console.log('network is wrong')
+        const changeSuccess = await changeNetwork(Number(73927));
+        if (!changeSuccess) {
+          // errorMessage.set($_('error.must_switch_network_to_continue'));
+          return false;
+        }
+      }
+      return true
+    }
+    const checkApproval = async () => {
+
+    }
+
+    const bridge = async () => {
+
+    }
+
+    if (!await checkNetwork()) return
+  }
+
+  const retry = () => {
+    bridgingMode.set(2);
+    m1.set(2);
+    m2.set(1);
+    m3.set(0);
+  }
 </script>
 
 <div class="font-sans">
@@ -104,13 +185,21 @@
         </span>
       {:else if $m1 == 1}
         <SmLoading class="w-8 h-8" color="blue" />
-        <span class="text-xs tooltip" data-tip={`${2}/${1} ${$_("bridge.confirmations")}`}>
-          x / y
+        <span
+          class="text-xs tooltip"
+          data-tip={`${fetched[0].confirmations}/${fetched[0].threshold} ${$_(
+            "bridge.confirmations"
+          )}`}
+        >
+          {`${fetched[0].confirmations} / ${fetched[0].threshold}`}
         </span>
       {:else if $m1 == 2}
         <div class="w-8 h-8 flex justify-center items-center">
-          <div class="bg-gray-400 rounded-full w-4 h-4"> </div>
+          <CheckMark class="w-4 h-4" color="blue" />
         </div>
+        <span class="text-xs">
+          {$_("bridge.completed")}
+        </span>
       {/if}
     </div>
 
@@ -140,13 +229,27 @@
         {$_("bridge.through")}
       </span>
       <span class="text-xs text-base-content/60 capitalize mt-3"> MVM </span>
-      <div class="w-8 h-8 flex justify-center items-center">
-        <div class="bg-gray-400 rounded-full w-4 h-4" />
-      </div>
-      <!-- <SmLoading class="w-8 h-8" color="blue" /> -->
-      <span class="text-xs">
-        {$_("bridge.pending")}
-      </span>
+
+      {#if $m2 == 0}
+        <div class="w-8 h-8 flex justify-center items-center">
+          <div class="bg-gray-400 rounded-full w-4 h-4" />
+        </div>
+        <span class="text-xs">
+          {$_("bridge.pending")}
+        </span>
+      {:else if $m2 == 1}
+        <SmLoading class="w-8 h-8" color="blue" />
+        <span class="text-xs">
+          {$_("bridge.pending")}
+        </span>
+      {:else if $m2 == 2}
+        <div class="w-8 h-8 flex justify-center items-center">
+          <CheckMark class="w-4 h-4" color="blue" />
+        </div>
+        <span class="text-xs">
+          {$_("bridge.completed")}
+        </span>
+      {/if}
     </div>
 
     <!-- Arrow right and placeholder-->
@@ -177,36 +280,96 @@
       <span class="text-xs text-base-content/60 capitalize mt-3">
         {toNetwork}
       </span>
-      <div class="w-8 h-8 flex justify-center items-center">
-        <div class="bg-gray-400 rounded-full w-4 h-4" />
-      </div>
-      <!-- <SmLoading class="w-8 h-8" color="blue" /> -->
-
-      <span class="text-xs">
-        {$_("bridge.pending")}
-      </span>
+      {#if $m3 == 0}
+        <div class="w-8 h-8 flex justify-center items-center">
+          <div class="bg-gray-400 rounded-full w-4 h-4" />
+        </div>
+        <span class="text-xs">
+          {$_("bridge.pending")}
+        </span>
+      {:else if $m3 == 1}
+        <SmLoading class="w-8 h-8" color="blue" />
+        <span class="text-xs">
+          {$_("bridge.pending")}
+        </span>
+      {:else if $m3 == 2}
+        <div class="w-8 h-8 flex justify-center items-center">
+          <CheckMark class="w-4 h-4" color="blue" />
+        </div>
+        <span class="text-xs">
+          {$_("bridge.completed")}
+        </span>
+      {:else if $m3 == -1}
+        <div class="w-8 h-8 flex justify-center items-center">
+          <ErrorMark class="w-4 h-4" color="red" />
+        </div>
+        <span class="text-xs">
+          {$_("bridge.reverted")}
+        </span>
+      {/if}
     </div>
   </div>
 
   <!-- Introduction or helper text -->
-  <div class="py-5 mt-2 px-12 flex flex-col items-center justify-center text-center">
+  <div
+    class="py-5 mt-2 px-12 flex flex-col items-center justify-center text-center"
+  >
     <!-- {$_('info_text', { values: { num: 6 }})}  -->
     <span class="break-words text-xs font-light">
-      Please wait around {"5"} minutes until the deposit is completed
+      {$_('bridge.please_wait_x_minutes', {values:{min:5}})}
     </span>
     <span class="break-words text-xs font-light">
-      then confirm bridging to complete the process.
+      {$_('bridge.then_confirm')}
     </span>
   </div>
 
   <!-- Buttons -->
   <div class="flex justify-center items-center pb-5">
-    <button class="btn btn-ghost shadow-2xl border border-base-content/5 rounded-2xl btn-disabled loading">
-      {#if $m1 == 0}
-        <span> {$_('bridge.deposit_pending')} </span>
-      {:else if $m1 == 1}
-        <span> {$_('bridge.waiting_confirmation')} </span>
-      {/if}
-    </button>
+    {#if $bridgingMode == 1}
+      <button
+        class="btn btn-ghost shadow-2xl border border-base-content/5 rounded-2xl btn-disabled loading"
+      >
+        {#if $m1 == 0}
+          <span> {$_("bridge.deposit_pending")} </span>
+        {:else if $m1 == 1}
+          <span> {$_("bridge.waiting_confirmation")} </span>
+        {:else}
+          <span> {$_("bridge.waiting")} </span>
+        {/if}
+      </button>
+    {:else if $bridgingMode == 2}
+      <button
+        on:click={() => ConfirmBridging()}
+        class={clsx("btn btn-ghost shadow-2xl border border-base-content/5 rounded-2xl", 
+        switchLoading && "loading")}
+      >
+        {#if switchLoading}
+          <span> {$_("bridge.switching_network")} </span>
+        <!-- TODO -->
+        <!-- {:else if approveLoading} -->
+        <!-- {:else if confirmLoading} -->
+        {:else if $m2 == 1}
+          <span> {$_("bridge.confirm_bridging")} </span>
+        {:else}
+          <span> {$_("bridge.waiting")} </span>
+        {/if}
+      </button>
+    {:else if $bridgingMode == 3}
+        <button
+          on:click={()=>retry()}
+          class={clsx("btn btn-ghost shadow-2xl border border-base-content/5 rounded-2xl",
+          $m3 == 1 && "loading")}
+        >
+          {#if $m3 == 1}
+            <span> {$_("bridge.fetching_result")}</span>
+          {:else if $m3 == 2}
+            <span> {$_("bridge.completed")}</span>
+          {:else if $m3 == -1}
+            <span> {$_("bridge.retry")} </span>
+          {:else}
+            <span> {$_("bridge.waiting")} </span>
+          {/if}
+        </button>
+    {/if}
   </div>
 </div>
