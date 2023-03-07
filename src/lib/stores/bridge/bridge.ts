@@ -2,7 +2,6 @@ import BigNumber from 'bignumber.js';
 import { isEVMAsset } from '$lib/helpers/utils';
 import assets from "$lib/constants/tokenlist.json";
 import { DEFAULT_SLIPPAGE } from "$lib/helpers/constants";
-import type { AssetResponse } from "@mixin.dev/mixin-node-sdk";
 import { setAssetDialog } from '$lib/stores/bridge/selectAsset';
 import { derived, get, writable, type Writable } from 'svelte/store'
 import type { IRouteStep } from '@zed-wong/mvgswap/lib/interfaces';

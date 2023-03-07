@@ -8,32 +8,62 @@
     selectedToAsset,
     payAmount,
     receiveAmount,
-    inputFrom
+    inputFrom,
+    _payAmount,
+    swapInfoLoading,
+    swapNotAvail,
+    priceImpact,
+    swapInfo
   } from "$lib/stores/bridge/bridge";
-  import { _ } from "svelte-i18n";
+  import clsx from "clsx"
+  import { _ } from "svelte-i18n";  
+  import curve from "@zed-wong/mvgswap";
   import { cleave } from "svelte-cleavejs";
   import { assets } from "$lib/stores/asset";
   import { derived } from "@square/svelte-store";
   import { connected } from "$lib/stores/connect";
-  import { formatUSMoney } from "$lib/helpers/utils";
+  import { filterInputEvents, formatUSMoney } from "$lib/helpers/utils";
   import { maskOption } from "$lib/helpers/constants";
   import { getCachedAssetBalance } from "$lib/stores/asset";
   import { setAssetDialog } from "$lib/stores/bridge/selectAsset";
 
   export let from: boolean = true;
 
+  const fetchRoute = async () => {
+    if ($_payAmount.isNaN() || $_payAmount.isZero()) return
+    swapInfoLoading.set(true)
+    try {
+      const info = await curve.router.getBestRouteAndOutput($selectedFromAsset.contract, $selectedToAsset.contract, $_payAmount.toString())
+      console.log(info)
+      
+      if (info.route.length == 0 || Number(info.output) == 0) {
+        swapNotAvail.set(true)
+        return;
+      }
+      const pi = await curve.router.priceImpact($selectedFromAsset.contract, $selectedToAsset.contract, $_payAmount.toString())
+      priceImpact.set(pi)
+      swapInfo.set(info)
+      swapNotAvail.set(false)
+      receiveAmount.set(info.output)
+    } catch (e) {
+      console.log(e)
+      swapNotAvail.set(true)
+    } finally {
+      swapInfoLoading.set(false)
+    }
+  }
+
   let timeout: any = null;
-  const delayInput = () => {
+  const delayInput = (event: KeyboardEvent) => {
+    if (!filterInputEvents(event)) return
     clearTimeout(timeout);
-    timeout = setTimeout(function () {
-      console.log($selectedFromAsset, $selectedToAsset, $payAmount);
-    }, 1000);
+    receiveAmount.set('')
+    timeout = setTimeout(async function () {
+      receiveAmount.set('')
+      await fetchRoute()
+    }, 500);
   };
-  // TODO: validate input
-  const validateInput = (s: string): [boolean, string] => {
-    if (Number(s) <= 0) return [false, $_("input.input_number")];
-    return [false, "Invalid Input"];
-  };
+
   const fetchFromUSD = () => { return $assets.find((obj)=>obj.mixinAssetId==$selectedFromAsset.mixinAssetId)?.priceUsd || 0}
   const fetchToUSD = () => { return $assets.find((obj)=>obj.mixinAssetId==$selectedToAsset.mixinAssetId)?.priceUsd || 0}
   
@@ -60,7 +90,11 @@
           use:cleave={maskOption}
           on:keyup={delayInput}
           bind:value={input_value}
-          class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-3xl transition-none bg-base-200"
+          class={clsx(
+            "input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none",
+            "font-bold text-3xl transition-none bg-base-200",
+            !from && swapInfoLoading && "fetching",
+          )}
         />
       </div>
       <button
@@ -117,5 +151,8 @@
   .mz-box {
     -moz-box-align: center;
     -moz-box-pack: justify;
+  }
+  .fetching { 
+    animation: 1s cubic-bezier(0.4, 0, 0.6, 1) 0s infinite normal none running loadingEffect;
   }
 </style>
