@@ -1,6 +1,7 @@
 export type ColHeaders = "name" | "apy" | "tvl" | "volume"
 
-export type PoolType = 0 | 1  // stable | crypto
+export type Process = 1 | 2 | 3 | 4 // poolType | poolInfo | parameters | confirmation
+export type PoolType = 0 | 1 | 2 // none | stable | crypto
 
 export interface StablePool {
   name: string,

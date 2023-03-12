@@ -7,7 +7,7 @@ export const APP_NAME = 'MVG Finance'
 export const NATIVE_TOKEN_SYMBOL = 'ETH'
 
 // PATHS
-export const APP_PATHS = ['/swap', '/pool', '/bridge']
+export const APP_PATHS = ['/swap', '/pool', '/factory/create', '/bridge']
 
 // Icons
 export const MVM_ICON = mvmIcon;
