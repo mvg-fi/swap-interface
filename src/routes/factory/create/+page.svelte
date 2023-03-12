@@ -1,3 +1,7 @@
+<script>
+    import Factory from "$lib/components/factory/factory.svelte";
+
+</script>
 <div>
-  Create Factory Pool
+  <Factory />
 </div>

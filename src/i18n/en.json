@@ -32,7 +32,13 @@
     "title": "Pool",
 		"myLiquidity": "My Liquidity",
 		"loading_pools": "Loading Pools...",
-		"create_factory_pool":"Create factory pools"
+		"create_factory_pool":"Create factory pools",
+		"create_new_pool": "Create new pool",
+		"select_pool_type": "Select pool type",
+		"select_pool_type_info": "Determine if pool contains pegged/non-pegged assets.",
+		"step_x_of_y": "Step {x} of {y}",
+		"pegged": "Pegged",
+		"non_pegged": "Non pegged"
 	},
 	"bridge": {
 		"title": "Bridge",

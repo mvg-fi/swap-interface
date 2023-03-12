@@ -8,6 +8,7 @@ node_modules
 !.env.example
 .vercel
 .output
+DESIGN.md
 
 # Local Netlify folder
 .netlify
