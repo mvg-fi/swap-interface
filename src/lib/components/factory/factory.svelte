@@ -1,8 +1,9 @@
 <script>
-    import Parameters from "./parameters.svelte";
-    import PoolInfo from "./poolInfo.svelte";
-    import PoolType from "./poolType.svelte";
-    import ProcessBar from "./processBar.svelte";
+    import Confirm from "$lib/components/factory/confirm.svelte";
+    import PoolInfo from "$lib/components/factory/poolInfo.svelte";
+    import PoolType from "$lib/components/factory/poolType.svelte";
+    import ProcessBar from "$lib/components/factory/processBar.svelte";
+    import Parameters from "$lib/components/factory/parameters.svelte";
 
     import { onDestroy } from "svelte";
     import { poolType, process } from "$lib/stores/pool/factory";
@@ -24,5 +25,7 @@
     <PoolInfo />
   {:else if $process === 3}
     <Parameters />
+  {:else if $process === 4}
+    <Confirm />
   {/if}
 </div>

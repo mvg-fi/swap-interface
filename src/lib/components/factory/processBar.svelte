@@ -44,5 +44,14 @@
         {$_('pool.parameters_info')}
       </span>
     </div>
+  {:else if $process === 4}
+    <div class="space-y-1">
+      <p class="text-3xl font-bold">
+        {$_('pool.review_deployment')}
+      </p>
+      <span class="text-lg opacity-80">
+        {$_('pool.check_to_make_sure')}
+      </span>
+    </div>
   {/if}
 </div>

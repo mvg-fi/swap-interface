@@ -34,7 +34,3 @@
     <span class="font-semibold text-center"> {$_('pool.non_pegged_asset')} </span>
   </button>
 </div>
-
-<!-- <div class="p-0 mt-10">
-  <PrevNext />
-</div> -->

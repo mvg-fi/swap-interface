@@ -1,7 +1,7 @@
 <script lang="ts">
   import { _ } from "svelte-i18n"
+  import PrevNext from "$lib/components/factory/prevNext.svelte";
   import { poolName, poolTokenAddresses, poolType } from "$lib/stores/pool/factory";
-    import PrevNext from "./prevNext.svelte";
   
 </script>
 
@@ -30,7 +30,7 @@
     <input class="input" bind:value={$poolTokenAddresses[1]} placeholder={$_("pool.enter_coin_address")} />
   </div>
 
-  <div class="pt-4">
+  <div class="pt-8">
     <PrevNext />
   </div>
 </div>
