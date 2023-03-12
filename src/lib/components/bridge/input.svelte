@@ -22,12 +22,18 @@
   import { assets } from "$lib/stores/asset";
   import { derived } from "@square/svelte-store";
   import { connected } from "$lib/stores/connect";
-  import { filterInputEvents, formatUSMoney } from "$lib/helpers/utils";
   import { maskOption } from "$lib/helpers/constants";
+  import { NetworkClient } from "@mixin.dev/mixin-node-sdk";
   import { getCachedAssetBalance } from "$lib/stores/asset";
   import { setAssetDialog } from "$lib/stores/bridge/selectAsset";
+  import { filterInputEvents, formatUSMoney } from "$lib/helpers/utils";
 
   export let from: boolean = true;
+
+  const calcWithdrawalFee = async () => {
+    const asset = await NetworkClient().fetchAsset($selectedToAsset.mixinAssetId)
+    // asset.fee is amount of chainAsset
+  }
 
   const fetchRoute = async () => {
     if ($_payAmount.isNaN() || $_payAmount.isZero()) return
@@ -75,6 +81,7 @@
     return formatUSMoney((Number($usd_store) * Number(input_value)).toFixed(2)) || 0;
   })
 
+  $: $selectedFromAsset, $selectedToAsset, fetchRoute()
   $: input_value = from ? $payAmount : $receiveAmount
   $: if (from) {payAmount.set(input_value)} else {receiveAmount.set(input_value)}
   $: selected_asset = from ? $selectedFromAsset : $selectedToAsset
