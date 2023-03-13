@@ -116,7 +116,8 @@
 <div
   on:click={onClickOutside}
   on:keypress={onClickOutside}
-  class={clsx("modal modal-middle text-base-content", $ConnectWalletDialog && "modal-open")}
+  class={clsx("modal modal-middle text-base-content", 
+    $ConnectWalletDialog && "backdrop-blur-sm modal-open")}
 >
   <div class={modalbox} bind:this={content}>
     {#if loading}
