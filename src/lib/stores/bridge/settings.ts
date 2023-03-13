@@ -1,7 +1,4 @@
-import { writable } from "svelte/store";
+import { writable, type Writable } from "svelte/store";
 
-export let settingDialog = writable(false)
-
-export const setSettingDialog = (open:boolean) => {
-  settingDialog.set(open)
-}
+export let settingOpen: Writable<boolean> = writable(false)
+export let alwaysCustom: Writable<boolean> = writable(false)

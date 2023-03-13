@@ -108,7 +108,7 @@
   };
 
   $: modalbox = clsx(
-    loading ? "h-[285px] !max-w-[26rem]" : "grid grid-cols-2 min-h-[25%] h-[45%]",
+    loading ? "h-[285px] !max-w-[26rem]" : "grid grid-cols-2 w-[512px] h-[384px]",
     "modal-box relative w-full p-2"
   );
 </script>

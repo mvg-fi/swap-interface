@@ -43,7 +43,6 @@
       class={clsx(
         "input bg-base-200 w-full outline-none input-md pl-5 transition-none focus:outline-none",
         haveMemo ? "!rounded-tl-3xl !rounded-b-none" : "!rounded-l-3xl"
-        // showAutoFill || showClear ? "!rounded-l-3xl" : "!rounded-l-3xl"
       )}
       on:change={()=>validation()}
       placeholder={$_("bridge.enter_recipient_address")}
