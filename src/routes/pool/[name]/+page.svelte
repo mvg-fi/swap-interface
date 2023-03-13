@@ -19,7 +19,7 @@
         currentPool.set(curve.getPool($page.params.name))
       }
     } catch (e) {
-      window.location.href="/"
+      window.location.href="/pool"
       showToast("common", $_('error.poolNotFound'))
       console.log(e)
     }
