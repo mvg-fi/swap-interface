@@ -1,22 +1,43 @@
 <script lang="ts">
   import clsx from "clsx"
   import { _ } from "svelte-i18n"
+  import curve from "@zed-wong/mvgswap";
   import { cryptoPool, poolType, process, stablePool } from "$lib/stores/pool/factory";
+    import { showToast } from "../toast/container.svelte";
+
+  const create = async () => {
+    let tx;
+    switch ($poolType) {
+      case 1:
+        tx = await curve.factory.deployPlainPool($stablePool.name, $stablePool.symbol, $stablePool.coins, $stablePool.A, $stablePool.fee, 0, 0)
+        break;
+      case 2:
+        tx = await curve.cryptoFactory.deployPool($cryptoPool.name, $cryptoPool.symbol, $cryptoPool.coins, $cryptoPool.A,
+          $cryptoPool.gamma, $cryptoPool.midFee, $cryptoPool.outFee, $cryptoPool.allowedExtraProfit, $cryptoPool.feeGamma, $cryptoPool.adjustmentStep, 
+          $cryptoPool.maHalfTime, $cryptoPool.initialPrice)
+        break;
+    }
+    console.log(tx)
+    showToast("success", $_("pool.create_pool_submitted"));
+  }
 
   $: valid = (()=>{
     switch ($poolType) {
       case 1: 
-        Object.values($stablePool).forEach(e=>{if(e===null) return false})
-        if ($stablePool.name.length > 10) return false;
+        for (const e in Object.values($stablePool)) {
+          if(e==null || e==undefined) return false
+        }
+        // if ($stablePool.name.length > 10) return false;
         if ($stablePool.coins[0] === $stablePool.coins[1]) return false;
         if (!$stablePool.coins[0] || !$stablePool.coins[1] ) return false;
         if ($stablePool.A > 1000 && $stablePool.A < 10) return false;
         if ($stablePool.fee > 1 && $stablePool.A < 0.04) return false;
-        
         break
       case 2:
-        Object.values($cryptoPool).forEach(e=>{if(e===null) return false})
-        if ($cryptoPool.name.length > 10) return false;
+      for (const e in Object.values($cryptoPool)) {
+          if(e==null || e==undefined) return false
+        }
+        // if ($cryptoPool.name.length > 10) return false;
         if ($cryptoPool.coins[0] == $cryptoPool.coins[1]) return false;
         if (!$cryptoPool.coins[0] || !$cryptoPool.coins[1] ) return false;
         break
@@ -48,7 +69,7 @@
     </button>
   {:else}
     <button 
-      on:click={()=> console.log('preserve')}
+      on:click={()=> create()}
       class={clsx("flex items-center justify-center","btn rounded-2xl bg-primary border-none hover:bg-primary no-animation",
        !valid &&"btn-disabled bg-slate-200")}
     >
