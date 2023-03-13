@@ -58,7 +58,7 @@
   class={clsx("modal modal-bottom sm:modal-middle text-base-content select-none", 
     $selectAssetDialog && "backdrop-blur-sm modal-open")}
 >
-  <div class="modal-box h-4/5 p-0 flex flex-col" bind:this={content}>
+  <div class="modal-box w-[450px] h-[680px] p-0 flex flex-col" bind:this={content}>
     <div class="sticky top-0 z-10 bg-transparent">
       <div class="flex p-5">
         <h3 class="font-semibold text-lg flex-1">{$_("select.token")}</h3>
