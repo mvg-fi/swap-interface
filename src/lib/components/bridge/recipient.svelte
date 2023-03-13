@@ -9,7 +9,7 @@
   import CircleWarning from "$lib/images/circle-warning.svg";
   import {
     receiverAddr,
-    // receiverMemo,
+    receiverMemo,
     selectedToAsset,
   } from "$lib/stores/bridge/bridge";
   import { connected } from "$lib/stores/connect";
@@ -42,7 +42,8 @@
       bind:value={$receiverAddr}
       class={clsx(
         "input bg-base-200 w-full outline-none input-md pl-5 transition-none focus:outline-none",
-        showAutoFill || showClear ? "!rounded-l-3xl" : "!rounded-3xl"
+        haveMemo ? "!rounded-tl-3xl !rounded-b-none" : "!rounded-l-3xl"
+        // showAutoFill || showClear ? "!rounded-l-3xl" : "!rounded-l-3xl"
       )}
       on:change={()=>validation()}
       placeholder={$_("bridge.enter_recipient_address")}
@@ -64,7 +65,7 @@
     <!-- Autofill -->
     {#if showAutoFill}
       <button
-        class="btn bg-base-200 border-none px-1 hover:bg-base-200 !rounded-r-3xl pr-5"
+        class="btn bg-base-200 border-none px-2 hover:bg-base-200"
         on:click={() => receiverAddr.set($address)}
       >
         <div class="tooltip" data-tip={$_("bridge.autofill")}>
@@ -73,7 +74,7 @@
       </button>
     {:else if showClear}
       <button
-        class="btn bg-base-200 border-none px-1 hover:bg-base-200 !rounded-r-3xl pr-5"
+        class="btn bg-base-200 border-none px-2 hover:bg-base-200"
         on:click={() => receiverAddr.set('')}
       >
         <div class="tooltip" data-tip={$_("bridge.delete")}>
@@ -87,7 +88,7 @@
     {/if}
 
     <!-- Drop down -->
-    <!-- <button
+    <button
       class={clsx(
         "btn bg-base-200 border-none btn-md pl-2 hover:bg-base-200",
         !haveMemo && "!rounded-r-3xl",
@@ -102,10 +103,10 @@
           class="w-4 [[data-theme=dark]_&]:invert"
         />
       </div>
-    </button> -->
+    </button>
   </div>
 
-  <!-- {#if haveMemo}
+  {#if haveMemo}
     <div>
       <input
         bind:value={$receiverMemo}
@@ -113,7 +114,7 @@
         placeholder={$_("bridge.enter_memo")}
       />
     </div>
-  {/if} -->
+  {/if}
 </div>
 
 <style>
