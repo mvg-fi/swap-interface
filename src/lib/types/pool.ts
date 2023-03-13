@@ -25,5 +25,5 @@ export interface CryptoPool {
   feeGamma: number,
   adjustmentStep: number,
   maHalfTime: number, // Seconds
-  initialPrice: number
+  initialPrice: number | null
 }

@@ -1,11 +1,9 @@
 <script lang="ts">
-  import clsx from "clsx"
   import { _ } from "svelte-i18n"
-  import { poolTokenAddresses, poolType } from "$lib/stores/pool/factory";
-  import PrevNext from "./prevNext.svelte";
-  import PmStable from "./pmStable.svelte";
-  import PmCrypto from "./pmCrypto.svelte";
-  
+  import { poolType } from "$lib/stores/pool/factory";
+  import PrevNext from "$lib/components/factory/prevNext.svelte";
+  import PmStable from "$lib/components/factory/pmStable.svelte";
+  import PmCrypto from "$lib/components/factory/pmCrypto.svelte";
 </script>
 
 <div class="flex flex-col space-y-6 px-40">

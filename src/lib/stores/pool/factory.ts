@@ -18,18 +18,18 @@ export let cryptoPool: Writable<CryptoPool> = writable({
   name: "",
   symbol: "",
   coins: ["",""],
-  A: 0,
-  gamma: 0,
-  midFee: 0,
-  outFee: 0,
-  allowedExtraProfit: 0,
-  feeGamma: 0,
-  adjustmentStep: 0,
-  maHalfTime: 0,
-  initialPrice: 0
+  A: 400000,
+  gamma: 0.000145,
+  midFee: 0.26,
+  outFee: 0.45,
+  allowedExtraProfit: 0.000002,
+  feeGamma: 0.00023,
+  adjustmentStep: 0.000146,
+  maHalfTime: 600,
+  initialPrice: null
 })
 
-const volatile = {
+export const volatile = {
   A: 400000,
   gamma: 0.000145,
   midFee: 0.26,
@@ -39,7 +39,7 @@ const volatile = {
   adjustmentStep: 0.000146,
   maHalfTime: 600,
 }
-const less_volatile = {
+export const less_volatile = {
   A: 200000000,
   gamma: 0.0001,
   midFee: 0.05,
@@ -48,4 +48,14 @@ const less_volatile = {
   feeGamma: 0.005,
   adjustmentStep: 0.0000055,
   maHalfTime: 600,
+}
+export const blank = {
+  A: 0,
+  gamma: 0,
+  midFee: 0,
+  outFee: 0,
+  allowedExtraProfit: 0,
+  feeGamma: 0,
+  adjustmentStep: 0,
+  maHalfTime: 0,
 }

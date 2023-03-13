@@ -15,10 +15,10 @@
 </script>
 
 <div class="py-3">
-  <ProcessBar />  
+  <ProcessBar />
 </div>
 
-<div class="mt-10">
+<div class="mt-8">
   {#if $process === 1}
     <PoolType />
   {:else if $process === 2}

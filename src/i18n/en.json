@@ -59,7 +59,9 @@
 		"volatile":"Volatile",
 		"less_volatile": "Less volatile",
 		"review_deployment": "Review deployment",
-		"check_to_make_sure": "Check to make sure everything is correct before deployment, You can't edit the parameters once the pool is deployed."
+		"check_to_make_sure": "Check to make sure everything is correct before deployment, You can't edit the parameters once the pool is deployed.",
+		"current_price1/price2": "Current price of token1/token2",
+		"confirm": "Confirm"
 	},
 	"bridge": {
 		"title": "Bridge",

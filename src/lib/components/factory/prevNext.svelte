@@ -1,7 +1,29 @@
 <script lang="ts">
   import clsx from "clsx"
   import { _ } from "svelte-i18n"
-  import { process } from "$lib/stores/pool/factory";
+  import { cryptoPool, poolType, process, stablePool } from "$lib/stores/pool/factory";
+
+  $: valid = (()=>{
+    switch ($poolType) {
+      case 1: 
+        Object.values($stablePool).forEach(e=>{if(e===null) return false})
+        if ($stablePool.name.length > 10) return false;
+        if ($stablePool.coins[0] === $stablePool.coins[1]) return false;
+        if (!$stablePool.coins[0] || !$stablePool.coins[1] ) return false;
+        if ($stablePool.A > 1000 && $stablePool.A < 10) return false;
+        if ($stablePool.fee > 1 && $stablePool.A < 0.04) return false;
+        
+        break
+      case 2:
+        Object.values($cryptoPool).forEach(e=>{if(e===null) return false})
+        if ($cryptoPool.name.length > 10) return false;
+        if ($cryptoPool.coins[0] == $cryptoPool.coins[1]) return false;
+        if (!$cryptoPool.coins[0] || !$cryptoPool.coins[1] ) return false;
+        break
+    }
+    
+    return true
+  })()
 </script>
 
 <div class="flex flex-row items-center justify-between space-x-4">
@@ -14,13 +36,26 @@
     </svg>
     <span class="text-base-content">{$_('pool.back')}</span>
   </button>
-  <button 
-    on:click={()=> $process+=1}
-    class={clsx("flex items-center justify-center","btn rounded-2xl bg-primary border-none hover:bg-primary no-animation", $process>=4&&"disabled")}
-  >
-    <span class="text-base-100 mr-2">{$_('pool.next')}</span>
-    <svg xmlns="http://www.w3.org/2000/svg" class="fill-base-100 h-5" viewBox="0 0 24 24" height="24" width="24">
-      <path xmlns="http://www.w3.org/2000/svg" d="M9.29289 18.7071C8.90237 18.3166 8.90237 17.6834 9.29289 17.2929L14.5858 12L9.29289 6.70711C8.90237 6.31658 8.90237 5.68342 9.29289 5.29289C9.68342 4.90237 10.3166 4.90237 10.7071 5.29289L16.7071 11.2929C17.0976 11.6834 17.0976 12.3166 16.7071 12.7071L10.7071 18.7071C10.3166 19.0976 9.68342 19.0976 9.29289 18.7071Z"></path>
-    </svg>
-  </button>
+  {#if $process != 4}
+    <button 
+      on:click={()=> $process+=1}
+      class={clsx("flex items-center justify-center","btn rounded-2xl bg-primary border-none hover:bg-primary no-animation", $process>=4&&"disabled")}
+    >
+      <span class="text-base-100 mr-2">{$_('pool.next')}</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="fill-base-100 h-5" viewBox="0 0 24 24" height="24" width="24">
+        <path xmlns="http://www.w3.org/2000/svg" d="M9.29289 18.7071C8.90237 18.3166 8.90237 17.6834 9.29289 17.2929L14.5858 12L9.29289 6.70711C8.90237 6.31658 8.90237 5.68342 9.29289 5.29289C9.68342 4.90237 10.3166 4.90237 10.7071 5.29289L16.7071 11.2929C17.0976 11.6834 17.0976 12.3166 16.7071 12.7071L10.7071 18.7071C10.3166 19.0976 9.68342 19.0976 9.29289 18.7071Z"></path>
+      </svg>
+    </button>
+  {:else}
+    <button 
+      on:click={()=> console.log('preserve')}
+      class={clsx("flex items-center justify-center","btn rounded-2xl bg-primary border-none hover:bg-primary no-animation",
+       !valid &&"btn-disabled bg-slate-200")}
+    >
+      <span class="text-base-100 mr-2">{$_('pool.confirm')}</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="fill-base-100 h-5" viewBox="0 0 24 24" height="24" width="24">
+        <path xmlns="http://www.w3.org/2000/svg" d="M9.29289 18.7071C8.90237 18.3166 8.90237 17.6834 9.29289 17.2929L14.5858 12L9.29289 6.70711C8.90237 6.31658 8.90237 5.68342 9.29289 5.29289C9.68342 4.90237 10.3166 4.90237 10.7071 5.29289L16.7071 11.2929C17.0976 11.6834 17.0976 12.3166 16.7071 12.7071L10.7071 18.7071C10.3166 19.0976 9.68342 19.0976 9.29289 18.7071Z"></path>
+      </svg>
+    </button>
+  {/if}
 </div>
