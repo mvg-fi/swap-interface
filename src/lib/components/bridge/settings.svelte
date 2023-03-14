@@ -7,6 +7,7 @@
   import { alwaysCustom, enhancePrivacy, settingOpen } from "$lib/stores/bridge/settings";
 </script>
 
+<!-- TODO: save settings to local storage -->
 <div class="flex flex-col space-y-8">
   <!-- Top -->
   <div class="flex flex-row py-0">

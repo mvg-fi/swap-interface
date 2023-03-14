@@ -78,6 +78,7 @@
   $: usd_store = from ? derived(balance, fetchFromUSD) : derived(balance, fetchToUSD);
   $: balance = from ? getCachedAssetBalance($selectedFromAsset.mixinAssetId) : getCachedAssetBalance($selectedToAsset.mixinAssetId)
   $: usd_value = derived(usd_store, () => {
+    if (input_value == '.' || input_value == null || input_value == undefined) return 0
     return formatUSMoney((Number($usd_store) * Number(input_value)).toFixed(2)) || 0;
   })
 
