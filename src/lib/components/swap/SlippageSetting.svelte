@@ -3,10 +3,9 @@
   import { _ } from "svelte-i18n";
   import { onDestroy } from "svelte";
   import Close from "$lib/images/close.svg";
-  import { slippageDialog } from "$lib/stores/swap/slippage";
   import { slippage, setSlippage } from "$lib/stores/swap/swap";
+  import { ranges, slippageDialog } from "$lib/stores/swap/slippage";
 
-  const ranges = [0.1, 0.5, 1];
   let slipValue: number;
   $: valid = slipValue >= 0 && slipValue <= 50;
   const unsub = slippage.subscribe((value) => (slipValue = value));

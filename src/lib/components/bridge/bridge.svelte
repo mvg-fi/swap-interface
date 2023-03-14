@@ -16,9 +16,9 @@
   onDestroy(()=>settingOpen.set(false))
 </script>
 
-<div class={clsx("card bg-base-100 shadow-xl p-5 max-w-[480px] w-[480px]", $settingOpen && "h-[620px]")}>
+<div class={clsx("card bg-base-100 shadow-xl p-5 max-w-[480px] w-[480px]", $settingOpen && "h-[548px]")}>
   {#if $settingOpen}
-    <div class="py-3">
+    <div>
       <Settings />
     </div>
   {:else}

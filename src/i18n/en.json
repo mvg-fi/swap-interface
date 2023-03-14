@@ -135,9 +135,13 @@
 		"this_value_may_change": "This value may change with price fluctuations.",
 		"fee_is_the_sum_of": "Fee is the sum of the transaction gas and the withdrawal fee",
 		"bridge_info":"Rate\nSlippage tolerance\nPrice Impact\nMinium received\nTransfer time",
-		"advanced_setting": "Advanced settings",
+		"advanced_settings": "Advanced settings",
 		"slippage_tolerance": "Slippage tolerance",
-		"always_use_custom_address":"Always use custom address"
+		"slippage_tolerance_info": "The transaction will revert if the return losses from changes exceed this percentage.",
+		"always_use_custom_address":"Always use custom address",
+		"enhance_privacy": "Enhance privacy",
+		"enhance_privacy_info": "Enhance privacy by delaying bridging for a random amount of time, less than five minutes.",
+		"enter_custom_slippage": "Enter custom slippage"
 	},
 	"login": {
 		"title": "Login",
