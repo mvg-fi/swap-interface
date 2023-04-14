@@ -1,7 +1,7 @@
 <script>
-    import Factory from "$lib/components/factory/factory.svelte";
-
+  import Factory from "$lib/components/factory/factory.svelte";
 </script>
-<div>
+
+<div class="text-base-content">
   <Factory />
 </div>

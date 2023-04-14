@@ -6,7 +6,7 @@
 </script>
 
 <div
-  class="bg-base-100 flex flex-col px-2 pt-2 pb-3 md:p-6 xl:p-12 md:rounded-xl gap-y-6 xl:shadow-sm"
+  class="bg-base-100 text-base-content flex flex-col px-2 pt-2 pb-3 md:p-6 xl:p-12 md:rounded-xl gap-y-6 xl:shadow-sm"
 >
   <div class="space-y-2">
     <div

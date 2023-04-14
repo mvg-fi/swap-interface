@@ -1,8 +1,7 @@
 <script lang="ts">
-  let color: string | undefined = undefined;
 	let clazz: string | undefined = undefined;
 
-	export { clazz as class, color };
+	export { clazz as class };
 </script>
 
 <svg xmlns="http://www.w3.org/2000/svg" class={clazz} viewBox="0 0 24 24" height="24" width="24">

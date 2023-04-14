@@ -12,9 +12,6 @@ export const APP_PATHS = ['/swap', '/pool', '/factory/create', '/bridge']
 // Icons
 export const MVM_ICON = mvmIcon;
 
-// Contract
-export const GAS_PRICE = 10000000
-
 // Fetch deposit pending Interval (3s)
 export const FETCH_INTERVAL = 3000
 

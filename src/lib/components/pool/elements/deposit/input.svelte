@@ -8,7 +8,7 @@
   import _tokenList from "$lib/constants/tokenlist.json";
   import Image from "$lib/components/common/image.svelte";
   import { filterInputEvents, findAssetsFromTokenList, formatDecimals, formatUSMoney } from "$lib/helpers/utils";
-  import { coins, currentPool, depositApproved, depositError, depositErrorMsg, exceptedLoading, inputValues, poolsLoaded, receiveAmount, transactionFee } from "$lib/stores/pool/pools";
+  import { coins, currentPool, depositApproved, depositError, depositErrorMsg, exceptedLoading, inputValues, poolsLoaded, receiveAmount, transactionFee, depositBalanced } from "$lib/stores/pool/pools";
 
   const fetchUSD = (contract: string) => { return $assss.find((obj)=>obj.contract==contract)?.priceUsd || 0};
   const setMax = (x: number, i: number) => { $inputValues[i] = x; };
@@ -19,13 +19,13 @@
   $: icons = assets.map((e)=>{ return e?.logoURI || Empty });
   $: balances = assets.map(e=>{ return formatDecimals(String(e?.balance), 8) || 0 });
   $: price = assets.map((e)=>{ return fetchUSD(e?.contract || '0') })
-  $: $assss, balances, price
+  $: $assss, $connected, assets, balances, price
   inputValues.set(new Array($coins.length).fill(null));
 
   const fetchReceive = async () => {
     depositError.set(false)
     exceptedLoading.set(true)
-    inputValues.set($inputValues.map((element) => element == null ? 0 : element));
+    inputValues.set($inputValues.map((e) => (e == null||e==0||e==undefined) ? 0 : e));
     if ($inputValues.every((e)=>e==null||e==0||e==undefined)) {
       receiveAmount.set('0')
       exceptedLoading.set(false)

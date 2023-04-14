@@ -34,20 +34,22 @@
 >
   <!-- svelte-ignore a11y-invalid-attribute -->
   <td class="first:pl-7 last:pr-7">
-    <div class="flex items-center space-x-4">
+    <div class="flex items-center space-x-4 h-12">
       <button class="min-w-[2rem] inline-grid grid-cols-2">
         <PoolIcon {assets} />
       </button>
 
-      <div class="grow-1">
+      <div class="grow-1 flex flex-col items-center justify-start text-left">
         <div class="font-bold">{pool.name}</div>
-        {#each pool.underlying_coins as coin}
-          <span class="text-sm opacity-60">
-            {coin} &nbsp;
-          </span>
-        {/each}
+        <!-- <div>
+          {#each pool.underlying_coins as coin}
+            <span class="font-bold">
+              {coin} &nbsp;
+            </span>
+          {/each}
+        </div> -->
         <div class="text-sm opacity-60">
-          {shortenAddress(pool.swap_address,4,4)}
+          <span class="text-left">{shortenAddress(pool.swap_address,6,4)}</span>
         </div>
       </div>
     </div>

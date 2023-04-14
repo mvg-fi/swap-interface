@@ -5,6 +5,7 @@
   import Infos from "$lib/components/pool/elements/deposit/infos.svelte";
   import Input from "$lib/components/pool/elements/deposit/input.svelte";
   import Title from "$lib/components/pool/elements/deposit/title.svelte";
+  import Options from "$lib/components/pool/elements/deposit/options.svelte";
 </script>
 
 <div
@@ -17,8 +18,10 @@
     <div class="mx-1 select-none">
       <Input />
     </div>
-    <!-- TODO: add deposit balanced amount -->
-    <div class={clsx("mx-2", !$depositError&&"mx-3","my-2")}>
+    <div class="mt-3">
+      <Options />
+    </div>
+    <div class={clsx(!$depositError&&"mx-3","my-2")}>
       <Infos />
     </div>
     <div class="my-2 mx-2 select-none">

@@ -6,7 +6,7 @@
   import Input from "$lib/components/bridge/input.svelte";
   import Arrow from "$lib/components/bridge/arrow.svelte";
   import Button from "$lib/components/bridge/button.svelte";
-  import { settingOpen } from "$lib/stores/bridge/settings";
+  import { alwaysCustom, settingOpen } from "$lib/stores/bridge/settings";
   import Settings from "$lib/components/bridge/settings.svelte";
   import Recipient from "$lib/components/bridge/recipient.svelte";
   import Process from "$lib/components/bridge/deposit/process.svelte";
@@ -35,7 +35,7 @@
       <Input from={false} />
     </div>
 
-    {#if !$toEvmCompatible || $forceRecipient}
+    {#if (!$toEvmCompatible || $forceRecipient) || $alwaysCustom}
       <div class="py-3">
         <Recipient />
       </div>

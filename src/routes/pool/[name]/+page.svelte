@@ -34,7 +34,7 @@
 <div class="w-full flex items-center justify-center pb-2 text-base-content">
   <Title name={$currentPool.name} />
 </div>
-<div class="mx-0 flex flex-row mt-3 text-base-content">
+<div class="mx-0 flex xl:flex-row md:flex-col flex-col mt-3 text-base-content">
   <div class="mr-12">
     <PoolInfo />
   </div>

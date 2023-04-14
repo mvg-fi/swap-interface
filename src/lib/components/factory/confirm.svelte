@@ -59,7 +59,7 @@
     {/if}
   </div>
 
-  <div class="flex flex-col card bg-red-200 text-base-content rounded-2xl mt-2 p-6">
+  <div class="flex flex-col card bg-red-200 [[data-theme=dark]_&]:bg-red-800 text-base-content rounded-2xl mt-2 p-6">
     <span>For this pool to be valid, it must:</span>
 
     <span>- Have a name (max 10 characters) </span>

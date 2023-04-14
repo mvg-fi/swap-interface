@@ -1,5 +1,4 @@
 <script lang="ts">
-  import clsx from "clsx";
   import { _ } from "svelte-i18n";
   import { connected } from "$lib/stores/connect";
   import {
@@ -14,6 +13,7 @@
   import UnableBtn from "$lib/components/pool/elements/withdrawal/unableBtn.svelte";
   import ApproveBtn from "$lib/components/pool/elements/withdrawal/approveBtn.svelte";
   import WithdrawBtn from "$lib/components/pool/elements/withdrawal/withdrawBtn.svelte";
+  
 </script>
 
 {#if !$connected}

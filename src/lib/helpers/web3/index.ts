@@ -11,6 +11,9 @@ import { formatDecimals, toHex } from '$lib/helpers/utils';
 import type { Network } from '$lib/types/network';
 import type { Asset } from '$lib/types/asset';
 import { format } from '$lib/helpers/web3/big';
+import curve from '@zed-wong/mvgswap';
+import { cryptoFactoryPools, factoryPools, mainPools, poolsLoaded } from '$lib/stores/pool/pools';
+import { formatUnits } from 'ethers/lib/utils';
 
 export const mainnetProvider = ethers.getDefaultProvider(1);
 export const mvmProvider = ethers.getDefaultProvider(MVM_RPC_URL);
@@ -170,3 +173,25 @@ export const switchNetwork = async (provider: ethers.providers.Web3Provider, net
     await switchNetwork(provider, network);
   }
 };
+
+export const Initialize = async (external: boolean, provider?: ethers.providers.ExternalProvider) => {
+  const gasPrice = Number(formatUnits(await mvmProvider.getGasPrice(), 'gwei'))
+  console.log('gasPrice:',gasPrice)
+  if (external){
+    await curve.init("Web3", { externalProvider: provider }, { chainId: 73927, gasPrice });
+  } else {
+    await curve.init("JsonRpc", { url: MVM_RPC_URL }, { chainId: 73927, gasPrice })
+  }
+  await curve.fetchFactoryPools()
+  await curve.fetchCryptoFactoryPools()
+
+  mainPools.set(curve.getAllMainPools())
+  factoryPools.set(curve.getAllFactoryPools())
+  cryptoFactoryPools.set(curve.getAllCryptoFactoryPools())
+  // const ALL_POOLS = Object.entries({
+  //   ...curve.getAllMainPools(),
+  //   ...curve.getAllFactoryPools() as IDict<IPoolData>,
+  //   ...curve.getAllCryptoFactoryPools() as IDict<IPoolData>,
+  // });
+  poolsLoaded.set(true)
+}

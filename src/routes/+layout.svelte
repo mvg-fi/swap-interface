@@ -22,6 +22,8 @@
   import { createWeb3Client } from "$lib/helpers/clients";
   import { setProvider } from "$lib/stores/ethers";
   import { mainPools, factoryPools, cryptoFactoryPools, poolsLoaded } from "$lib/stores/pool/pools";
+    import { Initialize, mvmProvider } from "$lib/helpers/web3";
+    import { formatUnits } from "ethers/lib/utils";
 
   let a: Asset[] | undefined = $page.data.assets;
   a?.length && !$assets.length && assets.set(a);
@@ -33,14 +35,8 @@
 
   (async () => {
     try {
-      await curve.init("JsonRpc", { url: MVM_RPC_URL }, { chainId: 73927 })
-      await curve.fetchFactoryPools()
-      await curve.fetchCryptoFactoryPools()
+      await Initialize(false)
 
-      mainPools.set(curve.getAllMainPools())
-      factoryPools.set(curve.getAllFactoryPools())
-      cryptoFactoryPools.set(curve.getAllCryptoFactoryPools())
-      poolsLoaded.set(true)
       // TODO: Auto connect to last connected provider
       // const web3Client = await createWeb3Client();
       // const p = await web3Client.cacheConnect();
@@ -66,7 +62,7 @@
 {#await setup}
   <Loading />
 {:then}
-  <div class="app">
+  <div class="app text-base-content">
     <header>
       <Navbar />
     </header>

@@ -26,7 +26,7 @@ export let cryptoPool: Writable<CryptoPool> = writable({
   feeGamma: 0.00023,
   adjustmentStep: 0.000146,
   maHalfTime: 600,
-  initialPrice: 0
+  initialPrice: null
 })
 
 export const volatile = {

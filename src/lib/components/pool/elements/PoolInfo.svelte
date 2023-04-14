@@ -14,11 +14,11 @@
  -->
 
 
-<div class="card min-w-[32rem] h-auto bg-base-100 shadow-lg mb-2">
+<div class="card xl:min-w-[32rem] h-auto bg-base-100 shadow-lg mb-2">
   <Apy />
 </div>
 
-<div class="card min-w-[32rem] h-auto bg-base-100 shadow-xl py-4 my-2">
+<div class="card xl:min-w-[32rem] h-auto bg-base-100 shadow-xl py-4 my-2">
   <Balances />
 </div>
 

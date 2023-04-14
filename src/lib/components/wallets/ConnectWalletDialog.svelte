@@ -22,6 +22,7 @@
   import { providerKey as cacheProvider } from "$lib/stores/provider";
   import { updateAssets } from "$lib/stores/asset";
     import { cryptoFactoryPools, factoryPools, mainPools, poolsLoaded } from "$lib/stores/pool/pools";
+    import { Initialize } from "$lib/helpers/web3";
 
   let content: any;
   let loading = false;
@@ -73,13 +74,7 @@
 
       if ($chainId === 73927) {
         poolsLoaded.set(false)
-        await curve.init("Web3", { externalProvider: p }, { chainId: 73927 });
-        await curve.fetchFactoryPools();
-        await curve.fetchCryptoFactoryPools();
-        mainPools.set(curve.getAllMainPools())
-        factoryPools.set(curve.getAllFactoryPools())
-        cryptoFactoryPools.set(curve.getAllCryptoFactoryPools())
-        poolsLoaded.set(true)
+        Initialize(true, p)
         return
       }
       setSwitchNeeded(true);

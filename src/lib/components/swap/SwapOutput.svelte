@@ -32,7 +32,7 @@
 </script>
 
 <div class="w-full">
-  <div class="p-1 py-2 bg-base-200 border [[data-theme=dark]_&]:border-none rounded-2xl">
+  <div class="p-1 py-2 bg-base-100 border [[data-theme=dark]_&]:border-none rounded-2xl">
     <div class="items-center justfiy-center flex">
       <div class="flex-1 flex flex-col mx-3">
         <input
@@ -40,7 +40,7 @@
           placeholder="0"
           use:cleave={maskOption}
           bind:value={$receiveAmount}
-          class="input bg-base-200 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-3xl transition-none !text-base-content"
+          class="input bg-base-100 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-3xl transition-none !text-base-content"
         />
       </div>
       <button

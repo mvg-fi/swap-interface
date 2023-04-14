@@ -24,13 +24,11 @@
     withdrawMode,
   } from "$lib/stores/pool/pools";
 
-  let value = null;
-
   const fetchRecvAmount = async () => {
     // if selector wasn't selected
     if ($withdrawMode == -1) {
-      withdrawMode.set(0);
-      mode1Options.set(0);
+      withdrawMode.set(1);
+      // mode1Options.set(0);
     }
     withdrawError.set(false);
     exceptedWLoading.set(true);
@@ -72,17 +70,7 @@
     }
   };
 
-  const balance = (async () => {
-    if ($connected) {
-      const x = await $currentPool.wallet.lpTokenBalances();
-      return BN(x.lpToken).toFixed(8);
-    }
-    return 0;
-  })();
-
-  const setMax = (x: number) => {
-    inputLpAmount.set(x);
-  };
+  const setMax = (x: number) => { inputLpAmount.set(x);};
 
   let timeout: any = null;
   const delayInput = (event: KeyboardEvent) => {
@@ -93,6 +81,13 @@
       await fetchRecvAmount();
     }, 1000);
   };
+  const balance = (async () => {
+    if ($connected) {
+      const x = await $currentPool.wallet.lpTokenBalances();
+      return BN(x.lpToken).floor(8);
+    }
+    return 0;
+  })()
 </script>
 
 <div class="p-1 m-1 border-solid rounded-2xl bd">
@@ -118,11 +113,12 @@
     </div>
   </div>
 
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div class="flex flex-row mx-2 my-1 opacity-75 text-xs">
     <div class="flex-1 ml-1">
       <!-- LP Token can't have USD Price -->
     </div>
-    <div class="tooltip tooltip-left" data-tip={$_("add_liquidity.max")}>
+    <div class="tooltip tooltip-left" data-tip={$_("add_liquidity.max")} on:click={() => { console.log(Promise.resolve(balance)) }}>
       {#if $connected}
         {#await balance}
         <div class="flex items-center">
