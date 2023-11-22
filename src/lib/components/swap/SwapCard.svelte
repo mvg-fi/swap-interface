@@ -53,15 +53,15 @@
     <Top />
   </div>
 
-  <div class="w-full my-3 mb-2">
+  <div class="w-full my-2 mb-[1px]">
     <SwapInput />
   </div>
 
-  <div class="w-full flex justify-center items-center">
+  <div class="w-full">
     <ArrowDown />
   </div>
 
-  <div class="w-full my-3 mt-2">
+  <div class="w-full my-2 mt-[1px]">
     <SwapOutput />
   </div>
 

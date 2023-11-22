@@ -2,9 +2,9 @@
 import MVG from "$lib/images/logo/mvg.svg"
   </script>
 
-<a href="/swap" class="btn btn-ghost no-animation flex">
-  <img src={MVG} alt="" class="w-6"/>
-  <span class="title text-base-content ml-2"> MVG </span>
+<a href="/swap" class="btn px-2.5 btn-ghost no-animation flex">
+  <img src={MVG} alt="" class="w-7"/>
+  <span class="title text-base-content ml-2.5"> MVG </span>
 </a>
 
 <style>

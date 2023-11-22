@@ -6,7 +6,7 @@
   const items = [
     { key: "/swap", value: $_("navbar.swap"), info: "Swap within MVM" },
     { key: "/pool", value: $_("navbar.pool"), info: "Add or remove liquidity"},
-    { key: "/bridge", value: $_("navbar.bridge"), info: "Cross-chain bridge"},
+    // { key: "/bridge", value: $_("navbar.bridge"), info: "Cross-chain bridge"},
   ];
 </script>
 

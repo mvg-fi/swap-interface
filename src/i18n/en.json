@@ -26,7 +26,9 @@
 		"network_incorrect": "Network incorrect!",
 		"insufficient_balance":"Insufficient Balance",
 		"please_switch_to_mvm": "Please switch your wallet's network to MVM to continue",
-		"swap_submitted": "Swap submitted"
+		"swap_submitted": "Swap submitted",
+		"you_pay": "You pay",
+		"you_receive": "You receive"
 	},
 	"pool": {
     "title": "Pool",

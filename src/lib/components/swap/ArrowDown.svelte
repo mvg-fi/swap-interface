@@ -3,9 +3,14 @@
   import { switchAsset } from "$lib/stores/swap/swap";
 </script>
 
-<button on:click={switchAsset}>
-  <img src={DownIcon} alt="s" class="down [[data-theme=dark]_&]:invert" />
-</button>
+<div class="flex justify-center items-center">
+  <button
+    on:click={switchAsset}
+    class="bg-base-200 rounded-3xl p-1 border-base-100 border-2 absolute"
+  >
+    <img src={DownIcon} alt="s" class="down [[data-theme=dark]_&]:invert" />
+  </button>
+</div>
 
 <style>
   .down {
@@ -15,7 +20,7 @@
   .down:hover {
     opacity: 0.5;
     cursor: pointer;
-    transform: rotate(-180deg);
+    transform: rotate(360deg);
     transition: transform 0.5s;
   }
   .down:not(:hover) {

@@ -10,8 +10,8 @@
   
 </script>
 
-<div class="navbar bg-transparent flex items-center text-base-content">
-  <div class="mb-1">
+<div class="navbar bg-transparent flex items-center text-base-content px-8">
+  <div class="">
     <Logo />
   </div>
   <div class="flex-1">
