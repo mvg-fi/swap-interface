@@ -111,6 +111,6 @@ export const maskOption = {
 	numeral: true,
 	numeralDecimalMark: '.',
 	numeralPositiveOnly: true,
-	numeralDecimalScale: 18,
+	numeralDecimalScale: 8,
 	numeralThousandsGroupStyle: 'none'
 }

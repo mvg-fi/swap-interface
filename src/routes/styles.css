@@ -91,7 +91,7 @@ button {
 	font-family: inherit;
 }
 
-button:focus:not(:focus-visible) {
+btn:focus:not(:focus-visible) {
 	outline: none;
 }
 

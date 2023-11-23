@@ -51,7 +51,7 @@
     </div>
     <div class="h-full overflow-y-auto">
       {#if filteredItems.length != 0}
-        <ul class="menu bg-base-100 w-full overflow-y-auto">
+        <ul class="menu px-0 bg-base-100 w-full overflow-y-auto">
           {#each filteredItems as asset}
             <li
               on:click={() => {

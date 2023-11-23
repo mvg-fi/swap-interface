@@ -1,27 +1,28 @@
 <script lang="ts">
-  import clsx from "clsx"
+  import clsx from "clsx";
   import { _ } from "svelte-i18n";
   import { page } from "$app/stores";
+  import { goto } from "$app/navigation";
 
   const items = [
     { key: "/swap", value: $_("navbar.swap"), info: "Swap within MVM" },
-    { key: "/pool", value: $_("navbar.pool"), info: "Add or remove liquidity"},
-    // { key: "/bridge", value: $_("navbar.bridge"), info: "Cross-chain bridge"},
+    { key: "/pool", value: $_("navbar.pool"), info: "Add or remove liquidity" },
   ];
 </script>
 
-<ul class="menu horizontal">
+<ul class="menu flex-row">
   {#each items as item}
     <li>
-      <a
-        href={item.key}
-        class={clsx("btn btn-ghost animate-none font-medium rounded-lg text-[15px]",
+      <button
+        on:click={() => goto(item.key)}
+        class={clsx(
+          "btn btn-ghost no-animation flex flex-col items-center font-medium rounded-lg",
           $page.url.pathname === item.key && "text-base-content",
           !($page.url.pathname === item.key) && "text-gray-500/70"
         )}
       >
-        {item.value}
-      </a>
+        <span>{item.value}</span>
+      </button>
     </li>
   {/each}
 </ul>
