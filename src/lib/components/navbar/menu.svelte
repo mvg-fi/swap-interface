@@ -34,7 +34,7 @@
   <ul
     tabindex="0"
     style:visibility={isDropdownOpen ? "visible" : "hidden"}
-    class="dropdown-content menu my-1 shadow bg-base-100 rounded-box w-60 mt-3"
+    class="dropdown-content menu my-1 shadow bg-base-100 rounded-box w-60 mt-3 z-20"
   >
     <!-- svelte-ignore a11y-missing-attribute -->
     {#each items as item}

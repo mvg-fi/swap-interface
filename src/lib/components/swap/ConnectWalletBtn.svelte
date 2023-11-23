@@ -4,7 +4,7 @@
 </script>
 
 <button
-  class="w-full btn btn-lg rounded-2xl bg-primary hover:bg-primary/80 text-base-100 border-none"
+  class="w-full btn btn-lg rounded-2xl bg-gradient-to-r from-primary to-secondary hover:bg-gradient-to-l text-base-100 border-none"
   on:click={() => {
     setWalletDialog(true);
   }}

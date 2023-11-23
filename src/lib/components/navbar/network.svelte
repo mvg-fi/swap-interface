@@ -86,7 +86,7 @@
       </button>
     {:else}
       <button class="btn btn-ghost">
-        <div class="rounded-full mr-2 mb-0.5">
+        <div class="rounded-full">
           <img src={icon} alt="mvm" class="h-[20px]" />
         </div>
         <span class="font-semibold">
@@ -96,8 +96,8 @@
     {/if}
   </div>
 {:else}
-  <button class="btn btn-ghost">
-    <div class="rounded-full mr-2 mb-0.5">
+  <button class="btn btn-ghost hidden md:flex">
+    <div class="rounded-full">
       <img src={MVM_ICON} alt="mvm" class="h-[20px]" />
     </div>
     <span class="font-semibold">

@@ -10,7 +10,7 @@
   ];
 </script>
 
-<ul class="menu flex-row">
+<ul class="menu flex-row hidden md:flex">
   {#each items as item}
     <li>
       <button
@@ -18,7 +18,7 @@
         class={clsx(
           "btn btn-ghost no-animation flex flex-col items-center font-medium rounded-lg",
           $page.url.pathname === item.key && "text-base-content",
-          !($page.url.pathname === item.key) && "text-gray-500/70"
+          !($page.url.pathname === item.key) && "text-gray-500/70",
         )}
       >
         <span>{item.value}</span>
@@ -28,12 +28,6 @@
 </ul>
 
 <style>
-  .sub {
-    color: grey;
-    font-size: 15px;
-    font-weight: 500 !important;
-    border-radius: 0.5rem;
-  }
   .selected {
     color: black;
   }

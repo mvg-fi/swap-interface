@@ -7,7 +7,11 @@
   import SingleAsset from "$lib/components/swap/SelectAsset/SingleAsset.svelte";
   import SearchAsset from "$lib/components/swap/SelectAsset/SearchAsset.svelte";
   import { fade } from "svelte/transition";
-  import { setFromAsset, selectedFromAsset, selectedToAsset } from "$lib/stores/swap/swap";
+  import {
+    setFromAsset,
+    selectedFromAsset,
+    selectedToAsset,
+  } from "$lib/stores/swap/swap";
   import {
     selectAssetDialog,
     setAssetDialog,
@@ -32,9 +36,15 @@
   in:fade
   on:click={onClickOutside}
   on:keypress={onClickOutside}
-  class={clsx("modal modal-bottom sm:modal-middle text-base-content", $selectAssetDialog && "backdrop-blur-sm modal-open")}
+  class={clsx(
+    "modal modal-bottom sm:modal-middle text-base-content",
+    $selectAssetDialog && "backdrop-blur-sm modal-open",
+  )}
 >
-  <div class="modal-box w-[450px] h-[680px] p-0 flex flex-col" bind:this={content}>
+  <div
+    class="modal-box !max-w-2xl sm:!w-[450px] h-[660px] p-0 flex flex-col"
+    bind:this={content}
+  >
     <div class="sticky top-0 z-10 bg-transparent">
       <div class="flex p-5">
         <h3 class="font-semibold text-lg flex-1">{$_("select.token")}</h3>
@@ -45,7 +55,7 @@
           <img src={Close} alt="" class="[[data-theme=dark]_&]:invert" />
         </button>
       </div>
-      <div class="pb-4 px-5">
+      <div class="pb-2 px-5">
         <SearchAsset />
       </div>
     </div>
@@ -62,12 +72,17 @@
                 setFromAsset(asset);
                 search.set("");
               }}
-            class={clsx(
-              $selectedFromAsset.mixinAssetId == asset.mixinAssetId && "bg-base-300 opacity-40 text-base-content btn-disabled current",
-              $selectedToAsset.mixinAssetId == asset.mixinAssetId && "bg-base-300 opacity-40 text-base-content btn-disabled")
-            }
+              class={clsx(
+                $selectedFromAsset.mixinAssetId == asset.mixinAssetId &&
+                  "bg-base-300 opacity-40 text-base-content btn-disabled current",
+                $selectedToAsset.mixinAssetId == asset.mixinAssetId &&
+                  "bg-base-300 opacity-40 text-base-content btn-disabled",
+              )}
             >
-              <SingleAsset {asset} selected={$selectedFromAsset.mixinAssetId == asset.mixinAssetId}/>
+              <SingleAsset
+                {asset}
+                selected={$selectedFromAsset.mixinAssetId == asset.mixinAssetId}
+              />
             </li>
           {/each}
         </ul>

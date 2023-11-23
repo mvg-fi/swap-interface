@@ -4,7 +4,7 @@ import MVG from "$lib/images/logo/mvg.svg"
 
 <a href="/swap" class="btn px-2.5 btn-ghost no-animation flex">
   <img src={MVG} alt="" class="w-7"/>
-  <span class="title text-base-content ml-0.5"> MVG </span>
+  <span class="title text-base-content ml-0.5 hidden md:inline"> MVG </span>
 </a>
 
 <style>

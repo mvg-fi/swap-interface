@@ -65,7 +65,7 @@
           use:cleave={maskOption}
           disabled={!$poolsLoaded}
           bind:value={$inputValues[i]}
-          class="input border-0 p-0 w-full max-w-xs input-md outline-none on-focus font-bold text-2xl transition-none"
+          class="input border-0 p-0 w-full max-w-xs outline-none on-focus font-bold text-2xl transition-none"
         />
       </div>
       <div class="avatar mx-1 mr-0">

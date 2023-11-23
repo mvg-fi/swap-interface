@@ -479,9 +479,9 @@
    "logoURI": "https://mixin-images.zeromesh.net/cT6iwy8ykm5SNYj-bgBKsqHOGALUJjifG-pGX0tFdB_lwUMsyZRUOtTlkIA7ktRJfMLEMY4g2UYxhTRlPjVZy52fKgLysRDYvwBz=s128",
    "mixinAssetId": "0c79a53f-9caf-3e7c-a3ce-1edcba33301f",
    "mixinChainId": "43d61dcd-e413-450d-80b8-101d5e903357",
-   "name": "FTT",
+   "name": "FTX Token",
    "stable": false,
-   "symbol": "FTX Token"
+   "symbol": "FTT"
   },
   "0xc1d220E70A38196931877b1019c1f7038c7c61Aa": {
    "chainId": 73927,

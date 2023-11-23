@@ -7,7 +7,11 @@
   import SingleAsset from "$lib/components/swap/SelectAsset/SingleAsset.svelte";
   import SearchAsset from "$lib/components/swap/SelectAsset/SearchAsset.svelte";
   import { fade } from "svelte/transition";
-  import { selectedFromAsset, selectedToAsset, setToAsset } from "$lib/stores/swap/swap";
+  import {
+    selectedFromAsset,
+    selectedToAsset,
+    setToAsset,
+  } from "$lib/stores/swap/swap";
   import {
     selectToAssetDialog,
     setToAssetDialog,
@@ -32,10 +36,16 @@
   in:fade
   on:click={onClickOutside}
   on:keypress={onClickOutside}
-  class={clsx("modal modal-bottom sm:modal-middle text-base-content", $selectToAssetDialog && "backdrop-blur-sm modal-open")}
+  class={clsx(
+    "modal modal-bottom sm:modal-middle text-base-content",
+    $selectToAssetDialog && "backdrop-blur-sm modal-open",
+  )}
 >
-  <div class="modal-box h-4/5 p-0 flex flex-col" bind:this={content}>
-    <div class="sticky top-0 z-10 bg-tranparent">
+  <div
+    class="modal-box !w-[450px] h-[680px] p-0 flex flex-col"
+    bind:this={content}
+  >
+    <div class="sticky top-0 z-10 bg-transparent">
       <div class="flex p-5">
         <h3 class="font-semibold text-lg flex-1">{$_("select.token")}</h3>
         <button
@@ -45,29 +55,34 @@
           <img src={Close} alt="" class="[[data-theme=dark]_&]:invert" />
         </button>
       </div>
-      <div class="pb-4 px-5">
+      <div class="pb-2 px-5">
         <SearchAsset />
       </div>
     </div>
     <div class="h-full overflow-y-auto">
       {#if filteredItems.length != 0}
-        <ul class="menu bg-base-100 w-full overflow-y-auto">
+        <ul class="menu px-0 bg-base-100 w-full overflow-y-auto">
           {#each filteredItems as asset}
             <li
               on:click={() => {
-                setToAsset(asset)
+                setToAsset(asset);
                 search.set("");
               }}
               on:keydown={() => {
-                setToAsset(asset)
+                setToAsset(asset);
                 search.set("");
               }}
               class={clsx(
-                $selectedToAsset.mixinAssetId == asset.mixinAssetId && "bg-base-300 opacity-40 text-base-content btn-disabled current",
-                $selectedFromAsset.mixinAssetId == asset.mixinAssetId && "bg-base-300 opacity-40 text-base-content btn-disabled"
+                $selectedToAsset.mixinAssetId == asset.mixinAssetId &&
+                  "bg-base-300 opacity-40 text-base-content btn-disabled current",
+                $selectedFromAsset.mixinAssetId == asset.mixinAssetId &&
+                  "bg-base-300 opacity-40 text-base-content btn-disabled",
               )}
             >
-              <SingleAsset {asset} selected={$selectedToAsset.mixinAssetId == asset.mixinAssetId} />
+              <SingleAsset
+                {asset}
+                selected={$selectedToAsset.mixinAssetId == asset.mixinAssetId}
+              />
             </li>
           {/each}
         </ul>

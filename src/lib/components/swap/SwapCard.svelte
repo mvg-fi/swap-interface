@@ -48,7 +48,7 @@
   $: balanceEnough = Number($balance) > $_payAmount.toNumber();
 </script>
 
-<div class="card bg-base-100 shadow-xl p-2 max-w-[480px]">
+<div class="card bg-base-100 shadow-xl p-2 max-w-[480px] z-10">
   <div class="py-2 px-3 flex select-none">
     <Top />
   </div>

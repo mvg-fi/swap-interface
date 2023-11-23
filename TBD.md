@@ -1,16 +1,11 @@
-- [] redesign card
-- [] redesign swap confirm
-
-
-
-
-
+- [x] redesign card
+- [] mobile toolbar
+- [] connect mixin
 
 
 
 
 - [] mobile card
-- [] mobile toolbar
 - [] new select asset card
-- [] connect mixin
 - [] mobile design
+- [] redesign swap confirm

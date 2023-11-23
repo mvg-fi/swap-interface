@@ -21,8 +21,13 @@
   } from "$lib/stores/selectWallet";
   import { providerKey as cacheProvider } from "$lib/stores/provider";
   import { updateAssets } from "$lib/stores/asset";
-    import { cryptoFactoryPools, factoryPools, mainPools, poolsLoaded } from "$lib/stores/pool/pools";
-    import { Initialize } from "$lib/helpers/web3";
+  import {
+    cryptoFactoryPools,
+    factoryPools,
+    mainPools,
+    poolsLoaded,
+  } from "$lib/stores/pool/pools";
+  import { Initialize } from "$lib/helpers/web3";
 
   let content: any;
   let loading = false;
@@ -73,12 +78,11 @@
       setConnected(true);
 
       if ($chainId === 73927) {
-        poolsLoaded.set(false)
-        Initialize(true, p)
-        return
+        poolsLoaded.set(false);
+        Initialize(true, p);
+        return;
       }
       setSwitchNeeded(true);
-      
     } catch (e: any) {
       console.log(e);
       switch (true) {
@@ -103,16 +107,20 @@
   };
 
   $: modalbox = clsx(
-    loading ? "h-[285px] !max-w-[26rem]" : "grid grid-cols-2 w-[512px] h-[384px]",
-    "modal-box relative w-full p-2"
+    loading
+      ? "h-[285px] !max-w-[26rem]"
+      : "grid grid-cols-2 w-[512px] h-[384px]",
+    "modal-box relative w-full p-2",
   );
 </script>
 
 <div
   on:click={onClickOutside}
   on:keypress={onClickOutside}
-  class={clsx("modal modal-middle text-base-content", 
-    $ConnectWalletDialog && "backdrop-blur-sm modal-open")}
+  class={clsx(
+    "modal modal-bottom sm:modal-middle text-base-content",
+    $ConnectWalletDialog && "backdrop-blur-sm modal-open",
+  )}
 >
   <div class={modalbox} bind:this={content}>
     {#if loading}

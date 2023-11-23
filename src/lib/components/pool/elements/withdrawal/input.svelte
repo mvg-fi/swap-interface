@@ -100,7 +100,7 @@
         use:cleave={maskOption}
         bind:value={$inputLpAmount}
         disabled={!$poolsLoaded}
-        class="input border-0 p-0 w-full max-w-xs input-md outline-none focus:outline-none font-bold text-2xl transition-none"
+        class="input border-0 p-0 w-full max-w-xs outline-none focus:outline-none font-bold text-2xl transition-none"
       />
     </div>
     <div class="avatar mx-1 mr-0">

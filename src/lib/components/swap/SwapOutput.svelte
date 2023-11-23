@@ -47,7 +47,7 @@
   >
     <div class="items-center justify-start flex mx-3 mt-1">
       <span class="text-sm opacity-50 font-medium">
-        {$_("swap.you_pay")}
+        {$_("swap.you_receive")}
       </span>
     </div>
     <div class="items-center justfiy-center flex space-x-0 mr-2">
