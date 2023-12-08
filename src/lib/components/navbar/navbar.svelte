@@ -10,7 +10,7 @@
   
 </script>
 
-<div class="navbar bg-transparent flex items-center text-base-content px-8 py-0">
+<div class="navbar bg-transparent flex items-center text-base-content md:px-8 py-0">
   <div class="">
     <Logo />
   </div>

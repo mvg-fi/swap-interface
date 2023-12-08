@@ -5,6 +5,7 @@
   import mixinMessenger from "$lib/images/logo/mixin.svg";
   import walletConnect from "$lib/images/logo/walletconnect.svg";
   import { showToast } from "$lib/components/toast/container.svelte";
+  import MixinOauth from "$lib/components/wallets/MixinOauth.svelte";
 
   import clsx from "clsx";
   import { _ } from "svelte-i18n";
@@ -31,6 +32,7 @@
 
   let content: any;
   let loading = false;
+  let state = 0; //0 == select page, 1 == loading, 2 == mixin oauth
   function onClickOutside(e: any) {
     if (content === null) return;
     if (content == e.target || content.contains(e.target)) return;
@@ -66,7 +68,7 @@
 
   const connect = async (provider: ProviderKey) => {
     try {
-      loading = true;
+      state = 1;
       const web3Client = await createWeb3Client(provider);
       const p = await web3Client.connect();
       await setProvider(p);
@@ -101,14 +103,14 @@
       }
     } finally {
       setTimeout(() => {
-        loading = false;
+        state = 0;
       }, 1000);
     }
   };
 
   $: modalbox = clsx(
-    loading
-      ? "h-[285px] !max-w-[26rem]"
+    state === 1
+      ? "h-[285px] sm:!max-w-[26rem]"
       : "grid grid-cols-2 w-[512px] h-[384px]",
     "modal-box relative w-full p-2",
   );
@@ -123,7 +125,23 @@
   )}
 >
   <div class={modalbox} bind:this={content}>
-    {#if loading}
+    {#if state === 0}
+      {#each providers as { title, desc, icon, key } (key)}
+        <button
+          bind:this={content}
+          on:click={() => connect(key)}
+          class="px-0 rounded-2xl b option flex flex-col items-center justify-center"
+        >
+          <div class="img-screen">
+            <img loading="lazy" src={icon} alt={title} width="48" height="48" />
+          </div>
+          <div class="mt-3 text-xl">
+            <div class="font-bold">{title}</div>
+          </div>
+          <div class="text-sm font-semibold opacity-20 pt-3">{desc}</div>
+        </button>
+      {/each}
+    {:else if state === 1}
       <div class="flex flex-col justify-center items-center w-full h-full">
         <img
           src={loadingHuge}
@@ -143,22 +161,8 @@
           </span>
         </div>
       </div>
-    {:else}
-      {#each providers as { title, desc, icon, key } (key)}
-        <button
-          bind:this={content}
-          on:click={() => connect(key)}
-          class="px-0 rounded-2xl b option flex flex-col items-center justify-center"
-        >
-          <div class="img-screen">
-            <img loading="lazy" src={icon} alt={title} width="48" height="48" />
-          </div>
-          <div class="mt-3 text-xl">
-            <div class="font-bold">{title}</div>
-          </div>
-          <div class="text-sm font-semibold opacity-20 pt-3">{desc}</div>
-        </button>
-      {/each}
+    {:else if state === 2}
+      <MixinOauth />
     {/if}
   </div>
 </div>

@@ -1,10 +1,10 @@
 import { ethers, utils, type BigNumberish } from 'ethers';
 import ERC20_ABI from '$lib/constants/abis/erc20.json';
 import {
-  BSC_RPC_URL,
   ETH_ASSET_ID,
   MVM_RPC_URL,
   networkParams,
+  BSC_RPC_URL,
   POLYGON_RPC_URL
 } from '$lib/helpers/constants';
 import { formatDecimals, toHex } from '$lib/helpers/utils';
@@ -176,7 +176,6 @@ export const switchNetwork = async (provider: ethers.providers.Web3Provider, net
 
 export const Initialize = async (external: boolean, provider?: ethers.providers.ExternalProvider) => {
   const gasPrice = Number(formatUnits(await mvmProvider.getGasPrice(), 'gwei'))
-  console.log('gasPrice:',gasPrice)
   if (external){
     await curve.init("Web3", { externalProvider: provider }, { chainId: 73927, gasPrice });
   } else {

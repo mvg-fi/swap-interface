@@ -10,8 +10,8 @@
 </div>
 
 <style>
-  .btn.loading::before {
+  /* .btn.loading::before {
     animation: spin 1s ease-in-out infinite;
     color: black;
-  }
+  } */
 </style>

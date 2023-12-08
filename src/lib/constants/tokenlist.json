@@ -197,17 +197,6 @@
    "stable": false,
    "symbol": "EURT"
   },
-  "0x5bAB2E09E7c67A5803D08CF312A407B1d9f223f4": {
-   "chainId": 73927,
-   "contract": "0x5bAB2E09E7c67A5803D08CF312A407B1d9f223f4",
-   "decimals": 8,
-   "logoURI": "https://mixin-images.zeromesh.net/HCjLu6VM0XA7ouRcZJGDTOzE7zoXaA8LgESw075VW5teZ27AGUgyGrc4jnzuK5LtgT5HJQDSNSOImnU3IcUsBLoF=s128",
-   "mixinAssetId": "17f78d7c-ed96-40ff-980c-5dc62fecbc85",
-   "mixinChainId": "17f78d7c-ed96-40ff-980c-5dc62fecbc85",
-   "name": "Binance Chain Native Token",
-   "stable": false,
-   "symbol": "BNB"
-  },
   "0x5dD39A30f3DeB4E7eCeAAA88DcB1F283b02426F5": {
    "chainId": 73927,
    "contract": "0x5dD39A30f3DeB4E7eCeAAA88DcB1F283b02426F5",
@@ -240,17 +229,6 @@
    "name": "Bitcoin SV",
    "stable": false,
    "symbol": "BSV"
-  },
-  "0x81995729Ead9Db862e386a5AE4906b5E2f68B4A2": {
-   "chainId": 73927,
-   "contract": "0x81995729Ead9Db862e386a5AE4906b5E2f68B4A2",
-   "decimals": 8,
-   "logoURI": "https://mixin-images.zeromesh.net/IVNDfZnoc7khjQJ2ldlzGJDJVSBD_hazCloDu5GKEd_nrIjfxvTUuI7hOYEYZElTyhDPRExty3fKm8ZSptkhtUpa9E4CbHGYccVQ=s128",
-   "mixinAssetId": "8e8d677c-e9f1-3201-b1b3-4e46193df4f1",
-   "mixinChainId": "43d61dcd-e413-450d-80b8-101d5e903357",
-   "name": "Tether Gold",
-   "stable": false,
-   "symbol": "XAUt"
   },
   "0x8374055405Ce4b4ECeFD84E3719fE83F56d4AA62": {
    "chainId": 73927,
@@ -351,28 +329,6 @@
    "stable": false,
    "symbol": "JPYC"
   },
-  "0xBac65f64cd7Ac8a2e71800C504b1E61D8c405015": {
-   "chainId": 73927,
-   "contract": "0xBac65f64cd7Ac8a2e71800C504b1E61D8c405015",
-   "decimals": 8,
-   "logoURI": "https://mixin-images.zeromesh.net/2K2ic-IsTp0_s-qDBC_0PPg2VWYHv5prngLETjMlUAnOrsbFitB6z5cBH52_hWh2C7POEGppEGW51MejlzWRg_KkoixLVyiA8arotA=s128",
-   "mixinAssetId": "e68e3448-6293-37a1-9943-fc927e65fed7",
-   "mixinChainId": "43d61dcd-e413-450d-80b8-101d5e903357",
-   "name": "Wrapped Ether",
-   "stable": false,
-   "symbol": "WETH"
-  },
-  "0xBb632546bE5Bdfff7300326689C4b841A97b6354": {
-   "chainId": 73927,
-   "contract": "0xBb632546bE5Bdfff7300326689C4b841A97b6354",
-   "decimals": 8,
-   "logoURI": "https://mixin-images.zeromesh.net/OXA2k7nPaexCjRa86QKrwyKEqsv7yFzfXC0b0BJh67eP530q1TNvSG3gIRjm3UvI8nlis-7_C2mq-ifNWpXFXN0t=s128",
-   "mixinAssetId": "83c8bfca-78ee-3845-9e6c-e3d69e7b381c",
-   "mixinChainId": "43d61dcd-e413-450d-80b8-101d5e903357",
-   "name": "Wrapped BTC",
-   "stable": false,
-   "symbol": "WBTC"
-  },
   "0xBcbC18B37250aC7E9F983141046D56c0aB032d00": {
    "chainId": 73927,
    "contract": "0xBcbC18B37250aC7E9F983141046D56c0aB032d00",
@@ -405,17 +361,6 @@
    "name": "Electronic Dollars",
    "stable": false,
    "symbol": "eUSD"
-  },
-  "0xE0BA86EC87df6E6797feB1F0d301576F862b05e6": {
-   "chainId": 73927,
-   "contract": "0xE0BA86EC87df6E6797feB1F0d301576F862b05e6",
-   "decimals": 8,
-   "logoURI": "https://mixin-images.zeromesh.net/2K2ic-IsTp0_s-qDBC_0PPg2VWYHv5prngLETjMlUAnOrsbFitB6z5cBH52_hWh2C7POEGppEGW51MejlzWRg_KkoixLVyiA8arotA=s128",
-   "mixinAssetId": "7cf6f5a4-2b4a-30a1-a7f3-8718b6b5b56e",
-   "mixinChainId": "b7938396-3f94-4e0a-9179-d3440718156f",
-   "name": "Wrapped Ether",
-   "stable": false,
-   "symbol": "WETH"
   },
   "0xE3cb8a2b08A760d4FC04d9C1f609d1c82fB75f60": {
    "chainId": 73927,

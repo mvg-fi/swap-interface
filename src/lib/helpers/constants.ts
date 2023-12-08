@@ -9,6 +9,11 @@ export const NATIVE_TOKEN_SYMBOL = 'ETH'
 // PATHS
 export const APP_PATHS = ['/swap', '/pool', '/factory/create', '/bridge']
 
+// Mixin
+export const SWAP_BOT_ID = 'a13f4c77-5cfc-4368-a2d6-33f07037ae9e'
+export const MIXIN_MESSENGER_INSTALL = 'https://messenger.mixin.one/install'
+export const OAUTH_SCOPE = 'PROFILE:READ ASSETS:READ' 
+
 // Icons
 export const MVM_ICON = mvmIcon;
 

@@ -24,32 +24,32 @@
     </div>
 
     <div class="mb-3">
-      <div class="my-5 btn-group grid grid-cols-4 [[data-theme=dark]_&]:invert">
+      <div class="my-5 join grid grid-cols-4 [[data-theme=dark]_&]:invert">
         {#each ranges as r}
           <button
-            class={clsx("btn btn-sm border-none text-base-content hover:text-base-content bg-color hover:bg-base-200 font-medium text-xs",
-              slipValue === r && '!bg-black hover:bg-black text-base-100 hover:text-base-100'
+            class={clsx("btn join-item btn-sm border-none text-base-content hover:text-base-content bg-color hover:bg-base-200 font-medium text-xs",
+              slipValue === r && '!bg-black/10 text-base-100 hover:text-base-100'
             )}
             on:click={() => setSlippage(r)}>{r}%</button
           >
         {/each}
         <button
-          class={clsx("btn btn-sm border-none text-base-content hover:text-base-content bg-color hover:bg-base-200 font-medium text-xs", 
-            !ranges.includes(slipValue) && '!bg-black hover:bg-black text-base-100 hover:text-base-100'
+          class={clsx("btn join-item btn-sm border-none text-base-content hover:text-base-content bg-color hover:bg-base-200 font-medium text-xs", 
+            !ranges.includes(slipValue) && 'bg-black/10 text-base-100 hover:text-base-100'
           )}
           on:click={() => setSlippage(0)}>{$_("slippage.custom")}</button
         >
       </div>
 
       <div class="form-control">
-        <div class="input-group [[data-theme=dark]_&]:invert">
+        <div class="join [[data-theme=dark]_&]:invert">
           <input
             type="text"
             placeholder={$_('swap.type_here')}
             bind:value={$slippage}
-            class="input input-bordered w-full bg-color focus:outline-0 border-none"
+            class="input join-item input-bordered w-full bg-color focus:outline-0 border-none"
           />
-          <button class="btn btn-square border-none text-base-content btn-disabled bg-color">
+          <button class="btn join-item border-none shadow-none text-base-content bg-color">
             %
           </button>
         </div>
@@ -58,7 +58,7 @@
 
     <div class="w-full flex justify-center content-center pt-5">
       <button
-        class="btn rounded-3xl {valid ? 'bg-black' : 'btn-disabled'}" 
+        class="btn rounded-3xl {valid ? 'bg-black/10' : 'btn-disabled'}" 
         on:click={()=>slippageDialog.set(false)}
         >{$_("slippage.save")}</button
       >

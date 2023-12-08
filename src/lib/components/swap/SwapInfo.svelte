@@ -51,7 +51,7 @@
   };
 </script>
 
-<!-- TODO -->
+{#if exchangeRate}
 <div class="collapse collapse-arrow border-base-300 rounded-2xl">
   <input type="checkbox" bind:checked />
   <div
@@ -99,6 +99,7 @@
     </div>
   </div>
 </div>
+{/if}
 
 <style>
   .collapse {
