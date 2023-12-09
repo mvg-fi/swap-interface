@@ -22,8 +22,8 @@
   import { createWeb3Client } from "$lib/helpers/clients";
   import { setProvider } from "$lib/stores/ethers";
   import { mainPools, factoryPools, cryptoFactoryPools, poolsLoaded } from "$lib/stores/pool/pools";
-    import { Initialize, mvmProvider } from "$lib/helpers/web3";
-    import { formatUnits } from "ethers/lib/utils";
+  import { Initialize, mvmProvider } from "$lib/helpers/web3";
+import { formatUnits } from "ethers/lib/utils";
 
   let a: Asset[] | undefined = $page.data.assets;
   a?.length && !$assets.length && assets.set(a);
@@ -57,6 +57,7 @@
       setSlippageDialog(false);
     }
   };
+
 </script>
 
 {#await setup}
