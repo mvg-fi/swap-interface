@@ -21,9 +21,14 @@
   import { MVM_RPC_URL } from "$lib/helpers/constants";
   import { createWeb3Client } from "$lib/helpers/clients";
   import { setProvider } from "$lib/stores/ethers";
-  import { mainPools, factoryPools, cryptoFactoryPools, poolsLoaded } from "$lib/stores/pool/pools";
+  import {
+    mainPools,
+    factoryPools,
+    cryptoFactoryPools,
+    poolsLoaded,
+  } from "$lib/stores/pool/pools";
   import { Initialize, mvmProvider } from "$lib/helpers/web3";
-import { formatUnits } from "ethers/lib/utils";
+  import { formatUnits } from "ethers/lib/utils";
 
   let a: Asset[] | undefined = $page.data.assets;
   a?.length && !$assets.length && assets.set(a);
@@ -31,11 +36,11 @@ import { formatUnits } from "ethers/lib/utils";
 
   const setupFn = async () => {
     await initi18n();
-  }
+  };
 
   (async () => {
     try {
-      await Initialize(false)
+      await Initialize(false);
 
       // TODO: Auto connect to last connected provider
       // const web3Client = await createWeb3Client();
@@ -47,17 +52,16 @@ import { formatUnits } from "ethers/lib/utils";
     }
   })();
 
-  const setup = setupFn()
+  const setup = setupFn();
 
   const escQuitDialogs = (e: KeyboardEvent) => {
-    if (e.code === 'Escape') {
+    if (e.code === "Escape") {
       setAssetDialog(false);
       setToAssetDialog(false);
       setWalletDialog(false);
       setSlippageDialog(false);
     }
   };
-
 </script>
 
 {#await setup}

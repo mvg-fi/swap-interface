@@ -17,8 +17,9 @@
       {
         onShowUrl: (url) => {
           goto(url);
-          qrLoading = false;
-          console.log("onShowURL:", url);
+          setTimeout(()=>{
+            qrLoading = false
+          }, 15000)
         },
         onError: (error) => {
           console.error(error);
