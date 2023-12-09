@@ -1,11 +1,11 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
-  import loadingDark from '$lib/images/loading-rounded-dark.svg'
+  // import loadingDark from '$lib/images/loading-rounded-dark.svg'
 </script>
 
 <div class="w-full py-8 flex flex-col items-center justify-center cursor-wait">
   <div>
-    <img src={loadingDark} alt="loading" class="w-20 h-20 opacity-60 loading" />
+    <div class="w-12 h-12 loading" />
   </div>
 
   <span class="text-base-content/50">

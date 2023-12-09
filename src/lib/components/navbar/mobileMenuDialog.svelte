@@ -5,6 +5,7 @@
     { key: $_("dark_mode"), value: false, check: true, func: ()=>{themeChange(true)} },
     { key: $_("language"), value: "", check: false, func: ()=>{} },
     { key: $_("currency"), value: "", check: false, func: ()=>{} },
+    { key: $_("about_us"), value: "", check: false, func: ()=>{} },
   ];
 </script>
 

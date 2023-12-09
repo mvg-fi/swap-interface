@@ -29,6 +29,7 @@
   } from "$lib/stores/pool/pools";
   import { Initialize, mvmProvider } from "$lib/helpers/web3";
   import { formatUnits } from "ethers/lib/utils";
+    import BottomNav from "$lib/components/footer/bottomNav.svelte";
 
   let a: Asset[] | undefined = $page.data.assets;
   a?.length && !$assets.length && assets.set(a);
@@ -76,7 +77,9 @@
       <slot />
     </main>
 
-    <footer />
+    <footer>
+      <BottomNav />
+    </footer>
   </div>
   <SlippageSetting />
   <ConnectWalletDialog />
