@@ -249,5 +249,9 @@
 		"trade_through_info":"Pools the transaction will go through",
 		"slippage_info": "The slippage",
 		"usd": "USD"
-	}
+	},
+	"dark_mode": "Dark mode",
+	"language": "Language",
+	"currency": "Currency",
+	"": ""
 }
