@@ -32,7 +32,7 @@
   }
 </script>
 
-<div
+<dialog
   in:fade
   on:click={onClickOutside}
   on:keypress={onClickOutside}
@@ -95,7 +95,7 @@
       {/if}
     </div>
   </div>
-</div>
+</dialog>
 
 <style>
   .modal {

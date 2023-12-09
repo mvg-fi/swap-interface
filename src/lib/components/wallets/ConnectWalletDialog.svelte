@@ -29,6 +29,9 @@
     poolsLoaded,
   } from "$lib/stores/pool/pools";
   import { Initialize } from "$lib/helpers/web3";
+  import authorize from "$lib/helpers/web3/mixin";
+  import { OAUTH_SCOPE, SWAP_BOT_ID } from "$lib/helpers/constants";
+  import { goto } from "$app/navigation";
 
   let content: any;
   let loading = false;
@@ -67,6 +70,9 @@
   ];
 
   const connect = async (provider: ProviderKey) => {
+    if (provider == "mixinmessenger") {
+      auth();
+    }
     try {
       state = 1;
       const web3Client = await createWeb3Client(provider);
