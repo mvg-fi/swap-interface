@@ -13,25 +13,10 @@
     selectedToAsset,
   } from "$lib/stores/bridge/bridge";
   import { connected } from "$lib/stores/connect";
-  import { validate } from "multicoin-address-validator";
-
   let haveMemo = false;
   let validated = true;
   let autofill = true;
 
-  // TODO: validate address
-  const validation = () => {
-    console.log('validated:',$receiverAddr)
-    if (!$connected) return
-    if ($receiverAddr === null || $receiverAddr === '') return
-    if ($selectedToAsset === null || $selectedToAsset === undefined) return
-    if (validate($receiverAddr, $selectedToAsset.symbol)) {
-      validated = true
-    } else{
-      validated = false;
-    }
-    console.log('validated:',validated)
-  }
   $: showClear = $connected && $receiverAddr != ""
   $: showAutoFill = $connected && autofill && ($receiverAddr == null || $receiverAddr == "")
 </script>

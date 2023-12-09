@@ -1,5 +1,4 @@
 import { INFURA_KEY, WALLET_CONNECT_KEY } from '$lib/helpers/constants';
-import WalletConnectProvider from '@walletconnect/web3-provider';
 import { MAINNET_RPC_URL, MVM_RPC_URL } from '$lib/helpers/constants'
 import { createWeb3Modal, defaultConfig } from '@web3modal/ethers5'
 
