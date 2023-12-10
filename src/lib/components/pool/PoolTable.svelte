@@ -47,8 +47,8 @@
   $: sortedPools = sortPools(selectedField, visiblePools, asc);
 </script>
 
-<div>
-  <div class="overflow-x-auto w-full select-none text-base-content">
+<div class="">
+  <div class="w-full select-none text-base-content">
     <table class="table w-full">
       {#if Object.values(pools).length == 0 || !$poolsLoaded}
         <LoadingPools />
