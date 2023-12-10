@@ -8,7 +8,7 @@
 <div class="form-control">
   <div class="join">
     <button
-    class="btn join-item btn-square focus:outline-none hover:border-0 bg-base-200 hover:bg-base-200 !rounded-l-xl !min-h-8"
+    class="btn join-item btn-square border-none shadow-none bg-[rgb(247,248,250)] hover:bg-[rgb(247,248,250)] !rounded-l-xl !min-h-8"
     >
       <img src={searchIcon} alt="search" class="w-6 opacity-40 [[data-theme=dark]_&]:invert" />
     </button>
@@ -16,7 +16,7 @@
       type="text"
       bind:value={$search}
       placeholder={$_("search.pool")}
-      class="input join-item block w-full bg-base-200 border-l-0 pl-0  focus:outline-none focus:border-0 !rounded-r-xl !min-h-8"
+      class="input join-item block w-full bg-[rgb(247,248,250)] border-l-0 pl-0  focus:outline-none focus:border-0 !rounded-r-xl !min-h-8"
     />
     <div class="flex items-center ml-3 tooltip" data-tip={$_('pool.create_new_pool')}>
       <button on:click={()=>goto('/factory/create')}>

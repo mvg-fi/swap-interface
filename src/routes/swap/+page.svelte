@@ -17,6 +17,6 @@
   </div>
 {/if}
 
-<div class={clsx("flex justify-center", !$switchNeeded && "pt-12")}>
+<div class={clsx("flex justify-center", !$switchNeeded && "pt-12 pb-24")}>
   <SwapCard />
 </div>

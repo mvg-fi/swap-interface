@@ -29,7 +29,8 @@
   } from "$lib/stores/pool/pools";
   import { Initialize, mvmProvider } from "$lib/helpers/web3";
   import { formatUnits } from "ethers/lib/utils";
-    import BottomNav from "$lib/components/footer/bottomNav.svelte";
+  import BottomNav from "$lib/components/footer/bottomNav.svelte";
+  import MobileMenuDialog from "$lib/components/navbar/mobileMenuDialog.svelte";
 
   let a: Asset[] | undefined = $page.data.assets;
   a?.length && !$assets.length && assets.set(a);
@@ -69,7 +70,7 @@
   <Loading />
 {:then}
   <div class="app text-base-content">
-    <header>
+    <header class="sticky top-0 z-10 backdrop-blur-sm">
       <Navbar />
     </header>
 
@@ -83,6 +84,7 @@
   </div>
   <SlippageSetting />
   <ConnectWalletDialog />
+  <MobileMenuDialog />
   <Toast />
 {/await}
 <svelte:window on:keydown={escQuitDialogs} />

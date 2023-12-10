@@ -48,7 +48,7 @@
   $: balanceEnough = Number($balance) > $_payAmount.toNumber();
 </script>
 
-<div class="card bg-base-100 shadow-xl p-2 max-w-[480px] z-10">
+<div class="card bg-base-100 shadow-xl p-2 max-w-[480px]">
   <div class="py-2 px-3 flex select-none">
     <Top />
   </div>
@@ -69,10 +69,10 @@
     <div class="px-2">
       <SwapInfoLoading />
     </div>
-  {:else if $swapNotAvail}
+  <!-- {:else if $swapNotAvail}
     <div class="my-3">
       <SwapNotAvailable />
-    </div>
+    </div> -->
   {:else}
     <div class="w-full">
       <SwapInfo />

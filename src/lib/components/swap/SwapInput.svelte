@@ -96,7 +96,7 @@
 
 <div class="w-full">
   <div
-    class="p-1 py-2 bg-base-200 [[data-theme=dark]_&]:border-none rounded-t-2xl space-y-1"
+    class="p-1 py-2 bg-[rgb(247,248,250)] [[data-theme=dark]_&]:border-none rounded-t-2xl space-y-1"
   >
     <div class="items-center justify-start flex mx-3 mt-1">
       <span class="text-sm opacity-50 font-medium">
@@ -111,7 +111,7 @@
           use:cleave={maskOption}
           on:keyup={delayInput}
           bind:value={$payAmount}
-          class="input bg-base-200 p-0 w-full max-w-xs outline-none border-0 focus:outline-none font-bold text-3xl transition-none text-base-content"
+          class="input bg-[rgb(247,248,250)] p-0 w-full max-w-xs outline-none border-0 focus:outline-none font-bold text-3xl transition-none text-base-content"
         />
       </div>
       <button
