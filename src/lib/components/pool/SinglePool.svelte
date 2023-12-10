@@ -27,7 +27,7 @@
 <!-- Icon and Name-->
 <tr
   tabindex="0"
-  class="hover"
+  class="hover transition"
   on:click={() => {
     toPoolDetail(id);
   }}

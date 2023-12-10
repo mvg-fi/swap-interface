@@ -61,7 +61,7 @@
         />
       </div>
       <button
-        class="flex flex-row items-center content-center mz-box bg-base-100 p-2 rounded-3xl"
+        class="flex flex-row items-center content-center mz-box bg-base-100 hover:bg-slate-200 transition p-2 rounded-3xl"
         on:click={() => setToAssetDialog(true)}
       >
         <div class="avatar mx-1 mr-0 w-7 rounded-full mz-box">

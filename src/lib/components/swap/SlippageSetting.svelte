@@ -6,10 +6,10 @@
   import { slippage, setSlippage } from "$lib/stores/swap/swap";
   import { ranges, slippageDialog } from "$lib/stores/swap/slippage";
 
-  let slipValue: number;
-  $: valid = slipValue >= 0 && slipValue <= 50;
-  const unsub = slippage.subscribe((value) => (slipValue = value));
-  onDestroy(unsub);
+  // $: slipValue = 0.1;
+  $: valid = $slippage >= 0 && $slippage <= 90;
+  // const unsub = slippage.subscribe((value) => (slipValue = value));
+  // onDestroy(unsub);
 </script>
 
 <dialog
@@ -34,18 +34,18 @@
         {#each ranges as r}
           <button
             class={clsx(
-              "btn join-item btn-sm border-none text-base-content hover:text-base-content bg-color hover:bg-base-200 font-medium text-xs",
-              slipValue === r &&
-                "!bg-black/10 text-base-100 hover:text-base-100",
+              "btn join-item btn-sm border-none hover:border-none text-base-content hover:text-base-content bg-color hover:bg-base-200 font-medium text-xs",
+              $slippage === r &&
+                "!bg-black text-slate-50 hover:text-slate-50",
             )}
             on:click={() => setSlippage(r)}>{r}%</button
           >
         {/each}
         <button
           class={clsx(
-            "btn join-item btn-sm border-none text-base-content hover:text-base-content bg-color hover:bg-base-200 font-medium text-xs",
-            !ranges.includes(slipValue) &&
-              "bg-black/10 text-base-100 hover:text-base-100",
+            "btn join-item btn-sm border-none hover:border-none text-base-content hover:text-base-content bg-color hover:bg-base-200 font-medium text-xs",
+            !ranges.includes($slippage) &&
+              "!bg-black text-slate-50 hover:text-slate-50",
           )}
           on:click={() => setSlippage(0)}>{$_("slippage.custom")}</button
         >
@@ -70,7 +70,7 @@
 
     <div class="w-full flex justify-center content-center pt-5">
       <button
-        class="btn rounded-3xl {valid ? 'bg-black/10' : 'btn-disabled'}"
+        class="btn rounded-3xl {valid ? 'bg-black hover:bg-black/80 text-slate-50 hover:text-slate-50' : 'btn-disabled'}"
         on:click={() => slippageDialog.set(false)}>{$_("slippage.save")}</button
       >
     </div>

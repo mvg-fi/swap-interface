@@ -17,7 +17,7 @@
   </div>
 {/if}
 <div
-  class="flex flex-col items-center justify-center mt-4 mb-12 h-full bg-base-100 rounded-2xl"
+  class="flex flex-col items-center justify-center md:mt-4 mb-12 h-full bg-base-100 rounded-2xl"
 >
   <PoolCard />
 </div>
