@@ -3,21 +3,20 @@
   import { connected } from "$lib/stores/connect";
   import PoolCard from "$lib/components/pool/PoolCard.svelte";
   import MyLiquidity from "$lib/components/pool/MyLiquidity.svelte";
+  let innerWidth = 0;
+  $: isMd = innerWidth >= 720;
 </script>
 
 <svelte:head>
   <title>{`${$_("navbar.pool")} - ${$_("appName")}`}</title>
   <meta name="description" content="" />
 </svelte:head>
+<svelte:window bind:innerWidth />
 
 <!-- TODO: if connected and have pool -->
-{#if $connected}
+{#if $connected && isMd}
   <div>
     <MyLiquidity />
   </div>
 {/if}
-<div
-  class="flex flex-col items-center justify-center md:mt-4 mb-12 h-full bg-base-100 rounded-2xl"
->
-  <PoolCard />
-</div>
+<PoolCard />

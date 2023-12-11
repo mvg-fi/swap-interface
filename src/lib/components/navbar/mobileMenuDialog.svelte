@@ -1,8 +1,9 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import { themeChange } from "theme-change";
+  $: dark = false;
   $: items = [
-    { key: $_("dark_mode"), value: false, check: true, func: ()=>{themeChange(true)} },
+    { key: $_("dark_mode"), value: "", check: true, func: ()=>{themeChange(true)} },
     { key: $_("language"), value: "", check: false, func: ()=>{} },
     { key: $_("currency"), value: "", check: false, func: ()=>{} },
     { key: $_("about_us"), value: "", check: false, func: ()=>{} },
@@ -11,12 +12,12 @@
 
 <dialog id="mobile_menu_dialog" class="modal modal-bottom sm:modal-middle">
   <div class="modal-box">
-    <h3 class="font-bold text-lg mb-3">Settings</h3>
-    {#each items as { key, value, check, func }}
-      <button class="w-full flex items-center justify-between" on:click={func()}>
-        <p class="py-3">{key}</p>
+    <h3 class="font-bold text-lg mb-4">Settings</h3>
+    {#each items as { key, check, func }}
+      <button class="w-full flex items-center justify-between" on:click={()=>func()}>
+        <span class="py-2 font-medium">{key}</span>
         {#if check}
-          <input type="checkbox" class="toggle" bind:checked={value} />
+          <input type="checkbox" class="toggle" bind:checked={dark} />
         {:else}
           <!-- chevron right -->
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">

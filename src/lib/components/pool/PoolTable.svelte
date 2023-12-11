@@ -8,13 +8,18 @@
   import SinglePool from "$lib/components/pool/SinglePool.svelte";
   import LoadingPools from "$lib/components/pool/LoadingPools.svelte";
   import NoResult from "$lib/components/swap/SelectAsset/NoResult.svelte";
-  import { cryptoFactoryPools, factoryPools, mainPools, poolsLoaded } from "$lib/stores/pool/pools";
+  import {
+    cryptoFactoryPools,
+    factoryPools,
+    mainPools,
+    poolsLoaded,
+  } from "$lib/stores/pool/pools";
 
   $: pools = {
-      ...$mainPools,
-      ...$factoryPools,
-      ...$cryptoFactoryPools,
-    }
+    ...$mainPools,
+    ...$factoryPools,
+    ...$cryptoFactoryPools,
+  };
 
   $: visiblePools =
     $search == ""
@@ -45,51 +50,64 @@
   let selectedField = keys[0];
   let asc = true;
   $: sortedPools = sortPools(selectedField, visiblePools, asc);
+  let innerWidth = 0;
+  $: isMd = innerWidth >= 720;
 </script>
 
-<div class="">
-  <div class="w-full select-none text-base-content">
-    <table class="table w-full">
-      {#if Object.values(pools).length == 0 || !$poolsLoaded}
-        <LoadingPools />
-      {:else if Object.values(pools).length != 0 && sortedPools.length != 0}
-        <thead>
-          <tr class="">
-            {#each tableHeaders as th, i}
-              <th
-                class="cursor-pointer pb-2 first:pl-7 last:pr-7"
-                on:click={() => {
-                  selectedField = keys[i];
-                }}
-              >
-                <button class="flex items-center" on:click={()=>asc = !asc}>
-                  <span>{th}</span>
-                  {#if keys[i] === selectedField}
-                    {#if asc}
-                      <img src={caretDown} alt="" class="[[data-theme=dark]_&]:invert"/>
-                    {:else}
-                      <img src={caretUp} alt="" class="[[data-theme=dark]_&]:invert"/>
-                    {/if}
+<svelte:window bind:innerWidth />
+<div class="w-full select-none text-base-content overflow-x-auto">
+  <table class="table w-full">
+    {#if Object.values(pools).length == 0 || !$poolsLoaded}
+      <LoadingPools />
+    {:else if Object.values(pools).length != 0 && sortedPools.length != 0 }
+      <thead>
+        <tr class="">
+          {#each tableHeaders as th, i}
+            <th
+              class="cursor-pointer pb-2 first:pl-7 last:pr-7"
+              on:click={() => {
+                selectedField = keys[i];
+              }}
+            >
+              <button class="flex items-center" on:click={() => (asc = !asc)}>
+                <span>{th}</span>
+                {#if keys[i] === selectedField}
+                  {#if asc}
+                    <img
+                      src={caretDown}
+                      alt=""
+                      class="[[data-theme=dark]_&]:invert"
+                    />
+                  {:else}
+                    <img
+                      src={caretUp}
+                      alt=""
+                      class="[[data-theme=dark]_&]:invert"
+                    />
                   {/if}
-                </button>
-              </th>
-            {/each}
-          </tr>
-        </thead>
-        <tbody class="cursor-pointer text-base-content">
-          {#each sortedPools as [id,pool]}
-            <SinglePool {id} {pool} />
+                {/if}
+              </button>
+            </th>
           {/each}
-        </tbody>
-      {:else}
-        <div
-          class="flex grow flex-col space-y-3 py-8 h-full w-full items-center justify-center"
-        >
-          <NoResult />
-        </div>
-      {/if}
-    </table>
-  </div>
+        </tr>
+      </thead>
+      <tbody class="cursor-pointer text-base-content">
+        {#each sortedPools as [id, pool]}
+          <SinglePool {id} {pool} />
+        {/each}
+      </tbody>
+    <!-- {:else if Object.values(pools).length != 0 && sortedPools.length != 0 && !isMd}
+      <thead>
+        
+      </thead> -->
+    {:else}
+      <div
+        class="flex grow flex-col space-y-3 py-8 h-full w-full items-center justify-center"
+      >
+        <NoResult />
+      </div>
+    {/if}
+  </table>
 </div>
 
 <style>

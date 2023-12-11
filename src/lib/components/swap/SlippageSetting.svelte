@@ -1,13 +1,12 @@
 <script lang="ts">
   import clsx from "clsx";
   import { _ } from "svelte-i18n";
-  import { onDestroy } from "svelte";
   import Close from "$lib/images/close.svg";
   import { slippage, setSlippage } from "$lib/stores/swap/swap";
   import { ranges, slippageDialog } from "$lib/stores/swap/slippage";
 
-  // $: slipValue = 0.1;
   $: valid = $slippage >= 0 && $slippage <= 90;
+  // $: slipValue = 0.1;
   // const unsub = slippage.subscribe((value) => (slipValue = value));
   // onDestroy(unsub);
 </script>

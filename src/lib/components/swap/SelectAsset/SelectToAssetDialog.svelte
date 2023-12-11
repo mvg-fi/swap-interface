@@ -74,9 +74,9 @@
               }}
               class={clsx(
                 $selectedToAsset.mixinAssetId == asset.mixinAssetId &&
-                  "bg-base-300 opacity-40 text-base-content btn-disabled current",
+                "bg-[rgb(247,248,250)] opacity-60 text-base-content btn-disabled current",
                 $selectedFromAsset.mixinAssetId == asset.mixinAssetId &&
-                  "bg-base-300 opacity-40 text-base-content btn-disabled",
+                "bg-[rgb(247,248,250)] opacity-60 text-base-content btn-disabled",
               )}
             >
               <SingleAsset
