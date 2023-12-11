@@ -18,20 +18,22 @@
     </div>
   </div>
   
-  <div class="flex flex-col align-middle my-6 m-3">
-    <button class="card w-80 bg-base-100 p-3 px-4 flex flex-row justify-between items-center">
-      <span>
-        My liquidity
-      </span>
+  <!-- <div class="flex justify-center"> -->
+    <div class="flex flex-col items-center align-middle my-6 m-3">
+      <button class="card w-80 bg-base-100 p-3 px-4 flex flex-row justify-between items-center">
+        <span>
+          My liquidity
+        </span>
+    
+        <!-- chevron right -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </button>
+    </div>  
+  <!-- </div> -->
   
-      <!-- chevron right -->
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-      </svg>
-    </button>
-  </div>
-  
-  <div class="join join-vertical ">
+  <div class="join join-vertical flex items-center justify-center">
     {#each l as i}
       <div class="flex flex-col items-center m-3 my-0 join-item">
         <button class="w-80 bg-base-100 p-3 px-4 flex flex-row justify-between items-center">
