@@ -1,7 +1,7 @@
 <script>
     import { VERSION_NUMBER } from "$lib/helpers/constants";
 
-  let l = ['My liquidity','My staking', 'History', 'Voting', 'DAO forum', 'Settings', 'Debug tools','Join community', 'About us']
+  let l = ['My staking', 'History', 'Voting', 'DAO forum', 'Settings', 'Debug tools', 'Join community', 'About us', 'Log out']
 </script>
 
 <div class="mb-16">
@@ -31,7 +31,7 @@
     </button>
   </div>
   
-  <div class="join join-vertical rounded-2xl">
+  <div class="join join-vertical ">
     {#each l as i}
       <div class="flex flex-col items-center m-3 my-0 join-item">
         <button class="w-80 bg-base-100 p-3 px-4 flex flex-row justify-between items-center">
@@ -47,7 +47,9 @@
     {/each}
   </div>
   
-  <div class="flex justify-center mt-14">
-    <span class="text-sm opacity-40"> v{VERSION_NUMBER} </span>
+  <div class="flex flex-col items-center justify-center mt-14">
+    <span class="text-sm opacity-25"> v{VERSION_NUMBER} </span>
+
+    <span class="text-sm opacity-30 mt-2.5"> Made with ❤️ by MVG Finance </span>
   </div>
 </div>
