@@ -3,9 +3,12 @@
   import Navbar from "$lib/components/navbar/navbar.svelte";
   import { page } from "$app/stores";
   import SecondNav from "$lib/components/navbar/secondNav.svelte";
+  let innerWidth = 0;
+  $: isMd = innerWidth >= 720;
 </script>
 
-{#if $page.url.pathname.match("/pool/[^/]+/?$")}
+<svelte:window bind:innerWidth />
+{#if !isMd && $page.url.pathname.match("/pool/[^/]+/?$")}
   <div class="text-base-content">
     <header class="sticky top-0 z-10">
       <SecondNav />
@@ -23,7 +26,7 @@
       <Navbar />
     </header>
 
-    <main class="!px-2 mt-3 mb-24">
+    <main class="!px-2 mt-3 mb-24 md:mb-0">
       <slot />
     </main>
 

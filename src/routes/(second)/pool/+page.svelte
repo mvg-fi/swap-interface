@@ -19,4 +19,6 @@
     <MyLiquidity />
   </div>
 {/if}
-<PoolCard />
+<div class="md:mx-28 md:mt-6">
+  <PoolCard />
+</div>

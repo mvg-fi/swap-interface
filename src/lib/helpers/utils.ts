@@ -193,7 +193,6 @@ export const filterInputEvents = (event: KeyboardEvent): boolean => {
 
 export const arrayAreAllNull = (values: number[]) => { return values.every((e) => e == null || e == 0 || e == undefined); }
 
-export const goBack = (defaultRoute = '/swap') => {
+export const goBack = () => {
 	history.back()
-	// goto(ref.length > 0 ? ref : defaultRoute)
 }
