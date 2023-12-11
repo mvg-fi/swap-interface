@@ -8,7 +8,6 @@
   import Account from "./account.svelte";
   import { isMixin } from "$lib/helpers/mixin";
   import { connected } from "$lib/stores/connect";
-  import MobileMenuDialog from "./mobileMenuDialog.svelte";
 
   const ism = isMixin();
 </script>

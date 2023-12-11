@@ -17,19 +17,7 @@
   import "../app.postcss";
   import "./styles.css";
   import { initi18n } from "../i18n/i18n";
-  import curve from "@zed-wong/mvgswap";
-  import { MVM_RPC_URL } from "$lib/helpers/constants";
-  import { createWeb3Client } from "$lib/helpers/clients";
-  import { setProvider } from "$lib/stores/ethers";
-  import {
-    mainPools,
-    factoryPools,
-    cryptoFactoryPools,
-    poolsLoaded,
-  } from "$lib/stores/pool/pools";
   import { Initialize, mvmProvider } from "$lib/helpers/web3";
-  import { formatUnits } from "ethers/lib/utils";
-  import BottomNav from "$lib/components/footer/bottomNav.svelte";
   import MobileMenuDialog from "$lib/components/navbar/mobileMenuDialog.svelte";
 
   let a: Asset[] | undefined = $page.data.assets;
@@ -70,17 +58,7 @@
   <Loading />
 {:then}
   <div class="app text-base-content">
-    <header class="sticky top-0 z-10 backdrop-blur-sm">
-      <Navbar />
-    </header>
-
-    <main class="!px-2">
-      <slot />
-    </main>
-
-    <footer>
-      <BottomNav />
-    </footer>
+    <slot />
   </div>
   <SlippageSetting />
   <ConnectWalletDialog />

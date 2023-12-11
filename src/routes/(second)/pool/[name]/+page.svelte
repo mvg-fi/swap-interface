@@ -9,7 +9,7 @@
   import PoolInfo from "$lib/components/pool/elements/PoolInfo.svelte";
   import Withdrawal from "$lib/components/pool/elements/Withdrawal.svelte";
   import Title from "$lib/components/pool/elements/poolInfo/title.svelte";
-
+  
   (async () => {
     try {
       // TODO: loading pool by id. Need to deal with fetchPoolList with init
