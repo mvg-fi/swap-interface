@@ -17,9 +17,9 @@
       {
         onShowUrl: (url) => {
           goto(url);
-          setTimeout(()=>{
-            qrLoading = false
-          }, 15000)
+          setTimeout(() => {
+            qrLoading = false;
+          }, 15000);
         },
         onError: (error) => {
           console.error(error);
@@ -28,7 +28,7 @@
         },
         onSuccess: async (data) => {
           qrLoading = false;
-          setConnected(true)
+          setConnected(true);
           return;
         },
       },
@@ -38,9 +38,13 @@
 
 <div>
   <button
-    on:click={ () => ism ? auth() : setWalletDialog(true) }
+    on:click={() => (ism ? auth() : setWalletDialog(true))}
     class="btn btn-lg btn-block rounded-2xl bg-primary hover:bg-primary/80 text-base-100 border-none"
   >
-    <span> {$_("add_liquidity.connect_wallet")} </span>
+    {#if qrLoading}
+      <span class="loading loading-spinner"></span>
+    {:else}
+      <span> {$_("add_liquidity.connect_wallet")} </span>
+    {/if}
   </button>
 </div>
