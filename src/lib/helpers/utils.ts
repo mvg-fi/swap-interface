@@ -1,4 +1,6 @@
 import BigNumber from "bignumber.js";
+import { goto } from '$app/navigation';
+import { browser } from "$app/environment";
 import type { Asset } from "$lib/types/asset"
 import { getAddress } from "ethers/lib/utils";
 import evmMap from "$lib/constants/evmmap.json"
@@ -9,7 +11,7 @@ import type { ColHeaders } from "$lib/types/pool";
 import type { IPoolData } from "@zed-wong/mvgswap/lib/interfaces";
 import { BSC_SCAN_URL, ETHER_SCAN_URL, POLYGON_SCAN_URL } from "$lib/helpers/constants";
 
-export const BN = BigNumber.clone({DECIMAL_PLACES:8})
+export const BN = BigNumber.clone({ DECIMAL_PLACES: 8 })
 
 export const toHex = (num: string | number) => {
 	const val = Number(num);
@@ -59,7 +61,7 @@ export const formatDecimals = (s: string | number, n: number) => {
 	return Math.floor(Number(s) * 10 ** n) / 10 ** n
 }
 
-export const sortByString = (colHeader: ColHeaders, data: [string,IPoolData][], ascendingOrder: boolean) => {
+export const sortByString = (colHeader: ColHeaders, data: [string, IPoolData][], ascendingOrder: boolean) => {
 	data = data.sort((obj1, obj2) => {
 		if (obj1[1][colHeader] < obj2[1][colHeader]) {
 			return -1;
@@ -74,14 +76,14 @@ export const sortByString = (colHeader: ColHeaders, data: [string,IPoolData][], 
 	return data
 }
 
-export const sortByNumber = (colHeader: string, data: [string,IPoolData][], ascendingOrder: boolean) => {
+export const sortByNumber = (colHeader: string, data: [string, IPoolData][], ascendingOrder: boolean) => {
 	return data.sort((obj1, obj2) => {
 		return ascendingOrder ? Number(obj2[1][colHeader]) - Number(obj1[1][colHeader])
 			: Number(obj1[1][colHeader]) - Number(obj2[1][colHeader])
 	});
 }
 
-export const sortPools = (colHeader: string, data: [string,IPoolData][], ascendingOrder: boolean) => {
+export const sortPools = (colHeader: string, data: [string, IPoolData][], ascendingOrder: boolean) => {
 	if (colHeader === 'name') {
 		return sortByString(colHeader, data, ascendingOrder)
 	}
@@ -98,28 +100,28 @@ export const getChainByContract = (contract: string) => {
 	return Object.values(Chainlist).find((chain) => {
 		return chain.contract === contract
 	})
-} 
+}
 
 export const multiply = (a: string, b: string) => {
 	return new BigNumber(a).times(new BigNumber(b)).toString();
 };
 
 export const getSum = (strings: string[]) => {
-    return strings.reduce((acc: BigNumber, curr: string) => {
-        return acc.plus(new BigNumber(curr));
-    }, new BigNumber(0));
+	return strings.reduce((acc: BigNumber, curr: string) => {
+		return acc.plus(new BigNumber(curr));
+	}, new BigNumber(0));
 };
 
 export const getUsdTotal = (prices: string[], amounts: string[]) => {
 	// multiply each element in the two arrays
 	const multiplied = prices.map((price, index) => {
 		if (price == '' || price == undefined || price == null) return 0
-			return new BigNumber(price).times(new BigNumber(amounts[index]));
+		return new BigNumber(price).times(new BigNumber(amounts[index]));
 	});
 
 	// calculate the sum
 	const sum = multiplied.reduce((acc, curr) => {
-			return acc.plus(curr);
+		return acc.plus(curr);
 	}, new BigNumber(0));
 
 	return sum.toString();
@@ -129,7 +131,7 @@ export const getPercentage = (strings: string[], element: string) => {
 	if (element == '') return 0;
 	// calculate the sum of the array
 	const sum = strings.reduce((acc, curr) => {
-			return acc.plus(new BigNumber(curr));
+		return acc.plus(new BigNumber(curr));
 	}, new BigNumber(0));
 
 	// calculate the percentage
@@ -154,23 +156,23 @@ export const getEVMChainByAssetId = (chainID: string | number): string => {
 
 export const getEVMScanByAssetId = (assetID: string) => {
 	const chain = getEVMChainId(assetID)
-	switch(chain) {
-	case "1":
-		// Mainnet
-		return ETHER_SCAN_URL
-	case "56":
-		// BSC
-		return BSC_SCAN_URL
-	case "137":
-		// Polygon
-		return POLYGON_SCAN_URL
+	switch (chain) {
+		case "1":
+			// Mainnet
+			return ETHER_SCAN_URL
+		case "56":
+			// BSC
+			return BSC_SCAN_URL
+		case "137":
+			// Polygon
+			return POLYGON_SCAN_URL
 	}
 	return ETHER_SCAN_URL
 }
 
 export const catchPaymentError = (err: unknown) => {
 	const errorMap = {
-		"ACTION_REJECTED":"user rejected transaction",		// Native Currency rejected
+		"ACTION_REJECTED": "user rejected transaction",		// Native Currency rejected
 		"-32000": "invalid opcode: INVALID",							// ERC20 XIN,MANA (no balance)
 		"UNPREDICTABLE_GAS_LIMIT": "cannot estimate gas; transaction may fail or may require manual gas limit", // ERC20 pUSD (no balance)
 	}
@@ -182,11 +184,16 @@ export const catchPaymentError = (err: unknown) => {
 // 0-9, Backspace, .
 export const filterInputEvents = (event: KeyboardEvent): boolean => {
 	if (
-		event.code.includes('Digit') || 
+		event.code.includes('Digit') ||
 		event.code.includes('Backspace') ||
 		event.code.includes('Period')
 	) return true
 	return false
 }
 
-export const arrayAreAllNull = (values: number[]) => { return values.every((e) => e == null || e == 0 || e == undefined);}
+export const arrayAreAllNull = (values: number[]) => { return values.every((e) => e == null || e == 0 || e == undefined); }
+
+export const goBack = (defaultRoute = '/swap') => {
+	history.back()
+	// goto(ref.length > 0 ? ref : defaultRoute)
+}
