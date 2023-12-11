@@ -9,7 +9,7 @@
 </script>
 
 <div
-  class="card max-w-sm min-w-[23rem] w-96 bg-base-100 shadow-2xl p-3"
+  class="card md:max-w-sm md:w-96 bg-base-100 md:shadow-2xl p-3"
 >
   <div class="flex flex-col">
     <div class="my-2 mt-1 select-none">

@@ -16,6 +16,7 @@
     getPercentage,
     formatUSMoney,
     findAssetsFromTokenList,
+    formatDecimals,
   } from "$lib/helpers/utils";
 
   $: staticAssets = findAssetsFromTokenList(
@@ -77,7 +78,7 @@
               formatUSMoney(multiply(usds[i], poolBalance[i]))
             }`}
           >
-            <span class="font-semibold text-base"> {poolBalance[i]} </span>
+            <span class="font-semibold text-base block w-36 sm:w-52 overflow-x-auto text-right"> {poolBalance[i]} </span>
           </div>
           <span class="font-semibold opacity-80 ml-1 text-xs">
             ({getPercentage(poolBalance, poolBalance[i])}%)

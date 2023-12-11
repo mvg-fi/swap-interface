@@ -9,7 +9,7 @@
 <div class="flex flex-col mt-5">
   <span class="font-bold text-xl px-6"> {$_('add_liquidity.apy')} </span>
 
-  <div class="stats shadow">
+  <div class="stats shadow stats-vertical md:stats-horizontal">
     <div class="stat">
       <div class="stat-figure text-secondary">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6 [[data-theme=dark]_&]:invert">
