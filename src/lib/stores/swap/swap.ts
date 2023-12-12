@@ -39,5 +39,5 @@ export const switchAsset = (dialogOff: boolean = false) => {
   selectedFromAsset.set(get(selectedToAsset))
   selectedToAsset.set(s)
   receiveAmount.set('')
-  if (dialogOff) setAssetDialog(false)
+  if (dialogOff) setAssetDialog(false);setToAssetDialog(false)
 }

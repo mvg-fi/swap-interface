@@ -5,7 +5,7 @@ import type { NetworkParam } from '../types/network';
 // Infos
 export const APP_NAME = 'MVG Finance'
 export const NATIVE_TOKEN_SYMBOL = 'ETH'
-export const VERSION_NUMBER = '1.2.3'
+export const VERSION_NUMBER = '0.0.10'
 
 // PATHS
 export const APP_PATHS = ['/swap', '/pool', '/factory/create', '/bridge']

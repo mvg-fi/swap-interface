@@ -1,11 +1,39 @@
 <script>
   import { _ } from "svelte-i18n"
+  import confetti from "canvas-confetti";
   import { VERSION_NUMBER } from "$lib/helpers/constants";
 
   let l0 = [$_('pool.myLiquidity'), $_('pool.myStaking'), $_('history')]
   let l1 = [$_('voting'), $_('dao_forum')]
   let l2 = [$_('settings'), $_('debug_tools'), $_('join_community'), $_('about_us')]
   let l3 = [ $_('log_out')]
+
+  function getRandomArbitrary(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  let easterEggCounter = 0;
+  let random = getRandomArbitrary(3,6);
+  const easterEgg = () => {
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    console.log(random, easterEggCounter)
+    if (easterEggCounter == random) {
+      confetti({
+        angle: randomInRange(55, 125),
+        spread: randomInRange(50, 70),
+        particleCount: randomInRange(80, 150),
+        origin: { y: 0.8 }
+      });
+      random = getRandomArbitrary(1,6)
+    }
+    if (easterEggCounter >= random) easterEggCounter = 0;
+  }
+  $: easterEggCounter, easterEgg();
 </script>
 
 <div class="mb-16">
@@ -79,6 +107,7 @@
   <div class="flex flex-col items-center justify-center mt-14">
     <span class="text-sm opacity-25"> v{VERSION_NUMBER} </span>
 
-    <span class="text-sm opacity-30 mt-2.5"> Made with ❤️ by MVG Finance </span>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <span class="text-sm opacity-30 mt-2.5" on:click={()=>easterEggCounter++}> Made with ❤️ by MVG Finance </span>
   </div>
 </div>
