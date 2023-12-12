@@ -105,7 +105,7 @@
     {/each}
   </div>
   
-  <div class="flex flex-col items-center justify-center mt-14">
+  <div class="flex flex-col items-center justify-center mt-14 select-none">
     <span class="text-sm opacity-25"> v{VERSION_NUMBER} </span>
 
     <!-- svelte-ignore a11y-click-events-have-key-events -->
