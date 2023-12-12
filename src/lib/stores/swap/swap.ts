@@ -34,9 +34,10 @@ export const setApproved = (yes: boolean) => {
   approved.set(yes)
 }
 
-export const switchAsset = () => {
+export const switchAsset = (dialogOff: boolean = false) => {
   const s = get(selectedFromAsset)
   selectedFromAsset.set(get(selectedToAsset))
   selectedToAsset.set(s)
   receiveAmount.set('')
+  if (dialogOff) setAssetDialog(false)
 }

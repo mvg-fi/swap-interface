@@ -11,6 +11,7 @@
     selectedFromAsset,
     selectedToAsset,
     setToAsset,
+    switchAsset,
   } from "$lib/stores/swap/swap";
   import {
     selectToAssetDialog,
@@ -65,18 +66,24 @@
           {#each filteredItems as asset}
             <li
               on:click={() => {
+                if (asset.mixinAssetId === $selectedFromAsset.mixinAssetId) {
+                  switchAsset(true)
+                  return
+                }
                 setToAsset(asset);
                 search.set("");
               }}
               on:keydown={() => {
+                if (asset.mixinAssetId === $selectedFromAsset.mixinAssetId) {
+                  switchAsset(true)
+                  return
+                }
                 setToAsset(asset);
                 search.set("");
               }}
               class={clsx(
                 $selectedToAsset.mixinAssetId == asset.mixinAssetId &&
                 "bg-[rgb(247,248,250)] opacity-60 text-base-content btn-disabled current",
-                $selectedFromAsset.mixinAssetId == asset.mixinAssetId &&
-                "bg-[rgb(247,248,250)] opacity-60 text-base-content btn-disabled",
               )}
             >
               <SingleAsset

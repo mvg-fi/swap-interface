@@ -11,12 +11,14 @@
     setFromAsset,
     selectedFromAsset,
     selectedToAsset,
+    switchAsset,
   } from "$lib/stores/swap/swap";
   import {
     selectAssetDialog,
     setAssetDialog,
   } from "$lib/stores/swap/selectAsset";
   import { assets } from "$lib/stores/asset";
+    import { MixinAssetID } from "@mixin.dev/mixin-node-sdk";
 
   $: filteredItems = $assets.filter((item) => {
     return (
@@ -65,18 +67,24 @@
           {#each filteredItems as asset}
             <li
               on:click={() => {
+                if (asset.mixinAssetId === $selectedToAsset.mixinAssetId) {
+                  switchAsset(true)
+                  return
+                }
                 setFromAsset(asset);
                 search.set("");
               }}
               on:keydown={() => {
+                if (asset.mixinAssetId === $selectedToAsset.mixinAssetId) {
+                  switchAsset(true)
+                  return
+                }
                 setFromAsset(asset);
                 search.set("");
               }}
               class={clsx(
                 $selectedFromAsset.mixinAssetId == asset.mixinAssetId &&
                   "bg-[rgb(247,248,250)] opacity-60 text-base-content btn-disabled current",
-                $selectedToAsset.mixinAssetId == asset.mixinAssetId &&
-                  "bg-[rgb(247,248,250)] opacity-60 text-base-content btn-disabled",
               )}
             >
               <SingleAsset
