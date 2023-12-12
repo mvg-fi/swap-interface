@@ -35,7 +35,7 @@
   <Title name={$currentPool.name} />
 </div>
 <div class="mx-0 justify-center mb-12 md:mb-0 flex flex-col md:flex-row mt-3 text-base-content">
-  <div class="md:mr-16 order-2 md:order-1 flex flex-col">
+  <div class="md:mr-16 order-2 md:order-1 flex flex-col mt-6 md:mt-0">
     <PoolInfo />
   </div>
   <div class="order-1 mb-4 md:order-2 flex justify-center md:inline">
