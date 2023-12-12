@@ -8,7 +8,6 @@
   import "../../app.postcss";
   import "../styles.css";
   import { initi18n } from "../../i18n/i18n";
-  import { Initialize } from "$lib/helpers/web3";
   import BottomNav from "$lib/components/footer/bottomNav.svelte";
 
   let a: Asset[] | undefined = $page.data.assets;
@@ -18,21 +17,6 @@
   const setupFn = async () => {
     await initi18n();
   };
-
-  (async () => {
-    try {
-      await Initialize(false);
-
-      // TODO: Auto connect to last connected provider
-      // const web3Client = await createWeb3Client();
-      // const p = await web3Client.cacheConnect();
-      // if (p) await setProvider(p);
-      // await updateAssets();
-    } catch (e: unknown) {
-      console.error(e);
-    }
-  })();
-
   const setup = setupFn();
 </script>
 
