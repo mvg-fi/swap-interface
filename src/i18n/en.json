@@ -32,7 +32,8 @@
 	},
 	"pool": {
     "title": "Pool",
-		"myLiquidity": "My Liquidity",
+		"myLiquidity": "My liquidity",
+		"myStaking": "My staking",
 		"loading_pools": "Loading Pools...",
 		"create_factory_pool":"Create factory pools",
 		"create_new_pool": "Create a new pool",
@@ -254,5 +255,12 @@
 	"language": "Language",
 	"currency": "Currency",
 	"about_us": "About us",
-	"me": "Me"
+	"me": "Me",
+	"history": "History",
+	"voting": "Voting",
+	"dao_forum": "DAO forum",
+	"settings": "Settings",
+	"debug_tools": "Debug tools",
+	"join_community": "Join community",
+	"log_out":"Log out"
 }
