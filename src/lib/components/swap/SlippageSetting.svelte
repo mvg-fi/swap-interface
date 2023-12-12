@@ -35,7 +35,7 @@
             class={clsx(
               "btn join-item btn-sm border-none hover:border-none text-base-content hover:text-base-content bg-color hover:bg-base-200 font-medium text-xs",
               $slippage === r &&
-                "!bg-black text-slate-50 hover:text-slate-50",
+                "!bg-slate-600 text-slate-50 hover:text-slate-50",
             )}
             on:click={() => setSlippage(r)}>{r}%</button
           >
@@ -44,7 +44,7 @@
           class={clsx(
             "btn join-item btn-sm border-none hover:border-none text-base-content hover:text-base-content bg-color hover:bg-base-200 font-medium text-xs",
             !ranges.includes($slippage) &&
-              "!bg-black text-slate-50 hover:text-slate-50",
+              "!bg-slate-600 text-slate-50 hover:text-slate-50",
           )}
           on:click={() => setSlippage(0)}>{$_("slippage.custom")}</button
         >
@@ -69,7 +69,7 @@
 
     <div class="w-full flex justify-center content-center pt-5">
       <button
-        class="btn rounded-3xl {valid ? 'bg-black hover:bg-black/80 text-slate-50 hover:text-slate-50' : 'btn-disabled'}"
+        class="btn rounded-3xl {valid ? 'bg-slate-600 hover:bg-slate-600/80 text-slate-50 hover:text-slate-50' : 'btn-disabled'}"
         on:click={() => slippageDialog.set(false)}>{$_("slippage.save")}</button
       >
     </div>

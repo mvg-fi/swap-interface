@@ -2,7 +2,7 @@
   import clsx from "clsx"
   import MVG from "$lib/images/logo/mvg.svg";
 
-  let path = "";
+  let path = "/";
   let clazz = "w-7";
   export { clazz as class, path };
 </script>

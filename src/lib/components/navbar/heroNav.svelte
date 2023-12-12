@@ -1,6 +1,6 @@
 <script>
   import EnterApp from "./enterApp.svelte";
-import Logo from "./logo.svelte";
+  import Logo from "./logo.svelte";
 </script>
 
 <div

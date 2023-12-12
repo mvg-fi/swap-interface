@@ -1,6 +1,6 @@
 {
-	"appName": "MVG Finance",
-	"appIntro": "An AMM Protocol on MVM Mainnet",
+	"appName": "MVG Swap",
+	"appIntro": "The most capital efficient AMM Protocol on Mixin Virtual Machine",
 	"navbar": {
 		"swap": "Swap",
 		"pool": "Pools",
@@ -263,5 +263,5 @@
 	"debug_tools": "Debug tools",
 	"join_community": "Join community",
 	"log_out":"Log out",
-	"enter_app": "Enter app"
+	"enter_app": "Enter App"
 }
