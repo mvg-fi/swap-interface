@@ -9,7 +9,6 @@
 
   import clsx from "clsx";
   import { _ } from "svelte-i18n";
-  import curve from "@zed-wong/mvgswap";
   import type { IProvider } from "$lib/types/provider";
   import type { ProviderKey } from "$lib/types/provider";
   import { createWeb3Client } from "$lib/helpers/clients/index";
@@ -71,7 +70,7 @@
 
   const connect = async (provider: ProviderKey) => {
     if (provider == "mixinmessenger") {
-      auth();
+      // auth();
     }
     try {
       state = 1;

@@ -17,7 +17,7 @@
     class="navbar bg-transparent flex items-center text-base-content md:px-8 py-0"
   >
     <div class="px-2.5">
-      <Logo />
+      <Logo path="/swap" />
     </div>
     <div class="flex-1">
       <Sections />

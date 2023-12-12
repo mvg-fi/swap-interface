@@ -29,5 +29,7 @@
 </div>
 
 <style>
-  
+  .tooltip {
+    z-index: 10 !important;
+  }
 </style>

@@ -1,7 +1,6 @@
 <script lang="ts">
   import clsx from "clsx";
   import { _ } from "svelte-i18n";
-  import curve from "@zed-wong/mvgswap";
   import { cleave } from "svelte-cleavejs";
   import { address } from "$lib/stores/user";
   import Empty from "$lib/images/empty-token.svg";

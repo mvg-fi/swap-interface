@@ -1,6 +1,5 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
-  import curve from "@zed-wong/mvgswap";
   import { sortPools } from "$lib/helpers/utils";
   import caretUp from "$lib/images/caret-up.svg";
   import { search } from "$lib/stores/searchPool";

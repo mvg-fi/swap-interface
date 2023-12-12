@@ -262,5 +262,6 @@
 	"settings": "Settings",
 	"debug_tools": "Debug tools",
 	"join_community": "Join community",
-	"log_out":"Log out"
+	"log_out":"Log out",
+	"enter_app": "Enter app"
 }

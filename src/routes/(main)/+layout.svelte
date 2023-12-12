@@ -1,12 +1,8 @@
 <script lang="ts">
   import { page } from "$app/stores";
-  import Loading from "../loading.svelte";
   import { assets } from "$lib/stores/asset";
   import type { Asset } from "$lib/types/asset";
   import Navbar from "$lib/components/navbar/navbar.svelte";
-
-  import "../../app.postcss";
-  import "../styles.css";
   import BottomNav from "$lib/components/footer/bottomNav.svelte";
 
   let a: Asset[] | undefined = $page.data.assets;

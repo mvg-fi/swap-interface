@@ -1,6 +1,5 @@
 import { currentPool } from '$lib/stores/pool/pools';
 import { error } from '@sveltejs/kit';
-import curve from '@zed-wong/mvgswap';
  
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }:any) {
