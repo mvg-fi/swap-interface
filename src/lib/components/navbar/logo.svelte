@@ -7,10 +7,10 @@
   export { clazz as class, path };
 </script>
 
-<a href={path} class="flex items-center">
+<a href={path} class="flex items-center text-center">
   <img src={MVG} alt="" class={clsx(clazz)} />
   <span class="title text-base-content font-semibold ml-2 hidden md:inline"> MVG </span>
-  <!-- <div class="badge badge-primary badge-outline ml-2" style="font-family:Ubuntu">Swap</div> -->
+  <div class="badge badge-primary badge-md ml-1.5 hidden md:inline" style="font-family:Ubuntu">Swap</div>
 </a>
 
 <style>
