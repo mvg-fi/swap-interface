@@ -109,8 +109,8 @@
     <span class="text-sm opacity-25"> v{VERSION_NUMBER} </span>
 
     <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div class="text-sm opacity-30 mt-2.5">
-      <span class="" on:click={()=>easterEggCounter++}> Built with ❤️ by </span><span style="font-family:Ubuntu">MVG Finance </span>
+    <div class="text-sm opacity-30 mt-2.5" on:click={()=>easterEggCounter++}>
+      <span class=""> Built with ❤️ by </span><span style="font-family:Ubuntu">MVG Finance </span>
     </div>
   </div>
 </div>
