@@ -33,7 +33,7 @@
         </p>
         <div class="mt-10 flex items-center justify-center gap-x-6">
           <button
-            class="btn btn-primary flex items-center btn-md pl-4 pr-3 text-sm transition font-semibold text-white shadow-sm rounded-3xl"
+            class="btn btn-primary btn-sm md:btn-md flex items-center pl-4 pr-3 text-sm transition font-semibold text-white shadow-sm rounded-3xl"
             on:click={() => {
               goto("/swap");
             }}>
@@ -45,7 +45,7 @@
           <a href="#efficient" class=""><button class="text-sm font-semibold leading-6 text-gray-900"
             >{$_('learn_more')} <span aria-hidden="true">→</span></button
           >
-          </a> 
+          </a>
         </div>
       </div>
     </div>
@@ -65,8 +65,25 @@
   .dyh {
 		height: calc(100vh - 8rem);
 	}
-  .rotate-transition {
-    animation: translate 180s linear infinite;
+  /* .rotate-transition {
+    animation: rotate 200s linear infinite;
+  }
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(90deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    75% {
+      transform: rotate(270deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
   @keyframes translate {
     0% {
@@ -96,5 +113,5 @@
     100% {
       transform: translate(0vh, 0vh);
     }
-  }
+  } */
 </style>
