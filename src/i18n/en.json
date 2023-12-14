@@ -264,5 +264,19 @@
 	"join_community": "Join community",
 	"log_out":"Log out",
 	"enter_app": "Enter App",
-	"learn_more": "Learn more"
+	"learn_more": "Learn more",
+	"main_t": "The most capital efficient decentralized exchange on Mixin Virtual Machine.",
+	"unstoppable": "Unstoppable",
+	"unstoppable_t" : "Based on smart contract. No one, not even the development team, can ever shut it down.",
+	"capital_efficient": "Capital Efficient",
+	"capital_efficient_t": "Better than Uniswap v2, more revenue for LP and trader, whale's favorite",
+	"owned_by_people": "Owned By People",
+	"owned_by_people_t": "Everyone are free to create trading pairs, and everyone can join to share the protocol revenue",
+	"tested_by_time": "Tested By Time",
+	"tested_by_time_t": "The Underlying Protocol is tested by time.",
+	"runs_on_mvm": "Runs on MVM",
+	"runs_on_mvm_t": "Supports unlimited assets and chains, no gas fee needed when using Mixin Messenger",
+	"developer_friendly": "Developer friendly",
+	"developer_friendly_t": "Developer in mind, easy to integrate",
+	"join_community_t": "Join our community to get the latest updates"
 }

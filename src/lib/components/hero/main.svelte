@@ -3,7 +3,7 @@
 	import { goto } from "$app/navigation";
 </script>
 
-<div class="bg-white h">
+<div class="bg-white w-full ">
   <div class="relative isolate px-6 pt-14 lg:px-8 dyh mb-[4rem]">
     <div
       class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -14,8 +14,8 @@
         style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
       ></div>
     </div>
-    <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-      <div class="text-center">
+    <div class="mx-auto max-w-2xl py-48 lg:py-56">
+      <div class="text-center ubuntu">
         <!-- <h1
           style="font-family:Ubuntu"
           class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
@@ -23,21 +23,20 @@
           MVG Swap
         </h1> -->
 
-        <h1 class="text-5xl font-extrabold text-center md:text-5xl lg:text-7xl 2xl:text-8xl" style="font-family:Ubuntu">
+        <h1 class="text-5xl font-extrabold text-center md:text-5xl lg:text-7xl 2xl:text-8xl">
           <span class="text-transparent bg-gradient-to-br bg-clip-text from-teal-500 via-indigo-500 to-sky-500 dark:from-teal-200 dark:via-indigo-300 dark:to-sky-500">
               MVG
           </span>
 
-          <span class="text-transparent bg-gradient-to-tr bg-clip-text from-blue-500 via-pink-500 to-red-500 dark:from-sky-300 dark:via-pink-300 dark:to-red-500">
+          <span class="text-transparent bg-gradient-to-tr bg-clip-text from-blue-500 via-pink-400 to-red-500 dark:from-sky-300 dark:via-pink-300 dark:to-red-500">
               Swap
           </span>
         </h1>
         <p
           class="mt-6 text-lg leading-8 text-gray-600"
-          style="font-family:Ubuntu"
+          
         >
-          The most capital efficient decentralized exchange on Mixin Virtual
-          Machine.
+          {$_('main_t')}
         </p>
         <div class="mt-10 flex items-center justify-center gap-x-6">
           <button
@@ -50,9 +49,10 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>							
           </button>
-          <button class="text-sm font-semibold leading-6 text-gray-900"
+          <a href="#efficient" class=""><button class="text-sm font-semibold leading-6 text-gray-900"
             >{$_('learn_more')} <span aria-hidden="true">→</span></button
           >
+          </a> 
         </div>
       </div>
     </div>

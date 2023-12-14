@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { _ } from "svelte-i18n";
-	import Main from "$lib/components/hero/main.svelte";
   import Carousels from "$lib/components/hero/carousels.svelte";
 </script>
 
@@ -9,10 +8,8 @@
 	<meta name="description" content="" />
 </svelte:head>
 
-<div>
-	<Main/>
-	<Carousels />
-</div>
+
+<Carousels />
 
 <style>
 	.heros {

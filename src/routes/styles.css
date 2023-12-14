@@ -18,6 +18,13 @@
 	font-weight: 500;
 }
 
+.inter {
+	font-family: "Inter-Regular", Helvetica, Arial, sans-serif ;
+}
+.ubuntu {
+	font-family: "Ubuntu", 'Inter-Regular', Helvetica, Arial, sans-serif ;
+}
+
 body {
 	min-height: 100vh;
 	margin: 0;
