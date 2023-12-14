@@ -278,5 +278,6 @@
 	"runs_on_mvm_t": "Supports unlimited assets and chains, no gas fee needed when using Mixin Messenger",
 	"developer_friendly": "Developer friendly",
 	"developer_friendly_t": "Developer in mind, easy to integrate",
-	"join_community_t": "Join our community to get the latest updates"
+	"join_community_t": "Join our community to get the latest updates",
+	"open_governance": "Open governance"
 }
