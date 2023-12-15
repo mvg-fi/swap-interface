@@ -21,7 +21,7 @@
               MVG
           </span>
 
-          <span class="text-transparent bg-gradient-to-tr bg-clip-text from-blue-500 via-pink-400 to-red-500 dark:from-sky-300 dark:via-pink-300 dark:to-red-500">
+          <span class="text-transparent bg-gradient-to-tr bg-clip-text from-blue-500 via-fuchsia-500 to-rose-500 dark:from-sky-300 dark:via-pink-300 dark:to-red-500">
               Swap
           </span>
         </h1>
