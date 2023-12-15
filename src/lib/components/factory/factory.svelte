@@ -18,7 +18,7 @@
   <ProcessBar />
 </div>
 
-<div class="mt-8">
+<div class="">
   {#if $process === 1}
     <PoolType />
   {:else if $process === 2}
