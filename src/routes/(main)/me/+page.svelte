@@ -51,7 +51,7 @@
     </div>
   </div>
   
-  <div class="flex flex-col items-center justify-center mt-6">
+  <div class="card flex flex-col items-center justify-center shadow-md mt-6">
     {#each l0 as i}      
       <button class="w-full bg-base-100 p-3 px-4 flex flex-row justify-between items-center first:rounded-t-2xl last:rounded-b-2xl">
         <span>
@@ -65,7 +65,7 @@
     {/each}
   </div>
 
-  <div class="flex flex-col items-center justify-center mt-4">
+  <div class="card flex flex-col items-center justify-center shadow-md mt-4">
     {#each l1 as i}      
       <button class="w-full bg-base-100 p-3 px-4 flex flex-row justify-between items-center first:rounded-t-2xl last:rounded-b-2xl">
         <span>
@@ -79,7 +79,7 @@
     {/each}
   </div>
 
-  <div class="flex flex-col items-center justify-center mt-4">
+  <div class="card flex flex-col items-center justify-center shadow-md mt-4">
     {#each l2 as i}      
       <button class="w-full bg-base-100 p-3 px-4 flex flex-row justify-between items-center first:rounded-t-2xl last:rounded-b-2xl">
         <span>
@@ -93,7 +93,7 @@
     {/each}
   </div>
 
-  <div class="flex flex-col items-center justify-center mt-4">
+  <div class="card flex flex-col items-center justify-center shadow-md mt-4">
     {#each l3 as i}      
       <button class="w-full bg-base-100 p-3 px-4 flex flex-row justify-between items-center first:rounded-t-2xl last:rounded-b-2xl">
         <span>
@@ -105,7 +105,7 @@
     {/each}
   </div>
   
-  <div class="flex flex-col items-center justify-center mt-14 select-none">
+  <div class="card flex flex-col items-center justify-center mt-14 select-none">
     <span class="text-sm opacity-25"> v{VERSION_NUMBER} </span>
 
     <!-- svelte-ignore a11y-click-events-have-key-events -->
