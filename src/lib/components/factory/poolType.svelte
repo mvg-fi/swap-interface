@@ -11,7 +11,7 @@
 
   const items = [
     {n0: "usdc", n1: "usdt", i0:usdc, i1: usdt, t: $_('pool.pegged_asset'), v: 1},
-    {n0: "btc", n1: "eth", i0:btc, i1: eth, t: $_('pool.pegged_asset'), v: 2},
+    {n0: "btc", n1: "eth", i0:btc, i1: eth, t: $_('pool.non_pegged_asset'), v: 2},
   ]
 </script>
 
