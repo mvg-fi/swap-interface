@@ -6,7 +6,7 @@
 </script>
 
 <div
-  class="bg-base-100 text-base-content flex flex-col px-2 pt-2 pb-3 md:p-6 xl:p-12 md:rounded-xl gap-y-6 xl:shadow-sm"
+  class="bg-base-100 text-base-content flex flex-col p-4 md:p-6 xl:p-12 rounded-xl gap-y-6 xl:shadow-sm"
 >
   <div class="space-y-2">
     <div
@@ -19,7 +19,7 @@
   </div>
   {#if $process === 1}
     <div class="space-y-1">
-      <p class="text-3xl font-bold">
+      <p class="text-3xl font-bold mb-2 md:mb-0">
         {$_('pool.select_pool_type')}
       </p>
       <span class="text-lg opacity-80">

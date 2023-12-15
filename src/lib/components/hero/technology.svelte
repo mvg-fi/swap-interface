@@ -101,13 +101,13 @@
     margin-top: 20vh;
   }
   .animate-marquee-1 {
-    animation: marquee-1 30s linear infinite;
+    animation: marquee-1 60s linear infinite;
   }
   .animate-marquee-3 {
-    animation: marquee-3 30s linear infinite;
+    animation: marquee-3 60s linear infinite;
   }
   .animate-marquee-reserve {
-    animation: marquee-reserve 30s linear infinite;
+    animation: marquee-reserve 60s linear infinite;
   }
 
   @keyframes marquee-1 {
