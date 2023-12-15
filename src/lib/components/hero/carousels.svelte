@@ -6,6 +6,7 @@
   import Technology from "$lib/components/hero/technology.svelte";
   import Developer from "$lib/components/hero/developer.svelte";
   import Community from "$lib/components/hero/community.svelte";
+  import Permissionless from "$lib/components/hero/permissionless.svelte";
 </script>
 
 <div class="sh w-full carousel carousel-vertical">
@@ -17,6 +18,9 @@
   </div>
   <div class="carousel-item h-full" id="dencentralized">
     <Decentralized />
+  </div>
+  <div class="carousel-item h-full" id="permissionless">
+    <Permissionless />
   </div>
   <div class="carousel-item h-full" id="ownership">
     <Ownership />
