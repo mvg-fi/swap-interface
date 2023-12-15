@@ -7,6 +7,8 @@
   import Developer from "$lib/components/hero/developer.svelte";
   import Community from "$lib/components/hero/community.svelte";
   import Permissionless from "$lib/components/hero/permissionless.svelte";
+  import Footer from "./footer.svelte";
+  
 </script>
 
 <div class="sh w-full carousel carousel-vertical">
@@ -31,7 +33,7 @@
   <div class="carousel-item h-full" id="developer">
     <Developer />
   </div>
-  <div class="carousel-item h-full" id="developer">
+  <div class="carousel-item h-full" id="community">
     <Community />
   </div>
 </div>

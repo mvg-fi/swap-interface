@@ -22,7 +22,7 @@
 	font-family: "Inter-Regular", Helvetica, Arial, sans-serif ;
 }
 .ubuntu {
-	font-family: "Ubuntu", 'Inter-Regular', Helvetica, Arial, sans-serif ;
+	font-family: "Ubuntu", 'Inter-Regular', 'Satoshi', Helvetica, Arial, sans-serif ;
 }
 
 body {
@@ -54,14 +54,14 @@ p {
 	line-height: 1.5;
 }
 
-a {
-	color: var(--color-theme-1);
-	text-decoration: none;
-}
-
 a:hover {
 	text-decoration: none;
 }
+
+a, a:hover, a:visited, a:active {
+  color: inherit;
+  text-decoration: none;
+ }
 
 h1 {
 	font-size: 2rem;

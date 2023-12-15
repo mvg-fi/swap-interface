@@ -1,5 +1,6 @@
 <script>
   import { _ } from "svelte-i18n"
+    import Footer from "./footer.svelte";
 </script>
 
 <div class="w-full h-full flex flex-col align-center text-center bg-base-100 bgi">
@@ -38,6 +39,8 @@
       
       <path d="M994.6822,741.70232h-381a1,1,0,0,1,0-2h381a1,1,0,0,1,0,2Z" transform="translate(-203.59063 -157.70232)" fill="#cbcbcb"/></svg>
   </div>
+
+  <Footer />
 </div>
 
 <style>
