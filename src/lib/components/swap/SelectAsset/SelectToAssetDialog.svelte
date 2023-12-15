@@ -56,13 +56,14 @@
           <img src={Close} alt="" class="[[data-theme=dark]_&]:invert" />
         </button>
       </div>
-      <div class="pb-2 px-5">
+      <div class="pb-5 px-5">
         <SearchAsset />
       </div>
     </div>
+    <div class="divider my-0 h-[0.1px] !bg-base-200"></div>
     <div class="h-full overflow-y-auto">
       {#if filteredItems.length != 0}
-        <ul class="menu px-0 bg-base-100 w-full overflow-y-auto">
+        <ul class="menu p-0 bg-base-100 w-full overflow-y-auto">
           {#each filteredItems as asset}
             <li
               on:click={() => {

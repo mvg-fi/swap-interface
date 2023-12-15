@@ -5,7 +5,7 @@
 </script>
 
 <div class="form-control">
-  <div class="join">
+  <div class="join focus:border rounded-2xl">
     <button
       class="btn join-item btn-square border-none shadow-none focus:outline-none hover:border-none bg-[rgb(247,248,250)] hover:bg-[rgb(247,248,250)] !rounded-l-2xl !min-h-8"
     >
