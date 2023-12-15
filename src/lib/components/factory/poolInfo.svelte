@@ -5,7 +5,7 @@
   
 </script>
 
-<div class="flex flex-col space-y-6 px-40">
+<div class="flex flex-col space-y-6 mt-4 md:mt-8 px-4 md:px-40 mb-12">
   <div class="flex flex-col space-y-4">
     <div>
       <span class="font-semibold"> {$_("pool.pool_name")} </span>
@@ -30,7 +30,7 @@
     <input class="input" bind:value={$poolTokenAddresses[1]} placeholder={$_("pool.enter_coin_address")} />
   </div>
 
-  <div class="pt-8">
+  <div class="pt-4 md:pt-8">
     <PrevNext />
   </div>
 </div>

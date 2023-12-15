@@ -8,7 +8,7 @@
     (()=>{$cryptoPool.coins=$poolTokenAddresses; $cryptoPool.name=$poolName; $cryptoPool.symbol=$poolName})()
 </script>
 
-<div class="flex flex-col space-y-6 px-40 text-base-content">
+<div class="flex flex-col space-y-6 mt-4 md:mt-8 px-4 md:px-40 mb-12">
   <div class="card w-full p-6 bg-base-100 rounded-2xl">
     {#if $poolType == 1}
       <ul>

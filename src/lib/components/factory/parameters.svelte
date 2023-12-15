@@ -6,7 +6,7 @@
   import PmCrypto from "$lib/components/factory/pmCrypto.svelte";
 </script>
 
-<div class="flex flex-col space-y-6 px-40">
+<div class="flex flex-col space-y-6 mt-4 md:mt-8 px-4 md:px-40 mb-12">
   {#if $poolType === 1}
     <PmStable/>
   {:else if $poolType === 2}

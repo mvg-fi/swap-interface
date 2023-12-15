@@ -13,7 +13,7 @@
   <div>
     <span class="font-semibold"> A: ({$_("pool.amplification_coefficient")}) </span>
   </div>
-  <div class="btn-group w-full">
+  <div class="join w-full">
     {#each AList as a}
       <button 
         on:click={()=>{
@@ -23,7 +23,7 @@
           }
           $stablePool.A = Number(a)
         }}
-        class={clsx("btn bg-base-100 hover:bg-base-200 border-none",
+        class={clsx("btn bg-base-100 hover:bg-base-200 border-none join-item",
           "text-base-content hover:text-base-content",
           !ACustomEnabled && a == $stablePool.A && "btn-active hover:bg-primary hover:text-base-100",
           ACustomEnabled && a == $_('pool.custom') && "btn-active hover:bg-primary hover:text-base-100"
@@ -43,7 +43,7 @@
   <div>
     <span class="font-semibold"> {$_('pool.fee')} %</span>
   </div>
-  <div class="btn-group w-full">
+  <div class="join w-full">
     {#each FeeList as fee}
       <button 
         on:click={()=>{
@@ -53,7 +53,7 @@
           }
           $stablePool.fee = Number(fee)
         }}
-        class={clsx("btn bg-base-100 hover:bg-base-200 border-none",
+        class={clsx("btn bg-base-100 hover:bg-base-200 border-none join-item",
           "text-base-content hover:text-base-content",
           !FeeCustomEnabled && fee == $stablePool.fee && "btn-active hover:bg-primary hover:text-base-100",
           FeeCustomEnabled && fee == $_('pool.custom') && "btn-active hover:bg-primary hover:text-base-100"

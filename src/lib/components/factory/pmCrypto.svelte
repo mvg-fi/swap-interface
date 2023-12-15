@@ -17,7 +17,7 @@
 </script>
 
 <div class="flex flex-col">
-  <div class="grid grid-cols-3 btn-group">
+  <div class="grid grid-cols-3 join">
     {#each selectList as a, i}
       <button
         on:click={() => {
@@ -27,7 +27,7 @@
           if (i == 2) cryptoPool.set({ ...$cryptoPool, ...blank})
         }}
         class={clsx(
-          "btn !rounded-b-none bg-base-100 hover:bg-base-200 border-none",
+          "btn !rounded-b-none bg-base-100 hover:bg-base-200 border-none join-item",
           "text-base-content hover:text-base-content",
           a == selected && "btn-active hover:bg-primary hover:text-base-100"
         )}
