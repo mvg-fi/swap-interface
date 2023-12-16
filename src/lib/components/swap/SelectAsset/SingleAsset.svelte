@@ -20,7 +20,7 @@
       </div>
       <div class="text-left pl-0 flex-1">
         <div class="truncate text-base-content capitalize">{asset.name}</div>
-        <div class="text-xs font-weight-300 text-base-content/50 mt-1 capitalize">{asset.symbol}</div>
+        <div class="text-xs font-weight-300 text-base-content/50 mt-0.5 capitalize">{asset.symbol}</div>
       </div>
       <!-- {#if selected}
       <div class="flex items-center">
