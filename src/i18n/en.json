@@ -205,7 +205,7 @@
 		"max": "Max",
 		"deposit": "Deposit",
 		"withdraw": "Withdraw",
-		"staking": "Staking",
+		"stake": "Stake",
 		"approve": "Approve Spending",
 		"approve_in_your_wallet": "Approve in your wallet",
 		"pool_balance": "Pool balances",
