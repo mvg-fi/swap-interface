@@ -88,8 +88,8 @@
           {/each} -->
         </div>
       </div>
-    <!-- {:else if $stakeMode === 2}
-      <div class="bg-base-100 w-full h-auto">
+    {:else if $stakeMode === 2}
+      <!-- <div class="bg-base-100 w-full h-auto">
         <div>
           {#each coins as coin, i}
             <div

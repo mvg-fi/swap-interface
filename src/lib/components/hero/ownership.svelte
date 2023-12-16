@@ -1,4 +1,5 @@
 <script>
+    import { GOVERNANCE_LINK } from "$lib/helpers/constants";
   import { _ } from "svelte-i18n"
 </script>
 
@@ -12,11 +13,11 @@
   </span>
 
   <div class="flex justify-center gap-x-6">
-    <button class="btn btn-sm md:btn-md btn-primary mt-4 md:mt-8 transition"> 
-      <span>
-        {$_('open_governance')}
-      </span>
-    </button>
+    <a href={GOVERNANCE_LINK} target="_blank">
+      <button class="btn btn-sm md:btn-md btn-primary mt-4 md:mt-8 transition" > 
+          {$_('open_governance')}
+      </button>
+    </a>
     <button class="btn btn-sm md:btn-md mt-4 md:mt-8 transition"> 
       <span>
         {$_('learn_more')} →

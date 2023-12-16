@@ -5,10 +5,12 @@ import type { NetworkParam } from '../types/network';
 // Infos
 export const APP_NAME = 'MVG Finance'
 export const NATIVE_TOKEN_SYMBOL = 'ETH'
-export const VERSION_NUMBER = '0.0.12'
+export const VERSION_NUMBER = '0.0.13'
 
 // PATHS
 export const APP_PATHS = ['/swap', '/pool', '/factory/create', '/bridge']
+export const DEVELOPER_LINK = 'https://docs.mvg.fi'
+export const GOVERNANCE_LINK = 'https://gov.mvg.fi'
 
 // Mixin
 export const SWAP_BOT_ID = 'aca77da7-450c-4e34-867d-92ee07c1cfee'
