@@ -5,7 +5,7 @@
 </script>
 
 {#each assets as asset}
-  <div class="avatar w-6 h-6 -rotate-45">
+  <div class="avatar w-5 h-5 md:w-6 md:h-6 -rotate-45">
     <IconAsset {asset} chainClass="!h-[8px] !w-[8px]"/>
   </div>
 {/each}

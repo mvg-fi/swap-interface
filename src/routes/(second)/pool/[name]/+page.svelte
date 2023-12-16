@@ -3,12 +3,14 @@
   import { page } from "$app/stores";
   import curve from "@zed-wong/mvgswap";
   import { currentPool, poolsLoaded } from "$lib/stores/pool/pools";
-  import { depositMode as deposit } from "$lib/stores/pool/mode";
+  import { depositMode } from "$lib/stores/pool/mode";
   import { showToast } from "$lib/components/toast/container.svelte";
   import Deposit from "$lib/components/pool/elements/Deposit.svelte";
-  import PoolInfo from "$lib/components/pool/elements/PoolInfo.svelte";
   import Withdrawal from "$lib/components/pool/elements/Withdrawal.svelte";
+  import Staking from "$lib/components/pool/elements/Staking.svelte";
+  import PoolInfo from "$lib/components/pool/elements/PoolInfo.svelte";
   import Title from "$lib/components/pool/elements/poolInfo/title.svelte";
+  import { onDestroy } from "svelte";
   
   (async () => {
     try {
@@ -24,6 +26,10 @@
       console.log(e)
     }
   })()
+
+  onDestroy(()=>{
+    depositMode.set(0)
+  })
 </script>
 
 <svelte:head>
@@ -39,10 +45,12 @@
     <PoolInfo />
   </div>
   <div class="order-1 mb-4 md:order-2 flex justify-center md:inline">
-    {#if $deposit}
+    {#if $depositMode === 0}
       <Deposit />
-    {:else}
+    {:else if $depositMode === 1}
       <Withdrawal />
+    {:else if $depositMode === 2}
+      <Staking />
     {/if}
   </div>
 </div>

@@ -14,7 +14,7 @@
         style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
       ></div>
     </div>
-    <div class="mx-auto max-w-2xl h-full flex items-center py-48 lg:py-56">
+    <div class="mx-auto max-w-2xl h-full flex justify-center items-center py-48 lg:py-56">
       <div class="text-center ubuntu">
         <h1 class="text-5xl font-extrabold text-center md:text-5xl lg:text-7xl 2xl:text-8xl">
           <span class="text-transparent bg-gradient-to-br bg-clip-text from-teal-500 via-indigo-500 to-sky-500 dark:from-teal-200 dark:via-indigo-300 dark:to-sky-500">
