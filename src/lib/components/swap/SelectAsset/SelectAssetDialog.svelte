@@ -43,14 +43,14 @@
   )}
 >
   <div
-    class="modal-box !max-w-2xl sm:!w-[450px] h-[660px] p-0 flex flex-col"
+    class="modal-box !max-w-2xl sm:!w-[420px] h-[660px] p-0 flex flex-col"
     bind:this={content}
   >
     <div class="sticky top-0 z-10 bg-transparent">
       <div class="flex p-5">
         <h3 class="font-semibold text-lg flex-1">{$_("select.token")}</h3>
         <button
-          class="flex-0 btn btn-xs btn-circle btn-ghost"
+          class="flex-0 btn btn-xs btn-circle btn-ghost hover:bg-base-100"
           on:click={() => setAssetDialog(false)}
         >
           <img src={Close} alt="" class="[[data-theme=dark]_&]:invert" />

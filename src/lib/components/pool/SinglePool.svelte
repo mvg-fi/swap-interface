@@ -39,7 +39,7 @@
         <PoolIcon {assets} />
       </button>
 
-      <div class="grow-1 flex flex-col items-start justify-start text-left ml-1 md:ml-2">
+      <div class="grow-1 flex flex-col items-start justify-start text-left ml-2">
         <div class="font-bold">{pool.name}</div>
         <div class="text-sm opacity-60">
           <span class="text-left">{shortenAddress(pool.swap_address,6,4)}</span>

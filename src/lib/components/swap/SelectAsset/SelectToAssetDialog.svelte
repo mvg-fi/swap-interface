@@ -43,7 +43,7 @@
   )}
 >
   <div
-  class="modal-box !max-w-2xl sm:!w-[450px] h-[660px] p-0 flex flex-col"
+  class="modal-box !max-w-2xl sm:!w-[420px] h-[660px] p-0 flex flex-col"
   bind:this={content}
   >
     <div class="sticky top-0 z-10 bg-transparent">
