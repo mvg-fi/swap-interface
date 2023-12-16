@@ -7,7 +7,7 @@
 <div class="form-control">
   <div class="join focus:border rounded-2xl border">
     <button
-      class="btn join-item btn-square border-none shadow-none focus:outline-none hover:border-none bg-[rgb(247,248,250)] hover:bg-[rgb(247,248,250)] !rounded-l-2xl !h-10 min-h-[2.5rem]"
+      class="btn join-item btn-square border-none shadow-none focus:outline-none hover:border-none bg-[rgb(247,248,250)] hover:bg-[rgb(247,248,250)] !h-10 min-h-[2.5rem]"
     >
       <img src={searchIcon} alt="search" class="w-5 opacity-20 [[data-theme=dark]_&]:invert" />
     </button>
@@ -15,13 +15,13 @@
       type="text"
       bind:value={$search}
       placeholder={$_('search.asset')}
-      class="input join-item block w-full bg-[rgb(247,248,250)] border-l-0 pl-0 focus:outline-none focus:border-0 !rounded-r-2xl !h-10"
+      class="input join-item block w-full bg-[rgb(247,248,250)] border-l-0 pl-0 focus:outline-none focus:border-0 !h-10"
     />
   </div>
 </div>
 
 <style>
  input::placeholder {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 </style>
