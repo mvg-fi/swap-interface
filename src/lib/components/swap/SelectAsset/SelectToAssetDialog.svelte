@@ -34,7 +34,7 @@
 </script>
 
 <div
-  in:fade
+  in:fade|global
   on:click={onClickOutside}
   on:keypress={onClickOutside}
   class={clsx(

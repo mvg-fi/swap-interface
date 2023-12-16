@@ -19,7 +19,7 @@
 
 <svelte:window on:keydown={onKeyDown} />
 <div
-  in:fade
+  in:fade|global
   class={clsx(
     "modal max-w-none sm:modal-middle text-base-content select-none",
     $processDialog && "backdrop-blur-sm modal-open"
