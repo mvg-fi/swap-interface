@@ -83,13 +83,13 @@
 <div class="m-1 my-3">
   <div class="">
     <!-- Selector -->
-    <div class="btn-group grid grid-cols-2 font-medium">
+    <div class="join grid grid-cols-2 font-medium">
       {#each ranges as _, i}
         <button
-          class={clsx("btn btn-sm bg-base-100 hover:bg-base-200 border border-base-300", 
+          class={clsx("btn btn-sm bg-base-100 hover:bg-base-200 border border-base-300 join-item", 
             "hover:border-base-300 font-medium text-xs text-base-content tooltip m-0 first:border-r-0 last:border-l-0", 
-            i===0 && "!rounded-bl-none",
-            i==ranges.length-1 && "!rounded-br-none",
+            ($withdrawMode === 0 || $withdrawMode === 1) && i===0 && "rounded-bl-none",
+            ($withdrawMode === 0 || $withdrawMode === 1) && i==ranges.length-1 && "rounded-br-none",
             $withdrawMode === i && 'bg-base-300 border-base-200 hover:bg-base-200 hover:border-base-100')
           }
           data-tip={tooltips[i]}

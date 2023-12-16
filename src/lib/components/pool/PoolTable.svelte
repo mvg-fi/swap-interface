@@ -63,7 +63,7 @@
         <tr class="">
           {#each tableHeaders as th, i}
             <th
-              class="cursor-pointer pb-2 first:pl-7 last:pr-7"
+              class="cursor-pointer pb-2 md:first:pl-7 md:last:pr-7"
               on:click={() => {
                 selectedField = keys[i];
               }}
@@ -95,10 +95,6 @@
           <SinglePool {id} {pool} />
         {/each}
       </tbody>
-    <!-- {:else if Object.values(pools).length != 0 && sortedPools.length != 0 && !isMd}
-      <thead>
-        
-      </thead> -->
     {:else}
       <div
         class="flex grow flex-col space-y-3 py-8 h-full w-full items-center justify-center"

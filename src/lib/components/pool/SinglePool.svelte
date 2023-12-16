@@ -33,21 +33,14 @@
   }}
 >
   <!-- svelte-ignore a11y-invalid-attribute -->
-  <td class="first:pl-7 last:pr-7">
+  <td class="md:first:pl-7 md:last:pr-7">
     <div class="flex items-center space-x-4 h-12">
-      <button class="min-w-[2rem] inline-grid grid-cols-2">
+      <button class="min-w-[2rem] inline-grid grid-cols-2 rotate-45">
         <PoolIcon {assets} />
       </button>
 
-      <div class="grow-1 flex flex-col items-center justify-start text-left">
+      <div class="grow-1 flex flex-col items-start justify-start text-left ml-1 md:ml-2">
         <div class="font-bold">{pool.name}</div>
-        <!-- <div>
-          {#each pool.underlying_coins as coin}
-            <span class="font-bold">
-              {coin} &nbsp;
-            </span>
-          {/each}
-        </div> -->
         <div class="text-sm opacity-60">
           <span class="text-left">{shortenAddress(pool.swap_address,6,4)}</span>
         </div>

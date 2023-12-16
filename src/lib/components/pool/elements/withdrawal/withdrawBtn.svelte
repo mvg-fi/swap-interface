@@ -21,7 +21,7 @@
           tx = await $currentPool.withdraw($inputLpAmount, $slippage);
           break;
       }
-      console.log("withdrawed:", tx);
+      console.log("withdraw:", tx);
       showToast("success", $_("remove_liquidity.withdraw_submitted"));
     } catch (e) {
       console.log("withdraw error:", e);
