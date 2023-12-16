@@ -15,8 +15,9 @@
     "@babel/core": "^7.20.5",
     "@fontsource/fira-mono": "^4.5.0",
     "@neoconfetti/svelte": "^1.0.0",
-    "@sveltejs/adapter-auto": "^2.1.1",
-    "@sveltejs/kit": "^1.27.7",
+    "@sveltejs/adapter-auto": "^3.0.0",
+    "@sveltejs/kit": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@types/lodash-es": "^4.17.6",
     "autoprefixer": "^10.4.13",
     "babel-loader": "^8.3.0",
@@ -55,6 +56,6 @@
     "svelte-i18n": "^4.0.0",
     "theme-change": "^2.5.0",
     "uuid": "^9.0.1",
-    "vite": "^4.0.4"
+    "vite": "^5.0.0"
   }
 }
