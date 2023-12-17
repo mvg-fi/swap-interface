@@ -3,7 +3,24 @@
 - [x] connect mixin
 - [x] mobile card
 - [x] mobile design
-
-- [] new select asset card
+- [x] hero page 
+- [x] new select asset card
+- [x] fix ui bug - btn onclick bg
+- [x] fix select asset disable
 - [] redesign swap confirm
-- [] hero page (capital efficient (better than uniswap v2), truly decentralized (runs on smart contract, can't be stopped), free access by anyone (everyone can add pair for free), owned by people (Ve Tokenomics, stake to earn more rewards))
+- [] implement sdk
+- [] mixin support
+
+- [] redeploy all contracts
+- [] deploy dao contracts
+- [] make graph node
+- [] deploy sub graph
+
+- [] menu ui
+- [] stake ui
+- [] connect wallet ui
+- [] me settings ui
+- [] design hero intro pages ui
+- [] canvas background
+
+- [] evm wallet support

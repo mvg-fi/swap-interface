@@ -10,25 +10,20 @@
   ];
 </script>
 
-<ul class="menu flex-row hidden md:flex">
+<div class="menu flex-row hidden md:flex">
   {#each items as item}
-    <li>
-      <button
-        on:click={() => goto(item.key)}
-        class={clsx(
-          "btn btn-ghost no-animation flex flex-col items-center font-medium rounded-lg",
-          $page.url.pathname === item.key && "text-base-content",
-          !($page.url.pathname === item.key) && "text-gray-500/70",
-        )}
-      >
-        <span>{item.value}</span>
-      </button>
-    </li>
+    <button
+      on:click={() => goto(item.key)}
+      class={clsx(
+        "btn btn-ghost no-animation flex flex-col items-center font-medium rounded-lg",
+        $page.url.pathname === item.key && "text-base-content",
+        !($page.url.pathname === item.key) && "text-gray-500/70",
+      )}
+    >
+      <span>{item.value}</span>
+    </button>
   {/each}
-</ul>
+</div>
 
 <style>
-  .selected {
-    color: black;
-  }
 </style>
