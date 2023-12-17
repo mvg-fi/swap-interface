@@ -3,7 +3,7 @@
 	import { goto } from "$app/navigation";
 </script>
 
-<div class="bg-white w-full ">
+<div class="bg-base-100 w-full ">
   <div class="relative isolate px-6 pt-14 lg:px-8 dyh mb-[4rem]">
     <div
       class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80 rotate-transition"
@@ -42,7 +42,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>							
           </button>
-          <a href="#efficient" class=""><button class="text-sm font-semibold leading-6 text-gray-900"
+          <a href="#efficient" class=""><button class="text-sm font-semibold leading-6 text-base-content"
             >{$_('learn_more')} <span aria-hidden="true">→</span></button
           >
           </a>

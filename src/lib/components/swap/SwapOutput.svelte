@@ -43,7 +43,7 @@
 
 <div class="w-full">
   <div
-    class="p-1 py-2 bg-[rgb(247,248,250)] [[data-theme=dark]_&]:border-none rounded-b-2xl space-y-1"
+    class="p-1 py-2 bg-[rgb(247,248,250)] [[data-theme=dark]_&]:bg-[#000000] [[data-theme=dark]_&]:border-none rounded-b-2xl space-y-1"
   >
     <div class="items-center justify-start flex mx-3 mt-1">
       <span class="text-sm opacity-50 font-medium">
@@ -57,11 +57,11 @@
           placeholder="0"
           use:cleave={maskOption}
           bind:value={$receiveAmount}
-          class="input bg-[rgb(247,248,250)] p-0 w-full max-w-xs outline-none border-0 focus:outline-none font-bold text-3xl transition-none text-base-content"
+          class="input bg-[rgb(247,248,250)] [[data-theme=dark]_&]:bg-[#000000] p-0 w-full max-w-xs outline-none border-0 focus:outline-none font-bold text-3xl transition-none text-base-content"
         />
       </div>
       <button
-        class="flex flex-row items-center content-center mz-box bg-base-100 hover:bg-slate-200 transition p-2 rounded-3xl"
+        class="flex flex-row items-center content-center mz-box bg-base-100 hover:bg-slate-200 [[data-theme=dark]_&]:hover:bg-slate-700 transition p-2 rounded-3xl"
         on:click={() => setToAssetDialog(true)}
       >
         <div class="avatar mx-1 mr-0 w-7 rounded-full mz-box">

@@ -29,11 +29,11 @@
     </div>
 
     <div class="mb-3">
-      <div class="my-5 join grid grid-cols-4 [[data-theme=dark]_&]:invert">
+      <div class="my-5 join grid grid-cols-4">
         {#each ranges as r}
           <button
             class={clsx(
-              "btn join-item btn-sm border-none hover:border-none text-base-content hover:text-base-content bg-color hover:bg-base-200 font-medium text-xs",
+              "btn join-item btn-sm border-none hover:border-none text-base-content hover:text-base-content bg-color hover:bg-base-200 [[data-theme=dark]_&]:bg-[#000000] font-medium text-xs no-animation",
               $slippage === r &&
                 "!bg-slate-600 text-slate-50 hover:text-slate-50",
             )}
@@ -42,7 +42,7 @@
         {/each}
         <button
           class={clsx(
-            "btn join-item btn-sm border-none hover:border-none text-base-content hover:text-base-content bg-color hover:bg-base-200 font-medium text-xs",
+            "btn join-item btn-sm border-none hover:border-none text-base-content hover:text-base-content bg-color hover:bg-base-200 [[data-theme=dark]_&]:bg-[#000000] font-medium text-xs no-animation",
             !ranges.includes($slippage) &&
               "!bg-slate-600 text-slate-50 hover:text-slate-50",
           )}
@@ -59,7 +59,7 @@
             class="input join-item input-bordered w-full bg-color focus:outline-0 border-none"
           />
           <button
-            class="btn join-item border-none shadow-none text-base-content bg-color"
+            class="btn join-item border-none shadow-none text-base-content bg-color no-animation "
           >
             %
           </button>

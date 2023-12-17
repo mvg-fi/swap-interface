@@ -57,7 +57,7 @@
 {#await setup}
   <Loading />
 {:then}
-  <div class="app text-base-content">
+  <div class="app text-base-content [[data-theme=dark]_&]:text-base-100">
     <slot />
   </div>
   <SlippageSetting />

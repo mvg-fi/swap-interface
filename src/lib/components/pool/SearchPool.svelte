@@ -8,7 +8,7 @@
 <div class="flex">
   <div class="join border rounded-xl w-full">
     <button
-      class="btn join-item btn-square border-none shadow-none bg-[rgb(247,248,250)] hover:bg-[rgb(247,248,250)] min-h-[3rem]"
+      class="btn join-item btn-square border-none shadow-none bg-[rgb(247,248,250)] hover:bg-[rgb(247,248,250)] min-h-[3rem] [[data-theme=dark]_&]:bg-[#000000]/40 [[data-theme=dark]_&]:hover:bg-[#000000]/40"
     >
       <img src={searchIcon} alt="search" class="w-6 opacity-40 [[data-theme=dark]_&]:invert" />
     </button>
@@ -16,7 +16,7 @@
       type="text"
       bind:value={$search}
       placeholder={$_("search.pool")}
-      class="input join-item block w-full bg-[rgb(247,248,250)] border-l-0 pl-0 focus:outline-none focus:border-0 min-h-[3rem]"
+      class="input join-item block w-full bg-[rgb(247,248,250)] border-l-0 pl-0 focus:outline-none focus:border-0 min-h-[3rem] [[data-theme=dark]_&]:bg-[#000000]/40 [[data-theme=dark]_&]:hover:bg-[#000000]/40"
     />
   </div>
   <div class="flex items-center ml-3 tooltip tooltip-left" data-tip={$_('pool.create_new_pool')}>
