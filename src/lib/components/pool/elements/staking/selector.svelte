@@ -6,12 +6,12 @@
 
   const ranges = [
     $_("technical.stake"),
-    $_("pool.deposit_and_stake"),
+    // $_("pool.deposit_and_stake"),
     $_("technical.unstake"),
   ];
   const tooltips = [
     $_("technical.stake_t"),
-    $_("pool.deposit_and_stake_t"),
+    // $_("pool.deposit_and_stake_t"),
     $_("technical.unstake_t"),
   ];
 </script>
@@ -19,7 +19,7 @@
 <div class="m-1 my-3">
   <div class="">
     <!-- Selector -->
-    <div class="join grid grid-cols-3 font-medium">
+    <div class="join grid grid-cols-2 font-medium">
       {#each ranges as _, i}
         <button
           class={clsx("btn btn-sm bg-base-100 hover:bg-base-200 border border-base-300 join-item", 
