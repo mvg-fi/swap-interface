@@ -3,7 +3,7 @@
 </script>
 
 <div class="flex items-center space-x-2">
-  <button class="btn btn-square bg-base-100 border-none mx-2 w-4 h-4"> 
+  <button class="btn btn-square btn-ghost bg-base-100 hover:bg-base-100 border-none mx-2 w-4 h-4">
     <span class="loading loading-spinner"></span>
   </button>
   <span class="text-base-content opacity-50"> {$_("swap.loading")} </span>

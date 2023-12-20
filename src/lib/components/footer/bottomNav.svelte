@@ -3,7 +3,7 @@
   import { _ } from "svelte-i18n"
   import { page } from '$app/stores';  
   import { goto } from "$app/navigation";
-  $: active = $page.url.pathname === '/swap' ? 0 : $page.url.pathname === '/pool' ? 1 : $page.url.pathname === '/me' ? 2 : 3;
+  $: active = $page.url.pathname.slice(0,5) === '/swap' ? 0 : $page.url.pathname.slice(0,5) === '/pool' ? 1 : $page.url.pathname.slice(0,3) === '/me' ? 2 : 3;
 </script>
 
 <div class="btm-nav btm-nav-md visible md:invisible shadow-2xl bg-white">

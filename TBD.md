@@ -24,3 +24,9 @@
 - [] canvas background
 
 - [] evm wallet support
+
+
+Factory create pools
+- [] one click create erc20 factory
+- [] factory creation coin addresses selector
+- [] hide complicated arguments into advance mode
