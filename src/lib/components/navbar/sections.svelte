@@ -16,8 +16,8 @@
       on:click={() => goto(item.key)}
       class={clsx(
         "btn btn-ghost no-animation flex flex-col items-center font-medium rounded-lg",
-        $page.url.pathname === item.key && "text-base-content",
-        !($page.url.pathname === item.key) && "text-gray-500/70",
+        $page.url.pathname.slice(0,5) === item.key && "text-base-content",
+        !($page.url.pathname.slice(0,5) === item.key) && "text-gray-500/70",
       )}
     >
       <span>{item.value}</span>
