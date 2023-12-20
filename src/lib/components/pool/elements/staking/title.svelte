@@ -12,5 +12,5 @@
     <span class="cursor-pointer text-sm"> {$_("add_liquidity.withdraw")} </span>
   </button>
   <span class="px-2"> / </span>
-  <span class="font-bold text-base -translate-y-[0.5px]"> {$_("add_liquidity.staking")} </span>
+  <span class="font-bold text-base -translate-y-[0.5px]"> {$_("add_liquidity.stake")} </span>
 </div>

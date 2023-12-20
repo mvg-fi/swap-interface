@@ -1,6 +1,7 @@
 <script type="ts">
   import { _ } from "svelte-i18n";
   import tokens from "$lib/constants/tokenlist.json";
+  import { onMount } from "svelte";
 
   $: showcases1 = Object.values(tokens).slice(0, 36);
   $: showcases2 = Object.values(tokens).slice(36, 72);
@@ -20,7 +21,8 @@
     showcases3 = fin.slice(104, 156);
     loaded = true;
   };
-  b();
+
+  onMount(b);
 </script>
 
 <div
@@ -44,10 +46,10 @@
     </button>
   </div>
 
-  <div class="mx-auto mt-16 w-64 h-64 md:w-80 md:h-80 2xl:w-[32rem] 2xl:h-[32rem]">
-    <div
-      class="flex flex-col justify-start space-y-8 h-full"
-    >
+  <div
+    class="mx-auto mt-16 w-64 h-64 md:w-80 md:h-80 2xl:w-[32rem] 2xl:h-[32rem]"
+  >
+    <div class="flex flex-col justify-start space-y-8 h-full">
       <!-- Line 1 -->
       <div class="relative overflow-x-hidden h-14">
         <div

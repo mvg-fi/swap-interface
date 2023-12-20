@@ -1,4 +1,5 @@
 <script lang="ts">
+  import clsx from "clsx";
   import curve from "@zed-wong/mvgswap";
   import { goto } from "$app/navigation";
   import _tokenList from "$lib/constants/tokenlist.json";
@@ -33,9 +34,9 @@
   }}
 >
   <!-- svelte-ignore a11y-invalid-attribute -->
-  <td class="md:first:pl-7 md:last:pr-7">
+  <td class="first:pl-5 last:pr-5 md:first:pl-7 md:last:pr-7">
     <div class="flex items-center space-x-4 h-12">
-      <button class="min-w-[2rem] inline-grid grid-cols-2 rotate-45">
+      <button class={clsx("min-w-[2rem] inline-grid grid-cols-2", assets.length < 3 && "rotate-45")}>
         <PoolIcon {assets} />
       </button>
 

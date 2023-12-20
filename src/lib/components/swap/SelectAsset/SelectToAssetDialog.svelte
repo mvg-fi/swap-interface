@@ -34,7 +34,7 @@
 </script>
 
 <div
-  in:fade
+  in:fade|global
   on:click={onClickOutside}
   on:keypress={onClickOutside}
   class={clsx(
@@ -63,9 +63,9 @@
     <div class="divider my-0 h-[0.1px] !bg-base-200"></div>
     <div class="h-full overflow-y-auto">
       {#if filteredItems.length != 0}
-        <ul class="menu p-0 bg-base-100 w-full overflow-y-auto">
+        <div class="menu p-0 bg-base-100 w-full overflow-y-auto">
           {#each filteredItems as asset}
-            <li
+            <button
               on:click={() => {
                 if (asset.mixinAssetId === $selectedFromAsset.mixinAssetId) {
                   switchAsset(true)
@@ -84,16 +84,17 @@
               }}
               class={clsx(
                 $selectedToAsset.mixinAssetId == asset.mixinAssetId &&
-                "bg-[rgb(247,248,250)] opacity-60 text-base-content btn-disabled current",
+                "bg-[rgb(247,248,250)] opacity-50 text-base-content",
+                "ml-1"
               )}
             >
               <SingleAsset
                 {asset}
                 selected={$selectedToAsset.mixinAssetId == asset.mixinAssetId}
               />
-            </li>
+            </button>
           {/each}
-        </ul>
+        </div>
       {:else}
         <div
           class="flex grow flex-col space-y-3 py-0 h-full w-full items-center justify-center"

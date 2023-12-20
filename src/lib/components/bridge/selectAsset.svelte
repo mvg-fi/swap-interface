@@ -52,7 +52,7 @@
 <!-- TODO: Better UI and fonts -->
 <svelte:window on:keydown={onKeyDown} />
 <div
-  in:fade
+  in:fade|global
   on:click={onClickOutside}
   on:keypress={onClickOutside}
   class={clsx("modal modal-bottom sm:modal-middle text-base-content select-none", 

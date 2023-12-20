@@ -205,7 +205,7 @@
 		"max": "Max",
 		"deposit": "Deposit",
 		"withdraw": "Withdraw",
-		"staking": "Staking",
+		"stake": "Stake",
 		"approve": "Approve Spending",
 		"approve_in_your_wallet": "Approve in your wallet",
 		"pool_balance": "Pool balances",
@@ -256,7 +256,8 @@
 		"stake": "Stake",
 		"unstake": "Unstake",
 		"stake_t": "Stake LP token to earn rewards",
-		"unstake_t": "Unstake LP token"
+		"unstake_t": "Unstake LP token",
+		"lp_token": "LP Token"
 	},
 	"dark_mode": "Dark mode",
 	"language": "Language",

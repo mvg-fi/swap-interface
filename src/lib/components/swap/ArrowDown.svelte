@@ -6,7 +6,7 @@
 <div class="flex justify-center items-center">
   <button
     on:click={switchAsset}
-    class="bg-[rgb(247,248,250)] rounded-3xl p-1 border-base-100 border-2 absolute"
+    class="bg-[rgb(247,248,250)] [[data-theme=dark]_&]:bg-[#000000] rounded-3xl p-1 border-base-100 border-2 absolute"
   >
     <img src={DownIcon} alt="s" class="down [[data-theme=dark]_&]:invert" />
   </button>

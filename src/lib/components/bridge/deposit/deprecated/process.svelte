@@ -28,7 +28,7 @@
 
 <svelte:window on:keydown={onKeyDown} />
 <div
-  in:fade
+  in:fade|global
   on:click={onClickOutside}
   on:keypress={onClickOutside}
   class:modal-open={$processDialog}
