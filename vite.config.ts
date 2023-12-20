@@ -13,8 +13,8 @@ const config = {
 	},
 	resolve: {
 		alias: {
-			path: 'path-browserify',
-			util: 'rollup-plugin-node-polyfills/polyfills/util'
+			// path: 'path-browserify',
+			// util: 'rollup-plugin-node-polyfills/polyfills/util'
 		}
 	},
 	plugins: [
