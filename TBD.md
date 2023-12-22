@@ -20,6 +20,8 @@
 - [] stake ui
 - [] connect wallet ui
 - [] me settings ui
+- [] stake mrv ui
+- [] veMRV fees ui
 - [] design hero intro pages ui
 - [] canvas background
 

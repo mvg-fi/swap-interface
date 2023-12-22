@@ -36,9 +36,11 @@
   <!-- svelte-ignore a11y-invalid-attribute -->
   <td class="first:pl-5 last:pr-5 md:first:pl-7 md:last:pr-7">
     <div class="flex items-center space-x-4 h-12">
-      <button class={clsx("min-w-[2rem] inline-grid grid-cols-2", assets.length < 3 && "rotate-45")}>
-        <PoolIcon {assets} />
-      </button>
+      <div class="w-[2rem] md:w-[3rem]">
+        <button class={clsx("min-w-[2rem] inline-grid grid-cols-2", assets.length < 3 && "rotate-45")}>
+          <PoolIcon {assets} />
+        </button>
+      </div>
 
       <div class="grow-1 flex flex-col items-start justify-start text-left ml-2">
         <div class="font-bold">{pool.name}</div>
